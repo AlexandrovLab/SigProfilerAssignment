@@ -1,0 +1,12 @@
+scipy
+numpy
+pandas 
+SigProfilerExtractor 
+SigProfilerMatrixGenerator 
+sigProfilerPlotting 
+pillow
+statsmodels
+scikit-learn
+psutil
+reportlab
+PyPDF2

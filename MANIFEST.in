@@ -1,0 +1,11 @@
+include README.rst
+include SigProfilerSingleSamplePro/data/*
+include SigProfilerSingleSamplePro/data/vcftest/*
+include SigProfilerSingleSamplePro/data/Reference_Signatures/GRCh37/*
+include SigProfilerSingleSamplePro/data/Reference_Signatures/GRCh38/*
+include SigProfilerSingleSamplePro/data/Reference_Signatures/mm9/*
+include SigProfilerSingleSamplePro/data/Reference_Signatures/mm10/*
+include SigProfilerSingleSamplePro/data/Reference_Signatures/rn6/*
+include SigProfilerSingleSamplePro/src/FormatFiles/*
+include SigProfilerSingleSamplePro/src/Fonts/*
+include SigProfilerSingleSamplePro/src/*
