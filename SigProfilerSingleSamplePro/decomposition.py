@@ -148,7 +148,7 @@ def Assign(signatures, activities, samples,  output, signature_database=None, nn
     
     
     
-    pdb.set_trace()
+
     allsigids = processAvg.columns.to_list()
     processAvg = processAvg.values
     
@@ -163,9 +163,9 @@ def Assign(signatures, activities, samples,  output, signature_database=None, nn
     #for other contexts
     else:
         background_sigs = []
-    pdb.set_trace()
+
     exposureAvg_dummy = pd.DataFrame(np.random.rand(processAvg.shape[1],genomes.shape[1]),index=allsigids,columns=colnames.to_list()).transpose().rename_axis('Samples')
-    pdb.set_trace()
+
     result = sub.make_final_solution(processAvg, genomes, allsigids, layer_directory1, mutation_type, index, colnames, 
                             cosmic_sigs=True, attribution = attribution, denovo_exposureAvg  = exposureAvg_dummy ,  
                             background_sigs=background_sigs, verbose=verbose, genome_build=genome_build, 
@@ -173,7 +173,7 @@ def Assign(signatures, activities, samples,  output, signature_database=None, nn
                             initial_remove_penalty=initial_remove_penalty,connected_sigs=connected_sigs,
                             collapse_to_SBS96=collapse_to_SBS96,
                             refit_denovo_signatures=False)
-    pdb.set_trace()
+    
     return result
 
 
