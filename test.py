@@ -14,7 +14,7 @@ def main():
     samples=dir_inp+"/Input_scenario_8/Samples.txt"
     output="output_decompose_test/"
 
-    decomp.Assign( activities,  output,samples,signatures=None, genome_build="GRCh37", verbose=False)
+    decomp.Assign(samples,output, genome_build="GRCh37", verbose=False)
 
 if __name__ == '__main__':
     main()
