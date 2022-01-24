@@ -6,18 +6,15 @@ Created on Tue Jan 18 12:21:06 2021
 @author: rvangara
 """
 
-#from SigProfilerExtractor import subroutines as sub
-
 from SigProfilerSingleSamplePro import decompose_sub_routines as sub
 import numpy as np
 import pandas as pd
 #import SigProfilerExtractor as cosmic
-import os,pdb
+import os,sys
 
-def Assign(signatures, activities, samples,  output, signature_database=None, nnls_add_penalty=0.05, 
-              nnls_remove_penalty=0.01, initial_remove_penalty=0.05, de_novo_fit_penalty=0.02, 
-              genome_build="GRCh37", refit_denovo_signatures=True, make_decomposition_plots=True, 
-              collapse_to_SBS96=True,connected_sigs=True, verbose=False):
+def Assign( samples,  output, signatures=None, signature_database=None, nnls_add_penalty=0.05, 
+              nnls_remove_penalty=0.01, initial_remove_penalty=0.05, 
+              genome_build="GRCh37", collapse_to_SBS96=True,connected_sigs=True, verbose=False):
 
     
     """
@@ -67,7 +64,13 @@ def Assign(signatures, activities, samples,  output, signature_database=None, nn
     #listOfSignatures = processAvg.columns
     #pdb.set_trace()
     #Get COSMIC SIGNATURES
-    processAvg = sub.getProcessAvg(genomes, genome_build, "3.2")
+    if signatures == None:
+        processAvg = sub.getProcessAvg(genomes, genome_build, "3.2")
+    else:
+        try:
+            processAvg = pd.read_csv(signatures,sep='\t',header=True, index_col=0)
+        except:
+            sys.exit("Something is wrong with input signatures, Pass a text file of signatures in the format of COSMIC sig database")
     processAvg = processAvg.set_index('Type').rename_axis('MutationType')
     ##
     #pdb.set_trace()
@@ -101,21 +104,7 @@ def Assign(signatures, activities, samples,  output, signature_database=None, nn
     except: 
         print ("The {} folder could not be created".format("Assignment_Solution"))
   
-    #listOfSignatures = sub.make_letter_ids(idlenth = processAvg.shape[1], mtype=mutation_context)
-    #genomes = pd.DataFrame(genomes)
-    #denovo_exposureAvg = np.array(exposureAvg.T)
-    ###
-    #pdb.set_trace()
-    #denovo_exposureAvg2 = pd.DataFrame(np.random.rand(processAvg2.shape[1],genomes.shape[1]),index=processAvg2.columns.to_list(),columns=genomes.columns.to_list())
-    ###
-    #exposureAvg = sub.make_final_solution(processAvg, genomes, listOfSignatures, layer_directory1, mutation_type, index,\
-                #   colnames,denovo_exposureAvg  = denovo_exposureAvg, add_penalty=nnls_add_penalty, remove_penalty=nnls_remove_penalty, initial_remove_penalty=initial_remove_penalty, de_novo_fit_penalty=de_novo_fit_penalty, connected_sigs=connected_sigs, refit_denovo_signatures=refit_denovo_signatures)    
-    #layer_directory2 = output+"/Decompose_Solution"
-    #try:
-    #    if not os.path.exists(layer_directory2):
-    #        os.makedirs(layer_directory2)
-    #except: 
-    #    print ("The {} folder could not be created".format("Decomposed_Solution"))
+
 
     if processAvg.shape[0]==1536 and collapse_to_SBS96==True: #collapse the 1596 context into 96 only for the deocmposition 
         processAvg = pd.DataFrame(processAvg, index=index)
@@ -133,22 +122,10 @@ def Assign(signatures, activities, samples,  output, signature_database=None, nn
         processAvg = np.array(processAvg)
             
     
-    #final_signatures = sub.signature_decomposition(processAvg, mutation_type, layer_directory2, genome_build=genome_build,signature_database=signature_database, mutation_context=mutation_context, add_penalty=0.05, connected_sigs=connected_sigs,remove_penalty=0.01, make_decomposition_plots=make_decomposition_plots, originalProcessAvg=originalProcessAvg)    
-    #final_signatures = sub.signature_decomposition(processAvg, m, layer_directory2, genome_build=genome_build)
-    # extract the global signatures and new signatures from the final_signatures dictionary
-    # globalsigs = final_signatures["globalsigs"]
-    # globalsigs = np.array(globalsigs)
-    # newsigs = final_signatures["newsigs"]
-    # processAvg = np.hstack([globalsigs, newsigs])  
-    # allsigids = final_signatures["globalsigids"]+final_signatures["newsigids"]
-    # attribution = final_signatures["dictionary"]
-    #background_sigs= final_signatures["background_sigs"]
     index = genomes.index
     colnames = genomes.columns
     
     
-    
-    pdb.set_trace()
     allsigids = processAvg.columns.to_list()
     processAvg = processAvg.values
     
@@ -163,9 +140,8 @@ def Assign(signatures, activities, samples,  output, signature_database=None, nn
     #for other contexts
     else:
         background_sigs = []
-    pdb.set_trace()
     exposureAvg_dummy = pd.DataFrame(np.random.rand(processAvg.shape[1],genomes.shape[1]),index=allsigids,columns=colnames.to_list()).transpose().rename_axis('Samples')
-    pdb.set_trace()
+  
     result = sub.make_final_solution(processAvg, genomes, allsigids, layer_directory1, mutation_type, index, colnames, 
                             cosmic_sigs=True, attribution = attribution, denovo_exposureAvg  = exposureAvg_dummy ,  
                             background_sigs=background_sigs, verbose=verbose, genome_build=genome_build, 
@@ -173,7 +149,7 @@ def Assign(signatures, activities, samples,  output, signature_database=None, nn
                             initial_remove_penalty=initial_remove_penalty,connected_sigs=connected_sigs,
                             collapse_to_SBS96=collapse_to_SBS96,
                             refit_denovo_signatures=False)
-    pdb.set_trace()
+   
     return result
 
 

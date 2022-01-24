@@ -725,8 +725,10 @@ Cosine Similarity: 1.0
 
                     ################ Sample 19 #################
 ############################# Initial Composition ####################################
-     SBS3  SBS4   SBS5  SBS6  SBS11  SBS12  SBS16  SBS19  SBS22  SBS28  SBS29  SBS30  SBS32  SBS33  SBS39   SBS40  SBS43  SBS50  SBS53  SBS54  SBS55  SBS58  SBS59  SBS88  SBS89  SBS92
-0  4725.0   1.0  617.0   2.0    2.0    4.0    1.0    2.0    2.0    1.0    3.0    2.0    1.0    1.0   12.0  5721.0    1.0    1.0    1.0    5.0    1.0    1.0    1.0    4.0    1.0    2.0
+     SBS3  SBS4   SBS5  SBS6  SBS11  SBS12  SBS16  SBS19  SBS22  SBS28  SBS29  ...   SBS40  SBS43  SBS50  SBS53  SBS54  SBS55  SBS58  SBS59  SBS88  SBS89  SBS92
+0  4725.0   1.0  617.0   2.0    2.0    4.0    1.0    2.0    2.0    1.0    3.0  ...  5721.0    1.0    1.0    1.0    5.0    1.0    1.0    1.0    4.0    1.0    2.0
+
+[1 rows x 26 columns]
 L2 Error %: 0.0
 Cosine Similarity: 1.0
 ############################## Composition After Initial Remove ###############################
@@ -765,8 +767,10 @@ Cosine Similarity: 1.0
 
                     ################ Sample 20 #################
 ############################# Initial Composition ####################################
-     SBS3  SBS4   SBS5  SBS6  SBS7c  SBS7d  SBS10a  SBS14  SBS16  SBS17b  SBS28  SBS30  SBS33  SBS37  SBS39   SBS40  SBS44  SBS48  SBS50  SBS51  SBS58  SBS59  SBS92  SBS93
-0  2560.0   7.0  575.0   2.0    2.0    1.0     1.0    1.0    1.0     1.0    1.0    4.0    1.0    2.0    9.0  2369.0    2.0    1.0    1.0    1.0    1.0    1.0    2.0    1.0
+     SBS3  SBS4   SBS5  SBS6  SBS7c  SBS7d  SBS10a  SBS14  SBS16  SBS17b  SBS28  ...  SBS37  SBS39   SBS40  SBS44  SBS48  SBS50  SBS51  SBS58  SBS59  SBS92  SBS93
+0  2560.0   7.0  575.0   2.0    2.0    1.0     1.0    1.0    1.0     1.0    1.0  ...    2.0    9.0  2369.0    2.0    1.0    1.0    1.0    1.0    1.0    2.0    1.0
+
+[1 rows x 24 columns]
 L2 Error %: 0.0
 Cosine Similarity: 1.0
 ############################## Composition After Initial Remove ###############################
@@ -925,8 +929,10 @@ Cosine Similarity: 1.0
 
                     ################ Sample 24 #################
 ############################# Initial Composition ####################################
-   SBS1  SBS2    SBS3   SBS5  SBS6  SBS7a  SBS7c  SBS9  SBS10a  SBS11  SBS16  SBS17a  SBS18  SBS19  SBS24  SBS30  SBS34  SBS37  SBS38  SBS39   SBS40  SBS42  SBS54  SBS86
-0   1.0   1.0  9715.0  617.0   1.0    1.0    2.0   3.0     1.0    1.0    4.0     1.0    3.0    2.0    1.0    2.0    1.0    2.0    1.0    3.0  2448.0    2.0    1.0    2.0
+   SBS1  SBS2    SBS3   SBS5  SBS6  SBS7a  SBS7c  SBS9  SBS10a  SBS11  SBS16  ...  SBS19  SBS24  SBS30  SBS34  SBS37  SBS38  SBS39   SBS40  SBS42  SBS54  SBS86
+0   1.0   1.0  9715.0  617.0   1.0    1.0    2.0   3.0     1.0    1.0    4.0  ...    2.0    1.0    2.0    1.0    2.0    1.0    3.0  2448.0    2.0    1.0    2.0
+
+[1 rows x 24 columns]
 L2 Error %: 0.0
 Cosine Similarity: 1.0
 ############################## Composition After Initial Remove ###############################
@@ -1725,8 +1731,10 @@ Cosine Similarity: 1.0
 
                     ################ Sample 44 #################
 ############################# Initial Composition ####################################
-   SBS2    SBS3  SBS4   SBS5  SBS6  SBS8  SBS16  SBS17b  SBS18  SBS19  SBS24  SBS28  SBS30  SBS31  SBS37  SBS39   SBS40  SBS48  SBS51  SBS54  SBS58  SBS88  SBS89  SBS93
-0   1.0  7652.0   4.0  670.0   1.0   3.0    2.0     1.0    2.0    1.0    3.0    1.0    7.0    1.0    3.0    9.0  3489.0    1.0    2.0    4.0    1.0    2.0    1.0    4.0
+   SBS2    SBS3  SBS4   SBS5  SBS6  SBS8  SBS16  SBS17b  SBS18  SBS19  SBS24  ...  SBS31  SBS37  SBS39   SBS40  SBS48  SBS51  SBS54  SBS58  SBS88  SBS89  SBS93
+0   1.0  7652.0   4.0  670.0   1.0   3.0    2.0     1.0    2.0    1.0    3.0  ...    1.0    3.0    9.0  3489.0    1.0    2.0    4.0    1.0    2.0    1.0    4.0
+
+[1 rows x 24 columns]
 L2 Error %: 0.0
 Cosine Similarity: 1.0
 ############################## Composition After Initial Remove ###############################
@@ -1805,8 +1813,10 @@ Cosine Similarity: 1.0
 
                     ################ Sample 46 #################
 ############################# Initial Composition ####################################
-     SBS3  SBS4   SBS5  SBS7d  SBS8  SBS10b  SBS16  SBS17a  SBS17b  SBS18  SBS19  SBS22  SBS24  SBS25  SBS26  SBS30  SBS32  SBS33  SBS39   SBS40  SBS44  SBS46  SBS51  SBS54  SBS57  SBS87
-0  2849.0   1.0  686.0    2.0   4.0     1.0    8.0     1.0     1.0    4.0    2.0    1.0    2.0    2.0    3.0    7.0    1.0    2.0    8.0  2924.0    1.0    1.0    1.0    2.0    1.0    1.0
+     SBS3  SBS4   SBS5  SBS7d  SBS8  SBS10b  SBS16  SBS17a  SBS17b  SBS18  SBS19  ...  SBS30  SBS32  SBS33  SBS39   SBS40  SBS44  SBS46  SBS51  SBS54  SBS57  SBS87
+0  2849.0   1.0  686.0    2.0   4.0     1.0    8.0     1.0     1.0    4.0    2.0  ...    7.0    1.0    2.0    8.0  2924.0    1.0    1.0    1.0    2.0    1.0    1.0
+
+[1 rows x 26 columns]
 L2 Error %: 0.0
 Cosine Similarity: 1.0
 ############################## Composition After Initial Remove ###############################
@@ -1845,8 +1855,10 @@ Cosine Similarity: 1.0
 
                     ################ Sample 47 #################
 ############################# Initial Composition ####################################
-   SBS2    SBS3   SBS5  SBS7a  SBS7d  SBS10b  SBS14  SBS16  SBS18  SBS19  SBS23  SBS25  SBS29  SBS32  SBS37  SBS38  SBS39   SBS40  SBS44  SBS51  SBS54  SBS59  SBS86  SBS88
-0   1.0  3129.0  398.0    1.0    1.0     1.0    1.0    6.0    1.0    3.0    1.0    4.0    1.0    3.0    4.0    1.0    4.0  4650.0    1.0    2.0    1.0    1.0    1.0    1.0
+   SBS2    SBS3   SBS5  SBS7a  SBS7d  SBS10b  SBS14  SBS16  SBS18  SBS19  SBS23  ...  SBS32  SBS37  SBS38  SBS39   SBS40  SBS44  SBS51  SBS54  SBS59  SBS86  SBS88
+0   1.0  3129.0  398.0    1.0    1.0     1.0    1.0    6.0    1.0    3.0    1.0  ...    3.0    4.0    1.0    4.0  4650.0    1.0    2.0    1.0    1.0    1.0    1.0
+
+[1 rows x 24 columns]
 L2 Error %: 0.0
 Cosine Similarity: 1.0
 ############################## Composition After Initial Remove ###############################
@@ -2045,8 +2057,10 @@ Cosine Similarity: 1.0
 
                     ################ Sample 52 #################
 ############################# Initial Composition ####################################
-     SBS3   SBS5  SBS7a  SBS8  SBS10a  SBS12  SBS16  SBS17a  SBS20  SBS23  SBS27  SBS28  SBS30  SBS31  SBS32  SBS37  SBS39   SBS40  SBS41  SBS42  SBS43  SBS51  SBS54  SBS86
-0  5078.0  980.0    1.0   5.0     1.0    8.0    4.0     1.0    1.0    2.0    1.0    1.0    2.0    1.0    1.0    3.0    7.0  6097.0    1.0    3.0    1.0    1.0    1.0    2.0
+     SBS3   SBS5  SBS7a  SBS8  SBS10a  SBS12  SBS16  SBS17a  SBS20  SBS23  SBS27  ...  SBS31  SBS32  SBS37  SBS39   SBS40  SBS41  SBS42  SBS43  SBS51  SBS54  SBS86
+0  5078.0  980.0    1.0   5.0     1.0    8.0    4.0     1.0    1.0    2.0    1.0  ...    1.0    1.0    3.0    7.0  6097.0    1.0    3.0    1.0    1.0    1.0    2.0
+
+[1 rows x 24 columns]
 L2 Error %: 0.0
 Cosine Similarity: 1.0
 ############################## Composition After Initial Remove ###############################
@@ -2165,8 +2179,10 @@ Cosine Similarity: 1.0
 
                     ################ Sample 55 #################
 ############################# Initial Composition ####################################
-     SBS3    SBS5  SBS8  SBS9  SBS10b  SBS12  SBS16  SBS18  SBS19  SBS28  SBS30  SBS32  SBS37  SBS39   SBS40  SBS42  SBS46  SBS51  SBS54  SBS57  SBS58  SBS87  SBS88  SBS89  SBS93
-0  2194.0  3729.0   2.0   2.0     1.0    3.0    4.0    2.0    1.0    1.0    6.0    1.0    2.0    9.0  6023.0    1.0    2.0    1.0    1.0    1.0    1.0    2.0    1.0    2.0    3.0
+     SBS3    SBS5  SBS8  SBS9  SBS10b  SBS12  SBS16  SBS18  SBS19  SBS28  SBS30  ...   SBS40  SBS42  SBS46  SBS51  SBS54  SBS57  SBS58  SBS87  SBS88  SBS89  SBS93
+0  2194.0  3729.0   2.0   2.0     1.0    3.0    4.0    2.0    1.0    1.0    6.0  ...  6023.0    1.0    2.0    1.0    1.0    1.0    1.0    2.0    1.0    2.0    3.0
+
+[1 rows x 25 columns]
 L2 Error %: 0.0
 Cosine Similarity: 1.0
 ############################## Composition After Initial Remove ###############################
@@ -2205,8 +2221,10 @@ Cosine Similarity: 1.0
 
                     ################ Sample 56 #################
 ############################# Initial Composition ####################################
-   SBS2    SBS3  SBS5  SBS7c  SBS10b  SBS16  SBS17a  SBS18  SBS19  SBS24  SBS27  SBS29  SBS30  SBS32  SBS37  SBS38  SBS39   SBS40  SBS42  SBS43  SBS46  SBS54  SBS57  SBS86  SBS90
-0   1.0  3624.0  77.0    2.0     1.0    3.0     1.0    3.0    2.0    1.0    1.0    1.0    1.0    3.0    1.0    1.0    5.0  7773.0    3.0    1.0    3.0    1.0    1.0    3.0    1.0
+   SBS2    SBS3  SBS5  SBS7c  SBS10b  SBS16  SBS17a  SBS18  SBS19  SBS24  SBS27  ...  SBS37  SBS38  SBS39   SBS40  SBS42  SBS43  SBS46  SBS54  SBS57  SBS86  SBS90
+0   1.0  3624.0  77.0    2.0     1.0    3.0     1.0    3.0    2.0    1.0    1.0  ...    1.0    1.0    5.0  7773.0    3.0    1.0    3.0    1.0    1.0    3.0    1.0
+
+[1 rows x 25 columns]
 L2 Error %: 0.0
 Cosine Similarity: 1.0
 ############################## Composition After Initial Remove ###############################
@@ -2365,8 +2383,10 @@ Cosine Similarity: 1.0
 
                     ################ Sample 60 #################
 ############################# Initial Composition ####################################
-   SBS2    SBS3  SBS4    SBS5  SBS8  SBS10a  SBS12  SBS16  SBS18  SBS19  SBS22  SBS28  SBS30  SBS32  SBS33  SBS34  SBS39   SBS40  SBS44  SBS51  SBS53  SBS54  SBS59  SBS86  SBS87  SBS88  SBS89
-0   1.0  6156.0   3.0  1186.0   1.0     1.0    9.0    2.0    2.0    4.0    1.0    1.0    3.0    3.0    1.0    1.0   11.0  3197.0    2.0    4.0    1.0    3.0    1.0    1.0    1.0    2.0    4.0
+   SBS2    SBS3  SBS4    SBS5  SBS8  SBS10a  SBS12  SBS16  SBS18  SBS19  SBS22  ...  SBS39   SBS40  SBS44  SBS51  SBS53  SBS54  SBS59  SBS86  SBS87  SBS88  SBS89
+0   1.0  6156.0   3.0  1186.0   1.0     1.0    9.0    2.0    2.0    4.0    1.0  ...   11.0  3197.0    2.0    4.0    1.0    3.0    1.0    1.0    1.0    2.0    4.0
+
+[1 rows x 27 columns]
 L2 Error %: 0.0
 Cosine Similarity: 1.0
 ############################## Composition After Initial Remove ###############################
@@ -2405,8 +2425,10 @@ Cosine Similarity: 1.0
 
                     ################ Sample 61 #################
 ############################# Initial Composition ####################################
-     SBS3    SBS5  SBS7c  SBS8  SBS12  SBS16  SBS17a  SBS17b  SBS18  SBS19  SBS20  SBS24  SBS25  SBS28  SBS30  SBS31  SBS32  SBS36  SBS39   SBS40  SBS55  SBS59  SBS84  SBS88  SBS92
-0  4154.0  1122.0    1.0   3.0    8.0    4.0     1.0     1.0    1.0    3.0    1.0    2.0    6.0    1.0    4.0    1.0    4.0    1.0   11.0  9438.0    2.0    1.0    1.0    2.0    1.0
+     SBS3    SBS5  SBS7c  SBS8  SBS12  SBS16  SBS17a  SBS17b  SBS18  SBS19  SBS20  ...  SBS30  SBS31  SBS32  SBS36  SBS39   SBS40  SBS55  SBS59  SBS84  SBS88  SBS92
+0  4154.0  1122.0    1.0   3.0    8.0    4.0     1.0     1.0    1.0    3.0    1.0  ...    4.0    1.0    4.0    1.0   11.0  9438.0    2.0    1.0    1.0    2.0    1.0
+
+[1 rows x 25 columns]
 L2 Error %: 0.0
 Cosine Similarity: 1.0
 ############################## Composition After Initial Remove ###############################
@@ -2845,8 +2867,10 @@ Cosine Similarity: 1.0
 
                     ################ Sample 72 #################
 ############################# Initial Composition ####################################
-   SBS2     SBS3  SBS4   SBS5  SBS6  SBS10a  SBS12  SBS16  SBS23  SBS24  SBS30  SBS32  SBS37  SBS39   SBS40  SBS44  SBS46  SBS50  SBS54  SBS57  SBS58  SBS84  SBS86  SBS87  SBS88  SBS90
-0   2.0  14366.0   2.0  226.0   1.0     1.0    1.0    5.0    4.0    3.0    2.0    1.0    6.0   14.0  3804.0    3.0    2.0    2.0    3.0    1.0    2.0    1.0    1.0    2.0    1.0    1.0
+   SBS2     SBS3  SBS4   SBS5  SBS6  SBS10a  SBS12  SBS16  SBS23  SBS24  SBS30  ...  SBS44  SBS46  SBS50  SBS54  SBS57  SBS58  SBS84  SBS86  SBS87  SBS88  SBS90
+0   2.0  14366.0   2.0  226.0   1.0     1.0    1.0    5.0    4.0    3.0    2.0  ...    3.0    2.0    2.0    3.0    1.0    2.0    1.0    1.0    2.0    1.0    1.0
+
+[1 rows x 26 columns]
 L2 Error %: 0.0
 Cosine Similarity: 1.0
 ############################## Composition After Initial Remove ###############################
@@ -2925,8 +2949,10 @@ Cosine Similarity: 1.0
 
                     ################ Sample 74 #################
 ############################# Initial Composition ####################################
-     SBS3    SBS5  SBS7a  SBS7b  SBS7c  SBS8  SBS9  SBS11  SBS12  SBS13  SBS15  SBS16  SBS19  SBS20  SBS21  SBS25  SBS28  SBS31  SBS32   SBS40  SBS46  SBS51  SBS54  SBS58  SBS88
-0  2849.0  2105.0    2.0    1.0    1.0   1.0   2.0    2.0    2.0    2.0    1.0    6.0    2.0    2.0    1.0    5.0    1.0    1.0    3.0  4463.0    4.0    1.0    1.0    2.0    2.0
+     SBS3    SBS5  SBS7a  SBS7b  SBS7c  SBS8  SBS9  SBS11  SBS12  SBS13  SBS15  ...  SBS21  SBS25  SBS28  SBS31  SBS32   SBS40  SBS46  SBS51  SBS54  SBS58  SBS88
+0  2849.0  2105.0    2.0    1.0    1.0   1.0   2.0    2.0    2.0    2.0    1.0  ...    1.0    5.0    1.0    1.0    3.0  4463.0    4.0    1.0    1.0    2.0    2.0
+
+[1 rows x 25 columns]
 L2 Error %: 0.0
 Cosine Similarity: 1.0
 ############################## Composition After Initial Remove ###############################
@@ -2965,8 +2991,10 @@ Cosine Similarity: 1.0
 
                     ################ Sample 75 #################
 ############################# Initial Composition ####################################
-   SBS2    SBS3   SBS5  SBS7c  SBS12  SBS16  SBS17b  SBS21  SBS24  SBS25  SBS30  SBS31  SBS32  SBS37  SBS39   SBS40  SBS50  SBS51  SBS54  SBS55  SBS57  SBS59  SBS84  SBS87
-0   1.0  5791.0  634.0    1.0    7.0    4.0     1.0    1.0    2.0    1.0    6.0    3.0    2.0    1.0   10.0  2682.0    1.0    3.0    4.0    1.0    1.0    1.0    2.0    1.0
+   SBS2    SBS3   SBS5  SBS7c  SBS12  SBS16  SBS17b  SBS21  SBS24  SBS25  SBS30  ...  SBS37  SBS39   SBS40  SBS50  SBS51  SBS54  SBS55  SBS57  SBS59  SBS84  SBS87
+0   1.0  5791.0  634.0    1.0    7.0    4.0     1.0    1.0    2.0    1.0    6.0  ...    1.0   10.0  2682.0    1.0    3.0    4.0    1.0    1.0    1.0    2.0    1.0
+
+[1 rows x 24 columns]
 L2 Error %: 0.0
 Cosine Similarity: 1.0
 ############################## Composition After Initial Remove ###############################
@@ -3205,8 +3233,10 @@ Cosine Similarity: 1.0
 
                     ################ Sample 81 #################
 ############################# Initial Composition ####################################
-     SBS3    SBS5  SBS7a  SBS7b  SBS7d  SBS8  SBS9  SBS12  SBS13  SBS16  SBS18  SBS28  SBS30  SBS31  SBS34  SBS37  SBS39   SBS40  SBS43  SBS50  SBS51  SBS54  SBS84  SBS91  SBS92
-0  3401.0  1060.0    1.0    1.0    1.0   7.0   4.0    1.0    1.0    2.0    2.0    1.0    1.0    2.0    1.0    3.0    9.0  2607.0    2.0    2.0    1.0    1.0    2.0    1.0    1.0
+     SBS3    SBS5  SBS7a  SBS7b  SBS7d  SBS8  SBS9  SBS12  SBS13  SBS16  SBS18  ...  SBS34  SBS37  SBS39   SBS40  SBS43  SBS50  SBS51  SBS54  SBS84  SBS91  SBS92
+0  3401.0  1060.0    1.0    1.0    1.0   7.0   4.0    1.0    1.0    2.0    2.0  ...    1.0    3.0    9.0  2607.0    2.0    2.0    1.0    1.0    2.0    1.0    1.0
+
+[1 rows x 25 columns]
 L2 Error %: 0.0
 Cosine Similarity: 1.0
 ############################## Composition After Initial Remove ###############################
@@ -3365,8 +3395,10 @@ Cosine Similarity: 1.0
 
                     ################ Sample 85 #################
 ############################# Initial Composition ####################################
-   SBS2    SBS3    SBS5  SBS6  SBS7c  SBS8  SBS10d  SBS12  SBS13  SBS16  SBS17a  SBS19  SBS23  SBS24  SBS28  SBS30  SBS39   SBS40  SBS46  SBS50  SBS51  SBS52  SBS55  SBS89
-0   1.0  3082.0  3584.0   1.0    1.0   6.0     1.0    7.0    1.0    7.0     1.0    2.0    2.0    4.0    2.0    4.0    9.0  5786.0    2.0    1.0    1.0    1.0    1.0    5.0
+   SBS2    SBS3    SBS5  SBS6  SBS7c  SBS8  SBS10d  SBS12  SBS13  SBS16  SBS17a  ...  SBS24  SBS28  SBS30  SBS39   SBS40  SBS46  SBS50  SBS51  SBS52  SBS55  SBS89
+0   1.0  3082.0  3584.0   1.0    1.0   6.0     1.0    7.0    1.0    7.0     1.0  ...    4.0    2.0    4.0    9.0  5786.0    2.0    1.0    1.0    1.0    1.0    5.0
+
+[1 rows x 24 columns]
 L2 Error %: 0.0
 Cosine Similarity: 1.0
 ############################## Composition After Initial Remove ###############################
@@ -3845,8 +3877,10 @@ Cosine Similarity: 1.0
 
                     ################ Sample 97 #################
 ############################# Initial Composition ####################################
-   SBS2    SBS3  SBS4  SBS7c  SBS7d  SBS8  SBS10b  SBS13  SBS16  SBS17b  SBS23  SBS28  SBS29  SBS31  SBS32  SBS35  SBS39   SBS40  SBS46  SBS50  SBS52  SBS53  SBS54  SBS84  SBS86
-0   2.0  4538.0   2.0    1.0    1.0   7.0     1.0    1.0    1.0     1.0    4.0    2.0    1.0    2.0    1.0    2.0    9.0  3288.0    3.0    1.0    1.0    1.0    2.0    1.0    1.0
+   SBS2    SBS3  SBS4  SBS7c  SBS7d  SBS8  SBS10b  SBS13  SBS16  SBS17b  SBS23  ...  SBS32  SBS35  SBS39   SBS40  SBS46  SBS50  SBS52  SBS53  SBS54  SBS84  SBS86
+0   2.0  4538.0   2.0    1.0    1.0   7.0     1.0    1.0    1.0     1.0    4.0  ...    1.0    2.0    9.0  3288.0    3.0    1.0    1.0    1.0    2.0    1.0    1.0
+
+[1 rows x 25 columns]
 L2 Error %: 0.0
 Cosine Similarity: 1.0
 ############################## Composition After Initial Remove ###############################
@@ -4365,8 +4399,10 @@ Cosine Similarity: 1.0
 
                     ################ Sample 110 #################
 ############################# Initial Composition ####################################
-   SBS2    SBS3   SBS5  SBS7a  SBS12  SBS13  SBS16  SBS18  SBS20  SBS21  SBS23  SBS30  SBS31  SBS32  SBS33  SBS34  SBS38  SBS39   SBS40  SBS53  SBS54  SBS56  SBS84  SBS86  SBS88
-0   1.0  1993.0  502.0    1.0    2.0    1.0    2.0    3.0    1.0    1.0    1.0    1.0    1.0    3.0    1.0    1.0    1.0    5.0  8868.0    1.0    1.0    1.0    1.0    1.0    2.0
+   SBS2    SBS3   SBS5  SBS7a  SBS12  SBS13  SBS16  SBS18  SBS20  SBS21  SBS23  ...  SBS33  SBS34  SBS38  SBS39   SBS40  SBS53  SBS54  SBS56  SBS84  SBS86  SBS88
+0   1.0  1993.0  502.0    1.0    2.0    1.0    2.0    3.0    1.0    1.0    1.0  ...    1.0    1.0    1.0    5.0  8868.0    1.0    1.0    1.0    1.0    1.0    2.0
+
+[1 rows x 25 columns]
 L2 Error %: 0.0
 Cosine Similarity: 1.0
 ############################## Composition After Initial Remove ###############################
@@ -4445,8 +4481,10 @@ Cosine Similarity: 1.0
 
                     ################ Sample 112 #################
 ############################# Initial Composition ####################################
-     SBS3    SBS5  SBS8  SBS9  SBS10a  SBS10b  SBS13  SBS16  SBS19  SBS24  SBS25  SBS26  SBS28  SBS30  SBS32  SBS37  SBS39   SBS40  SBS44  SBS46  SBS54  SBS58  SBS84  SBS88  SBS90  SBS93
-0  3581.0  1285.0   7.0   2.0     1.0     1.0    2.0    2.0    1.0    1.0    1.0    6.0    1.0    6.0    2.0    4.0    2.0  4349.0    1.0    3.0    3.0    1.0    3.0    2.0    1.0    4.0
+     SBS3    SBS5  SBS8  SBS9  SBS10a  SBS10b  SBS13  SBS16  SBS19  SBS24  SBS25  ...  SBS37  SBS39   SBS40  SBS44  SBS46  SBS54  SBS58  SBS84  SBS88  SBS90  SBS93
+0  3581.0  1285.0   7.0   2.0     1.0     1.0    2.0    2.0    1.0    1.0    1.0  ...    4.0    2.0  4349.0    1.0    3.0    3.0    1.0    3.0    2.0    1.0    4.0
+
+[1 rows x 26 columns]
 L2 Error %: 0.0
 Cosine Similarity: 1.0
 ############################## Composition After Initial Remove ###############################
@@ -4485,8 +4523,10 @@ Cosine Similarity: 1.0
 
                     ################ Sample 113 #################
 ############################# Initial Composition ####################################
-   SBS2    SBS3  SBS4   SBS5  SBS7a  SBS8  SBS13  SBS16  SBS17b  SBS19  SBS20  SBS24  SBS26  SBS30  SBS31  SBS32  SBS36  SBS37  SBS39   SBS40  SBS54  SBS56  SBS58  SBS59  SBS88
-0   1.0  1572.0   5.0  942.0    2.0   2.0    1.0    3.0     1.0    1.0    1.0    1.0    1.0    2.0    1.0    3.0    1.0    6.0   14.0  5280.0    3.0    1.0    1.0    1.0    1.0
+   SBS2    SBS3  SBS4   SBS5  SBS7a  SBS8  SBS13  SBS16  SBS17b  SBS19  SBS20  ...  SBS31  SBS32  SBS36  SBS37  SBS39   SBS40  SBS54  SBS56  SBS58  SBS59  SBS88
+0   1.0  1572.0   5.0  942.0    2.0   2.0    1.0    3.0     1.0    1.0    1.0  ...    1.0    3.0    1.0    6.0   14.0  5280.0    3.0    1.0    1.0    1.0    1.0
+
+[1 rows x 25 columns]
 L2 Error %: 0.0
 Cosine Similarity: 1.0
 ############################## Composition After Initial Remove ###############################
@@ -4565,8 +4605,10 @@ Cosine Similarity: 1.0
 
                     ################ Sample 115 #################
 ############################# Initial Composition ####################################
-     SBS3  SBS4   SBS5  SBS7d  SBS8  SBS10a  SBS12  SBS13  SBS15  SBS16  SBS17b  SBS28  SBS30  SBS31  SBS32  SBS33  SBS36  SBS39   SBS40  SBS50  SBS84  SBS86  SBS88  SBS89
-0  4043.0   3.0  995.0    2.0   8.0     1.0    4.0    1.0    1.0    3.0     1.0    2.0    4.0    3.0    3.0    1.0    1.0   12.0  4385.0    1.0    1.0    2.0    1.0    4.0
+     SBS3  SBS4   SBS5  SBS7d  SBS8  SBS10a  SBS12  SBS13  SBS15  SBS16  SBS17b  ...  SBS31  SBS32  SBS33  SBS36  SBS39   SBS40  SBS50  SBS84  SBS86  SBS88  SBS89
+0  4043.0   3.0  995.0    2.0   8.0     1.0    4.0    1.0    1.0    3.0     1.0  ...    3.0    3.0    1.0    1.0   12.0  4385.0    1.0    1.0    2.0    1.0    4.0
+
+[1 rows x 24 columns]
 L2 Error %: 0.0
 Cosine Similarity: 1.0
 ############################## Composition After Initial Remove ###############################
@@ -4605,8 +4647,10 @@ Cosine Similarity: 1.0
 
                     ################ Sample 116 #################
 ############################# Initial Composition ####################################
-     SBS3   SBS5  SBS7a  SBS7c  SBS8  SBS10a  SBS15  SBS16  SBS19  SBS23  SBS30  SBS33  SBS37  SBS39   SBS40  SBS48  SBS49  SBS51  SBS54  SBS59  SBS60  SBS84  SBS86  SBS90  SBS93
-0  2004.0  433.0    1.0    1.0   3.0     1.0    1.0    5.0    1.0    1.0    4.0    1.0    4.0   13.0  4289.0    1.0    1.0    1.0    3.0    1.0    1.0    1.0    1.0    1.0    2.0
+     SBS3   SBS5  SBS7a  SBS7c  SBS8  SBS10a  SBS15  SBS16  SBS19  SBS23  SBS30  ...   SBS40  SBS48  SBS49  SBS51  SBS54  SBS59  SBS60  SBS84  SBS86  SBS90  SBS93
+0  2004.0  433.0    1.0    1.0   3.0     1.0    1.0    5.0    1.0    1.0    4.0  ...  4289.0    1.0    1.0    1.0    3.0    1.0    1.0    1.0    1.0    1.0    2.0
+
+[1 rows x 25 columns]
 L2 Error %: 0.0
 Cosine Similarity: 1.0
 ############################## Composition After Initial Remove ###############################
@@ -4685,8 +4729,10 @@ Cosine Similarity: 1.0
 
                     ################ Sample 118 #################
 ############################# Initial Composition ####################################
-   SBS2    SBS3   SBS5  SBS7d  SBS12  SBS16  SBS19  SBS20  SBS23  SBS24  SBS31  SBS32  SBS33  SBS34  SBS37  SBS39   SBS40  SBS43  SBS52  SBS53  SBS54  SBS59  SBS88  SBS89
-0   1.0  1659.0  406.0    1.0    4.0    3.0    1.0    2.0    2.0    1.0    2.0    4.0    1.0    1.0    2.0   10.0  4073.0    2.0    1.0    2.0    2.0    1.0    2.0    2.0
+   SBS2    SBS3   SBS5  SBS7d  SBS12  SBS16  SBS19  SBS20  SBS23  SBS24  SBS31  ...  SBS34  SBS37  SBS39   SBS40  SBS43  SBS52  SBS53  SBS54  SBS59  SBS88  SBS89
+0   1.0  1659.0  406.0    1.0    4.0    3.0    1.0    2.0    2.0    1.0    2.0  ...    1.0    2.0   10.0  4073.0    2.0    1.0    2.0    2.0    1.0    2.0    2.0
+
+[1 rows x 24 columns]
 L2 Error %: 0.0
 Cosine Similarity: 1.0
 ############################## Composition After Initial Remove ###############################
@@ -4725,8 +4771,10 @@ Cosine Similarity: 1.0
 
                     ################ Sample 119 #################
 ############################# Initial Composition ####################################
-     SBS3    SBS5  SBS7a  SBS10a  SBS12  SBS16  SBS21  SBS24  SBS26  SBS30  SBS31  SBS32  SBS37  SBS39   SBS40  SBS42  SBS45  SBS46  SBS47  SBS54  SBS58  SBS59  SBS84  SBS88  SBS89
-0  4384.0  1589.0    1.0     1.0    3.0    1.0    1.0    2.0    2.0    4.0    3.0    2.0    2.0    9.0  4321.0    2.0    1.0    2.0    1.0    3.0    2.0    1.0    1.0    2.0    4.0
+     SBS3    SBS5  SBS7a  SBS10a  SBS12  SBS16  SBS21  SBS24  SBS26  SBS30  SBS31  ...   SBS40  SBS42  SBS45  SBS46  SBS47  SBS54  SBS58  SBS59  SBS84  SBS88  SBS89
+0  4384.0  1589.0    1.0     1.0    3.0    1.0    1.0    2.0    2.0    4.0    3.0  ...  4321.0    2.0    1.0    2.0    1.0    3.0    2.0    1.0    1.0    2.0    4.0
+
+[1 rows x 25 columns]
 L2 Error %: 0.0
 Cosine Similarity: 1.0
 ############################## Composition After Initial Remove ###############################
@@ -4965,8 +5013,10 @@ Cosine Similarity: 1.0
 
                     ################ Sample 125 #################
 ############################# Initial Composition ####################################
-   SBS2     SBS3   SBS5  SBS6  SBS7a  SBS8  SBS9  SBS10a  SBS10b  SBS12  SBS16  SBS17b  SBS19  SBS25  SBS30  SBS34  SBS38  SBS39   SBS40  SBS44  SBS50  SBS51  SBS54  SBS58  SBS59  SBS84  SBS87  SBS89
-0   1.0  12540.0  318.0   1.0    1.0   4.0   5.0     1.0     1.0   10.0    2.0     1.0    2.0    1.0    3.0    1.0    1.0   18.0  8368.0    3.0    3.0    1.0    2.0    1.0    1.0    2.0    1.0    1.0
+   SBS2     SBS3   SBS5  SBS6  SBS7a  SBS8  SBS9  SBS10a  SBS10b  SBS12  SBS16  ...  SBS39   SBS40  SBS44  SBS50  SBS51  SBS54  SBS58  SBS59  SBS84  SBS87  SBS89
+0   1.0  12540.0  318.0   1.0    1.0   4.0   5.0     1.0     1.0   10.0    2.0  ...   18.0  8368.0    3.0    3.0    1.0    2.0    1.0    1.0    2.0    1.0    1.0
+
+[1 rows x 28 columns]
 L2 Error %: 0.0
 Cosine Similarity: 1.0
 ############################## Composition After Initial Remove ###############################
@@ -5005,8 +5055,10 @@ Cosine Similarity: 1.0
 
                     ################ Sample 126 #################
 ############################# Initial Composition ####################################
-     SBS3  SBS4  SBS5  SBS8  SBS9  SBS10b  SBS12  SBS16  SBS19  SBS28  SBS29  SBS30  SBS32  SBS37  SBS38  SBS39   SBS40  SBS41  SBS50  SBS54  SBS55  SBS84  SBS90  SBS94
-0  7430.0   1.0  33.0   8.0   1.0     2.0   11.0    5.0    3.0    1.0    2.0    5.0    4.0    3.0    1.0   20.0  5673.0    3.0    1.0    1.0    1.0    2.0    1.0    2.0
+     SBS3  SBS4  SBS5  SBS8  SBS9  SBS10b  SBS12  SBS16  SBS19  SBS28  SBS29  ...  SBS37  SBS38  SBS39   SBS40  SBS41  SBS50  SBS54  SBS55  SBS84  SBS90  SBS94
+0  7430.0   1.0  33.0   8.0   1.0     2.0   11.0    5.0    3.0    1.0    2.0  ...    3.0    1.0   20.0  5673.0    3.0    1.0    1.0    1.0    2.0    1.0    2.0
+
+[1 rows x 24 columns]
 L2 Error %: 0.0
 Cosine Similarity: 1.0
 ############################## Composition After Initial Remove ###############################
@@ -5085,8 +5137,10 @@ Cosine Similarity: 1.0
 
                     ################ Sample 128 #################
 ############################# Initial Composition ####################################
-     SBS3   SBS5  SBS7d  SBS10a  SBS10b  SBS12  SBS17a  SBS17b  SBS18  SBS19  SBS30  SBS39   SBS40  SBS50  SBS51  SBS54  SBS58  SBS60  SBS84  SBS86  SBS88  SBS90  SBS94
-0  1657.0  121.0    1.0     1.0     1.0    6.0     1.0     1.0    3.0    1.0    3.0   10.0  4176.0    1.0    1.0    2.0    2.0    1.0    3.0    2.0    3.0    1.0    5.0
+     SBS3   SBS5  SBS7d  SBS10a  SBS10b  SBS12  SBS17a  SBS17b  SBS18  SBS19  SBS30  ...   SBS40  SBS50  SBS51  SBS54  SBS58  SBS60  SBS84  SBS86  SBS88  SBS90  SBS94
+0  1657.0  121.0    1.0     1.0     1.0    6.0     1.0     1.0    3.0    1.0    3.0  ...  4176.0    1.0    1.0    2.0    2.0    1.0    3.0    2.0    3.0    1.0    5.0
+
+[1 rows x 23 columns]
 L2 Error %: 0.0
 Cosine Similarity: 1.0
 ############################## Composition After Initial Remove ###############################
@@ -5125,8 +5179,10 @@ Cosine Similarity: 1.0
 
                     ################ Sample 129 #################
 ############################# Initial Composition ####################################
-     SBS3  SBS4    SBS5  SBS7b  SBS7d  SBS8  SBS13  SBS16  SBS19  SBS24  SBS26  SBS30  SBS31  SBS32  SBS33  SBS37  SBS39   SBS40  SBS44  SBS48  SBS51  SBS53  SBS54  SBS57  SBS59  SBS84
-0  1985.0   2.0  1498.0    2.0    1.0   3.0    1.0    4.0    1.0    1.0    1.0    3.0    2.0    1.0    1.0    8.0   10.0  2891.0    1.0    1.0    1.0    2.0    2.0    1.0    1.0    2.0
+     SBS3  SBS4    SBS5  SBS7b  SBS7d  SBS8  SBS13  SBS16  SBS19  SBS24  SBS26  ...  SBS37  SBS39   SBS40  SBS44  SBS48  SBS51  SBS53  SBS54  SBS57  SBS59  SBS84
+0  1985.0   2.0  1498.0    2.0    1.0   3.0    1.0    4.0    1.0    1.0    1.0  ...    8.0   10.0  2891.0    1.0    1.0    1.0    2.0    2.0    1.0    1.0    2.0
+
+[1 rows x 26 columns]
 L2 Error %: 0.0
 Cosine Similarity: 1.0
 ############################## Composition After Initial Remove ###############################
@@ -5445,8 +5501,10 @@ Cosine Similarity: 1.0
 
                     ################ Sample 137 #################
 ############################# Initial Composition ####################################
-   SBS2   SBS3   SBS5  SBS7c  SBS11  SBS12  SBS16  SBS17a  SBS17b  SBS23  SBS27  SBS30  SBS32  SBS39   SBS40  SBS41  SBS42  SBS43  SBS44  SBS50  SBS51  SBS54  SBS88  SBS91  SBS94
-0   1.0  937.0  395.0    1.0    1.0    6.0    1.0     1.0     1.0    3.0    1.0    4.0    2.0   17.0  1343.0    3.0    1.0    1.0    1.0    1.0    1.0    3.0    2.0    1.0    6.0
+   SBS2   SBS3   SBS5  SBS7c  SBS11  SBS12  SBS16  SBS17a  SBS17b  SBS23  SBS27  ...   SBS40  SBS41  SBS42  SBS43  SBS44  SBS50  SBS51  SBS54  SBS88  SBS91  SBS94
+0   1.0  937.0  395.0    1.0    1.0    6.0    1.0     1.0     1.0    3.0    1.0  ...  1343.0    3.0    1.0    1.0    1.0    1.0    1.0    3.0    2.0    1.0    6.0
+
+[1 rows x 25 columns]
 L2 Error %: 0.01
 Cosine Similarity: 1.0
 ############################## Composition After Initial Remove ###############################
@@ -5485,8 +5543,10 @@ Cosine Similarity: 1.0
 
                     ################ Sample 138 #################
 ############################# Initial Composition ####################################
-   SBS2    SBS3  SBS4    SBS5  SBS8  SBS12  SBS16  SBS17b  SBS19  SBS24  SBS27  SBS30  SBS32  SBS37  SBS38  SBS39   SBS40  SBS44  SBS46  SBS50  SBS54  SBS55  SBS58  SBS88
-0   1.0  9039.0   2.0  1467.0   4.0    6.0    1.0     1.0    1.0    1.0    1.0    6.0    2.0    2.0    1.0    9.0  5892.0    2.0    1.0    2.0    3.0    1.0    1.0    5.0
+   SBS2    SBS3  SBS4    SBS5  SBS8  SBS12  SBS16  SBS17b  SBS19  SBS24  SBS27  ...  SBS37  SBS38  SBS39   SBS40  SBS44  SBS46  SBS50  SBS54  SBS55  SBS58  SBS88
+0   1.0  9039.0   2.0  1467.0   4.0    6.0    1.0     1.0    1.0    1.0    1.0  ...    2.0    1.0    9.0  5892.0    2.0    1.0    2.0    3.0    1.0    1.0    5.0
+
+[1 rows x 24 columns]
 L2 Error %: 0.0
 Cosine Similarity: 1.0
 ############################## Composition After Initial Remove ###############################
@@ -5605,8 +5665,10 @@ Cosine Similarity: 1.0
 
                     ################ Sample 141 #################
 ############################# Initial Composition ####################################
-     SBS3   SBS5  SBS7d  SBS8  SBS10a  SBS11  SBS12  SBS16  SBS17b  SBS22  SBS30  SBS32  SBS39   SBS40  SBS42  SBS50  SBS51  SBS53  SBS54  SBS84  SBS86  SBS87  SBS88  SBS93
-0  3015.0  435.0    1.0   1.0     1.0    2.0    1.0    4.0     1.0    1.0    4.0    1.0    4.0  3801.0    1.0    1.0    1.0    1.0    3.0    1.0    1.0    1.0    2.0    1.0
+     SBS3   SBS5  SBS7d  SBS8  SBS10a  SBS11  SBS12  SBS16  SBS17b  SBS22  SBS30  ...   SBS40  SBS42  SBS50  SBS51  SBS53  SBS54  SBS84  SBS86  SBS87  SBS88  SBS93
+0  3015.0  435.0    1.0   1.0     1.0    2.0    1.0    4.0     1.0    1.0    4.0  ...  3801.0    1.0    1.0    1.0    1.0    3.0    1.0    1.0    1.0    2.0    1.0
+
+[1 rows x 24 columns]
 L2 Error %: 0.0
 Cosine Similarity: 1.0
 ############################## Composition After Initial Remove ###############################
@@ -6125,8 +6187,10 @@ Cosine Similarity: 1.0
 
                     ################ Sample 154 #################
 ############################# Initial Composition ####################################
-      SBS3    SBS5  SBS6  SBS7d  SBS12  SBS13  SBS16  SBS17b  SBS19  SBS21  SBS24  SBS28  SBS30  SBS31  SBS32    SBS40  SBS43  SBS51  SBS53  SBS54  SBS86  SBS88  SBS89
-0  21174.0  4332.0   2.0    1.0    6.0    1.0    3.0     1.0    1.0    1.0    3.0    1.0    5.0    2.0    1.0  15405.0    1.0    2.0    1.0    2.0    4.0    1.0    5.0
+      SBS3    SBS5  SBS6  SBS7d  SBS12  SBS13  SBS16  SBS17b  SBS19  SBS21  SBS24  ...  SBS30  SBS31  SBS32    SBS40  SBS43  SBS51  SBS53  SBS54  SBS86  SBS88  SBS89
+0  21174.0  4332.0   2.0    1.0    6.0    1.0    3.0     1.0    1.0    1.0    3.0  ...    5.0    2.0    1.0  15405.0    1.0    2.0    1.0    2.0    4.0    1.0    5.0
+
+[1 rows x 23 columns]
 L2 Error %: 0.0
 Cosine Similarity: 1.0
 ############################## Composition After Initial Remove ###############################
@@ -6405,8 +6469,10 @@ Cosine Similarity: 1.0
 
                     ################ Sample 161 #################
 ############################# Initial Composition ####################################
-   SBS2    SBS3  SBS4    SBS5  SBS6  SBS7c  SBS7d  SBS8  SBS10b  SBS12  SBS16  SBS19  SBS21  SBS28  SBS30  SBS32  SBS33  SBS37  SBS39   SBS40  SBS42  SBS43  SBS49  SBS51  SBS54  SBS59  SBS86  SBS92
-0   1.0  7749.0   1.0  1645.0   3.0    1.0    1.0   5.0     1.0    3.0    3.0    3.0    1.0    2.0    3.0    1.0    1.0    4.0    9.0  2089.0    3.0    1.0    1.0    2.0    1.0    1.0    2.0    6.0
+   SBS2    SBS3  SBS4    SBS5  SBS6  SBS7c  SBS7d  SBS8  SBS10b  SBS12  SBS16  ...  SBS37  SBS39   SBS40  SBS42  SBS43  SBS49  SBS51  SBS54  SBS59  SBS86  SBS92
+0   1.0  7749.0   1.0  1645.0   3.0    1.0    1.0   5.0     1.0    3.0    3.0  ...    4.0    9.0  2089.0    3.0    1.0    1.0    2.0    1.0    1.0    2.0    6.0
+
+[1 rows x 28 columns]
 L2 Error %: 0.0
 Cosine Similarity: 1.0
 ############################## Composition After Initial Remove ###############################
@@ -6805,8 +6871,10 @@ Cosine Similarity: 1.0
 
                     ################ Sample 171 #################
 ############################# Initial Composition ####################################
-     SBS3   SBS5  SBS7a  SBS7d  SBS12  SBS16  SBS17a  SBS19  SBS28  SBS32  SBS37  SBS39   SBS40  SBS44  SBS49  SBS50  SBS54  SBS84  SBS87  SBS88  SBS89  SBS91  SBS92  SBS94
-0  2574.0  656.0    1.0    2.0    2.0    1.0     1.0    4.0    1.0    1.0    6.0    6.0  4208.0    1.0    1.0    3.0    2.0    1.0    1.0    2.0   10.0    1.0    2.0    2.0
+     SBS3   SBS5  SBS7a  SBS7d  SBS12  SBS16  SBS17a  SBS19  SBS28  SBS32  SBS37  ...  SBS44  SBS49  SBS50  SBS54  SBS84  SBS87  SBS88  SBS89  SBS91  SBS92  SBS94
+0  2574.0  656.0    1.0    2.0    2.0    1.0     1.0    4.0    1.0    1.0    6.0  ...    1.0    1.0    3.0    2.0    1.0    1.0    2.0   10.0    1.0    2.0    2.0
+
+[1 rows x 24 columns]
 L2 Error %: 0.0
 Cosine Similarity: 1.0
 ############################## Composition After Initial Remove ###############################
@@ -6885,8 +6953,10 @@ Cosine Similarity: 1.0
 
                     ################ Sample 173 #################
 ############################# Initial Composition ####################################
-     SBS3  SBS4   SBS5  SBS7d  SBS10b  SBS12  SBS13  SBS15  SBS16  SBS17b  SBS19  SBS20  SBS22  SBS26  SBS29  SBS30  SBS32  SBS33  SBS37  SBS39   SBS40  SBS44  SBS51  SBS54  SBS57  SBS59  SBS84  SBS88
-0  2842.0   4.0  229.0    1.0     1.0    5.0    1.0    1.0    5.0     1.0    1.0    1.0    3.0    3.0    1.0    8.0    4.0    1.0    2.0   19.0  5557.0    2.0    2.0    3.0    1.0    1.0    1.0    2.0
+     SBS3  SBS4   SBS5  SBS7d  SBS10b  SBS12  SBS13  SBS15  SBS16  SBS17b  SBS19  ...  SBS33  SBS37  SBS39   SBS40  SBS44  SBS51  SBS54  SBS57  SBS59  SBS84  SBS88
+0  2842.0   4.0  229.0    1.0     1.0    5.0    1.0    1.0    5.0     1.0    1.0  ...    1.0    2.0   19.0  5557.0    2.0    2.0    3.0    1.0    1.0    1.0    2.0
+
+[1 rows x 28 columns]
 L2 Error %: 0.0
 Cosine Similarity: 1.0
 ############################## Composition After Initial Remove ###############################
@@ -7565,8 +7635,10 @@ Cosine Similarity: 1.0
 
                     ################ Sample 190 #################
 ############################# Initial Composition ####################################
-     SBS3   SBS5  SBS6  SBS7c  SBS8  SBS12  SBS14  SBS17b  SBS23  SBS25  SBS26  SBS30  SBS32  SBS33  SBS37  SBS39   SBS40  SBS50  SBS51  SBS57  SBS86  SBS87  SBS88  SBS89
-0  5327.0  561.0   1.0    1.0   5.0    2.0    2.0     1.0    2.0    5.0    2.0    3.0    1.0    1.0    1.0    9.0  8666.0    1.0    1.0    1.0    3.0    1.0    2.0    4.0
+     SBS3   SBS5  SBS6  SBS7c  SBS8  SBS12  SBS14  SBS17b  SBS23  SBS25  SBS26  ...  SBS33  SBS37  SBS39   SBS40  SBS50  SBS51  SBS57  SBS86  SBS87  SBS88  SBS89
+0  5327.0  561.0   1.0    1.0   5.0    2.0    2.0     1.0    2.0    5.0    2.0  ...    1.0    1.0    9.0  8666.0    1.0    1.0    1.0    3.0    1.0    2.0    4.0
+
+[1 rows x 24 columns]
 L2 Error %: 0.0
 Cosine Similarity: 1.0
 ############################## Composition After Initial Remove ###############################
@@ -7845,8 +7917,10 @@ Cosine Similarity: 1.0
 
                     ################ Sample 197 #################
 ############################# Initial Composition ####################################
-     SBS3    SBS5  SBS7c  SBS7d  SBS8  SBS9  SBS16  SBS19  SBS20  SBS21  SBS22  SBS23  SBS29  SBS30  SBS39   SBS40  SBS42  SBS46  SBS53  SBS54  SBS57  SBS58  SBS86  SBS88  SBS89
-0  6271.0  1444.0    1.0    1.0   2.0   2.0    4.0    2.0    1.0    1.0    2.0    3.0    2.0    3.0    7.0  4434.0    1.0    3.0    1.0    3.0    1.0    3.0    2.0    1.0    3.0
+     SBS3    SBS5  SBS7c  SBS7d  SBS8  SBS9  SBS16  SBS19  SBS20  SBS21  SBS22  ...  SBS39   SBS40  SBS42  SBS46  SBS53  SBS54  SBS57  SBS58  SBS86  SBS88  SBS89
+0  6271.0  1444.0    1.0    1.0   2.0   2.0    4.0    2.0    1.0    1.0    2.0  ...    7.0  4434.0    1.0    3.0    1.0    3.0    1.0    3.0    2.0    1.0    3.0
+
+[1 rows x 25 columns]
 L2 Error %: 0.0
 Cosine Similarity: 1.0
 ############################## Composition After Initial Remove ###############################
@@ -7925,8 +7999,10 @@ Cosine Similarity: 1.0
 
                     ################ Sample 199 #################
 ############################# Initial Composition ####################################
-   SBS2    SBS3   SBS5  SBS8  SBS10a  SBS10b  SBS16  SBS17a  SBS19  SBS22  SBS24  SBS28  SBS31  SBS32  SBS37  SBS39   SBS40  SBS46  SBS51  SBS53  SBS54  SBS57  SBS84  SBS86  SBS87  SBS88  SBS94
-0   1.0  2173.0  289.0   2.0     1.0     1.0    3.0     1.0    2.0    1.0    1.0    1.0    2.0    1.0    2.0    8.0  2691.0    2.0    1.0    1.0    1.0    1.0    1.0    1.0    1.0    2.0    1.0
+   SBS2    SBS3   SBS5  SBS8  SBS10a  SBS10b  SBS16  SBS17a  SBS19  SBS22  SBS24  ...   SBS40  SBS46  SBS51  SBS53  SBS54  SBS57  SBS84  SBS86  SBS87  SBS88  SBS94
+0   1.0  2173.0  289.0   2.0     1.0     1.0    3.0     1.0    2.0    1.0    1.0  ...  2691.0    2.0    1.0    1.0    1.0    1.0    1.0    1.0    1.0    2.0    1.0
+
+[1 rows x 27 columns]
 L2 Error %: 0.0
 Cosine Similarity: 1.0
 ############################## Composition After Initial Remove ###############################
@@ -8045,8 +8121,10 @@ Cosine Similarity: 1.0
 
                     ################ Sample 202 #################
 ############################# Initial Composition ####################################
-   SBS2    SBS3    SBS5  SBS7a  SBS7d  SBS8  SBS10b  SBS12  SBS16  SBS17a  SBS18  SBS19  SBS21  SBS29  SBS30  SBS32  SBS39   SBS40  SBS52  SBS54  SBS57  SBS59  SBS86  SBS93
-0   1.0  1587.0  1892.0    2.0    1.0   3.0     1.0    1.0    2.0     1.0    1.0    1.0    1.0    2.0    3.0    1.0    9.0  2640.0    1.0    3.0    3.0    1.0    1.0    3.0
+   SBS2    SBS3    SBS5  SBS7a  SBS7d  SBS8  SBS10b  SBS12  SBS16  SBS17a  SBS18  ...  SBS29  SBS30  SBS32  SBS39   SBS40  SBS52  SBS54  SBS57  SBS59  SBS86  SBS93
+0   1.0  1587.0  1892.0    2.0    1.0   3.0     1.0    1.0    2.0     1.0    1.0  ...    2.0    3.0    1.0    9.0  2640.0    1.0    3.0    3.0    1.0    1.0    3.0
+
+[1 rows x 24 columns]
 L2 Error %: 0.0
 Cosine Similarity: 1.0
 ############################## Composition After Initial Remove ###############################
@@ -9405,8 +9483,10 @@ Cosine Similarity: 1.0
 
                     ################ Sample 236 #################
 ############################# Initial Composition ####################################
-     SBS3  SBS4    SBS5  SBS7a  SBS7d  SBS9  SBS10b  SBS13  SBS16  SBS19  SBS25  SBS30  SBS32  SBS37  SBS39   SBS40  SBS42  SBS45  SBS51  SBS54  SBS57  SBS84  SBS86  SBS88  SBS89
-0  4918.0   2.0  1228.0    2.0    1.0   1.0     1.0    1.0    2.0    1.0    4.0    1.0    1.0    6.0    3.0  9869.0    3.0    1.0    1.0    4.0    1.0    2.0    3.0    3.0    5.0
+     SBS3  SBS4    SBS5  SBS7a  SBS7d  SBS9  SBS10b  SBS13  SBS16  SBS19  SBS25  ...  SBS39   SBS40  SBS42  SBS45  SBS51  SBS54  SBS57  SBS84  SBS86  SBS88  SBS89
+0  4918.0   2.0  1228.0    2.0    1.0   1.0     1.0    1.0    2.0    1.0    4.0  ...    3.0  9869.0    3.0    1.0    1.0    4.0    1.0    2.0    3.0    3.0    5.0
+
+[1 rows x 25 columns]
 L2 Error %: 0.0
 Cosine Similarity: 1.0
 ############################## Composition After Initial Remove ###############################
@@ -9565,8 +9645,10 @@ Cosine Similarity: 1.0
 
                     ################ Sample 240 #################
 ############################# Initial Composition ####################################
-     SBS3   SBS5  SBS7b  SBS7c  SBS9  SBS12  SBS15  SBS16  SBS19  SBS21  SBS22  SBS30  SBS32  SBS34  SBS36  SBS37  SBS39   SBS40  SBS46  SBS50  SBS54  SBS55  SBS59  SBS84
-0  4096.0  577.0    1.0    1.0   3.0    2.0    1.0    5.0    1.0    2.0    2.0    2.0    4.0    1.0    4.0    4.0   10.0  4470.0    1.0    3.0    1.0    1.0    1.0    2.0
+     SBS3   SBS5  SBS7b  SBS7c  SBS9  SBS12  SBS15  SBS16  SBS19  SBS21  SBS22  ...  SBS34  SBS36  SBS37  SBS39   SBS40  SBS46  SBS50  SBS54  SBS55  SBS59  SBS84
+0  4096.0  577.0    1.0    1.0   3.0    2.0    1.0    5.0    1.0    2.0    2.0  ...    1.0    4.0    4.0   10.0  4470.0    1.0    3.0    1.0    1.0    1.0    2.0
+
+[1 rows x 24 columns]
 L2 Error %: 0.0
 Cosine Similarity: 1.0
 ############################## Composition After Initial Remove ###############################
@@ -9605,8 +9687,10 @@ Cosine Similarity: 1.0
 
                     ################ Sample 241 #################
 ############################# Initial Composition ####################################
-   SBS2    SBS3   SBS5  SBS6  SBS7d  SBS8  SBS10b  SBS16  SBS21  SBS27  SBS28  SBS30  SBS31  SBS37  SBS39   SBS40  SBS44  SBS49  SBS50  SBS51  SBS54  SBS84  SBS86  SBS91  SBS93
-0   1.0  7042.0  945.0   3.0    1.0   3.0     1.0    2.0    2.0    1.0    1.0    3.0    1.0    4.0    2.0  2943.0    2.0    1.0    1.0    2.0    1.0    1.0    5.0    1.0    1.0
+   SBS2    SBS3   SBS5  SBS6  SBS7d  SBS8  SBS10b  SBS16  SBS21  SBS27  SBS28  ...  SBS39   SBS40  SBS44  SBS49  SBS50  SBS51  SBS54  SBS84  SBS86  SBS91  SBS93
+0   1.0  7042.0  945.0   3.0    1.0   3.0     1.0    2.0    2.0    1.0    1.0  ...    2.0  2943.0    2.0    1.0    1.0    2.0    1.0    1.0    5.0    1.0    1.0
+
+[1 rows x 25 columns]
 L2 Error %: 0.0
 Cosine Similarity: 1.0
 ############################## Composition After Initial Remove ###############################
@@ -9925,8 +10009,10 @@ Cosine Similarity: 1.0
 
                     ################ Sample 249 #################
 ############################# Initial Composition ####################################
-   SBS2    SBS3   SBS5  SBS7d  SBS10a  SBS12  SBS14  SBS16  SBS17a  SBS22  SBS30  SBS33  SBS34  SBS37  SBS39   SBS40  SBS41  SBS42  SBS44  SBS48  SBS49  SBS57  SBS84  SBS89
-0   1.0  5675.0  233.0    1.0     1.0    1.0    1.0    2.0     1.0    2.0    2.0    1.0    1.0    1.0    6.0  8816.0    2.0    1.0    1.0    1.0    1.0    2.0    1.0    1.0
+   SBS2    SBS3   SBS5  SBS7d  SBS10a  SBS12  SBS14  SBS16  SBS17a  SBS22  SBS30  ...  SBS37  SBS39   SBS40  SBS41  SBS42  SBS44  SBS48  SBS49  SBS57  SBS84  SBS89
+0   1.0  5675.0  233.0    1.0     1.0    1.0    1.0    2.0     1.0    2.0    2.0  ...    1.0    6.0  8816.0    2.0    1.0    1.0    1.0    1.0    2.0    1.0    1.0
+
+[1 rows x 24 columns]
 L2 Error %: 0.0
 Cosine Similarity: 1.0
 ############################## Composition After Initial Remove ###############################
@@ -10005,8 +10091,10 @@ Cosine Similarity: 1.0
 
                     ################ Sample 251 #################
 ############################# Initial Composition ####################################
-   SBS2     SBS3   SBS5  SBS6  SBS7a  SBS8  SBS12  SBS16  SBS17a  SBS17b  SBS24  SBS28  SBS29  SBS30  SBS31  SBS32  SBS33  SBS39   SBS40  SBS42  SBS53  SBS54  SBS58  SBS59  SBS86  SBS89  SBS91  SBS92
-0   1.0  10876.0  625.0   1.0    1.0   8.0    8.0    3.0     1.0     1.0    4.0    2.0    1.0    6.0    4.0    2.0    1.0   15.0  5633.0    2.0    1.0    3.0    2.0    1.0    1.0    3.0    1.0    1.0
+   SBS2     SBS3   SBS5  SBS6  SBS7a  SBS8  SBS12  SBS16  SBS17a  SBS17b  SBS24  ...  SBS39   SBS40  SBS42  SBS53  SBS54  SBS58  SBS59  SBS86  SBS89  SBS91  SBS92
+0   1.0  10876.0  625.0   1.0    1.0   8.0    8.0    3.0     1.0     1.0    4.0  ...   15.0  5633.0    2.0    1.0    3.0    2.0    1.0    1.0    3.0    1.0    1.0
+
+[1 rows x 28 columns]
 L2 Error %: 0.0
 Cosine Similarity: 1.0
 ############################## Composition After Initial Remove ###############################
@@ -10045,8 +10133,10 @@ Cosine Similarity: 1.0
 
                     ################ Sample 252 #################
 ############################# Initial Composition ####################################
-     SBS3   SBS5  SBS7d  SBS8  SBS13  SBS16  SBS17a  SBS18  SBS19  SBS22  SBS28  SBS30  SBS32  SBS39   SBS40  SBS42  SBS43  SBS44  SBS46  SBS51  SBS52  SBS54  SBS55  SBS58  SBS84  SBS87
-0  4057.0  800.0    1.0   1.0    1.0    1.0     1.0    2.0    2.0    1.0    1.0    1.0    2.0    6.0  9873.0    1.0    1.0    1.0    1.0    1.0    1.0    1.0    1.0    1.0    1.0    1.0
+     SBS3   SBS5  SBS7d  SBS8  SBS13  SBS16  SBS17a  SBS18  SBS19  SBS22  SBS28  ...  SBS42  SBS43  SBS44  SBS46  SBS51  SBS52  SBS54  SBS55  SBS58  SBS84  SBS87
+0  4057.0  800.0    1.0   1.0    1.0    1.0     1.0    2.0    2.0    1.0    1.0  ...    1.0    1.0    1.0    1.0    1.0    1.0    1.0    1.0    1.0    1.0    1.0
+
+[1 rows x 26 columns]
 L2 Error %: 0.0
 Cosine Similarity: 1.0
 ############################## Composition After Initial Remove ###############################
@@ -10205,8 +10295,10 @@ Cosine Similarity: 1.0
 
                     ################ Sample 256 #################
 ############################# Initial Composition ####################################
-     SBS3    SBS5  SBS7a  SBS7d  SBS12  SBS16  SBS17a  SBS17b  SBS20  SBS26  SBS28  SBS32  SBS39   SBS40  SBS42  SBS45  SBS50  SBS54  SBS55  SBS56  SBS57  SBS58  SBS84  SBS87
-0  2767.0  6457.0    1.0    1.0    3.0    3.0     1.0     1.0    1.0    2.0    1.0    1.0    3.0  6787.0    1.0    2.0    2.0    1.0    1.0    1.0    1.0    1.0    1.0    2.0
+     SBS3    SBS5  SBS7a  SBS7d  SBS12  SBS16  SBS17a  SBS17b  SBS20  SBS26  SBS28  ...   SBS40  SBS42  SBS45  SBS50  SBS54  SBS55  SBS56  SBS57  SBS58  SBS84  SBS87
+0  2767.0  6457.0    1.0    1.0    3.0    3.0     1.0     1.0    1.0    2.0    1.0  ...  6787.0    1.0    2.0    2.0    1.0    1.0    1.0    1.0    1.0    1.0    2.0
+
+[1 rows x 24 columns]
 L2 Error %: 0.0
 Cosine Similarity: 1.0
 ############################## Composition After Initial Remove ###############################
@@ -10245,8 +10337,10 @@ Cosine Similarity: 1.0
 
                     ################ Sample 257 #################
 ############################# Initial Composition ####################################
-     SBS3  SBS4   SBS5  SBS7a  SBS7c  SBS10b  SBS11  SBS13  SBS16  SBS17b  SBS19  SBS20  SBS30  SBS31  SBS37  SBS39   SBS40  SBS43  SBS51  SBS52  SBS54  SBS58  SBS84  SBS86
-0  4138.0   8.0  605.0    1.0    1.0     1.0    1.0    1.0    2.0     1.0    1.0    1.0    1.0    2.0    1.0    6.0  3635.0    1.0    3.0    1.0    1.0    1.0    2.0    3.0
+     SBS3  SBS4   SBS5  SBS7a  SBS7c  SBS10b  SBS11  SBS13  SBS16  SBS17b  SBS19  ...  SBS31  SBS37  SBS39   SBS40  SBS43  SBS51  SBS52  SBS54  SBS58  SBS84  SBS86
+0  4138.0   8.0  605.0    1.0    1.0     1.0    1.0    1.0    2.0     1.0    1.0  ...    2.0    1.0    6.0  3635.0    1.0    3.0    1.0    1.0    1.0    2.0    3.0
+
+[1 rows x 24 columns]
 L2 Error %: 0.0
 Cosine Similarity: 1.0
 ############################## Composition After Initial Remove ###############################
@@ -10285,8 +10379,10 @@ Cosine Similarity: 1.0
 
                     ################ Sample 258 #################
 ############################# Initial Composition ####################################
-   SBS2    SBS3   SBS5  SBS6  SBS8  SBS9  SBS10a  SBS10b  SBS16  SBS21  SBS23  SBS25  SBS27  SBS29  SBS30  SBS32  SBS37  SBS39   SBS40  SBS44  SBS54  SBS84  SBS87  SBS88
-0   1.0  3140.0  708.0   1.0   2.0   3.0     1.0     1.0    7.0    1.0    1.0    5.0    1.0    3.0    7.0    2.0    2.0   10.0  3633.0    1.0    5.0    2.0    2.0    2.0
+   SBS2    SBS3   SBS5  SBS6  SBS8  SBS9  SBS10a  SBS10b  SBS16  SBS21  SBS23  ...  SBS29  SBS30  SBS32  SBS37  SBS39   SBS40  SBS44  SBS54  SBS84  SBS87  SBS88
+0   1.0  3140.0  708.0   1.0   2.0   3.0     1.0     1.0    7.0    1.0    1.0  ...    3.0    7.0    2.0    2.0   10.0  3633.0    1.0    5.0    2.0    2.0    2.0
+
+[1 rows x 24 columns]
 L2 Error %: 0.0
 Cosine Similarity: 1.0
 ############################## Composition After Initial Remove ###############################
@@ -10325,8 +10421,10 @@ Cosine Similarity: 1.0
 
                     ################ Sample 259 #################
 ############################# Initial Composition ####################################
-     SBS3    SBS5  SBS6  SBS7b  SBS7d  SBS8  SBS12  SBS13  SBS14  SBS16  SBS17a  SBS24  SBS27  SBS28  SBS29  SBS32  SBS33  SBS39   SBS40  SBS44  SBS50  SBS55  SBS56  SBS84  SBS88  SBS92  SBS93
-0  2877.0  1049.0   2.0    1.0    1.0   3.0    4.0    1.0    1.0    1.0     1.0    1.0    1.0    1.0    1.0    1.0    1.0    7.0  1991.0    1.0    1.0    1.0    1.0    2.0    1.0    2.0    2.0
+     SBS3    SBS5  SBS6  SBS7b  SBS7d  SBS8  SBS12  SBS13  SBS14  SBS16  SBS17a  ...  SBS33  SBS39   SBS40  SBS44  SBS50  SBS55  SBS56  SBS84  SBS88  SBS92  SBS93
+0  2877.0  1049.0   2.0    1.0    1.0   3.0    4.0    1.0    1.0    1.0     1.0  ...    1.0    7.0  1991.0    1.0    1.0    1.0    1.0    2.0    1.0    2.0    2.0
+
+[1 rows x 27 columns]
 L2 Error %: 0.0
 Cosine Similarity: 1.0
 ############################## Composition After Initial Remove ###############################
@@ -10845,8 +10943,10 @@ Cosine Similarity: 1.0
 
                     ################ Sample 272 #################
 ############################# Initial Composition ####################################
-   SBS2    SBS3   SBS5  SBS8  SBS13  SBS16  SBS17a  SBS17b  SBS19  SBS24  SBS30  SBS31  SBS34  SBS37  SBS39   SBS40  SBS46  SBS54  SBS55  SBS84  SBS86  SBS87  SBS92  SBS93
-0   1.0  2303.0  276.0   5.0    1.0    1.0     1.0     1.0    2.0    2.0    1.0    1.0    1.0    5.0    6.0  2676.0    2.0    2.0    2.0    2.0    1.0    1.0    1.0    1.0
+   SBS2    SBS3   SBS5  SBS8  SBS13  SBS16  SBS17a  SBS17b  SBS19  SBS24  SBS30  ...  SBS37  SBS39   SBS40  SBS46  SBS54  SBS55  SBS84  SBS86  SBS87  SBS92  SBS93
+0   1.0  2303.0  276.0   5.0    1.0    1.0     1.0     1.0    2.0    2.0    1.0  ...    5.0    6.0  2676.0    2.0    2.0    2.0    2.0    1.0    1.0    1.0    1.0
+
+[1 rows x 24 columns]
 L2 Error %: 0.0
 Cosine Similarity: 1.0
 ############################## Composition After Initial Remove ###############################
@@ -11085,8 +11185,10 @@ Cosine Similarity: 1.0
 
                     ################ Sample 278 #################
 ############################# Initial Composition ####################################
-   SBS2    SBS3   SBS5  SBS7c  SBS7d  SBS10b  SBS16  SBS22  SBS25  SBS27  SBS28  SBS29  SBS30  SBS32  SBS33  SBS39   SBS40  SBS42  SBS46  SBS51  SBS54  SBS84  SBS87  SBS88
-0   1.0  4848.0  489.0    1.0    1.0     1.0    7.0    1.0    1.0    1.0    1.0    1.0    3.0    2.0    1.0    6.0  5901.0    1.0    3.0    1.0    2.0    3.0    1.0    2.0
+   SBS2    SBS3   SBS5  SBS7c  SBS7d  SBS10b  SBS16  SBS22  SBS25  SBS27  SBS28  ...  SBS32  SBS33  SBS39   SBS40  SBS42  SBS46  SBS51  SBS54  SBS84  SBS87  SBS88
+0   1.0  4848.0  489.0    1.0    1.0     1.0    7.0    1.0    1.0    1.0    1.0  ...    2.0    1.0    6.0  5901.0    1.0    3.0    1.0    2.0    3.0    1.0    2.0
+
+[1 rows x 24 columns]
 L2 Error %: 0.0
 Cosine Similarity: 1.0
 ############################## Composition After Initial Remove ###############################
@@ -11365,8 +11467,10 @@ Cosine Similarity: 1.0
 
                     ################ Sample 285 #################
 ############################# Initial Composition ####################################
-   SBS2    SBS3  SBS4   SBS5  SBS6  SBS10b  SBS12  SBS16  SBS17b  SBS19  SBS29  SBS30  SBS32  SBS39   SBS40  SBS42  SBS44  SBS53  SBS54  SBS55  SBS59  SBS89  SBS91  SBS93
-0   1.0  3186.0   1.0  879.0   2.0     1.0    7.0    6.0     1.0    1.0    1.0    6.0    4.0    9.0  3166.0    4.0    2.0    1.0    4.0    1.0    1.0    5.0    1.0    3.0
+   SBS2    SBS3  SBS4   SBS5  SBS6  SBS10b  SBS12  SBS16  SBS17b  SBS19  SBS29  ...  SBS39   SBS40  SBS42  SBS44  SBS53  SBS54  SBS55  SBS59  SBS89  SBS91  SBS93
+0   1.0  3186.0   1.0  879.0   2.0     1.0    7.0    6.0     1.0    1.0    1.0  ...    9.0  3166.0    4.0    2.0    1.0    4.0    1.0    1.0    5.0    1.0    3.0
+
+[1 rows x 24 columns]
 L2 Error %: 0.0
 Cosine Similarity: 1.0
 ############################## Composition After Initial Remove ###############################
@@ -11445,8 +11549,10 @@ Cosine Similarity: 1.0
 
                     ################ Sample 287 #################
 ############################# Initial Composition ####################################
-    SBS3    SBS5  SBS7d  SBS8  SBS10b  SBS12  SBS16  SBS17a  SBS17b  SBS19  SBS24  SBS25  SBS30  SBS33  SBS34  SBS39   SBS40  SBS44  SBS52  SBS53  SBS54  SBS57  SBS59  SBS89
-0  603.0  3839.0    1.0   7.0     1.0    2.0    4.0     1.0     1.0    3.0    1.0    2.0    3.0    1.0    1.0   12.0  2683.0    3.0    1.0    1.0    2.0    2.0    1.0    3.0
+    SBS3    SBS5  SBS7d  SBS8  SBS10b  SBS12  SBS16  SBS17a  SBS17b  SBS19  SBS24  ...  SBS33  SBS34  SBS39   SBS40  SBS44  SBS52  SBS53  SBS54  SBS57  SBS59  SBS89
+0  603.0  3839.0    1.0   7.0     1.0    2.0    4.0     1.0     1.0    3.0    1.0  ...    1.0    1.0   12.0  2683.0    3.0    1.0    1.0    2.0    2.0    1.0    3.0
+
+[1 rows x 24 columns]
 L2 Error %: 0.0
 Cosine Similarity: 1.0
 ############################## Composition After Initial Remove ###############################
@@ -11565,8 +11671,10 @@ Cosine Similarity: 1.0
 
                     ################ Sample 290 #################
 ############################# Initial Composition ####################################
-   SBS2    SBS3   SBS5  SBS7c  SBS8  SBS9  SBS12  SBS13  SBS15  SBS16  SBS17a  SBS22  SBS24  SBS27  SBS30  SBS32  SBS39   SBS40  SBS44  SBS46  SBS50  SBS55  SBS58  SBS59
-0   1.0  7738.0  514.0    1.0   5.0   1.0    2.0    1.0    1.0    2.0     1.0    2.0    1.0    1.0    1.0    2.0   12.0  2807.0    2.0    1.0    1.0    1.0    2.0    1.0
+   SBS2    SBS3   SBS5  SBS7c  SBS8  SBS9  SBS12  SBS13  SBS15  SBS16  SBS17a  ...  SBS27  SBS30  SBS32  SBS39   SBS40  SBS44  SBS46  SBS50  SBS55  SBS58  SBS59
+0   1.0  7738.0  514.0    1.0   5.0   1.0    2.0    1.0    1.0    2.0     1.0  ...    1.0    1.0    2.0   12.0  2807.0    2.0    1.0    1.0    1.0    2.0    1.0
+
+[1 rows x 24 columns]
 L2 Error %: 0.0
 Cosine Similarity: 1.0
 ############################## Composition After Initial Remove ###############################
@@ -11725,8 +11833,10 @@ Cosine Similarity: 1.0
 
                     ################ Sample 294 #################
 ############################# Initial Composition ####################################
-     SBS3  SBS4   SBS5  SBS8  SBS9  SBS10b  SBS12  SBS16  SBS19  SBS27  SBS30  SBS31  SBS32  SBS34  SBS39   SBS40  SBS43  SBS44  SBS49  SBS51  SBS54  SBS84  SBS86  SBS88  SBS93
-0  1486.0   1.0  659.0   1.0   1.0     1.0    4.0    5.0    2.0    1.0    2.0    2.0    4.0    1.0    5.0  4871.0    1.0    1.0    1.0    1.0    2.0    2.0    1.0    2.0    1.0
+     SBS3  SBS4   SBS5  SBS8  SBS9  SBS10b  SBS12  SBS16  SBS19  SBS27  SBS30  ...  SBS39   SBS40  SBS43  SBS44  SBS49  SBS51  SBS54  SBS84  SBS86  SBS88  SBS93
+0  1486.0   1.0  659.0   1.0   1.0     1.0    4.0    5.0    2.0    1.0    2.0  ...    5.0  4871.0    1.0    1.0    1.0    1.0    2.0    2.0    1.0    2.0    1.0
+
+[1 rows x 25 columns]
 L2 Error %: 0.0
 Cosine Similarity: 1.0
 ############################## Composition After Initial Remove ###############################
@@ -12405,8 +12515,10 @@ Cosine Similarity: 1.0
 
                     ################ Sample 311 #################
 ############################# Initial Composition ####################################
-      SBS3    SBS5  SBS8  SBS10b  SBS12  SBS16  SBS19  SBS20  SBS24  SBS28  SBS30  SBS32  SBS37  SBS39   SBS40  SBS43  SBS44  SBS49  SBS53  SBS54  SBS86  SBS88  SBS91  SBS92  SBS94
-0  11533.0  3612.0   3.0     1.0    2.0    5.0    1.0    1.0    1.0    1.0    8.0    3.0    3.0    6.0  1565.0    1.0    2.0    1.0    1.0    3.0    3.0    2.0    1.0    5.0    3.0
+      SBS3    SBS5  SBS8  SBS10b  SBS12  SBS16  SBS19  SBS20  SBS24  SBS28  SBS30  ...   SBS40  SBS43  SBS44  SBS49  SBS53  SBS54  SBS86  SBS88  SBS91  SBS92  SBS94
+0  11533.0  3612.0   3.0     1.0    2.0    5.0    1.0    1.0    1.0    1.0    8.0  ...  1565.0    1.0    2.0    1.0    1.0    3.0    3.0    2.0    1.0    5.0    3.0
+
+[1 rows x 25 columns]
 L2 Error %: 0.0
 Cosine Similarity: 1.0
 ############################## Composition After Initial Remove ###############################
@@ -12565,8 +12677,10 @@ Cosine Similarity: 1.0
 
                     ################ Sample 315 #################
 ############################# Initial Composition ####################################
-     SBS3   SBS5  SBS7a  SBS7c  SBS7d  SBS8  SBS10d  SBS12  SBS13  SBS16  SBS19  SBS20  SBS24  SBS28  SBS30  SBS38  SBS39   SBS40  SBS41  SBS50  SBS52  SBS54  SBS55  SBS57  SBS84
-0  2246.0  359.0    2.0    1.0    2.0   7.0     1.0    1.0    1.0    5.0    3.0    2.0    2.0    1.0    1.0    1.0    7.0  4694.0    2.0    1.0    1.0    4.0    2.0    3.0    3.0
+     SBS3   SBS5  SBS7a  SBS7c  SBS7d  SBS8  SBS10d  SBS12  SBS13  SBS16  SBS19  ...  SBS30  SBS38  SBS39   SBS40  SBS41  SBS50  SBS52  SBS54  SBS55  SBS57  SBS84
+0  2246.0  359.0    2.0    1.0    2.0   7.0     1.0    1.0    1.0    5.0    3.0  ...    1.0    1.0    7.0  4694.0    2.0    1.0    1.0    4.0    2.0    3.0    3.0
+
+[1 rows x 25 columns]
 L2 Error %: 0.0
 Cosine Similarity: 1.0
 ############################## Composition After Initial Remove ###############################
@@ -12685,8 +12799,10 @@ Cosine Similarity: 1.0
 
                     ################ Sample 318 #################
 ############################# Initial Composition ####################################
-   SBS2    SBS3   SBS5  SBS7d  SBS8  SBS9  SBS12  SBS16  SBS19  SBS25  SBS30  SBS32  SBS37   SBS40  SBS44  SBS48  SBS49  SBS54  SBS55  SBS59  SBS86  SBS87  SBS89  SBS93
-0   1.0  2546.0  525.0    1.0   3.0   1.0    2.0    6.0    1.0    1.0    7.0    2.0    7.0  5577.0    3.0    1.0    1.0    4.0    2.0    1.0    3.0    3.0    3.0    1.0
+   SBS2    SBS3   SBS5  SBS7d  SBS8  SBS9  SBS12  SBS16  SBS19  SBS25  SBS30  ...   SBS40  SBS44  SBS48  SBS49  SBS54  SBS55  SBS59  SBS86  SBS87  SBS89  SBS93
+0   1.0  2546.0  525.0    1.0   3.0   1.0    2.0    6.0    1.0    1.0    7.0  ...  5577.0    3.0    1.0    1.0    4.0    2.0    1.0    3.0    3.0    3.0    1.0
+
+[1 rows x 24 columns]
 L2 Error %: 0.0
 Cosine Similarity: 1.0
 ############################## Composition After Initial Remove ###############################
@@ -13165,8 +13281,10 @@ Cosine Similarity: 1.0
 
                     ################ Sample 330 #################
 ############################# Initial Composition ####################################
-     SBS3   SBS5  SBS7a  SBS7c  SBS11  SBS12  SBS13  SBS16  SBS17a  SBS17b  SBS18  SBS21  SBS24  SBS30  SBS35  SBS37  SBS39   SBS40  SBS42  SBS44  SBS50  SBS54  SBS55  SBS59  SBS86
-0  5127.0  249.0    1.0    3.0    1.0    1.0    1.0    8.0     1.0     1.0    2.0    1.0    2.0    4.0    2.0    2.0    1.0  9289.0    1.0    4.0    1.0    2.0    2.0    1.0    2.0
+     SBS3   SBS5  SBS7a  SBS7c  SBS11  SBS12  SBS13  SBS16  SBS17a  SBS17b  SBS18  ...  SBS35  SBS37  SBS39   SBS40  SBS42  SBS44  SBS50  SBS54  SBS55  SBS59  SBS86
+0  5127.0  249.0    1.0    3.0    1.0    1.0    1.0    8.0     1.0     1.0    2.0  ...    2.0    2.0    1.0  9289.0    1.0    4.0    1.0    2.0    2.0    1.0    2.0
+
+[1 rows x 25 columns]
 L2 Error %: 0.0
 Cosine Similarity: 1.0
 ############################## Composition After Initial Remove ###############################
@@ -13205,8 +13323,10 @@ Cosine Similarity: 1.0
 
                     ################ Sample 331 #################
 ############################# Initial Composition ####################################
-     SBS3    SBS5  SBS7c  SBS13  SBS16  SBS17b  SBS18  SBS19  SBS21  SBS22  SBS30  SBS37  SBS39   SBS40  SBS41  SBS42  SBS43  SBS45  SBS46  SBS50  SBS51  SBS54  SBS59  SBS87  SBS88  SBS93
-0  9585.0  1449.0    1.0    1.0    6.0     1.0    1.0    2.0    1.0    2.0    5.0    1.0    3.0  4754.0    3.0    2.0    2.0    1.0    2.0    2.0    2.0    3.0    1.0    1.0    1.0    1.0
+     SBS3    SBS5  SBS7c  SBS13  SBS16  SBS17b  SBS18  SBS19  SBS21  SBS22  SBS30  ...  SBS42  SBS43  SBS45  SBS46  SBS50  SBS51  SBS54  SBS59  SBS87  SBS88  SBS93
+0  9585.0  1449.0    1.0    1.0    6.0     1.0    1.0    2.0    1.0    2.0    5.0  ...    2.0    2.0    1.0    2.0    2.0    2.0    3.0    1.0    1.0    1.0    1.0
+
+[1 rows x 26 columns]
 L2 Error %: 0.0
 Cosine Similarity: 1.0
 ############################## Composition After Initial Remove ###############################
@@ -13525,8 +13645,10 @@ Cosine Similarity: 1.0
 
                     ################ Sample 339 #################
 ############################# Initial Composition ####################################
-     SBS3  SBS4   SBS5  SBS8  SBS9  SBS10d  SBS13  SBS16  SBS19  SBS21  SBS30  SBS31  SBS32   SBS40  SBS43  SBS44  SBS46  SBS50  SBS53  SBS54  SBS86  SBS87  SBS88  SBS89
-0  1619.0   1.0  296.0   3.0   4.0     1.0    1.0    6.0    2.0    3.0    6.0    1.0    1.0  2620.0    1.0    3.0    1.0    1.0    1.0    3.0    3.0    2.0    1.0    1.0
+     SBS3  SBS4   SBS5  SBS8  SBS9  SBS10d  SBS13  SBS16  SBS19  SBS21  SBS30  ...   SBS40  SBS43  SBS44  SBS46  SBS50  SBS53  SBS54  SBS86  SBS87  SBS88  SBS89
+0  1619.0   1.0  296.0   3.0   4.0     1.0    1.0    6.0    2.0    3.0    6.0  ...  2620.0    1.0    3.0    1.0    1.0    1.0    3.0    3.0    2.0    1.0    1.0
+
+[1 rows x 24 columns]
 L2 Error %: 0.0
 Cosine Similarity: 1.0
 ############################## Composition After Initial Remove ###############################
@@ -14045,8 +14167,10 @@ Cosine Similarity: 1.0
 
                     ################ Sample 352 #################
 ############################# Initial Composition ####################################
-     SBS3   SBS5  SBS7a  SBS7d  SBS8  SBS10b  SBS16  SBS19  SBS20  SBS23  SBS25  SBS27  SBS28  SBS31  SBS33  SBS37  SBS39   SBS40  SBS46  SBS49  SBS50  SBS54  SBS87  SBS88  SBS89  SBS93
-0  8450.0  433.0    2.0    1.0   3.0     1.0    4.0    2.0    2.0    1.0    3.0    1.0    1.0    2.0    1.0    2.0   10.0  4216.0    3.0    1.0    2.0    1.0    1.0    1.0    5.0    2.0
+     SBS3   SBS5  SBS7a  SBS7d  SBS8  SBS10b  SBS16  SBS19  SBS20  SBS23  SBS25  ...  SBS37  SBS39   SBS40  SBS46  SBS49  SBS50  SBS54  SBS87  SBS88  SBS89  SBS93
+0  8450.0  433.0    2.0    1.0   3.0     1.0    4.0    2.0    2.0    1.0    3.0  ...    2.0   10.0  4216.0    3.0    1.0    2.0    1.0    1.0    1.0    5.0    2.0
+
+[1 rows x 26 columns]
 L2 Error %: 0.0
 Cosine Similarity: 1.0
 ############################## Composition After Initial Remove ###############################
@@ -14085,8 +14209,10 @@ Cosine Similarity: 1.0
 
                     ################ Sample 353 #################
 ############################# Initial Composition ####################################
-   SBS2     SBS3    SBS5  SBS7c  SBS12  SBS16  SBS17b  SBS22  SBS26  SBS27  SBS28  SBS29  SBS30  SBS32  SBS33  SBS37  SBS39   SBS40  SBS50  SBS54  SBS55  SBS56  SBS57  SBS58  SBS84  SBS91  SBS92
-0   1.0  17566.0  1017.0    1.0    2.0    2.0     1.0    1.0    1.0    1.0    1.0    5.0    4.0    2.0    1.0    2.0    2.0  4899.0    1.0    2.0    1.0    1.0    2.0    1.0    1.0    1.0    4.0
+   SBS2     SBS3    SBS5  SBS7c  SBS12  SBS16  SBS17b  SBS22  SBS26  SBS27  SBS28  ...  SBS39   SBS40  SBS50  SBS54  SBS55  SBS56  SBS57  SBS58  SBS84  SBS91  SBS92
+0   1.0  17566.0  1017.0    1.0    2.0    2.0     1.0    1.0    1.0    1.0    1.0  ...    2.0  4899.0    1.0    2.0    1.0    1.0    2.0    1.0    1.0    1.0    4.0
+
+[1 rows x 27 columns]
 L2 Error %: 0.0
 Cosine Similarity: 1.0
 ############################## Composition After Initial Remove ###############################
@@ -14325,8 +14451,10 @@ Cosine Similarity: 1.0
 
                     ################ Sample 359 #################
 ############################# Initial Composition ####################################
-   SBS2    SBS3   SBS5  SBS6  SBS8  SBS10a  SBS10b  SBS12  SBS13  SBS16  SBS19  SBS20  SBS24  SBS30  SBS32  SBS37  SBS39   SBS40  SBS48  SBS49  SBS50  SBS54  SBS57  SBS58  SBS92  SBS93
-0   1.0  8601.0  628.0   1.0   6.0     1.0     1.0    6.0    1.0    7.0    2.0    1.0    4.0    5.0    4.0    1.0   12.0  1808.0    1.0    1.0    1.0    3.0    3.0    2.0    3.0    2.0
+   SBS2    SBS3   SBS5  SBS6  SBS8  SBS10a  SBS10b  SBS12  SBS13  SBS16  SBS19  ...  SBS37  SBS39   SBS40  SBS48  SBS49  SBS50  SBS54  SBS57  SBS58  SBS92  SBS93
+0   1.0  8601.0  628.0   1.0   6.0     1.0     1.0    6.0    1.0    7.0    2.0  ...    1.0   12.0  1808.0    1.0    1.0    1.0    3.0    3.0    2.0    3.0    2.0
+
+[1 rows x 26 columns]
 L2 Error %: 0.0
 Cosine Similarity: 1.0
 ############################## Composition After Initial Remove ###############################
@@ -14365,8 +14493,10 @@ Cosine Similarity: 1.0
 
                     ################ Sample 360 #################
 ############################# Initial Composition ####################################
-     SBS3  SBS4   SBS5  SBS7b  SBS8  SBS10b  SBS12  SBS16  SBS17b  SBS18  SBS19  SBS20  SBS22  SBS28  SBS30  SBS32  SBS39   SBS40  SBS44  SBS54  SBS55  SBS58  SBS89  SBS90
-0  1560.0   1.0  694.0    1.0   6.0     2.0    7.0    6.0     1.0    1.0    4.0    1.0    1.0    1.0    4.0    1.0   12.0  2606.0    3.0    3.0    1.0    1.0    5.0    1.0
+     SBS3  SBS4   SBS5  SBS7b  SBS8  SBS10b  SBS12  SBS16  SBS17b  SBS18  SBS19  ...  SBS28  SBS30  SBS32  SBS39   SBS40  SBS44  SBS54  SBS55  SBS58  SBS89  SBS90
+0  1560.0   1.0  694.0    1.0   6.0     2.0    7.0    6.0     1.0    1.0    4.0  ...    1.0    4.0    1.0   12.0  2606.0    3.0    3.0    1.0    1.0    5.0    1.0
+
+[1 rows x 24 columns]
 L2 Error %: 0.0
 Cosine Similarity: 1.0
 ############################## Composition After Initial Remove ###############################
@@ -14405,8 +14535,10 @@ Cosine Similarity: 1.0
 
                     ################ Sample 361 #################
 ############################# Initial Composition ####################################
-     SBS3   SBS5  SBS7c  SBS7d  SBS12  SBS16  SBS17b  SBS19  SBS24  SBS27  SBS31  SBS32  SBS33  SBS39   SBS40  SBS42  SBS46  SBS50  SBS53  SBS54  SBS57  SBS84  SBS88  SBS91
-0  8889.0  166.0    1.0    1.0    2.0    2.0     1.0    2.0    2.0    1.0    2.0    3.0    1.0    9.0  2097.0    2.0    1.0    1.0    2.0    1.0    2.0    2.0    1.0    1.0
+     SBS3   SBS5  SBS7c  SBS7d  SBS12  SBS16  SBS17b  SBS19  SBS24  SBS27  SBS31  ...  SBS39   SBS40  SBS42  SBS46  SBS50  SBS53  SBS54  SBS57  SBS84  SBS88  SBS91
+0  8889.0  166.0    1.0    1.0    2.0    2.0     1.0    2.0    2.0    1.0    2.0  ...    9.0  2097.0    2.0    1.0    1.0    2.0    1.0    2.0    2.0    1.0    1.0
+
+[1 rows x 24 columns]
 L2 Error %: 0.0
 Cosine Similarity: 1.0
 ############################## Composition After Initial Remove ###############################
@@ -14605,8 +14737,10 @@ Cosine Similarity: 1.0
 
                     ################ Sample 366 #################
 ############################# Initial Composition ####################################
-     SBS3    SBS5  SBS7c  SBS10b  SBS13  SBS16  SBS18  SBS21  SBS22  SBS24  SBS30  SBS31  SBS32  SBS34  SBS37   SBS40  SBS42  SBS46  SBS53  SBS54  SBS55  SBS58  SBS59  SBS86  SBS88  SBS89
-0  3841.0  1024.0    1.0     1.0    1.0    3.0    2.0    2.0    1.0    4.0    4.0    1.0    1.0    1.0    6.0  3402.0    2.0    1.0    2.0    1.0    1.0    1.0    1.0    3.0    2.0    1.0
+     SBS3    SBS5  SBS7c  SBS10b  SBS13  SBS16  SBS18  SBS21  SBS22  SBS24  SBS30  ...   SBS40  SBS42  SBS46  SBS53  SBS54  SBS55  SBS58  SBS59  SBS86  SBS88  SBS89
+0  3841.0  1024.0    1.0     1.0    1.0    3.0    2.0    2.0    1.0    4.0    4.0  ...  3402.0    2.0    1.0    2.0    1.0    1.0    1.0    1.0    3.0    2.0    1.0
+
+[1 rows x 26 columns]
 L2 Error %: 0.0
 Cosine Similarity: 1.0
 ############################## Composition After Initial Remove ###############################
@@ -14685,8 +14819,10 @@ Cosine Similarity: 1.0
 
                     ################ Sample 368 #################
 ############################# Initial Composition ####################################
-     SBS3    SBS5  SBS6  SBS7d  SBS9  SBS10a  SBS16  SBS17a  SBS17b  SBS22  SBS24  SBS28  SBS30  SBS31  SBS32  SBS34  SBS37  SBS39   SBS40  SBS44  SBS49  SBS50  SBS51  SBS54  SBS86
-0  2988.0  1017.0   1.0    1.0   1.0     1.0    5.0     1.0     1.0    1.0    1.0    1.0    4.0    1.0    1.0    1.0    3.0    7.0  1760.0    5.0    1.0    3.0    1.0    3.0    1.0
+     SBS3    SBS5  SBS6  SBS7d  SBS9  SBS10a  SBS16  SBS17a  SBS17b  SBS22  SBS24  ...  SBS32  SBS34  SBS37  SBS39   SBS40  SBS44  SBS49  SBS50  SBS51  SBS54  SBS86
+0  2988.0  1017.0   1.0    1.0   1.0     1.0    5.0     1.0     1.0    1.0    1.0  ...    1.0    1.0    3.0    7.0  1760.0    5.0    1.0    3.0    1.0    3.0    1.0
+
+[1 rows x 25 columns]
 L2 Error %: 0.0
 Cosine Similarity: 1.0
 ############################## Composition After Initial Remove ###############################
@@ -14925,8 +15061,10 @@ Cosine Similarity: 1.0
 
                     ################ Sample 374 #################
 ############################# Initial Composition ####################################
-     SBS3    SBS5  SBS6  SBS7a  SBS7c  SBS7d  SBS8  SBS9  SBS12  SBS13  SBS14  SBS16  SBS17a  SBS19  SBS24  SBS26  SBS28  SBS30  SBS39   SBS40  SBS46  SBS50  SBS60  SBS86  SBS93
-0  3633.0  1776.0   1.0    1.0    1.0    1.0   6.0   1.0    1.0    1.0    1.0    6.0     1.0    3.0    1.0    1.0    2.0    3.0   11.0  4345.0    2.0    1.0    1.0    1.0    2.0
+     SBS3    SBS5  SBS6  SBS7a  SBS7c  SBS7d  SBS8  SBS9  SBS12  SBS13  SBS14  ...  SBS24  SBS26  SBS28  SBS30  SBS39   SBS40  SBS46  SBS50  SBS60  SBS86  SBS93
+0  3633.0  1776.0   1.0    1.0    1.0    1.0   6.0   1.0    1.0    1.0    1.0  ...    1.0    1.0    2.0    3.0   11.0  4345.0    2.0    1.0    1.0    1.0    2.0
+
+[1 rows x 25 columns]
 L2 Error %: 0.0
 Cosine Similarity: 1.0
 ############################## Composition After Initial Remove ###############################
@@ -15565,8 +15703,10 @@ Cosine Similarity: 1.0
 
                     ################ Sample 390 #################
 ############################# Initial Composition ####################################
-   SBS2    SBS3  SBS7c  SBS7d  SBS10a  SBS10b  SBS17a  SBS17b  SBS19  SBS21  SBS28  SBS32  SBS37  SBS39   SBS40  SBS42  SBS50  SBS52  SBS53  SBS54  SBS58  SBS86  SBS90
-0   1.0  1982.0    2.0    1.0     1.0     1.0     1.0     1.0    2.0    1.0    1.0    1.0    1.0    2.0  3165.0    1.0    2.0    1.0    1.0    2.0    1.0    1.0    1.0
+   SBS2    SBS3  SBS7c  SBS7d  SBS10a  SBS10b  SBS17a  SBS17b  SBS19  SBS21  SBS28  ...  SBS37  SBS39   SBS40  SBS42  SBS50  SBS52  SBS53  SBS54  SBS58  SBS86  SBS90
+0   1.0  1982.0    2.0    1.0     1.0     1.0     1.0     1.0    2.0    1.0    1.0  ...    1.0    2.0  3165.0    1.0    2.0    1.0    1.0    2.0    1.0    1.0    1.0
+
+[1 rows x 23 columns]
 L2 Error %: 0.0
 Cosine Similarity: 1.0
 ############################## Composition After Initial Remove ###############################
@@ -15805,8 +15945,10 @@ Cosine Similarity: 1.0
 
                     ################ Sample 396 #################
 ############################# Initial Composition ####################################
-   SBS2    SBS3    SBS5  SBS8  SBS11  SBS13  SBS16  SBS17b  SBS19  SBS21  SBS25  SBS30  SBS32  SBS35  SBS38  SBS39   SBS40  SBS42  SBS44  SBS46  SBS54  SBS59  SBS88  SBS91
-0   1.0  2043.0  1014.0   4.0    1.0    1.0    7.0     1.0    1.0    2.0    1.0    2.0    4.0    1.0    1.0   10.0  2582.0    1.0    2.0    2.0    3.0    1.0    1.0    1.0
+   SBS2    SBS3    SBS5  SBS8  SBS11  SBS13  SBS16  SBS17b  SBS19  SBS21  SBS25  ...  SBS35  SBS38  SBS39   SBS40  SBS42  SBS44  SBS46  SBS54  SBS59  SBS88  SBS91
+0   1.0  2043.0  1014.0   4.0    1.0    1.0    7.0     1.0    1.0    2.0    1.0  ...    1.0    1.0   10.0  2582.0    1.0    2.0    2.0    3.0    1.0    1.0    1.0
+
+[1 rows x 24 columns]
 L2 Error %: 0.0
 Cosine Similarity: 1.0
 ############################## Composition After Initial Remove ###############################
@@ -15965,8 +16107,10 @@ Cosine Similarity: 1.0
 
                     ################ Sample 400 #################
 ############################# Initial Composition ####################################
-      SBS3   SBS5  SBS7a  SBS7b  SBS8  SBS10b  SBS10c  SBS15  SBS16  SBS17a  SBS22  SBS28  SBS29  SBS30  SBS37  SBS39   SBS40  SBS54  SBS55  SBS59  SBS84  SBS88  SBS92
-0  18320.0  292.0    1.0    1.0   4.0     1.0     2.0    2.0    1.0     1.0    2.0    1.0    1.0    2.0    2.0    6.0  5467.0    1.0    1.0    1.0    3.0    1.0    3.0
+      SBS3   SBS5  SBS7a  SBS7b  SBS8  SBS10b  SBS10c  SBS15  SBS16  SBS17a  SBS22  ...  SBS29  SBS30  SBS37  SBS39   SBS40  SBS54  SBS55  SBS59  SBS84  SBS88  SBS92
+0  18320.0  292.0    1.0    1.0   4.0     1.0     2.0    2.0    1.0     1.0    2.0  ...    1.0    2.0    2.0    6.0  5467.0    1.0    1.0    1.0    3.0    1.0    3.0
+
+[1 rows x 23 columns]
 L2 Error %: 0.0
 Cosine Similarity: 1.0
 ############################## Composition After Initial Remove ###############################
@@ -16085,8 +16229,10 @@ Cosine Similarity: 1.0
 
                     ################ Sample 403 #################
 ############################# Initial Composition ####################################
-   SBS2    SBS3  SBS4   SBS5  SBS7c  SBS7d  SBS13  SBS16  SBS17a  SBS17b  SBS19  SBS20  SBS30  SBS31  SBS32  SBS35  SBS37    SBS40  SBS42  SBS51  SBS52  SBS54  SBS87  SBS94
-0   1.0  4457.0   2.0  804.0    2.0    1.0    1.0    4.0     1.0     1.0    1.0    2.0    1.0    1.0    2.0    1.0    5.0  10628.0    1.0    1.0    1.0    1.0    1.0    3.0
+   SBS2    SBS3  SBS4   SBS5  SBS7c  SBS7d  SBS13  SBS16  SBS17a  SBS17b  SBS19  ...  SBS31  SBS32  SBS35  SBS37    SBS40  SBS42  SBS51  SBS52  SBS54  SBS87  SBS94
+0   1.0  4457.0   2.0  804.0    2.0    1.0    1.0    4.0     1.0     1.0    1.0  ...    1.0    2.0    1.0    5.0  10628.0    1.0    1.0    1.0    1.0    1.0    3.0
+
+[1 rows x 24 columns]
 L2 Error %: 0.0
 Cosine Similarity: 1.0
 ############################## Composition After Initial Remove ###############################
@@ -16285,8 +16431,10 @@ Cosine Similarity: 1.0
 
                     ################ Sample 408 #################
 ############################# Initial Composition ####################################
-   SBS2    SBS3   SBS5  SBS7d  SBS8  SBS12  SBS16  SBS19  SBS20  SBS21  SBS24  SBS27  SBS28  SBS30  SBS31  SBS32  SBS33  SBS34  SBS37  SBS39   SBS40  SBS49  SBS54  SBS60  SBS86  SBS89
-0   1.0  5085.0  348.0    1.0   5.0    8.0    6.0    2.0    2.0    1.0    3.0    1.0    1.0    5.0    3.0    3.0    1.0    1.0    2.0    9.0  6073.0    1.0    1.0    1.0    4.0    3.0
+   SBS2    SBS3   SBS5  SBS7d  SBS8  SBS12  SBS16  SBS19  SBS20  SBS21  SBS24  ...  SBS32  SBS33  SBS34  SBS37  SBS39   SBS40  SBS49  SBS54  SBS60  SBS86  SBS89
+0   1.0  5085.0  348.0    1.0   5.0    8.0    6.0    2.0    2.0    1.0    3.0  ...    3.0    1.0    1.0    2.0    9.0  6073.0    1.0    1.0    1.0    4.0    3.0
+
+[1 rows x 26 columns]
 L2 Error %: 0.0
 Cosine Similarity: 1.0
 ############################## Composition After Initial Remove ###############################
@@ -17325,8 +17473,10 @@ Cosine Similarity: 1.0
 
                     ################ Sample 434 #################
 ############################# Initial Composition ####################################
-   SBS2    SBS3  SBS4    SBS5  SBS7a  SBS7d  SBS8  SBS9  SBS13  SBS19  SBS24  SBS28  SBS29  SBS30  SBS31  SBS34  SBS38  SBS39   SBS40  SBS54  SBS84  SBS87  SBS88  SBS93
-0   1.0  1981.0   2.0  1759.0    1.0    1.0   2.0   4.0    1.0    1.0    1.0    1.0    1.0    2.0    1.0    1.0    1.0    3.0  4255.0    2.0    2.0    1.0    1.0    4.0
+   SBS2    SBS3  SBS4    SBS5  SBS7a  SBS7d  SBS8  SBS9  SBS13  SBS19  SBS24  ...  SBS30  SBS31  SBS34  SBS38  SBS39   SBS40  SBS54  SBS84  SBS87  SBS88  SBS93
+0   1.0  1981.0   2.0  1759.0    1.0    1.0   2.0   4.0    1.0    1.0    1.0  ...    2.0    1.0    1.0    1.0    3.0  4255.0    2.0    2.0    1.0    1.0    4.0
+
+[1 rows x 24 columns]
 L2 Error %: 0.0
 Cosine Similarity: 1.0
 ############################## Composition After Initial Remove ###############################
@@ -17405,8 +17555,10 @@ Cosine Similarity: 1.0
 
                     ################ Sample 436 #################
 ############################# Initial Composition ####################################
-     SBS3  SBS4    SBS5  SBS7c  SBS8  SBS12  SBS16  SBS21  SBS24  SBS28  SBS30  SBS32  SBS36   SBS40  SBS41  SBS51  SBS54  SBS57  SBS59  SBS60  SBS86  SBS87  SBS91  SBS92
-0  7077.0   1.0  1985.0    1.0   1.0    1.0    4.0    2.0    2.0    1.0    6.0    1.0    1.0  8236.0    3.0    2.0    3.0    1.0    1.0    1.0    3.0    1.0    1.0    2.0
+     SBS3  SBS4    SBS5  SBS7c  SBS8  SBS12  SBS16  SBS21  SBS24  SBS28  SBS30  ...   SBS40  SBS41  SBS51  SBS54  SBS57  SBS59  SBS60  SBS86  SBS87  SBS91  SBS92
+0  7077.0   1.0  1985.0    1.0   1.0    1.0    4.0    2.0    2.0    1.0    6.0  ...  8236.0    3.0    2.0    3.0    1.0    1.0    1.0    3.0    1.0    1.0    2.0
+
+[1 rows x 24 columns]
 L2 Error %: 0.0
 Cosine Similarity: 1.0
 ############################## Composition After Initial Remove ###############################
@@ -17605,8 +17757,10 @@ Cosine Similarity: 1.0
 
                     ################ Sample 441 #################
 ############################# Initial Composition ####################################
-   SBS2    SBS3   SBS5  SBS8  SBS10b  SBS12  SBS13  SBS16  SBS17a  SBS17b  SBS19  SBS24  SBS28  SBS30  SBS32  SBS37  SBS39   SBS40  SBS44  SBS46  SBS50  SBS53  SBS54  SBS55
-0   1.0  3210.0  870.0   8.0     1.0    5.0    1.0    2.0     1.0     1.0    3.0    5.0    1.0    6.0    1.0    7.0    6.0  5816.0    2.0    1.0    1.0    2.0    3.0    1.0
+   SBS2    SBS3   SBS5  SBS8  SBS10b  SBS12  SBS13  SBS16  SBS17a  SBS17b  SBS19  ...  SBS30  SBS32  SBS37  SBS39   SBS40  SBS44  SBS46  SBS50  SBS53  SBS54  SBS55
+0   1.0  3210.0  870.0   8.0     1.0    5.0    1.0    2.0     1.0     1.0    3.0  ...    6.0    1.0    7.0    6.0  5816.0    2.0    1.0    1.0    2.0    3.0    1.0
+
+[1 rows x 24 columns]
 L2 Error %: 0.0
 Cosine Similarity: 1.0
 ############################## Composition After Initial Remove ###############################
@@ -17645,8 +17799,10 @@ Cosine Similarity: 1.0
 
                     ################ Sample 442 #################
 ############################# Initial Composition ####################################
-   SBS2    SBS3  SBS4   SBS5  SBS8  SBS9  SBS10b  SBS12  SBS16  SBS22  SBS23  SBS28  SBS29  SBS30  SBS31  SBS32  SBS39   SBS40  SBS42  SBS51  SBS54  SBS59  SBS84  SBS86  SBS88
-0   1.0  1552.0   4.0  419.0   2.0   3.0     1.0    1.0    5.0    1.0    2.0    1.0    1.0    2.0    1.0    4.0    4.0  4244.0    1.0    1.0    3.0    1.0    1.0    4.0    1.0
+   SBS2    SBS3  SBS4   SBS5  SBS8  SBS9  SBS10b  SBS12  SBS16  SBS22  SBS23  ...  SBS31  SBS32  SBS39   SBS40  SBS42  SBS51  SBS54  SBS59  SBS84  SBS86  SBS88
+0   1.0  1552.0   4.0  419.0   2.0   3.0     1.0    1.0    5.0    1.0    2.0  ...    1.0    4.0    4.0  4244.0    1.0    1.0    3.0    1.0    1.0    4.0    1.0
+
+[1 rows x 25 columns]
 L2 Error %: 0.0
 Cosine Similarity: 1.0
 ############################## Composition After Initial Remove ###############################
@@ -18085,8 +18241,10 @@ Cosine Similarity: 1.0
 
                     ################ Sample 453 #################
 ############################# Initial Composition ####################################
-     SBS3   SBS5  SBS7a  SBS8  SBS12  SBS13  SBS16  SBS19  SBS21  SBS24  SBS28  SBS31  SBS32  SBS37  SBS39   SBS40  SBS44  SBS49  SBS50  SBS51  SBS54  SBS58  SBS86  SBS90  SBS94
-0  5805.0  298.0    2.0   1.0    2.0    1.0    3.0    1.0    1.0    1.0    1.0    1.0    3.0    1.0   11.0  3492.0    2.0    1.0    2.0    1.0    1.0    1.0    1.0    1.0    2.0
+     SBS3   SBS5  SBS7a  SBS8  SBS12  SBS13  SBS16  SBS19  SBS21  SBS24  SBS28  ...  SBS39   SBS40  SBS44  SBS49  SBS50  SBS51  SBS54  SBS58  SBS86  SBS90  SBS94
+0  5805.0  298.0    2.0   1.0    2.0    1.0    3.0    1.0    1.0    1.0    1.0  ...   11.0  3492.0    2.0    1.0    2.0    1.0    1.0    1.0    1.0    1.0    2.0
+
+[1 rows x 25 columns]
 L2 Error %: 0.0
 Cosine Similarity: 1.0
 ############################## Composition After Initial Remove ###############################
@@ -18285,8 +18443,10 @@ Cosine Similarity: 1.0
 
                     ################ Sample 458 #################
 ############################# Initial Composition ####################################
-   SBS2    SBS3   SBS5  SBS7b  SBS8  SBS10b  SBS12  SBS13  SBS15  SBS16  SBS18  SBS19  SBS21  SBS24  SBS28  SBS30  SBS32  SBS33  SBS34  SBS37  SBS39   SBS40  SBS46  SBS49  SBS50  SBS54  SBS84  SBS86  SBS89  SBS93
-0   1.0  4370.0  218.0    2.0   3.0     1.0    3.0    1.0    2.0    7.0    1.0    3.0    1.0    2.0    1.0    4.0    2.0    1.0    1.0    6.0    9.0  2992.0    3.0    1.0    1.0    1.0    2.0    1.0   11.0    2.0
+   SBS2    SBS3   SBS5  SBS7b  SBS8  SBS10b  SBS12  SBS13  SBS15  SBS16  SBS18  ...  SBS37  SBS39   SBS40  SBS46  SBS49  SBS50  SBS54  SBS84  SBS86  SBS89  SBS93
+0   1.0  4370.0  218.0    2.0   3.0     1.0    3.0    1.0    2.0    7.0    1.0  ...    6.0    9.0  2992.0    3.0    1.0    1.0    1.0    2.0    1.0   11.0    2.0
+
+[1 rows x 30 columns]
 L2 Error %: 0.0
 Cosine Similarity: 1.0
 ############################## Composition After Initial Remove ###############################
@@ -18765,8 +18925,10 @@ Cosine Similarity: 1.0
 
                     ################ Sample 470 #################
 ############################# Initial Composition ####################################
-   SBS2     SBS3   SBS5  SBS6  SBS7a  SBS7c  SBS7d  SBS8  SBS10a  SBS12  SBS13  SBS16  SBS26  SBS28  SBS29  SBS30  SBS32  SBS39   SBS40  SBS42  SBS44  SBS50  SBS58  SBS84  SBS89  SBS94
-0   1.0  10821.0  209.0   1.0    1.0    1.0    1.0   6.0     1.0    3.0    1.0    5.0    7.0    1.0    3.0    3.0    1.0    9.0  8304.0    1.0    3.0    1.0    1.0    2.0    4.0    1.0
+   SBS2     SBS3   SBS5  SBS6  SBS7a  SBS7c  SBS7d  SBS8  SBS10a  SBS12  SBS13  ...  SBS30  SBS32  SBS39   SBS40  SBS42  SBS44  SBS50  SBS58  SBS84  SBS89  SBS94
+0   1.0  10821.0  209.0   1.0    1.0    1.0    1.0   6.0     1.0    3.0    1.0  ...    3.0    1.0    9.0  8304.0    1.0    3.0    1.0    1.0    2.0    4.0    1.0
+
+[1 rows x 26 columns]
 L2 Error %: 0.0
 Cosine Similarity: 1.0
 ############################## Composition After Initial Remove ###############################
@@ -19245,8 +19407,10 @@ Cosine Similarity: 1.0
 
                     ################ Sample 482 #################
 ############################# Initial Composition ####################################
-     SBS3   SBS5  SBS7d  SBS16  SBS17b  SBS18  SBS20  SBS28  SBS29  SBS30  SBS31  SBS32  SBS36  SBS39   SBS40  SBS42  SBS46  SBS49  SBS50  SBS51  SBS54  SBS58  SBS86  SBS88
-0  2159.0  947.0    1.0    3.0     1.0    1.0    1.0    1.0    2.0    3.0    1.0    3.0    2.0    2.0  7820.0    2.0    2.0    1.0    2.0    1.0    1.0    2.0    4.0    3.0
+     SBS3   SBS5  SBS7d  SBS16  SBS17b  SBS18  SBS20  SBS28  SBS29  SBS30  SBS31  ...  SBS39   SBS40  SBS42  SBS46  SBS49  SBS50  SBS51  SBS54  SBS58  SBS86  SBS88
+0  2159.0  947.0    1.0    3.0     1.0    1.0    1.0    1.0    2.0    3.0    1.0  ...    2.0  7820.0    2.0    2.0    1.0    2.0    1.0    1.0    2.0    4.0    3.0
+
+[1 rows x 24 columns]
 L2 Error %: 0.0
 Cosine Similarity: 1.0
 ############################## Composition After Initial Remove ###############################
@@ -19365,8 +19529,10 @@ Cosine Similarity: 1.0
 
                     ################ Sample 485 #################
 ############################# Initial Composition ####################################
-   SBS2    SBS3    SBS5  SBS7c  SBS7d  SBS8  SBS9  SBS10d  SBS12  SBS13  SBS16  SBS21  SBS24  SBS26  SBS28  SBS30  SBS32  SBS39   SBS40  SBS43  SBS44  SBS50  SBS54  SBS59  SBS84  SBS91
-0   2.0  1530.0  1609.0    1.0    1.0   3.0   6.0     1.0    4.0    1.0    7.0    1.0    4.0    1.0    1.0    6.0    6.0    9.0  3042.0    1.0    1.0    1.0    3.0    1.0    2.0    2.0
+   SBS2    SBS3    SBS5  SBS7c  SBS7d  SBS8  SBS9  SBS10d  SBS12  SBS13  SBS16  ...  SBS30  SBS32  SBS39   SBS40  SBS43  SBS44  SBS50  SBS54  SBS59  SBS84  SBS91
+0   2.0  1530.0  1609.0    1.0    1.0   3.0   6.0     1.0    4.0    1.0    7.0  ...    6.0    6.0    9.0  3042.0    1.0    1.0    1.0    3.0    1.0    2.0    2.0
+
+[1 rows x 26 columns]
 L2 Error %: 0.0
 Cosine Similarity: 1.0
 ############################## Composition After Initial Remove ###############################
@@ -19405,8 +19571,10 @@ Cosine Similarity: 1.0
 
                     ################ Sample 486 #################
 ############################# Initial Composition ####################################
-     SBS3   SBS5  SBS7b  SBS7d  SBS8  SBS16  SBS17b  SBS19  SBS21  SBS22  SBS24  SBS29  SBS30  SBS32  SBS37  SBS39   SBS40  SBS46  SBS50  SBS52  SBS54  SBS55  SBS57  SBS59  SBS84  SBS88  SBS89
-0  8871.0  350.0    3.0    1.0   1.0    7.0     1.0    2.0    2.0    2.0    1.0    1.0    3.0    2.0    2.0    8.0  5296.0    3.0    1.0    1.0    3.0    1.0    1.0    1.0    1.0    2.0    8.0
+     SBS3   SBS5  SBS7b  SBS7d  SBS8  SBS16  SBS17b  SBS19  SBS21  SBS22  SBS24  ...   SBS40  SBS46  SBS50  SBS52  SBS54  SBS55  SBS57  SBS59  SBS84  SBS88  SBS89
+0  8871.0  350.0    3.0    1.0   1.0    7.0     1.0    2.0    2.0    2.0    1.0  ...  5296.0    3.0    1.0    1.0    3.0    1.0    1.0    1.0    1.0    2.0    8.0
+
+[1 rows x 27 columns]
 L2 Error %: 0.0
 Cosine Similarity: 1.0
 ############################## Composition After Initial Remove ###############################
@@ -19965,8 +20133,10 @@ Cosine Similarity: 1.0
 
                     ################ Sample 500 #################
 ############################# Initial Composition ####################################
-     SBS3    SBS5  SBS7c  SBS8  SBS12  SBS13  SBS14  SBS16  SBS17b  SBS21  SBS24  SBS25  SBS28  SBS30  SBS35  SBS37   SBS40  SBS44  SBS53  SBS54  SBS57  SBS58  SBS84  SBS86  SBS87  SBS88  SBS89
-0  4880.0  4516.0    1.0   1.0    1.0    1.0    1.0    4.0     1.0    2.0    1.0    1.0    1.0    2.0    2.0    3.0  7116.0    1.0    1.0    3.0    1.0    2.0    1.0    4.0    1.0    1.0    5.0
+     SBS3    SBS5  SBS7c  SBS8  SBS12  SBS13  SBS14  SBS16  SBS17b  SBS21  SBS24  ...   SBS40  SBS44  SBS53  SBS54  SBS57  SBS58  SBS84  SBS86  SBS87  SBS88  SBS89
+0  4880.0  4516.0    1.0   1.0    1.0    1.0    1.0    4.0     1.0    2.0    1.0  ...  7116.0    1.0    1.0    3.0    1.0    2.0    1.0    4.0    1.0    1.0    5.0
+
+[1 rows x 27 columns]
 L2 Error %: 0.0
 Cosine Similarity: 1.0
 ############################## Composition After Initial Remove ###############################
@@ -20005,8 +20175,10 @@ Cosine Similarity: 1.0
 
                     ################ Sample 501 #################
 ############################# Initial Composition ####################################
-   SBS2    SBS3  SBS4    SBS5  SBS7c  SBS10a  SBS13  SBS16  SBS29  SBS30  SBS32  SBS33  SBS37  SBS39   SBS40  SBS50  SBS54  SBS55  SBS57  SBS58  SBS87  SBS88  SBS89  SBS90  SBS93
-0   1.0  2451.0   3.0  1970.0    1.0     1.0    1.0    3.0    5.0    7.0    1.0    1.0    2.0    6.0  4749.0    1.0    2.0    1.0    1.0    1.0    1.0    2.0    3.0    1.0    5.0
+   SBS2    SBS3  SBS4    SBS5  SBS7c  SBS10a  SBS13  SBS16  SBS29  SBS30  SBS32  ...   SBS40  SBS50  SBS54  SBS55  SBS57  SBS58  SBS87  SBS88  SBS89  SBS90  SBS93
+0   1.0  2451.0   3.0  1970.0    1.0     1.0    1.0    3.0    5.0    7.0    1.0  ...  4749.0    1.0    2.0    1.0    1.0    1.0    1.0    2.0    3.0    1.0    5.0
+
+[1 rows x 25 columns]
 L2 Error %: 0.0
 Cosine Similarity: 1.0
 ############################## Composition After Initial Remove ###############################
@@ -20525,8 +20697,10 @@ Cosine Similarity: 1.0
 
                     ################ Sample 514 #################
 ############################# Initial Composition ####################################
-     SBS3   SBS5  SBS7d  SBS8  SBS10a  SBS14  SBS16  SBS17a  SBS17b  SBS19  SBS22  SBS24  SBS30  SBS31  SBS36  SBS37  SBS39   SBS40  SBS51  SBS54  SBS57  SBS85  SBS86  SBS87
-0  3117.0  577.0    1.0   4.0     1.0    1.0    5.0     1.0     1.0    1.0    1.0    2.0    4.0    4.0    1.0    3.0    4.0  3911.0    2.0    1.0    2.0    1.0    2.0    2.0
+     SBS3   SBS5  SBS7d  SBS8  SBS10a  SBS14  SBS16  SBS17a  SBS17b  SBS19  SBS22  ...  SBS31  SBS36  SBS37  SBS39   SBS40  SBS51  SBS54  SBS57  SBS85  SBS86  SBS87
+0  3117.0  577.0    1.0   4.0     1.0    1.0    5.0     1.0     1.0    1.0    1.0  ...    4.0    1.0    3.0    4.0  3911.0    2.0    1.0    2.0    1.0    2.0    2.0
+
+[1 rows x 24 columns]
 L2 Error %: 0.0
 Cosine Similarity: 1.0
 ############################## Composition After Initial Remove ###############################
@@ -20925,8 +21099,10 @@ Cosine Similarity: 1.0
 
                     ################ Sample 524 #################
 ############################# Initial Composition ####################################
-     SBS3    SBS5  SBS6  SBS7b  SBS8  SBS13  SBS16  SBS20  SBS21  SBS22  SBS24  SBS28  SBS30  SBS31  SBS32  SBS37  SBS39   SBS40  SBS51  SBS53  SBS54  SBS59  SBS86  SBS93
-0  1072.0  1111.0   1.0    1.0   5.0    1.0    5.0    2.0    1.0    2.0    2.0    1.0    5.0    1.0    3.0    6.0    5.0  1386.0    2.0    1.0    2.0    1.0    3.0    1.0
+     SBS3    SBS5  SBS6  SBS7b  SBS8  SBS13  SBS16  SBS20  SBS21  SBS22  SBS24  ...  SBS31  SBS32  SBS37  SBS39   SBS40  SBS51  SBS53  SBS54  SBS59  SBS86  SBS93
+0  1072.0  1111.0   1.0    1.0   5.0    1.0    5.0    2.0    1.0    2.0    2.0  ...    1.0    3.0    6.0    5.0  1386.0    2.0    1.0    2.0    1.0    3.0    1.0
+
+[1 rows x 24 columns]
 L2 Error %: 0.01
 Cosine Similarity: 1.0
 ############################## Composition After Initial Remove ###############################
@@ -21125,8 +21301,10 @@ Cosine Similarity: 1.0
 
                     ################ Sample 529 #################
 ############################# Initial Composition ####################################
-   SBS2    SBS3   SBS5  SBS6  SBS7a  SBS7c  SBS7d  SBS10a  SBS16  SBS17b  SBS19  SBS22  SBS24  SBS27  SBS30  SBS33  SBS37  SBS39   SBS40  SBS44  SBS51  SBS54  SBS55  SBS89
-0   1.0  3481.0  788.0   2.0    1.0    2.0    2.0     1.0    5.0     1.0    1.0    1.0    1.0    1.0    3.0    1.0    3.0   12.0  3661.0    2.0    1.0    3.0    1.0    1.0
+   SBS2    SBS3   SBS5  SBS6  SBS7a  SBS7c  SBS7d  SBS10a  SBS16  SBS17b  SBS19  ...  SBS27  SBS30  SBS33  SBS37  SBS39   SBS40  SBS44  SBS51  SBS54  SBS55  SBS89
+0   1.0  3481.0  788.0   2.0    1.0    2.0    2.0     1.0    5.0     1.0    1.0  ...    1.0    3.0    1.0    3.0   12.0  3661.0    2.0    1.0    3.0    1.0    1.0
+
+[1 rows x 24 columns]
 L2 Error %: 0.0
 Cosine Similarity: 1.0
 ############################## Composition After Initial Remove ###############################
@@ -21285,8 +21463,10 @@ Cosine Similarity: 1.0
 
                     ################ Sample 533 #################
 ############################# Initial Composition ####################################
-   SBS1  SBS2    SBS3    SBS5  SBS7c  SBS7d  SBS10b  SBS11  SBS12  SBS13  SBS16  SBS17a  SBS17b  SBS18  SBS28  SBS30  SBS31  SBS39   SBS40  SBS42  SBS46  SBS50  SBS58  SBS87  SBS92
-0   1.0   1.0  4225.0  2149.0    1.0    1.0     1.0    2.0    1.0    1.0    3.0     1.0     1.0    2.0    2.0    1.0    1.0    6.0  4737.0    2.0    2.0    1.0    1.0    1.0    1.0
+   SBS1  SBS2    SBS3    SBS5  SBS7c  SBS7d  SBS10b  SBS11  SBS12  SBS13  SBS16  ...  SBS28  SBS30  SBS31  SBS39   SBS40  SBS42  SBS46  SBS50  SBS58  SBS87  SBS92
+0   1.0   1.0  4225.0  2149.0    1.0    1.0     1.0    2.0    1.0    1.0    3.0  ...    2.0    1.0    1.0    6.0  4737.0    2.0    2.0    1.0    1.0    1.0    1.0
+
+[1 rows x 25 columns]
 L2 Error %: 0.0
 Cosine Similarity: 1.0
 ############################## Composition After Initial Remove ###############################
@@ -21325,8 +21505,10 @@ Cosine Similarity: 1.0
 
                     ################ Sample 534 #################
 ############################# Initial Composition ####################################
-   SBS2    SBS3    SBS5  SBS7c  SBS7d  SBS8  SBS10a  SBS12  SBS16  SBS17b  SBS18  SBS20  SBS22  SBS30  SBS31  SBS32  SBS37   SBS40  SBS50  SBS53  SBS54  SBS55  SBS85  SBS88  SBS90  SBS93
-0   1.0  2234.0  2070.0    1.0    1.0   3.0     1.0    2.0    1.0     1.0    3.0    1.0    1.0    4.0    1.0    3.0    3.0  2336.0    1.0    1.0    3.0    1.0    1.0    1.0    1.0    1.0
+   SBS2    SBS3    SBS5  SBS7c  SBS7d  SBS8  SBS10a  SBS12  SBS16  SBS17b  SBS18  ...  SBS32  SBS37   SBS40  SBS50  SBS53  SBS54  SBS55  SBS85  SBS88  SBS90  SBS93
+0   1.0  2234.0  2070.0    1.0    1.0   3.0     1.0    2.0    1.0     1.0    3.0  ...    3.0    3.0  2336.0    1.0    1.0    3.0    1.0    1.0    1.0    1.0    1.0
+
+[1 rows x 26 columns]
 L2 Error %: 0.0
 Cosine Similarity: 1.0
 ############################## Composition After Initial Remove ###############################
@@ -21485,8 +21667,10 @@ Cosine Similarity: 1.0
 
                     ################ Sample 538 #################
 ############################# Initial Composition ####################################
-     SBS3   SBS5  SBS6  SBS7b  SBS7c  SBS8  SBS11  SBS12  SBS13  SBS16  SBS17a  SBS19  SBS20  SBS22  SBS29  SBS30  SBS39   SBS40  SBS43  SBS49  SBS51  SBS54  SBS55  SBS58  SBS84  SBS93
-0  2907.0  961.0   2.0    1.0    1.0   2.0    1.0    3.0    1.0    3.0     1.0    1.0    1.0    1.0    2.0    1.0    8.0  5044.0    2.0    1.0    1.0    2.0    1.0    2.0    3.0    3.0
+     SBS3   SBS5  SBS6  SBS7b  SBS7c  SBS8  SBS11  SBS12  SBS13  SBS16  SBS17a  ...  SBS30  SBS39   SBS40  SBS43  SBS49  SBS51  SBS54  SBS55  SBS58  SBS84  SBS93
+0  2907.0  961.0   2.0    1.0    1.0   2.0    1.0    3.0    1.0    3.0     1.0  ...    1.0    8.0  5044.0    2.0    1.0    1.0    2.0    1.0    2.0    3.0    3.0
+
+[1 rows x 26 columns]
 L2 Error %: 0.0
 Cosine Similarity: 1.0
 ############################## Composition After Initial Remove ###############################
@@ -21565,8 +21749,10 @@ Cosine Similarity: 1.0
 
                     ################ Sample 540 #################
 ############################# Initial Composition ####################################
-      SBS3   SBS5  SBS7a  SBS7b  SBS8  SBS9  SBS12  SBS13  SBS15  SBS17b  SBS19  SBS36  SBS37  SBS39   SBS40  SBS42  SBS45  SBS50  SBS54  SBS55  SBS59  SBS84  SBS89  SBS90  SBS92
-0  10872.0  626.0    1.0    1.0   2.0   1.0    3.0    1.0    1.0     1.0    1.0    1.0    6.0    2.0  4844.0    2.0    1.0    2.0    2.0    1.0    1.0    1.0    5.0    1.0    2.0
+      SBS3   SBS5  SBS7a  SBS7b  SBS8  SBS9  SBS12  SBS13  SBS15  SBS17b  SBS19  ...   SBS40  SBS42  SBS45  SBS50  SBS54  SBS55  SBS59  SBS84  SBS89  SBS90  SBS92
+0  10872.0  626.0    1.0    1.0   2.0   1.0    3.0    1.0    1.0     1.0    1.0  ...  4844.0    2.0    1.0    2.0    2.0    1.0    1.0    1.0    5.0    1.0    2.0
+
+[1 rows x 25 columns]
 L2 Error %: 0.0
 Cosine Similarity: 1.0
 ############################## Composition After Initial Remove ###############################
@@ -21725,8 +21911,10 @@ Cosine Similarity: 1.0
 
                     ################ Sample 544 #################
 ############################# Initial Composition ####################################
-     SBS3   SBS5  SBS10b  SBS11  SBS12  SBS15  SBS16  SBS17b  SBS23  SBS24  SBS27  SBS30  SBS32  SBS34  SBS37  SBS39   SBS40  SBS44  SBS52  SBS54  SBS55  SBS57  SBS90  SBS92
-0  2897.0  543.0     1.0    1.0    3.0    1.0    4.0     1.0    1.0    4.0    1.0    4.0    4.0    1.0    5.0   14.0  4054.0    1.0    1.0    2.0    1.0    2.0    1.0    5.0
+     SBS3   SBS5  SBS10b  SBS11  SBS12  SBS15  SBS16  SBS17b  SBS23  SBS24  SBS27  ...  SBS34  SBS37  SBS39   SBS40  SBS44  SBS52  SBS54  SBS55  SBS57  SBS90  SBS92
+0  2897.0  543.0     1.0    1.0    3.0    1.0    4.0     1.0    1.0    4.0    1.0  ...    1.0    5.0   14.0  4054.0    1.0    1.0    2.0    1.0    2.0    1.0    5.0
+
+[1 rows x 24 columns]
 L2 Error %: 0.0
 Cosine Similarity: 1.0
 ############################## Composition After Initial Remove ###############################
@@ -21765,8 +21953,10 @@ Cosine Similarity: 1.0
 
                     ################ Sample 545 #################
 ############################# Initial Composition ####################################
-   SBS2    SBS3    SBS5  SBS7c  SBS7d  SBS8  SBS10a  SBS13  SBS14  SBS16  SBS17a  SBS19  SBS21  SBS28  SBS30  SBS32  SBS38  SBS39   SBS40  SBS42  SBS49  SBS54  SBS55  SBS59  SBS86
-0   1.0  2165.0  1037.0    2.0    1.0   7.0     1.0    1.0    1.0    2.0     1.0    3.0    2.0    2.0    1.0    1.0    1.0   10.0  5313.0    2.0    1.0    3.0    1.0    1.0    1.0
+   SBS2    SBS3    SBS5  SBS7c  SBS7d  SBS8  SBS10a  SBS13  SBS14  SBS16  SBS17a  ...  SBS30  SBS32  SBS38  SBS39   SBS40  SBS42  SBS49  SBS54  SBS55  SBS59  SBS86
+0   1.0  2165.0  1037.0    2.0    1.0   7.0     1.0    1.0    1.0    2.0     1.0  ...    1.0    1.0    1.0   10.0  5313.0    2.0    1.0    3.0    1.0    1.0    1.0
+
+[1 rows x 25 columns]
 L2 Error %: 0.0
 Cosine Similarity: 1.0
 ############################## Composition After Initial Remove ###############################
@@ -21885,8 +22075,10 @@ Cosine Similarity: 1.0
 
                     ################ Sample 548 #################
 ############################# Initial Composition ####################################
-   SBS1    SBS3   SBS5  SBS7c  SBS8  SBS10b  SBS12  SBS16  SBS17b  SBS19  SBS21  SBS22  SBS24  SBS28  SBS30  SBS32  SBS36  SBS39   SBS40  SBS42  SBS43  SBS46  SBS54  SBS84  SBS90  SBS93
-0   1.0  2818.0  566.0    2.0   4.0     1.0    3.0    6.0     1.0    4.0    1.0    2.0    3.0    1.0    3.0    2.0    1.0   11.0  2154.0    1.0    2.0    3.0    2.0    2.0    1.0    1.0
+   SBS1    SBS3   SBS5  SBS7c  SBS8  SBS10b  SBS12  SBS16  SBS17b  SBS19  SBS21  ...  SBS32  SBS36  SBS39   SBS40  SBS42  SBS43  SBS46  SBS54  SBS84  SBS90  SBS93
+0   1.0  2818.0  566.0    2.0   4.0     1.0    3.0    6.0     1.0    4.0    1.0  ...    2.0    1.0   11.0  2154.0    1.0    2.0    3.0    2.0    2.0    1.0    1.0
+
+[1 rows x 26 columns]
 L2 Error %: 0.0
 Cosine Similarity: 1.0
 ############################## Composition After Initial Remove ###############################
@@ -22045,8 +22237,10 @@ Cosine Similarity: 1.0
 
                     ################ Sample 552 #################
 ############################# Initial Composition ####################################
-     SBS3   SBS5  SBS8  SBS9  SBS10d  SBS12  SBS16  SBS19  SBS22  SBS24  SBS28  SBS30  SBS32  SBS37  SBS39   SBS40  SBS46  SBS47  SBS51  SBS53  SBS54  SBS58  SBS84  SBS86  SBS87  SBS93  SBS94
-0  2505.0  596.0   2.0   2.0     2.0    3.0    7.0    2.0    1.0    2.0    2.0    6.0    2.0    2.0    8.0  8852.0    3.0    1.0    2.0    1.0    5.0    2.0    1.0    3.0    1.0    1.0    3.0
+     SBS3   SBS5  SBS8  SBS9  SBS10d  SBS12  SBS16  SBS19  SBS22  SBS24  SBS28  ...  SBS46  SBS47  SBS51  SBS53  SBS54  SBS58  SBS84  SBS86  SBS87  SBS93  SBS94
+0  2505.0  596.0   2.0   2.0     2.0    3.0    7.0    2.0    1.0    2.0    2.0  ...    3.0    1.0    2.0    1.0    5.0    2.0    1.0    3.0    1.0    1.0    3.0
+
+[1 rows x 27 columns]
 L2 Error %: 0.0
 Cosine Similarity: 1.0
 ############################## Composition After Initial Remove ###############################
@@ -22085,8 +22279,10 @@ Cosine Similarity: 1.0
 
                     ################ Sample 553 #################
 ############################# Initial Composition ####################################
-   SBS1    SBS3   SBS5  SBS6  SBS7a  SBS7c  SBS7d  SBS12  SBS14  SBS16  SBS22  SBS26  SBS32  SBS35  SBS37  SBS39   SBS40  SBS50  SBS51  SBS54  SBS59  SBS84  SBS88  SBS89
-0   1.0  1919.0  748.0   1.0    3.0    1.0    1.0    1.0    1.0    3.0    1.0    2.0    3.0    3.0    1.0    5.0  3324.0    1.0    1.0    4.0    1.0    3.0    3.0    3.0
+   SBS1    SBS3   SBS5  SBS6  SBS7a  SBS7c  SBS7d  SBS12  SBS14  SBS16  SBS22  ...  SBS35  SBS37  SBS39   SBS40  SBS50  SBS51  SBS54  SBS59  SBS84  SBS88  SBS89
+0   1.0  1919.0  748.0   1.0    3.0    1.0    1.0    1.0    1.0    3.0    1.0  ...    3.0    1.0    5.0  3324.0    1.0    1.0    4.0    1.0    3.0    3.0    3.0
+
+[1 rows x 24 columns]
 L2 Error %: 0.0
 Cosine Similarity: 1.0
 ############################## Composition After Initial Remove ###############################
@@ -22245,8 +22441,10 @@ Cosine Similarity: 1.0
 
                     ################ Sample 557 #################
 ############################# Initial Composition ####################################
-     SBS3    SBS5  SBS6  SBS7a  SBS7c  SBS10b  SBS12  SBS16  SBS17a  SBS19  SBS21  SBS28  SBS30  SBS31  SBS32  SBS39   SBS40  SBS42  SBS51  SBS54  SBS55  SBS87  SBS89  SBS92  SBS93
-0  3382.0  1998.0   2.0    1.0    1.0     1.0    4.0    2.0     1.0    1.0    1.0    1.0    1.0    1.0    1.0    7.0  6236.0    3.0    1.0    3.0    1.0    1.0    7.0    1.0    1.0
+     SBS3    SBS5  SBS6  SBS7a  SBS7c  SBS10b  SBS12  SBS16  SBS17a  SBS19  SBS21  ...  SBS32  SBS39   SBS40  SBS42  SBS51  SBS54  SBS55  SBS87  SBS89  SBS92  SBS93
+0  3382.0  1998.0   2.0    1.0    1.0     1.0    4.0    2.0     1.0    1.0    1.0  ...    1.0    7.0  6236.0    3.0    1.0    3.0    1.0    1.0    7.0    1.0    1.0
+
+[1 rows x 25 columns]
 L2 Error %: 0.0
 Cosine Similarity: 1.0
 ############################## Composition After Initial Remove ###############################
@@ -22365,8 +22563,10 @@ Cosine Similarity: 1.0
 
                     ################ Sample 560 #################
 ############################# Initial Composition ####################################
-     SBS3   SBS5  SBS7c  SBS9  SBS10b  SBS14  SBS16  SBS17b  SBS19  SBS22  SBS24  SBS28  SBS30  SBS32  SBS33  SBS37  SBS39   SBS40  SBS44  SBS46  SBS49  SBS54  SBS55  SBS84  SBS88  SBS89  SBS91
-0  5424.0  505.0    1.0   1.0     1.0    1.0    2.0     1.0    1.0    2.0    2.0    1.0    3.0    1.0    1.0    1.0    6.0  2397.0    2.0    1.0    1.0    1.0    1.0    1.0    2.0    5.0    2.0
+     SBS3   SBS5  SBS7c  SBS9  SBS10b  SBS14  SBS16  SBS17b  SBS19  SBS22  SBS24  ...  SBS39   SBS40  SBS44  SBS46  SBS49  SBS54  SBS55  SBS84  SBS88  SBS89  SBS91
+0  5424.0  505.0    1.0   1.0     1.0    1.0    2.0     1.0    1.0    2.0    2.0  ...    6.0  2397.0    2.0    1.0    1.0    1.0    1.0    1.0    2.0    5.0    2.0
+
+[1 rows x 27 columns]
 L2 Error %: 0.0
 Cosine Similarity: 1.0
 ############################## Composition After Initial Remove ###############################
@@ -22525,8 +22725,10 @@ Cosine Similarity: 1.0
 
                     ################ Sample 564 #################
 ############################# Initial Composition ####################################
-      SBS3  SBS4   SBS5  SBS7d  SBS8  SBS10a  SBS10b  SBS12  SBS16  SBS19  SBS24  SBS28  SBS30  SBS39   SBS40  SBS42  SBS43  SBS50  SBS53  SBS57  SBS58  SBS84  SBS86  SBS88
-0  14975.0   1.0  406.0    1.0   2.0     1.0     1.0    6.0    4.0    2.0    2.0    1.0    4.0   10.0  4330.0    2.0    1.0    1.0    1.0    1.0    2.0    2.0    3.0    1.0
+      SBS3  SBS4   SBS5  SBS7d  SBS8  SBS10a  SBS10b  SBS12  SBS16  SBS19  SBS24  ...  SBS39   SBS40  SBS42  SBS43  SBS50  SBS53  SBS57  SBS58  SBS84  SBS86  SBS88
+0  14975.0   1.0  406.0    1.0   2.0     1.0     1.0    6.0    4.0    2.0    2.0  ...   10.0  4330.0    2.0    1.0    1.0    1.0    1.0    2.0    2.0    3.0    1.0
+
+[1 rows x 24 columns]
 L2 Error %: 0.0
 Cosine Similarity: 1.0
 ############################## Composition After Initial Remove ###############################
@@ -22565,8 +22767,10 @@ Cosine Similarity: 1.0
 
                     ################ Sample 565 #################
 ############################# Initial Composition ####################################
-     SBS3   SBS5  SBS8  SBS10a  SBS15  SBS22  SBS26  SBS28  SBS29  SBS30  SBS33  SBS37    SBS40  SBS44  SBS47  SBS50  SBS51  SBS54  SBS59  SBS86  SBS88  SBS89  SBS90  SBS92
-0  3187.0  218.0   2.0     1.0    1.0    1.0    1.0    1.0    1.0    2.0    1.0    4.0  11387.0    1.0    1.0    1.0    1.0    2.0    1.0    2.0    1.0    5.0    1.0    5.0
+     SBS3   SBS5  SBS8  SBS10a  SBS15  SBS22  SBS26  SBS28  SBS29  SBS30  SBS33  ...  SBS44  SBS47  SBS50  SBS51  SBS54  SBS59  SBS86  SBS88  SBS89  SBS90  SBS92
+0  3187.0  218.0   2.0     1.0    1.0    1.0    1.0    1.0    1.0    2.0    1.0  ...    1.0    1.0    1.0    1.0    2.0    1.0    2.0    1.0    5.0    1.0    5.0
+
+[1 rows x 24 columns]
 L2 Error %: 0.0
 Cosine Similarity: 1.0
 ############################## Composition After Initial Remove ###############################
@@ -22685,8 +22889,10 @@ Cosine Similarity: 1.0
 
                     ################ Sample 568 #################
 ############################# Initial Composition ####################################
-     SBS3  SBS4   SBS5  SBS7d  SBS10a  SBS12  SBS16  SBS21  SBS23  SBS24  SBS28  SBS29  SBS30  SBS31  SBS37  SBS39   SBS40  SBS41  SBS42  SBS44  SBS46  SBS54  SBS55  SBS88  SBS89  SBS90
-0  4622.0   2.0  270.0    1.0     1.0    2.0    5.0    2.0    3.0    1.0    1.0    4.0    3.0    1.0    2.0    8.0  3706.0    3.0    1.0    1.0    1.0    1.0    1.0    1.0    7.0    1.0
+     SBS3  SBS4   SBS5  SBS7d  SBS10a  SBS12  SBS16  SBS21  SBS23  SBS24  SBS28  ...  SBS39   SBS40  SBS41  SBS42  SBS44  SBS46  SBS54  SBS55  SBS88  SBS89  SBS90
+0  4622.0   2.0  270.0    1.0     1.0    2.0    5.0    2.0    3.0    1.0    1.0  ...    8.0  3706.0    3.0    1.0    1.0    1.0    1.0    1.0    1.0    7.0    1.0
+
+[1 rows x 26 columns]
 L2 Error %: 0.0
 Cosine Similarity: 1.0
 ############################## Composition After Initial Remove ###############################
@@ -22885,8 +23091,10 @@ Cosine Similarity: 1.0
 
                     ################ Sample 573 #################
 ############################# Initial Composition ####################################
-   SBS2    SBS3   SBS5  SBS6  SBS7c  SBS11  SBS15  SBS16  SBS17a  SBS24  SBS27  SBS30  SBS31  SBS32  SBS37  SBS39   SBS40  SBS46  SBS53  SBS54  SBS55  SBS59  SBS84  SBS86  SBS87  SBS92
-0   1.0  3152.0  451.0   1.0    1.0    2.0    1.0    4.0     1.0    1.0    1.0    1.0    1.0    1.0    3.0    1.0  1729.0    2.0    1.0    2.0    1.0    1.0    3.0    1.0    2.0    2.0
+   SBS2    SBS3   SBS5  SBS6  SBS7c  SBS11  SBS15  SBS16  SBS17a  SBS24  SBS27  ...  SBS39   SBS40  SBS46  SBS53  SBS54  SBS55  SBS59  SBS84  SBS86  SBS87  SBS92
+0   1.0  3152.0  451.0   1.0    1.0    2.0    1.0    4.0     1.0    1.0    1.0  ...    1.0  1729.0    2.0    1.0    2.0    1.0    1.0    3.0    1.0    2.0    2.0
+
+[1 rows x 26 columns]
 L2 Error %: 0.0
 Cosine Similarity: 1.0
 ############################## Composition After Initial Remove ###############################
@@ -22965,8 +23173,10 @@ Cosine Similarity: 1.0
 
                     ################ Sample 575 #################
 ############################# Initial Composition ####################################
-     SBS3   SBS5  SBS6  SBS7b  SBS7d  SBS10a  SBS12  SBS16  SBS21  SBS28  SBS30  SBS31  SBS32  SBS39   SBS40  SBS41  SBS42  SBS43  SBS47  SBS53  SBS54  SBS55  SBS58  SBS59  SBS91  SBS92  SBS93
-0  2181.0  575.0   3.0    1.0    1.0     1.0    1.0    4.0    2.0    1.0    2.0    2.0    3.0    6.0  8208.0    2.0    1.0    1.0    1.0    1.0    1.0    1.0    2.0    1.0    1.0    4.0    1.0
+     SBS3   SBS5  SBS6  SBS7b  SBS7d  SBS10a  SBS12  SBS16  SBS21  SBS28  SBS30  ...  SBS42  SBS43  SBS47  SBS53  SBS54  SBS55  SBS58  SBS59  SBS91  SBS92  SBS93
+0  2181.0  575.0   3.0    1.0    1.0     1.0    1.0    4.0    2.0    1.0    2.0  ...    1.0    1.0    1.0    1.0    1.0    1.0    2.0    1.0    1.0    4.0    1.0
+
+[1 rows x 27 columns]
 L2 Error %: 0.0
 Cosine Similarity: 1.0
 ############################## Composition After Initial Remove ###############################
@@ -23165,8 +23375,10 @@ Cosine Similarity: 1.0
 
                     ################ Sample 580 #################
 ############################# Initial Composition ####################################
-   SBS2    SBS3    SBS5  SBS7c  SBS8  SBS9  SBS10b  SBS16  SBS17b  SBS18  SBS19  SBS21  SBS22  SBS26  SBS30  SBS37  SBS39   SBS40  SBS46  SBS49  SBS50  SBS51  SBS54  SBS84  SBS87  SBS88
-0   1.0  3703.0  1312.0    1.0   5.0   2.0     1.0    5.0     1.0    2.0    1.0    2.0    1.0    1.0    4.0    2.0    2.0  6925.0    1.0    1.0    1.0    1.0    1.0    2.0    2.0    1.0
+   SBS2    SBS3    SBS5  SBS7c  SBS8  SBS9  SBS10b  SBS16  SBS17b  SBS18  SBS19  ...  SBS37  SBS39   SBS40  SBS46  SBS49  SBS50  SBS51  SBS54  SBS84  SBS87  SBS88
+0   1.0  3703.0  1312.0    1.0   5.0   2.0     1.0    5.0     1.0    2.0    1.0  ...    2.0    2.0  6925.0    1.0    1.0    1.0    1.0    1.0    2.0    2.0    1.0
+
+[1 rows x 26 columns]
 L2 Error %: 0.0
 Cosine Similarity: 1.0
 ############################## Composition After Initial Remove ###############################
@@ -23525,8 +23737,10 @@ Cosine Similarity: 1.0
 
                     ################ Sample 589 #################
 ############################# Initial Composition ####################################
-   SBS2    SBS3    SBS5  SBS6  SBS10b  SBS10d  SBS11  SBS16  SBS17a  SBS24  SBS28  SBS30  SBS31  SBS32  SBS39   SBS40  SBS41  SBS43  SBS47  SBS53  SBS54  SBS55  SBS57  SBS59
-0   1.0  3995.0  1344.0   1.0     1.0     2.0    2.0    5.0     1.0    1.0    1.0    2.0    1.0    2.0   10.0  4192.0    1.0    2.0    2.0    1.0    3.0    1.0    2.0    1.0
+   SBS2    SBS3    SBS5  SBS6  SBS10b  SBS10d  SBS11  SBS16  SBS17a  SBS24  SBS28  ...  SBS32  SBS39   SBS40  SBS41  SBS43  SBS47  SBS53  SBS54  SBS55  SBS57  SBS59
+0   1.0  3995.0  1344.0   1.0     1.0     2.0    2.0    5.0     1.0    1.0    1.0  ...    2.0   10.0  4192.0    1.0    2.0    2.0    1.0    3.0    1.0    2.0    1.0
+
+[1 rows x 24 columns]
 L2 Error %: 0.0
 Cosine Similarity: 1.0
 ############################## Composition After Initial Remove ###############################
@@ -23805,8 +24019,10 @@ Cosine Similarity: 1.0
 
                     ################ Sample 596 #################
 ############################# Initial Composition ####################################
-   SBS2    SBS3   SBS5  SBS9  SBS10a  SBS12  SBS14  SBS16  SBS17b  SBS20  SBS28  SBS30  SBS31  SBS33  SBS35   SBS40  SBS42  SBS44  SBS46  SBS50  SBS54  SBS86  SBS88  SBS90
-0   1.0  4166.0  329.0   2.0     1.0    1.0    1.0    2.0     1.0    1.0    1.0    4.0    1.0    1.0    1.0  4078.0    1.0    1.0    1.0    1.0    2.0    2.0    2.0    1.0
+   SBS2    SBS3   SBS5  SBS9  SBS10a  SBS12  SBS14  SBS16  SBS17b  SBS20  SBS28  ...  SBS33  SBS35   SBS40  SBS42  SBS44  SBS46  SBS50  SBS54  SBS86  SBS88  SBS90
+0   1.0  4166.0  329.0   2.0     1.0    1.0    1.0    2.0     1.0    1.0    1.0  ...    1.0    1.0  4078.0    1.0    1.0    1.0    1.0    2.0    2.0    2.0    1.0
+
+[1 rows x 24 columns]
 L2 Error %: 0.0
 Cosine Similarity: 1.0
 ############################## Composition After Initial Remove ###############################
@@ -24045,8 +24261,10 @@ Cosine Similarity: 1.0
 
                     ################ Sample 602 #################
 ############################# Initial Composition ####################################
-     SBS3    SBS5  SBS7c  SBS7d  SBS14  SBS16  SBS17a  SBS18  SBS19  SBS24  SBS28  SBS29  SBS30  SBS32  SBS39   SBS40  SBS47  SBS48  SBS50  SBS53  SBS54  SBS55  SBS86  SBS88
-0  4573.0  2139.0    2.0    2.0    1.0    5.0     1.0    1.0    1.0    1.0    1.0    1.0    3.0    1.0    1.0  6330.0    1.0    1.0    2.0    1.0    2.0    2.0    3.0    1.0
+     SBS3    SBS5  SBS7c  SBS7d  SBS14  SBS16  SBS17a  SBS18  SBS19  SBS24  SBS28  ...  SBS32  SBS39   SBS40  SBS47  SBS48  SBS50  SBS53  SBS54  SBS55  SBS86  SBS88
+0  4573.0  2139.0    2.0    2.0    1.0    5.0     1.0    1.0    1.0    1.0    1.0  ...    1.0    1.0  6330.0    1.0    1.0    2.0    1.0    2.0    2.0    3.0    1.0
+
+[1 rows x 24 columns]
 L2 Error %: 0.0
 Cosine Similarity: 1.0
 ############################## Composition After Initial Remove ###############################
@@ -24205,8 +24423,10 @@ Cosine Similarity: 1.0
 
                     ################ Sample 606 #################
 ############################# Initial Composition ####################################
-     SBS3   SBS5  SBS7c  SBS7d  SBS8  SBS10a  SBS12  SBS16  SBS17a  SBS17b  SBS18  SBS22  SBS24  SBS28  SBS30  SBS32  SBS33  SBS37  SBS39   SBS40  SBS44  SBS50  SBS51  SBS54  SBS88  SBS89
-0  6505.0  204.0    2.0    1.0   1.0     1.0    5.0    4.0     1.0     1.0    4.0    1.0    1.0    2.0    5.0    3.0    1.0    2.0    8.0  5738.0    3.0    1.0    4.0    1.0    1.0    1.0
+     SBS3   SBS5  SBS7c  SBS7d  SBS8  SBS10a  SBS12  SBS16  SBS17a  SBS17b  SBS18  ...  SBS32  SBS33  SBS37  SBS39   SBS40  SBS44  SBS50  SBS51  SBS54  SBS88  SBS89
+0  6505.0  204.0    2.0    1.0   1.0     1.0    5.0    4.0     1.0     1.0    4.0  ...    3.0    1.0    2.0    8.0  5738.0    3.0    1.0    4.0    1.0    1.0    1.0
+
+[1 rows x 26 columns]
 L2 Error %: 0.0
 Cosine Similarity: 1.0
 ############################## Composition After Initial Remove ###############################
@@ -25085,8 +25305,10 @@ Cosine Similarity: 1.0
 
                     ################ Sample 628 #################
 ############################# Initial Composition ####################################
-   SBS2    SBS3    SBS5  SBS7d  SBS9  SBS10a  SBS13  SBS16  SBS17b  SBS24  SBS30  SBS32  SBS37  SBS39   SBS40  SBS43  SBS49  SBS51  SBS54  SBS58  SBS84  SBS86  SBS88  SBS89  SBS93
-0   1.0  2326.0  2227.0    1.0   1.0     1.0    1.0    2.0     1.0    5.0    4.0    1.0    2.0    6.0  2333.0    1.0    1.0    1.0    3.0    1.0    1.0    2.0    2.0    3.0    4.0
+   SBS2    SBS3    SBS5  SBS7d  SBS9  SBS10a  SBS13  SBS16  SBS17b  SBS24  SBS30  ...   SBS40  SBS43  SBS49  SBS51  SBS54  SBS58  SBS84  SBS86  SBS88  SBS89  SBS93
+0   1.0  2326.0  2227.0    1.0   1.0     1.0    1.0    2.0     1.0    5.0    4.0  ...  2333.0    1.0    1.0    1.0    3.0    1.0    1.0    2.0    2.0    3.0    4.0
+
+[1 rows x 25 columns]
 L2 Error %: 0.0
 Cosine Similarity: 1.0
 ############################## Composition After Initial Remove ###############################
@@ -25445,8 +25667,10 @@ Cosine Similarity: 1.0
 
                     ################ Sample 637 #################
 ############################# Initial Composition ####################################
-     SBS3    SBS5  SBS9  SBS10b  SBS12  SBS14  SBS16  SBS17b  SBS20  SBS23  SBS29  SBS30  SBS32  SBS33  SBS35  SBS37  SBS38  SBS39   SBS40  SBS42  SBS50  SBS51  SBS54  SBS86  SBS88
-0  2230.0  1168.0   1.0     1.0    1.0    1.0    3.0     1.0    1.0    2.0    1.0    1.0    1.0    1.0    1.0    1.0    1.0    9.0  4496.0    2.0    3.0    1.0    3.0    1.0    2.0
+     SBS3    SBS5  SBS9  SBS10b  SBS12  SBS14  SBS16  SBS17b  SBS20  SBS23  SBS29  ...  SBS35  SBS37  SBS38  SBS39   SBS40  SBS42  SBS50  SBS51  SBS54  SBS86  SBS88
+0  2230.0  1168.0   1.0     1.0    1.0    1.0    3.0     1.0    1.0    2.0    1.0  ...    1.0    1.0    1.0    9.0  4496.0    2.0    3.0    1.0    3.0    1.0    2.0
+
+[1 rows x 25 columns]
 L2 Error %: 0.0
 Cosine Similarity: 1.0
 ############################## Composition After Initial Remove ###############################
@@ -25965,8 +26189,10 @@ Cosine Similarity: 1.0
 
                     ################ Sample 650 #################
 ############################# Initial Composition ####################################
-   SBS2    SBS3   SBS5  SBS7c  SBS7d  SBS8  SBS9  SBS10d  SBS15  SBS16  SBS19  SBS21  SBS23  SBS28  SBS30  SBS32  SBS33  SBS35  SBS37  SBS39   SBS40  SBS42  SBS46  SBS51  SBS54  SBS55  SBS57  SBS94
-0   1.0  3603.0  198.0    1.0    1.0  10.0   1.0     1.0    1.0    6.0    2.0    1.0    1.0    1.0    4.0    1.0    1.0    1.0    3.0    8.0  2965.0    1.0    1.0    1.0    1.0    1.0    1.0    1.0
+   SBS2    SBS3   SBS5  SBS7c  SBS7d  SBS8  SBS9  SBS10d  SBS15  SBS16  SBS19  ...  SBS35  SBS37  SBS39   SBS40  SBS42  SBS46  SBS51  SBS54  SBS55  SBS57  SBS94
+0   1.0  3603.0  198.0    1.0    1.0  10.0   1.0     1.0    1.0    6.0    2.0  ...    1.0    3.0    8.0  2965.0    1.0    1.0    1.0    1.0    1.0    1.0    1.0
+
+[1 rows x 28 columns]
 L2 Error %: 0.0
 Cosine Similarity: 1.0
 ############################## Composition After Initial Remove ###############################
@@ -26005,8 +26231,10 @@ Cosine Similarity: 1.0
 
                     ################ Sample 651 #################
 ############################# Initial Composition ####################################
-     SBS3    SBS5  SBS6  SBS7a  SBS7b  SBS7c  SBS7d  SBS8  SBS9  SBS10a  SBS10d  SBS12  SBS16  SBS24  SBS27  SBS29  SBS30  SBS32  SBS39   SBS40  SBS41  SBS54  SBS55  SBS84  SBS92  SBS93
-0  2850.0  1290.0   1.0    2.0    1.0    1.0    1.0   4.0   1.0     1.0     1.0    2.0    3.0    3.0    1.0    1.0    2.0    3.0   11.0  4848.0    2.0    2.0    1.0    2.0    5.0    1.0
+     SBS3    SBS5  SBS6  SBS7a  SBS7b  SBS7c  SBS7d  SBS8  SBS9  SBS10a  SBS10d  ...  SBS29  SBS30  SBS32  SBS39   SBS40  SBS41  SBS54  SBS55  SBS84  SBS92  SBS93
+0  2850.0  1290.0   1.0    2.0    1.0    1.0    1.0   4.0   1.0     1.0     1.0  ...    1.0    2.0    3.0   11.0  4848.0    2.0    2.0    1.0    2.0    5.0    1.0
+
+[1 rows x 26 columns]
 L2 Error %: 0.0
 Cosine Similarity: 1.0
 ############################## Composition After Initial Remove ###############################
@@ -26165,8 +26393,10 @@ Cosine Similarity: 1.0
 
                     ################ Sample 655 #################
 ############################# Initial Composition ####################################
-     SBS3   SBS5  SBS7c  SBS8  SBS10d  SBS13  SBS15  SBS16  SBS23  SBS24  SBS30  SBS32  SBS39   SBS40  SBS46  SBS48  SBS54  SBS55  SBS59  SBS84  SBS86  SBS88  SBS90  SBS93
-0  3038.0  709.0    1.0   2.0     2.0    1.0    1.0    7.0    1.0    2.0    4.0    2.0    3.0  4915.0    3.0    1.0    3.0    1.0    1.0    2.0    1.0    2.0    1.0    6.0
+     SBS3   SBS5  SBS7c  SBS8  SBS10d  SBS13  SBS15  SBS16  SBS23  SBS24  SBS30  ...   SBS40  SBS46  SBS48  SBS54  SBS55  SBS59  SBS84  SBS86  SBS88  SBS90  SBS93
+0  3038.0  709.0    1.0   2.0     2.0    1.0    1.0    7.0    1.0    2.0    4.0  ...  4915.0    3.0    1.0    3.0    1.0    1.0    2.0    1.0    2.0    1.0    6.0
+
+[1 rows x 24 columns]
 L2 Error %: 0.0
 Cosine Similarity: 1.0
 ############################## Composition After Initial Remove ###############################
@@ -26445,8 +26675,10 @@ Cosine Similarity: 1.0
 
                     ################ Sample 662 #################
 ############################# Initial Composition ####################################
-      SBS3  SBS5  SBS6  SBS7c  SBS8  SBS9  SBS11  SBS13  SBS16  SBS17b  SBS18  SBS19  SBS24  SBS27  SBS30  SBS37  SBS39   SBS40  SBS46  SBS52  SBS53  SBS54  SBS59  SBS84  SBS85  SBS93
-0  10644.0  70.0   1.0    1.0   4.0   1.0    2.0    1.0    6.0     1.0    1.0    2.0    3.0    1.0    6.0    4.0    8.0  2345.0    2.0    1.0    1.0    5.0    1.0    1.0    1.0    6.0
+      SBS3  SBS5  SBS6  SBS7c  SBS8  SBS9  SBS11  SBS13  SBS16  SBS17b  SBS18  ...  SBS37  SBS39   SBS40  SBS46  SBS52  SBS53  SBS54  SBS59  SBS84  SBS85  SBS93
+0  10644.0  70.0   1.0    1.0   4.0   1.0    2.0    1.0    6.0     1.0    1.0  ...    4.0    8.0  2345.0    2.0    1.0    1.0    5.0    1.0    1.0    1.0    6.0
+
+[1 rows x 26 columns]
 L2 Error %: 0.0
 Cosine Similarity: 1.0
 ############################## Composition After Initial Remove ###############################
@@ -26485,8 +26717,10 @@ Cosine Similarity: 1.0
 
                     ################ Sample 663 #################
 ############################# Initial Composition ####################################
-     SBS3    SBS5  SBS7c  SBS8  SBS9  SBS12  SBS13  SBS16  SBS18  SBS19  SBS20  SBS22  SBS25  SBS27  SBS29  SBS30  SBS32  SBS34  SBS38  SBS39   SBS40  SBS44  SBS51  SBS54  SBS55  SBS84  SBS89  SBS93
-0  3358.0  1622.0    2.0   1.0   2.0   10.0    1.0    8.0    1.0    2.0    1.0    1.0    4.0    1.0    3.0    8.0    1.0    1.0    1.0   17.0  4520.0    3.0    1.0    2.0    1.0    3.0    2.0    2.0
+     SBS3    SBS5  SBS7c  SBS8  SBS9  SBS12  SBS13  SBS16  SBS18  SBS19  SBS20  ...  SBS34  SBS38  SBS39   SBS40  SBS44  SBS51  SBS54  SBS55  SBS84  SBS89  SBS93
+0  3358.0  1622.0    2.0   1.0   2.0   10.0    1.0    8.0    1.0    2.0    1.0  ...    1.0    1.0   17.0  4520.0    3.0    1.0    2.0    1.0    3.0    2.0    2.0
+
+[1 rows x 28 columns]
 L2 Error %: 0.0
 Cosine Similarity: 1.0
 ############################## Composition After Initial Remove ###############################
@@ -26565,8 +26799,10 @@ Cosine Similarity: 1.0
 
                     ################ Sample 665 #################
 ############################# Initial Composition ####################################
-     SBS3  SBS4   SBS5  SBS7c  SBS7d  SBS8  SBS12  SBS16  SBS17b  SBS19  SBS20  SBS30  SBS31  SBS37  SBS38  SBS39   SBS40  SBS42  SBS54  SBS59  SBS87  SBS89  SBS93  SBS94
-0  2106.0   1.0  327.0    1.0    2.0   1.0    3.0    4.0     1.0    1.0    1.0    3.0    1.0    1.0    1.0   17.0  4517.0    4.0    1.0    1.0    1.0    8.0    2.0    1.0
+     SBS3  SBS4   SBS5  SBS7c  SBS7d  SBS8  SBS12  SBS16  SBS17b  SBS19  SBS20  ...  SBS37  SBS38  SBS39   SBS40  SBS42  SBS54  SBS59  SBS87  SBS89  SBS93  SBS94
+0  2106.0   1.0  327.0    1.0    2.0   1.0    3.0    4.0     1.0    1.0    1.0  ...    1.0    1.0   17.0  4517.0    4.0    1.0    1.0    1.0    8.0    2.0    1.0
+
+[1 rows x 24 columns]
 L2 Error %: 0.0
 Cosine Similarity: 1.0
 ############################## Composition After Initial Remove ###############################
@@ -27045,8 +27281,10 @@ Cosine Similarity: 1.0
 
                     ################ Sample 677 #################
 ############################# Initial Composition ####################################
-   SBS2    SBS3    SBS5  SBS12  SBS14  SBS15  SBS16  SBS17a  SBS19  SBS22  SBS24  SBS28  SBS32  SBS39   SBS40  SBS41  SBS42  SBS44  SBS50  SBS51  SBS52  SBS59  SBS88  SBS89  SBS93
-0   1.0  4141.0  1078.0    1.0    1.0    1.0    3.0     1.0    1.0    1.0    2.0    1.0    2.0    7.0  5875.0    1.0    1.0    1.0    1.0    3.0    1.0    1.0    1.0    2.0    2.0
+   SBS2    SBS3    SBS5  SBS12  SBS14  SBS15  SBS16  SBS17a  SBS19  SBS22  SBS24  ...   SBS40  SBS41  SBS42  SBS44  SBS50  SBS51  SBS52  SBS59  SBS88  SBS89  SBS93
+0   1.0  4141.0  1078.0    1.0    1.0    1.0    3.0     1.0    1.0    1.0    2.0  ...  5875.0    1.0    1.0    1.0    1.0    3.0    1.0    1.0    1.0    2.0    2.0
+
+[1 rows x 25 columns]
 L2 Error %: 0.0
 Cosine Similarity: 1.0
 ############################## Composition After Initial Remove ###############################
@@ -27525,8 +27763,10 @@ Cosine Similarity: 1.0
 
                     ################ Sample 689 #################
 ############################# Initial Composition ####################################
-   SBS2    SBS3    SBS5  SBS8  SBS10b  SBS19  SBS20  SBS24  SBS26  SBS30  SBS32  SBS33  SBS37  SBS39   SBS40  SBS44  SBS49  SBS50  SBS52  SBS54  SBS84  SBS86  SBS87  SBS88
-0   1.0  4398.0  5566.0   4.0     1.0    2.0    1.0    4.0    3.0    2.0    3.0    1.0    2.0    4.0  6351.0    1.0    1.0    1.0    1.0    3.0    3.0    3.0    1.0    6.0
+   SBS2    SBS3    SBS5  SBS8  SBS10b  SBS19  SBS20  SBS24  SBS26  SBS30  SBS32  ...  SBS39   SBS40  SBS44  SBS49  SBS50  SBS52  SBS54  SBS84  SBS86  SBS87  SBS88
+0   1.0  4398.0  5566.0   4.0     1.0    2.0    1.0    4.0    3.0    2.0    3.0  ...    4.0  6351.0    1.0    1.0    1.0    1.0    3.0    3.0    3.0    1.0    6.0
+
+[1 rows x 24 columns]
 L2 Error %: 0.0
 Cosine Similarity: 1.0
 ############################## Composition After Initial Remove ###############################
@@ -27565,8 +27805,10 @@ Cosine Similarity: 1.0
 
                     ################ Sample 690 #################
 ############################# Initial Composition ####################################
-   SBS2    SBS3   SBS5  SBS7a  SBS7d  SBS10c  SBS12  SBS13  SBS16  SBS22  SBS28  SBS30  SBS32  SBS37   SBS40  SBS41  SBS43  SBS52  SBS54  SBS58  SBS59  SBS84  SBS86  SBS87
-0   1.0  5518.0  338.0    1.0    1.0     3.0    3.0    1.0    4.0    1.0    1.0    2.0    1.0    4.0  4141.0    1.0    2.0    1.0    2.0    1.0    1.0    4.0    2.0    3.0
+   SBS2    SBS3   SBS5  SBS7a  SBS7d  SBS10c  SBS12  SBS13  SBS16  SBS22  SBS28  ...  SBS37   SBS40  SBS41  SBS43  SBS52  SBS54  SBS58  SBS59  SBS84  SBS86  SBS87
+0   1.0  5518.0  338.0    1.0    1.0     3.0    3.0    1.0    4.0    1.0    1.0  ...    4.0  4141.0    1.0    2.0    1.0    2.0    1.0    1.0    4.0    2.0    3.0
+
+[1 rows x 24 columns]
 L2 Error %: 0.0
 Cosine Similarity: 1.0
 ############################## Composition After Initial Remove ###############################
@@ -27605,8 +27847,10 @@ Cosine Similarity: 1.0
 
                     ################ Sample 691 #################
 ############################# Initial Composition ####################################
-      SBS3  SBS4   SBS5  SBS7a  SBS7c  SBS7d  SBS10a  SBS10b  SBS13  SBS16  SBS19  SBS24  SBS27  SBS28  SBS29  SBS30  SBS32  SBS37  SBS39   SBS40  SBS50  SBS54  SBS55  SBS87
-0  13097.0   4.0  969.0    1.0    3.0    1.0     1.0     1.0    1.0    3.0    1.0    4.0    1.0    1.0    1.0    4.0    4.0    8.0    6.0  3722.0    1.0    2.0    1.0    1.0
+      SBS3  SBS4   SBS5  SBS7a  SBS7c  SBS7d  SBS10a  SBS10b  SBS13  SBS16  SBS19  ...  SBS28  SBS29  SBS30  SBS32  SBS37  SBS39   SBS40  SBS50  SBS54  SBS55  SBS87
+0  13097.0   4.0  969.0    1.0    3.0    1.0     1.0     1.0    1.0    3.0    1.0  ...    1.0    1.0    4.0    4.0    8.0    6.0  3722.0    1.0    2.0    1.0    1.0
+
+[1 rows x 24 columns]
 L2 Error %: 0.0
 Cosine Similarity: 1.0
 ############################## Composition After Initial Remove ###############################
@@ -27805,8 +28049,10 @@ Cosine Similarity: 1.0
 
                     ################ Sample 696 #################
 ############################# Initial Composition ####################################
-   SBS1  SBS2    SBS3    SBS5  SBS6  SBS7c  SBS9  SBS10d  SBS12  SBS16  SBS17b  SBS18  SBS19  SBS24  SBS28  SBS30  SBS32  SBS39    SBS40  SBS43  SBS46  SBS50  SBS54  SBS88  SBS93
-0   1.0   2.0  5311.0  1996.0   1.0    1.0   1.0     1.0    2.0    3.0     1.0    2.0    3.0    2.0    1.0    2.0    3.0    3.0  12608.0    1.0    3.0    3.0    1.0    1.0    1.0
+   SBS1  SBS2    SBS3    SBS5  SBS6  SBS7c  SBS9  SBS10d  SBS12  SBS16  SBS17b  ...  SBS28  SBS30  SBS32  SBS39    SBS40  SBS43  SBS46  SBS50  SBS54  SBS88  SBS93
+0   1.0   2.0  5311.0  1996.0   1.0    1.0   1.0     1.0    2.0    3.0     1.0  ...    1.0    2.0    3.0    3.0  12608.0    1.0    3.0    3.0    1.0    1.0    1.0
+
+[1 rows x 25 columns]
 L2 Error %: 0.0
 Cosine Similarity: 1.0
 ############################## Composition After Initial Remove ###############################
@@ -28005,8 +28251,10 @@ Cosine Similarity: 1.0
 
                     ################ Sample 701 #################
 ############################# Initial Composition ####################################
-     SBS3   SBS5  SBS7a  SBS7d  SBS10a  SBS11  SBS12  SBS23  SBS25  SBS27  SBS30  SBS34  SBS39   SBS40  SBS42  SBS51  SBS53  SBS54  SBS55  SBS57  SBS86  SBS89  SBS92  SBS93
-0  5736.0  807.0    1.0    1.0     1.0    2.0    2.0    1.0    4.0    1.0    1.0    1.0    7.0  3767.0    1.0    2.0    1.0    2.0    1.0    2.0    1.0    1.0    1.0    2.0
+     SBS3   SBS5  SBS7a  SBS7d  SBS10a  SBS11  SBS12  SBS23  SBS25  SBS27  SBS30  ...   SBS40  SBS42  SBS51  SBS53  SBS54  SBS55  SBS57  SBS86  SBS89  SBS92  SBS93
+0  5736.0  807.0    1.0    1.0     1.0    2.0    2.0    1.0    4.0    1.0    1.0  ...  3767.0    1.0    2.0    1.0    2.0    1.0    2.0    1.0    1.0    1.0    2.0
+
+[1 rows x 24 columns]
 L2 Error %: 0.0
 Cosine Similarity: 1.0
 ############################## Composition After Initial Remove ###############################
@@ -28245,8 +28493,10 @@ Cosine Similarity: 1.0
 
                     ################ Sample 707 #################
 ############################# Initial Composition ####################################
-     SBS3    SBS5  SBS7a  SBS8  SBS10d  SBS12  SBS14  SBS16  SBS17a  SBS17b  SBS19  SBS30  SBS31  SBS33  SBS34  SBS37  SBS39   SBS40  SBS50  SBS51  SBS54  SBS84  SBS89
-0  1415.0  1404.0    1.0   5.0     1.0    1.0    2.0    1.0     1.0     1.0    1.0    3.0    1.0    1.0    1.0    9.0    5.0  3283.0    1.0    1.0    3.0    4.0    4.0
+     SBS3    SBS5  SBS7a  SBS8  SBS10d  SBS12  SBS14  SBS16  SBS17a  SBS17b  SBS19  ...  SBS31  SBS33  SBS34  SBS37  SBS39   SBS40  SBS50  SBS51  SBS54  SBS84  SBS89
+0  1415.0  1404.0    1.0   5.0     1.0    1.0    2.0    1.0     1.0     1.0    1.0  ...    1.0    1.0    1.0    9.0    5.0  3283.0    1.0    1.0    3.0    4.0    4.0
+
+[1 rows x 23 columns]
 L2 Error %: 0.0
 Cosine Similarity: 1.0
 ############################## Composition After Initial Remove ###############################
@@ -28605,8 +28855,10 @@ Cosine Similarity: 1.0
 
                     ################ Sample 716 #################
 ############################# Initial Composition ####################################
-   SBS1    SBS3   SBS5  SBS7a  SBS7b  SBS8  SBS9  SBS12  SBS13  SBS14  SBS16  SBS19  SBS26  SBS28  SBS30  SBS32  SBS39   SBS40  SBS42  SBS54  SBS57  SBS59  SBS60  SBS86  SBS92
-0   1.0  4770.0  755.0    1.0    1.0   2.0   1.0    4.0    1.0    1.0    3.0    1.0    1.0    1.0    1.0    2.0    4.0  6150.0    2.0    1.0    2.0    1.0    1.0    1.0    1.0
+   SBS1    SBS3   SBS5  SBS7a  SBS7b  SBS8  SBS9  SBS12  SBS13  SBS14  SBS16  ...  SBS30  SBS32  SBS39   SBS40  SBS42  SBS54  SBS57  SBS59  SBS60  SBS86  SBS92
+0   1.0  4770.0  755.0    1.0    1.0   2.0   1.0    4.0    1.0    1.0    3.0  ...    1.0    2.0    4.0  6150.0    2.0    1.0    2.0    1.0    1.0    1.0    1.0
+
+[1 rows x 25 columns]
 L2 Error %: 0.0
 Cosine Similarity: 1.0
 ############################## Composition After Initial Remove ###############################
@@ -28805,8 +29057,10 @@ Cosine Similarity: 1.0
 
                     ################ Sample 721 #################
 ############################# Initial Composition ####################################
-     SBS3   SBS5  SBS6  SBS7a  SBS7c  SBS7d  SBS8  SBS13  SBS15  SBS16  SBS17b  SBS19  SBS21  SBS24  SBS30  SBS32  SBS33  SBS37   SBS40  SBS50  SBS54  SBS55  SBS57  SBS59  SBS86  SBS88
-0  2609.0  878.0   2.0    1.0    1.0    1.0   3.0    1.0    1.0    4.0     1.0    2.0    1.0    1.0    3.0    3.0    1.0    6.0  4837.0    3.0    3.0    1.0    1.0    1.0    1.0    2.0
+     SBS3   SBS5  SBS6  SBS7a  SBS7c  SBS7d  SBS8  SBS13  SBS15  SBS16  SBS17b  ...  SBS32  SBS33  SBS37   SBS40  SBS50  SBS54  SBS55  SBS57  SBS59  SBS86  SBS88
+0  2609.0  878.0   2.0    1.0    1.0    1.0   3.0    1.0    1.0    4.0     1.0  ...    3.0    1.0    6.0  4837.0    3.0    3.0    1.0    1.0    1.0    1.0    2.0
+
+[1 rows x 26 columns]
 L2 Error %: 0.0
 Cosine Similarity: 1.0
 ############################## Composition After Initial Remove ###############################
@@ -28965,8 +29219,10 @@ Cosine Similarity: 1.0
 
                     ################ Sample 725 #################
 ############################# Initial Composition ####################################
-     SBS3   SBS5  SBS7a  SBS7d  SBS8  SBS9  SBS10b  SBS10d  SBS13  SBS16  SBS17b  SBS19  SBS21  SBS27  SBS32  SBS35  SBS38  SBS39   SBS40  SBS44  SBS46  SBS53  SBS54  SBS87  SBS88  SBS89
-0  4887.0  840.0    1.0    1.0   2.0   3.0     1.0     1.0    1.0    5.0     1.0    3.0    2.0    1.0    4.0    2.0    1.0    7.0  6089.0    3.0    2.0    1.0    3.0    3.0    2.0    3.0
+     SBS3   SBS5  SBS7a  SBS7d  SBS8  SBS9  SBS10b  SBS10d  SBS13  SBS16  SBS17b  ...  SBS35  SBS38  SBS39   SBS40  SBS44  SBS46  SBS53  SBS54  SBS87  SBS88  SBS89
+0  4887.0  840.0    1.0    1.0   2.0   3.0     1.0     1.0    1.0    5.0     1.0  ...    2.0    1.0    7.0  6089.0    3.0    2.0    1.0    3.0    3.0    2.0    3.0
+
+[1 rows x 26 columns]
 L2 Error %: 0.0
 Cosine Similarity: 1.0
 ############################## Composition After Initial Remove ###############################
@@ -29245,8 +29501,10 @@ Cosine Similarity: 1.0
 
                     ################ Sample 732 #################
 ############################# Initial Composition ####################################
-     SBS3   SBS5  SBS7a  SBS8  SBS10d  SBS12  SBS13  SBS17a  SBS19  SBS30  SBS32  SBS37  SBS38  SBS39   SBS40  SBS42  SBS44  SBS51  SBS54  SBS55  SBS59  SBS84  SBS85  SBS93
-0  3096.0  248.0    2.0   1.0     2.0    2.0    1.0     1.0    1.0    1.0    2.0    3.0    2.0    5.0  3200.0    2.0    1.0    1.0    2.0    2.0    1.0    2.0    2.0    1.0
+     SBS3   SBS5  SBS7a  SBS8  SBS10d  SBS12  SBS13  SBS17a  SBS19  SBS30  SBS32  ...  SBS39   SBS40  SBS42  SBS44  SBS51  SBS54  SBS55  SBS59  SBS84  SBS85  SBS93
+0  3096.0  248.0    2.0   1.0     2.0    2.0    1.0     1.0    1.0    1.0    2.0  ...    5.0  3200.0    2.0    1.0    1.0    2.0    2.0    1.0    2.0    2.0    1.0
+
+[1 rows x 24 columns]
 L2 Error %: 0.0
 Cosine Similarity: 1.0
 ############################## Composition After Initial Remove ###############################
@@ -29325,8 +29583,10 @@ Cosine Similarity: 1.0
 
                     ################ Sample 734 #################
 ############################# Initial Composition ####################################
-     SBS3   SBS5  SBS8  SBS10b  SBS12  SBS16  SBS17a  SBS18  SBS19  SBS21  SBS28  SBS29  SBS30  SBS32  SBS36  SBS37  SBS39   SBS40  SBS42  SBS49  SBS51  SBS54  SBS87  SBS89  SBS93
-0  1117.0  248.0   3.0     1.0    3.0    4.0     1.0    4.0    3.0    2.0    1.0    1.0    2.0    4.0    2.0    3.0   13.0  8555.0    3.0    1.0    3.0    2.0    1.0    2.0    3.0
+     SBS3   SBS5  SBS8  SBS10b  SBS12  SBS16  SBS17a  SBS18  SBS19  SBS21  SBS28  ...  SBS36  SBS37  SBS39   SBS40  SBS42  SBS49  SBS51  SBS54  SBS87  SBS89  SBS93
+0  1117.0  248.0   3.0     1.0    3.0    4.0     1.0    4.0    3.0    2.0    1.0  ...    2.0    3.0   13.0  8555.0    3.0    1.0    3.0    2.0    1.0    2.0    3.0
+
+[1 rows x 25 columns]
 L2 Error %: 0.0
 Cosine Similarity: 1.0
 ############################## Composition After Initial Remove ###############################
@@ -29405,8 +29665,10 @@ Cosine Similarity: 1.0
 
                     ################ Sample 736 #################
 ############################# Initial Composition ####################################
-   SBS2    SBS3   SBS5  SBS7b  SBS9  SBS10a  SBS10b  SBS12  SBS13  SBS16  SBS17a  SBS19  SBS28  SBS31  SBS32   SBS40  SBS43  SBS49  SBS50  SBS51  SBS54  SBS86  SBS88  SBS94
-0   1.0  9647.0  804.0    1.0   7.0     1.0     1.0    2.0    1.0    2.0     1.0    1.0    1.0    1.0    3.0  3348.0    1.0    1.0    2.0    3.0    1.0    3.0    2.0    1.0
+   SBS2    SBS3   SBS5  SBS7b  SBS9  SBS10a  SBS10b  SBS12  SBS13  SBS16  SBS17a  ...  SBS31  SBS32   SBS40  SBS43  SBS49  SBS50  SBS51  SBS54  SBS86  SBS88  SBS94
+0   1.0  9647.0  804.0    1.0   7.0     1.0     1.0    2.0    1.0    2.0     1.0  ...    1.0    3.0  3348.0    1.0    1.0    2.0    3.0    1.0    3.0    2.0    1.0
+
+[1 rows x 24 columns]
 L2 Error %: 0.0
 Cosine Similarity: 1.0
 ############################## Composition After Initial Remove ###############################
@@ -29565,8 +29827,10 @@ Cosine Similarity: 1.0
 
                     ################ Sample 740 #################
 ############################# Initial Composition ####################################
-     SBS3    SBS5  SBS7a  SBS8  SBS9  SBS11  SBS16  SBS23  SBS24  SBS26  SBS29  SBS30  SBS31  SBS39   SBS40  SBS43  SBS51  SBS52  SBS54  SBS59  SBS84  SBS88  SBS89  SBS92
-0  2644.0  1739.0    1.0   1.0   4.0    2.0    3.0    1.0    1.0    3.0    2.0    1.0    1.0    7.0  6393.0    1.0    2.0    1.0    1.0    1.0    1.0    3.0    2.0    1.0
+     SBS3    SBS5  SBS7a  SBS8  SBS9  SBS11  SBS16  SBS23  SBS24  SBS26  SBS29  ...  SBS39   SBS40  SBS43  SBS51  SBS52  SBS54  SBS59  SBS84  SBS88  SBS89  SBS92
+0  2644.0  1739.0    1.0   1.0   4.0    2.0    3.0    1.0    1.0    3.0    2.0  ...    7.0  6393.0    1.0    2.0    1.0    1.0    1.0    1.0    3.0    2.0    1.0
+
+[1 rows x 24 columns]
 L2 Error %: 0.0
 Cosine Similarity: 1.0
 ############################## Composition After Initial Remove ###############################
@@ -29605,8 +29869,10 @@ Cosine Similarity: 1.0
 
                     ################ Sample 741 #################
 ############################# Initial Composition ####################################
-   SBS1  SBS2    SBS3   SBS5  SBS6  SBS7c  SBS10d  SBS11  SBS12  SBS16  SBS23  SBS28  SBS30  SBS32  SBS37  SBS39   SBS40  SBS42  SBS50  SBS51  SBS54  SBS55  SBS86  SBS93
-0   1.0   1.0  2707.0  246.0   1.0    1.0     1.0    1.0    5.0    4.0    3.0    1.0    3.0    2.0    3.0    2.0  3372.0    2.0    3.0    2.0    5.0    1.0    1.0    1.0
+   SBS1  SBS2    SBS3   SBS5  SBS6  SBS7c  SBS10d  SBS11  SBS12  SBS16  SBS23  ...  SBS32  SBS37  SBS39   SBS40  SBS42  SBS50  SBS51  SBS54  SBS55  SBS86  SBS93
+0   1.0   1.0  2707.0  246.0   1.0    1.0     1.0    1.0    5.0    4.0    3.0  ...    2.0    3.0    2.0  3372.0    2.0    3.0    2.0    5.0    1.0    1.0    1.0
+
+[1 rows x 24 columns]
 L2 Error %: 0.0
 Cosine Similarity: 1.0
 ############################## Composition After Initial Remove ###############################
@@ -30205,8 +30471,10 @@ Cosine Similarity: 1.0
 
                     ################ Sample 756 #################
 ############################# Initial Composition ####################################
-   SBS2    SBS3    SBS5  SBS7b  SBS8  SBS10a  SBS12  SBS16  SBS17a  SBS20  SBS28  SBS29  SBS30  SBS31  SBS39   SBS40  SBS42  SBS50  SBS55  SBS59  SBS84  SBS86  SBS88  SBS94
-0   1.0  4559.0  1170.0    2.0   8.0     1.0    6.0    2.0     1.0    2.0    2.0    2.0    1.0    2.0   13.0  5039.0    4.0    2.0    2.0    1.0    1.0    1.0    1.0    1.0
+   SBS2    SBS3    SBS5  SBS7b  SBS8  SBS10a  SBS12  SBS16  SBS17a  SBS20  SBS28  ...  SBS31  SBS39   SBS40  SBS42  SBS50  SBS55  SBS59  SBS84  SBS86  SBS88  SBS94
+0   1.0  4559.0  1170.0    2.0   8.0     1.0    6.0    2.0     1.0    2.0    2.0  ...    2.0   13.0  5039.0    4.0    2.0    2.0    1.0    1.0    1.0    1.0    1.0
+
+[1 rows x 24 columns]
 L2 Error %: 0.0
 Cosine Similarity: 1.0
 ############################## Composition After Initial Remove ###############################
@@ -30245,8 +30513,10 @@ Cosine Similarity: 1.0
 
                     ################ Sample 757 #################
 ############################# Initial Composition ####################################
-     SBS3  SBS4   SBS5  SBS12  SBS13  SBS16  SBS17b  SBS18  SBS19  SBS20  SBS24  SBS27  SBS28  SBS30  SBS32  SBS39   SBS40  SBS43  SBS46  SBS51  SBS54  SBS56  SBS59  SBS84  SBS87  SBS89  SBS91
-0  2511.0   1.0  391.0    6.0    1.0    3.0     1.0    2.0    2.0    1.0    1.0    1.0    1.0    1.0    5.0    6.0  1990.0    2.0    1.0    1.0    2.0    1.0    1.0    2.0    2.0    1.0    1.0
+     SBS3  SBS4   SBS5  SBS12  SBS13  SBS16  SBS17b  SBS18  SBS19  SBS20  SBS24  ...   SBS40  SBS43  SBS46  SBS51  SBS54  SBS56  SBS59  SBS84  SBS87  SBS89  SBS91
+0  2511.0   1.0  391.0    6.0    1.0    3.0     1.0    2.0    2.0    1.0    1.0  ...  1990.0    2.0    1.0    1.0    2.0    1.0    1.0    2.0    2.0    1.0    1.0
+
+[1 rows x 27 columns]
 L2 Error %: 0.0
 Cosine Similarity: 1.0
 ############################## Composition After Initial Remove ###############################
@@ -30645,8 +30915,10 @@ Cosine Similarity: 1.0
 
                     ################ Sample 767 #################
 ############################# Initial Composition ####################################
-     SBS3    SBS5  SBS10c  SBS12  SBS16  SBS19  SBS27  SBS28  SBS30  SBS32  SBS37   SBS40  SBS41  SBS44  SBS46  SBS50  SBS52  SBS54  SBS56  SBS57  SBS58  SBS59  SBS84  SBS86  SBS88  SBS93
-0  1213.0  3158.0     1.0    3.0    5.0    1.0    1.0    1.0    4.0    2.0    1.0  1537.0    1.0    2.0    1.0    1.0    1.0    3.0    1.0    1.0    3.0    1.0    2.0    2.0    2.0    3.0
+     SBS3    SBS5  SBS10c  SBS12  SBS16  SBS19  SBS27  SBS28  SBS30  SBS32  SBS37  ...  SBS50  SBS52  SBS54  SBS56  SBS57  SBS58  SBS59  SBS84  SBS86  SBS88  SBS93
+0  1213.0  3158.0     1.0    3.0    5.0    1.0    1.0    1.0    4.0    2.0    1.0  ...    1.0    1.0    3.0    1.0    1.0    3.0    1.0    2.0    2.0    2.0    3.0
+
+[1 rows x 26 columns]
 L2 Error %: 0.0
 Cosine Similarity: 1.0
 ############################## Composition After Initial Remove ###############################
@@ -30765,8 +31037,10 @@ Cosine Similarity: 1.0
 
                     ################ Sample 770 #################
 ############################# Initial Composition ####################################
-     SBS3  SBS4   SBS5  SBS7a  SBS7c  SBS12  SBS16  SBS17a  SBS18  SBS19  SBS20  SBS22  SBS28  SBS32  SBS33  SBS39   SBS40  SBS43  SBS46  SBS51  SBS57  SBS84  SBS86  SBS88
-0  1619.0   8.0  955.0    1.0    1.0    1.0    2.0     1.0    2.0    2.0    1.0    1.0    1.0    3.0    1.0   12.0  6045.0    1.0    3.0    1.0    2.0    2.0    1.0    1.0
+     SBS3  SBS4   SBS5  SBS7a  SBS7c  SBS12  SBS16  SBS17a  SBS18  SBS19  SBS20  ...  SBS32  SBS33  SBS39   SBS40  SBS43  SBS46  SBS51  SBS57  SBS84  SBS86  SBS88
+0  1619.0   8.0  955.0    1.0    1.0    1.0    2.0     1.0    2.0    2.0    1.0  ...    3.0    1.0   12.0  6045.0    1.0    3.0    1.0    2.0    2.0    1.0    1.0
+
+[1 rows x 24 columns]
 L2 Error %: 0.0
 Cosine Similarity: 1.0
 ############################## Composition After Initial Remove ###############################
@@ -30805,8 +31079,10 @@ Cosine Similarity: 1.0
 
                     ################ Sample 771 #################
 ############################# Initial Composition ####################################
-     SBS3   SBS5  SBS7a  SBS7b  SBS9  SBS12  SBS13  SBS17b  SBS18  SBS19  SBS22  SBS24  SBS30  SBS39    SBS40  SBS42  SBS46  SBS50  SBS53  SBS59  SBS84  SBS86  SBS88  SBS89
-0  5934.0  298.0    1.0    1.0   2.0    4.0    1.0     1.0    2.0    1.0    1.0    2.0    2.0    6.0  11465.0    1.0    4.0    1.0    1.0    1.0    2.0    1.0    3.0    8.0
+     SBS3   SBS5  SBS7a  SBS7b  SBS9  SBS12  SBS13  SBS17b  SBS18  SBS19  SBS22  ...  SBS39    SBS40  SBS42  SBS46  SBS50  SBS53  SBS59  SBS84  SBS86  SBS88  SBS89
+0  5934.0  298.0    1.0    1.0   2.0    4.0    1.0     1.0    2.0    1.0    1.0  ...    6.0  11465.0    1.0    4.0    1.0    1.0    1.0    2.0    1.0    3.0    8.0
+
+[1 rows x 24 columns]
 L2 Error %: 0.0
 Cosine Similarity: 1.0
 ############################## Composition After Initial Remove ###############################
@@ -31205,8 +31481,10 @@ Cosine Similarity: 1.0
 
                     ################ Sample 781 #################
 ############################# Initial Composition ####################################
-   SBS1    SBS3    SBS5  SBS7a  SBS7c  SBS7d  SBS12  SBS16  SBS19  SBS20  SBS24  SBS28  SBS30  SBS32  SBS39    SBS40  SBS50  SBS51  SBS54  SBS55  SBS57  SBS58  SBS59  SBS88  SBS89
-0   1.0  3757.0  7662.0    1.0    1.0    1.0    6.0    3.0    3.0    2.0    2.0    1.0    4.0    2.0    8.0  16158.0    1.0    1.0    3.0    1.0    1.0    3.0    1.0    3.0    2.0
+   SBS1    SBS3    SBS5  SBS7a  SBS7c  SBS7d  SBS12  SBS16  SBS19  SBS20  SBS24  ...  SBS39    SBS40  SBS50  SBS51  SBS54  SBS55  SBS57  SBS58  SBS59  SBS88  SBS89
+0   1.0  3757.0  7662.0    1.0    1.0    1.0    6.0    3.0    3.0    2.0    2.0  ...    8.0  16158.0    1.0    1.0    3.0    1.0    1.0    3.0    1.0    3.0    2.0
+
+[1 rows x 25 columns]
 L2 Error %: 0.0
 Cosine Similarity: 1.0
 ############################## Composition After Initial Remove ###############################
@@ -31245,8 +31523,10 @@ Cosine Similarity: 1.0
 
                     ################ Sample 782 #################
 ############################# Initial Composition ####################################
-   SBS2   SBS3    SBS5  SBS6  SBS8  SBS10b  SBS10c  SBS12  SBS14  SBS16  SBS17a  SBS23  SBS28  SBS30  SBS32   SBS40  SBS44  SBS50  SBS55  SBS59  SBS86  SBS87  SBS88  SBS94
-0   1.0  791.0  2556.0   1.0   1.0     1.0     1.0    5.0    1.0    2.0     1.0    2.0    1.0    2.0    1.0  2776.0    1.0    1.0    1.0    1.0    1.0    1.0    2.0    3.0
+   SBS2   SBS3    SBS5  SBS6  SBS8  SBS10b  SBS10c  SBS12  SBS14  SBS16  SBS17a  ...  SBS30  SBS32   SBS40  SBS44  SBS50  SBS55  SBS59  SBS86  SBS87  SBS88  SBS94
+0   1.0  791.0  2556.0   1.0   1.0     1.0     1.0    5.0    1.0    2.0     1.0  ...    2.0    1.0  2776.0    1.0    1.0    1.0    1.0    1.0    1.0    2.0    3.0
+
+[1 rows x 24 columns]
 L2 Error %: 0.0
 Cosine Similarity: 1.0
 ############################## Composition After Initial Remove ###############################
@@ -31285,8 +31565,10 @@ Cosine Similarity: 1.0
 
                     ################ Sample 783 #################
 ############################# Initial Composition ####################################
-      SBS3    SBS5  SBS6  SBS7a  SBS8  SBS10b  SBS16  SBS17b  SBS19  SBS25  SBS28  SBS29  SBS30  SBS32  SBS33  SBS34  SBS37  SBS39   SBS40  SBS42  SBS44  SBS46  SBS51  SBS52  SBS54  SBS93
-0  11940.0  1462.0   1.0    1.0   2.0     1.0    9.0     1.0    4.0    6.0    1.0    1.0    5.0    2.0    1.0    1.0    5.0   15.0  1769.0    4.0    2.0    7.0    2.0    1.0    2.0    3.0
+      SBS3    SBS5  SBS6  SBS7a  SBS8  SBS10b  SBS16  SBS17b  SBS19  SBS25  SBS28  ...  SBS34  SBS37  SBS39   SBS40  SBS42  SBS44  SBS46  SBS51  SBS52  SBS54  SBS93
+0  11940.0  1462.0   1.0    1.0   2.0     1.0    9.0     1.0    4.0    6.0    1.0  ...    1.0    5.0   15.0  1769.0    4.0    2.0    7.0    2.0    1.0    2.0    3.0
+
+[1 rows x 26 columns]
 L2 Error %: 0.0
 Cosine Similarity: 1.0
 ############################## Composition After Initial Remove ###############################
@@ -31325,8 +31607,10 @@ Cosine Similarity: 1.0
 
                     ################ Sample 784 #################
 ############################# Initial Composition ####################################
-   SBS1  SBS2    SBS3  SBS4   SBS5  SBS7d  SBS9  SBS10b  SBS12  SBS16  SBS17b  SBS23  SBS29  SBS30  SBS31  SBS32  SBS36  SBS39   SBS40  SBS51  SBS54  SBS57  SBS84  SBS86
-0   1.0   2.0  2933.0   3.0  887.0    1.0   2.0     1.0    5.0    6.0     1.0    1.0    1.0    2.0    2.0    2.0    1.0    2.0  5756.0    1.0    2.0    1.0    4.0    3.0
+   SBS1  SBS2    SBS3  SBS4   SBS5  SBS7d  SBS9  SBS10b  SBS12  SBS16  SBS17b  ...  SBS30  SBS31  SBS32  SBS36  SBS39   SBS40  SBS51  SBS54  SBS57  SBS84  SBS86
+0   1.0   2.0  2933.0   3.0  887.0    1.0   2.0     1.0    5.0    6.0     1.0  ...    2.0    2.0    2.0    1.0    2.0  5756.0    1.0    2.0    1.0    4.0    3.0
+
+[1 rows x 24 columns]
 L2 Error %: 0.0
 Cosine Similarity: 1.0
 ############################## Composition After Initial Remove ###############################
@@ -31485,8 +31769,10 @@ Cosine Similarity: 1.0
 
                     ################ Sample 788 #################
 ############################# Initial Composition ####################################
-     SBS3   SBS5  SBS7a  SBS7b  SBS7c  SBS7d  SBS8  SBS10b  SBS12  SBS15  SBS16  SBS22  SBS24  SBS30  SBS37  SBS39   SBS40  SBS41  SBS44  SBS49  SBS53  SBS54  SBS55  SBS57  SBS58  SBS93
-0  9477.0  647.0    1.0    1.0    1.0    2.0   6.0     2.0    4.0    1.0    4.0    1.0    3.0    6.0    4.0   12.0  2914.0    1.0    5.0    1.0    1.0    2.0    1.0    1.0    3.0    1.0
+     SBS3   SBS5  SBS7a  SBS7b  SBS7c  SBS7d  SBS8  SBS10b  SBS12  SBS15  SBS16  ...  SBS39   SBS40  SBS41  SBS44  SBS49  SBS53  SBS54  SBS55  SBS57  SBS58  SBS93
+0  9477.0  647.0    1.0    1.0    1.0    2.0   6.0     2.0    4.0    1.0    4.0  ...   12.0  2914.0    1.0    5.0    1.0    1.0    2.0    1.0    1.0    3.0    1.0
+
+[1 rows x 26 columns]
 L2 Error %: 0.0
 Cosine Similarity: 1.0
 ############################## Composition After Initial Remove ###############################
@@ -32485,8 +32771,10 @@ Cosine Similarity: 1.0
 
                     ################ Sample 813 #################
 ############################# Initial Composition ####################################
-   SBS1    SBS3   SBS5  SBS7c  SBS8  SBS15  SBS16  SBS17a  SBS20  SBS21  SBS22  SBS27  SBS30  SBS31  SBS32  SBS37   SBS40  SBS47  SBS50  SBS54  SBS55  SBS57  SBS58  SBS86  SBS88  SBS89
-0   1.0  9377.0  749.0    1.0   1.0    1.0    5.0     1.0    1.0    1.0    1.0    1.0    3.0    3.0    2.0    1.0  2034.0    1.0    2.0    3.0    2.0    1.0    1.0    3.0    2.0    2.0
+   SBS1    SBS3   SBS5  SBS7c  SBS8  SBS15  SBS16  SBS17a  SBS20  SBS21  SBS22  ...  SBS37   SBS40  SBS47  SBS50  SBS54  SBS55  SBS57  SBS58  SBS86  SBS88  SBS89
+0   1.0  9377.0  749.0    1.0   1.0    1.0    5.0     1.0    1.0    1.0    1.0  ...    1.0  2034.0    1.0    2.0    3.0    2.0    1.0    1.0    3.0    2.0    2.0
+
+[1 rows x 26 columns]
 L2 Error %: 0.0
 Cosine Similarity: 1.0
 ############################## Composition After Initial Remove ###############################
@@ -32685,8 +32973,10 @@ Cosine Similarity: 1.0
 
                     ################ Sample 818 #################
 ############################# Initial Composition ####################################
-     SBS3   SBS5  SBS7b  SBS8  SBS12  SBS16  SBS17a  SBS17b  SBS19  SBS25  SBS28  SBS30  SBS33  SBS35  SBS37  SBS38  SBS39   SBS40  SBS50  SBS52  SBS54  SBS84  SBS86  SBS88  SBS89
-0  4294.0  870.0    1.0   8.0    7.0    2.0     1.0     1.0    2.0    2.0    1.0    5.0    1.0    1.0    1.0    1.0    9.0  1189.0    1.0    1.0    2.0    3.0    1.0    4.0    2.0
+     SBS3   SBS5  SBS7b  SBS8  SBS12  SBS16  SBS17a  SBS17b  SBS19  SBS25  SBS28  ...  SBS37  SBS38  SBS39   SBS40  SBS50  SBS52  SBS54  SBS84  SBS86  SBS88  SBS89
+0  4294.0  870.0    1.0   8.0    7.0    2.0     1.0     1.0    2.0    2.0    1.0  ...    1.0    1.0    9.0  1189.0    1.0    1.0    2.0    3.0    1.0    4.0    2.0
+
+[1 rows x 25 columns]
 L2 Error %: 0.0
 Cosine Similarity: 1.0
 ############################## Composition After Initial Remove ###############################
@@ -32965,8 +33255,10 @@ Cosine Similarity: 1.0
 
                     ################ Sample 825 #################
 ############################# Initial Composition ####################################
-   SBS2    SBS3  SBS4   SBS5  SBS7d  SBS8  SBS9  SBS11  SBS12  SBS13  SBS16  SBS19  SBS24  SBS28  SBS29  SBS30  SBS31  SBS35  SBS39   SBS40  SBS50  SBS51  SBS54  SBS55  SBS88  SBS89
-0   1.0  3335.0   3.0  465.0    1.0   8.0   3.0    3.0    4.0    1.0    3.0    1.0    2.0    2.0    1.0    3.0    1.0    1.0   11.0  2569.0    1.0    1.0    1.0    2.0    1.0    1.0
+   SBS2    SBS3  SBS4   SBS5  SBS7d  SBS8  SBS9  SBS11  SBS12  SBS13  SBS16  ...  SBS30  SBS31  SBS35  SBS39   SBS40  SBS50  SBS51  SBS54  SBS55  SBS88  SBS89
+0   1.0  3335.0   3.0  465.0    1.0   8.0   3.0    3.0    4.0    1.0    3.0  ...    3.0    1.0    1.0   11.0  2569.0    1.0    1.0    1.0    2.0    1.0    1.0
+
+[1 rows x 26 columns]
 L2 Error %: 0.0
 Cosine Similarity: 1.0
 ############################## Composition After Initial Remove ###############################
@@ -33125,8 +33417,10 @@ Cosine Similarity: 1.0
 
                     ################ Sample 829 #################
 ############################# Initial Composition ####################################
-     SBS3    SBS5  SBS7b  SBS7d  SBS9  SBS13  SBS17b  SBS19  SBS22  SBS31  SBS34  SBS37  SBS39   SBS40  SBS42  SBS46  SBS50  SBS51  SBS54  SBS55  SBS58  SBS84  SBS87  SBS88
-0  6066.0  1128.0    1.0    1.0   1.0    1.0     1.0    1.0    1.0    1.0    1.0    2.0    5.0  4232.0    1.0    4.0    1.0    1.0    1.0    1.0    2.0    1.0    1.0    1.0
+     SBS3    SBS5  SBS7b  SBS7d  SBS9  SBS13  SBS17b  SBS19  SBS22  SBS31  SBS34  ...   SBS40  SBS42  SBS46  SBS50  SBS51  SBS54  SBS55  SBS58  SBS84  SBS87  SBS88
+0  6066.0  1128.0    1.0    1.0   1.0    1.0     1.0    1.0    1.0    1.0    1.0  ...  4232.0    1.0    4.0    1.0    1.0    1.0    1.0    2.0    1.0    1.0    1.0
+
+[1 rows x 24 columns]
 L2 Error %: 0.0
 Cosine Similarity: 1.0
 ############################## Composition After Initial Remove ###############################
@@ -33405,8 +33699,10 @@ Cosine Similarity: 1.0
 
                     ################ Sample 836 #################
 ############################# Initial Composition ####################################
-     SBS3    SBS5  SBS7c  SBS9  SBS10a  SBS10b  SBS12  SBS16  SBS19  SBS20  SBS24  SBS25  SBS29  SBS30  SBS32  SBS33  SBS39   SBS40  SBS54  SBS58  SBS84  SBS86  SBS88  SBS91  SBS93
-0  2568.0  1015.0    1.0   3.0     1.0     1.0    7.0    3.0    3.0    1.0    3.0    3.0    1.0    5.0    3.0    1.0    2.0  1715.0    4.0    2.0    1.0    1.0    1.0    1.0    1.0
+     SBS3    SBS5  SBS7c  SBS9  SBS10a  SBS10b  SBS12  SBS16  SBS19  SBS20  SBS24  ...  SBS32  SBS33  SBS39   SBS40  SBS54  SBS58  SBS84  SBS86  SBS88  SBS91  SBS93
+0  2568.0  1015.0    1.0   3.0     1.0     1.0    7.0    3.0    3.0    1.0    3.0  ...    3.0    1.0    2.0  1715.0    4.0    2.0    1.0    1.0    1.0    1.0    1.0
+
+[1 rows x 25 columns]
 L2 Error %: 0.0
 Cosine Similarity: 1.0
 ############################## Composition After Initial Remove ###############################
@@ -33645,8 +33941,10 @@ Cosine Similarity: 1.0
 
                     ################ Sample 842 #################
 ############################# Initial Composition ####################################
-   SBS2    SBS3  SBS4   SBS5  SBS7d  SBS10a  SBS12  SBS13  SBS16  SBS18  SBS19  SBS22  SBS28  SBS30  SBS32   SBS40  SBS46  SBS49  SBS51  SBS54  SBS58  SBS84  SBS86  SBS87  SBS88  SBS90  SBS91
-0   1.0  4085.0   1.0  856.0    1.0     1.0    6.0    1.0    4.0    3.0    2.0    1.0    1.0    5.0    2.0  2419.0    3.0    1.0    1.0    2.0    1.0    3.0    3.0    2.0    2.0    1.0    1.0
+   SBS2    SBS3  SBS4   SBS5  SBS7d  SBS10a  SBS12  SBS13  SBS16  SBS18  SBS19  ...  SBS46  SBS49  SBS51  SBS54  SBS58  SBS84  SBS86  SBS87  SBS88  SBS90  SBS91
+0   1.0  4085.0   1.0  856.0    1.0     1.0    6.0    1.0    4.0    3.0    2.0  ...    3.0    1.0    1.0    2.0    1.0    3.0    3.0    2.0    2.0    1.0    1.0
+
+[1 rows x 27 columns]
 L2 Error %: 0.0
 Cosine Similarity: 1.0
 ############################## Composition After Initial Remove ###############################
@@ -33805,8 +34103,10 @@ Cosine Similarity: 1.0
 
                     ################ Sample 846 #################
 ############################# Initial Composition ####################################
-     SBS3    SBS5  SBS8  SBS10a  SBS11  SBS12  SBS14  SBS15  SBS16  SBS17b  SBS19  SBS20  SBS22  SBS24  SBS27  SBS30  SBS32  SBS37   SBS40  SBS42  SBS43  SBS46  SBS48  SBS50  SBS53  SBS54  SBS84  SBS86  SBS88  SBS93  SBS94
-0  3243.0  2396.0   2.0     1.0    2.0    3.0    1.0    2.0    2.0     1.0    1.0    1.0    1.0    2.0    1.0    3.0    1.0    3.0  4865.0    1.0    1.0    3.0    1.0    2.0    1.0    3.0    1.0    2.0    4.0    4.0    2.0
+     SBS3    SBS5  SBS8  SBS10a  SBS11  SBS12  SBS14  SBS15  SBS16  SBS17b  SBS19  ...  SBS43  SBS46  SBS48  SBS50  SBS53  SBS54  SBS84  SBS86  SBS88  SBS93  SBS94
+0  3243.0  2396.0   2.0     1.0    2.0    3.0    1.0    2.0    2.0     1.0    1.0  ...    1.0    3.0    1.0    2.0    1.0    3.0    1.0    2.0    4.0    4.0    2.0
+
+[1 rows x 31 columns]
 L2 Error %: 0.0
 Cosine Similarity: 1.0
 ############################## Composition After Initial Remove ###############################
@@ -33845,8 +34145,10 @@ Cosine Similarity: 1.0
 
                     ################ Sample 847 #################
 ############################# Initial Composition ####################################
-   SBS2    SBS3   SBS5  SBS7c  SBS8  SBS12  SBS16  SBS17a  SBS17b  SBS19  SBS22  SBS24  SBS30  SBS32  SBS33  SBS37  SBS39   SBS40  SBS42  SBS46  SBS54  SBS55  SBS59  SBS93
-0   1.0  4403.0  105.0    1.0   4.0    1.0    3.0     1.0     1.0    2.0    1.0    2.0    1.0    3.0    1.0    1.0    9.0  6909.0    1.0    2.0    1.0    2.0    1.0    1.0
+   SBS2    SBS3   SBS5  SBS7c  SBS8  SBS12  SBS16  SBS17a  SBS17b  SBS19  SBS22  ...  SBS32  SBS33  SBS37  SBS39   SBS40  SBS42  SBS46  SBS54  SBS55  SBS59  SBS93
+0   1.0  4403.0  105.0    1.0   4.0    1.0    3.0     1.0     1.0    2.0    1.0  ...    3.0    1.0    1.0    9.0  6909.0    1.0    2.0    1.0    2.0    1.0    1.0
+
+[1 rows x 24 columns]
 L2 Error %: 0.0
 Cosine Similarity: 1.0
 ############################## Composition After Initial Remove ###############################
@@ -34125,8 +34427,10 @@ Cosine Similarity: 1.0
 
                     ################ Sample 854 #################
 ############################# Initial Composition ####################################
-   SBS2    SBS3    SBS5  SBS6  SBS7c  SBS13  SBS14  SBS16  SBS19  SBS20  SBS21  SBS24  SBS27  SBS28  SBS29  SBS30  SBS31  SBS32  SBS37  SBS39   SBS40  SBS54  SBS59  SBS90
-0   1.0  8962.0  3247.0   1.0    1.0    1.0    1.0    4.0    1.0    1.0    1.0    1.0    1.0    1.0    1.0    2.0    2.0    1.0    1.0   11.0  2446.0    1.0    1.0    1.0
+   SBS2    SBS3    SBS5  SBS6  SBS7c  SBS13  SBS14  SBS16  SBS19  SBS20  SBS21  ...  SBS28  SBS29  SBS30  SBS31  SBS32  SBS37  SBS39   SBS40  SBS54  SBS59  SBS90
+0   1.0  8962.0  3247.0   1.0    1.0    1.0    1.0    4.0    1.0    1.0    1.0  ...    1.0    1.0    2.0    2.0    1.0    1.0   11.0  2446.0    1.0    1.0    1.0
+
+[1 rows x 24 columns]
 L2 Error %: 0.0
 Cosine Similarity: 1.0
 ############################## Composition After Initial Remove ###############################
@@ -34245,8 +34549,10 @@ Cosine Similarity: 1.0
 
                     ################ Sample 857 #################
 ############################# Initial Composition ####################################
-     SBS3    SBS5  SBS7c  SBS10b  SBS12  SBS15  SBS16  SBS17a  SBS17b  SBS18  SBS19  SBS20  SBS21  SBS22  SBS25  SBS26  SBS28  SBS30  SBS32  SBS34  SBS39   SBS40  SBS42  SBS43  SBS44  SBS50  SBS54  SBS59  SBS86  SBS87
-0  2053.0  3578.0    1.0     1.0    9.0    2.0    8.0     1.0     1.0    3.0    3.0    1.0    1.0    2.0    1.0    1.0    1.0    9.0    2.0    1.0    8.0  6770.0    1.0    1.0    1.0    3.0    3.0    1.0    2.0    2.0
+     SBS3    SBS5  SBS7c  SBS10b  SBS12  SBS15  SBS16  SBS17a  SBS17b  SBS18  SBS19  ...  SBS34  SBS39   SBS40  SBS42  SBS43  SBS44  SBS50  SBS54  SBS59  SBS86  SBS87
+0  2053.0  3578.0    1.0     1.0    9.0    2.0    8.0     1.0     1.0    3.0    3.0  ...    1.0    8.0  6770.0    1.0    1.0    1.0    3.0    3.0    1.0    2.0    2.0
+
+[1 rows x 30 columns]
 L2 Error %: 0.0
 Cosine Similarity: 1.0
 ############################## Composition After Initial Remove ###############################
@@ -34605,8 +34911,10 @@ Cosine Similarity: 1.0
 
                     ################ Sample 866 #################
 ############################# Initial Composition ####################################
-   SBS2    SBS3   SBS5  SBS6  SBS7c  SBS8  SBS10a  SBS10b  SBS16  SBS17b  SBS28  SBS30  SBS32  SBS33   SBS40  SBS51  SBS54  SBS57  SBS59  SBS84  SBS86  SBS88  SBS89  SBS93
-0   1.0  5635.0  225.0   1.0    1.0   1.0     1.0     1.0    3.0     1.0    1.0    6.0    2.0    1.0  2895.0    4.0    3.0    1.0    1.0    1.0    4.0    3.0    6.0    3.0
+   SBS2    SBS3   SBS5  SBS6  SBS7c  SBS8  SBS10a  SBS10b  SBS16  SBS17b  SBS28  ...  SBS33   SBS40  SBS51  SBS54  SBS57  SBS59  SBS84  SBS86  SBS88  SBS89  SBS93
+0   1.0  5635.0  225.0   1.0    1.0   1.0     1.0     1.0    3.0     1.0    1.0  ...    1.0  2895.0    4.0    3.0    1.0    1.0    1.0    4.0    3.0    6.0    3.0
+
+[1 rows x 24 columns]
 L2 Error %: 0.0
 Cosine Similarity: 1.0
 ############################## Composition After Initial Remove ###############################
@@ -34685,8 +34993,10 @@ Cosine Similarity: 1.0
 
                     ################ Sample 868 #################
 ############################# Initial Composition ####################################
-   SBS2    SBS3   SBS5  SBS7c  SBS9  SBS12  SBS13  SBS16  SBS17b  SBS19  SBS22  SBS24  SBS30  SBS33  SBS39   SBS40  SBS41  SBS42  SBS46  SBS52  SBS54  SBS55  SBS57  SBS59  SBS89
-0   1.0  5187.0  392.0    1.0   7.0    1.0    1.0    1.0     1.0    2.0    2.0    4.0    3.0    1.0    3.0  1731.0    1.0    3.0    2.0    1.0    1.0    1.0    1.0    1.0    6.0
+   SBS2    SBS3   SBS5  SBS7c  SBS9  SBS12  SBS13  SBS16  SBS17b  SBS19  SBS22  ...  SBS39   SBS40  SBS41  SBS42  SBS46  SBS52  SBS54  SBS55  SBS57  SBS59  SBS89
+0   1.0  5187.0  392.0    1.0   7.0    1.0    1.0    1.0     1.0    2.0    2.0  ...    3.0  1731.0    1.0    3.0    2.0    1.0    1.0    1.0    1.0    1.0    6.0
+
+[1 rows x 25 columns]
 L2 Error %: 0.0
 Cosine Similarity: 1.0
 ############################## Composition After Initial Remove ###############################
@@ -34925,8 +35235,10 @@ Cosine Similarity: 1.0
 
                     ################ Sample 874 #################
 ############################# Initial Composition ####################################
-   SBS2    SBS3   SBS5  SBS7c  SBS7d  SBS10b  SBS12  SBS13  SBS16  SBS20  SBS21  SBS27  SBS29  SBS30  SBS31  SBS32  SBS38   SBS40  SBS42  SBS46  SBS85  SBS86  SBS87  SBS88
-0   1.0  7034.0  262.0    1.0    1.0     1.0    3.0    1.0    3.0    1.0    1.0    1.0    3.0    3.0    2.0    1.0    1.0  3406.0    2.0    3.0    1.0    3.0    1.0    1.0
+   SBS2    SBS3   SBS5  SBS7c  SBS7d  SBS10b  SBS12  SBS13  SBS16  SBS20  SBS21  ...  SBS30  SBS31  SBS32  SBS38   SBS40  SBS42  SBS46  SBS85  SBS86  SBS87  SBS88
+0   1.0  7034.0  262.0    1.0    1.0     1.0    3.0    1.0    3.0    1.0    1.0  ...    3.0    2.0    1.0    1.0  3406.0    2.0    3.0    1.0    3.0    1.0    1.0
+
+[1 rows x 24 columns]
 L2 Error %: 0.0
 Cosine Similarity: 1.0
 ############################## Composition After Initial Remove ###############################
@@ -35245,8 +35557,10 @@ Cosine Similarity: 1.0
 
                     ################ Sample 882 #################
 ############################# Initial Composition ####################################
-     SBS3    SBS5  SBS8  SBS10a  SBS12  SBS13  SBS17b  SBS21  SBS23  SBS28  SBS29  SBS30  SBS31  SBS32  SBS33  SBS39   SBS40  SBS42  SBS44  SBS46  SBS51  SBS53  SBS54  SBS58
-0  1808.0  1999.0   5.0     1.0    2.0    1.0     1.0    1.0    2.0    1.0    1.0    1.0    1.0    2.0    1.0    7.0  4879.0    2.0    1.0    2.0    2.0    1.0    2.0    1.0
+     SBS3    SBS5  SBS8  SBS10a  SBS12  SBS13  SBS17b  SBS21  SBS23  SBS28  SBS29  ...  SBS32  SBS33  SBS39   SBS40  SBS42  SBS44  SBS46  SBS51  SBS53  SBS54  SBS58
+0  1808.0  1999.0   5.0     1.0    2.0    1.0     1.0    1.0    2.0    1.0    1.0  ...    2.0    1.0    7.0  4879.0    2.0    1.0    2.0    2.0    1.0    2.0    1.0
+
+[1 rows x 24 columns]
 L2 Error %: 0.0
 Cosine Similarity: 1.0
 ############################## Composition After Initial Remove ###############################
@@ -35565,8 +35879,10 @@ Cosine Similarity: 1.0
 
                     ################ Sample 890 #################
 ############################# Initial Composition ####################################
-     SBS3   SBS5  SBS7d  SBS8  SBS12  SBS14  SBS16  SBS19  SBS21  SBS27  SBS28  SBS30  SBS31  SBS32  SBS39   SBS40  SBS44  SBS46  SBS50  SBS51  SBS54  SBS58  SBS59  SBS86  SBS90  SBS91  SBS92
-0  3075.0  235.0    1.0   2.0    2.0    1.0    3.0    1.0    1.0    1.0    1.0    5.0    1.0    2.0   11.0  4058.0    1.0    2.0    1.0    2.0    2.0    1.0    1.0    1.0    1.0    1.0    2.0
+     SBS3   SBS5  SBS7d  SBS8  SBS12  SBS14  SBS16  SBS19  SBS21  SBS27  SBS28  ...  SBS44  SBS46  SBS50  SBS51  SBS54  SBS58  SBS59  SBS86  SBS90  SBS91  SBS92
+0  3075.0  235.0    1.0   2.0    2.0    1.0    3.0    1.0    1.0    1.0    1.0  ...    1.0    2.0    1.0    2.0    2.0    1.0    1.0    1.0    1.0    1.0    2.0
+
+[1 rows x 27 columns]
 L2 Error %: 0.0
 Cosine Similarity: 1.0
 ############################## Composition After Initial Remove ###############################
@@ -35605,8 +35921,10 @@ Cosine Similarity: 1.0
 
                     ################ Sample 891 #################
 ############################# Initial Composition ####################################
-      SBS3  SBS4   SBS5  SBS7b  SBS7c  SBS7d  SBS8  SBS15  SBS16  SBS17b  SBS18  SBS24  SBS27  SBS30  SBS31  SBS39   SBS40  SBS42  SBS52  SBS54  SBS55  SBS59  SBS89  SBS93
-0  11518.0   1.0  422.0    1.0    1.0    1.0   1.0    1.0    5.0     1.0    1.0    3.0    1.0    3.0    2.0   14.0  3990.0    2.0    1.0    3.0    1.0    1.0    3.0    1.0
+      SBS3  SBS4   SBS5  SBS7b  SBS7c  SBS7d  SBS8  SBS15  SBS16  SBS17b  SBS18  ...  SBS30  SBS31  SBS39   SBS40  SBS42  SBS52  SBS54  SBS55  SBS59  SBS89  SBS93
+0  11518.0   1.0  422.0    1.0    1.0    1.0   1.0    1.0    5.0     1.0    1.0  ...    3.0    2.0   14.0  3990.0    2.0    1.0    3.0    1.0    1.0    3.0    1.0
+
+[1 rows x 24 columns]
 L2 Error %: 0.0
 Cosine Similarity: 1.0
 ############################## Composition After Initial Remove ###############################
@@ -36285,8 +36603,10 @@ Cosine Similarity: 1.0
 
                     ################ Sample 908 #################
 ############################# Initial Composition ####################################
-     SBS3    SBS5  SBS7d  SBS8  SBS10b  SBS12  SBS16  SBS19  SBS24  SBS28  SBS30  SBS32  SBS37  SBS39   SBS40  SBS42  SBS54  SBS59  SBS60  SBS84  SBS87  SBS88  SBS92  SBS93
-0  2835.0  1730.0    2.0   1.0     1.0    5.0    6.0    2.0    2.0    1.0    5.0    2.0    5.0    9.0  6592.0    3.0    4.0    1.0    1.0    1.0    1.0    1.0    2.0    3.0
+     SBS3    SBS5  SBS7d  SBS8  SBS10b  SBS12  SBS16  SBS19  SBS24  SBS28  SBS30  ...  SBS39   SBS40  SBS42  SBS54  SBS59  SBS60  SBS84  SBS87  SBS88  SBS92  SBS93
+0  2835.0  1730.0    2.0   1.0     1.0    5.0    6.0    2.0    2.0    1.0    5.0  ...    9.0  6592.0    3.0    4.0    1.0    1.0    1.0    1.0    1.0    2.0    3.0
+
+[1 rows x 24 columns]
 L2 Error %: 0.0
 Cosine Similarity: 1.0
 ############################## Composition After Initial Remove ###############################
@@ -36565,8 +36885,10 @@ Cosine Similarity: 1.0
 
                     ################ Sample 915 #################
 ############################# Initial Composition ####################################
-     SBS3   SBS5  SBS7a  SBS7c  SBS9  SBS10b  SBS12  SBS13  SBS16  SBS17b  SBS19  SBS26  SBS27  SBS28  SBS30  SBS31  SBS32  SBS36  SBS37  SBS38  SBS39   SBS40  SBS52  SBS54  SBS59  SBS84  SBS88  SBS89
-0  2112.0  601.0    2.0    2.0   1.0     1.0    2.0    1.0    3.0     1.0    2.0    4.0    1.0    1.0    3.0    2.0    1.0    1.0    1.0    1.0    6.0  7780.0    1.0    1.0    1.0    2.0    2.0    3.0
+     SBS3   SBS5  SBS7a  SBS7c  SBS9  SBS10b  SBS12  SBS13  SBS16  SBS17b  SBS19  ...  SBS36  SBS37  SBS38  SBS39   SBS40  SBS52  SBS54  SBS59  SBS84  SBS88  SBS89
+0  2112.0  601.0    2.0    2.0   1.0     1.0    2.0    1.0    3.0     1.0    2.0  ...    1.0    1.0    1.0    6.0  7780.0    1.0    1.0    1.0    2.0    2.0    3.0
+
+[1 rows x 28 columns]
 L2 Error %: 0.0
 Cosine Similarity: 1.0
 ############################## Composition After Initial Remove ###############################
@@ -36725,8 +37047,10 @@ Cosine Similarity: 1.0
 
                     ################ Sample 919 #################
 ############################# Initial Composition ####################################
-   SBS2    SBS3    SBS5  SBS6  SBS10b  SBS12  SBS16  SBS17a  SBS18  SBS22  SBS23  SBS30  SBS31  SBS33  SBS37  SBS39   SBS40  SBS41  SBS47  SBS50  SBS51  SBS58  SBS86  SBS88  SBS91
-0   1.0  1988.0  1229.0   3.0     1.0    3.0    3.0     1.0    3.0    2.0    2.0    2.0    1.0    2.0    1.0    1.0  6954.0    1.0    1.0    1.0    1.0    1.0    4.0    2.0    1.0
+   SBS2    SBS3    SBS5  SBS6  SBS10b  SBS12  SBS16  SBS17a  SBS18  SBS22  SBS23  ...  SBS37  SBS39   SBS40  SBS41  SBS47  SBS50  SBS51  SBS58  SBS86  SBS88  SBS91
+0   1.0  1988.0  1229.0   3.0     1.0    3.0    3.0     1.0    3.0    2.0    2.0  ...    1.0    1.0  6954.0    1.0    1.0    1.0    1.0    1.0    4.0    2.0    1.0
+
+[1 rows x 25 columns]
 L2 Error %: 0.0
 Cosine Similarity: 1.0
 ############################## Composition After Initial Remove ###############################
@@ -36845,8 +37169,10 @@ Cosine Similarity: 1.0
 
                     ################ Sample 922 #################
 ############################# Initial Composition ####################################
-     SBS3    SBS5  SBS7d  SBS8  SBS10a  SBS10b  SBS12  SBS13  SBS16  SBS17b  SBS18  SBS19  SBS22  SBS30  SBS31  SBS32  SBS39   SBS40  SBS44  SBS46  SBS50  SBS51  SBS54  SBS58  SBS88
-0  4397.0  1326.0    1.0   1.0     1.0     1.0    1.0    1.0    5.0     1.0    1.0    2.0    2.0    4.0    1.0    4.0    9.0  3694.0    2.0    5.0    4.0    2.0    1.0    1.0    2.0
+     SBS3    SBS5  SBS7d  SBS8  SBS10a  SBS10b  SBS12  SBS13  SBS16  SBS17b  SBS18  ...  SBS31  SBS32  SBS39   SBS40  SBS44  SBS46  SBS50  SBS51  SBS54  SBS58  SBS88
+0  4397.0  1326.0    1.0   1.0     1.0     1.0    1.0    1.0    5.0     1.0    1.0  ...    1.0    4.0    9.0  3694.0    2.0    5.0    4.0    2.0    1.0    1.0    2.0
+
+[1 rows x 25 columns]
 L2 Error %: 0.0
 Cosine Similarity: 1.0
 ############################## Composition After Initial Remove ###############################
@@ -36885,8 +37211,10 @@ Cosine Similarity: 1.0
 
                     ################ Sample 923 #################
 ############################# Initial Composition ####################################
-     SBS3    SBS5  SBS8  SBS10a  SBS10b  SBS12  SBS16  SBS17a  SBS17b  SBS19  SBS30  SBS34  SBS37  SBS39   SBS40  SBS51  SBS53  SBS54  SBS55  SBS59  SBS86  SBS87  SBS88  SBS89  SBS91  SBS93
-0  4426.0  2153.0   3.0     1.0     1.0    2.0    6.0     1.0     1.0    4.0    5.0    1.0    6.0    6.0  2628.0    1.0    1.0    3.0    1.0    1.0    2.0    1.0    1.0    4.0    1.0    2.0
+     SBS3    SBS5  SBS8  SBS10a  SBS10b  SBS12  SBS16  SBS17a  SBS17b  SBS19  SBS30  ...  SBS51  SBS53  SBS54  SBS55  SBS59  SBS86  SBS87  SBS88  SBS89  SBS91  SBS93
+0  4426.0  2153.0   3.0     1.0     1.0    2.0    6.0     1.0     1.0    4.0    5.0  ...    1.0    1.0    3.0    1.0    1.0    2.0    1.0    1.0    4.0    1.0    2.0
+
+[1 rows x 26 columns]
 L2 Error %: 0.0
 Cosine Similarity: 1.0
 ############################## Composition After Initial Remove ###############################
@@ -37685,8 +38013,10 @@ Cosine Similarity: 1.0
 
                     ################ Sample 943 #################
 ############################# Initial Composition ####################################
-     SBS3   SBS5  SBS7d  SBS8  SBS13  SBS15  SBS16  SBS19  SBS21  SBS27  SBS28  SBS30  SBS32  SBS33  SBS37  SBS39   SBS40  SBS42  SBS44  SBS48  SBS49  SBS51  SBS54  SBS55  SBS57
-0  4986.0  724.0    1.0   4.0    1.0    1.0    5.0    1.0    1.0    1.0    1.0    7.0    1.0    1.0    3.0    4.0  2111.0    1.0    1.0    1.0    1.0    2.0    3.0    1.0    1.0
+     SBS3   SBS5  SBS7d  SBS8  SBS13  SBS15  SBS16  SBS19  SBS21  SBS27  SBS28  ...  SBS37  SBS39   SBS40  SBS42  SBS44  SBS48  SBS49  SBS51  SBS54  SBS55  SBS57
+0  4986.0  724.0    1.0   4.0    1.0    1.0    5.0    1.0    1.0    1.0    1.0  ...    3.0    4.0  2111.0    1.0    1.0    1.0    1.0    2.0    3.0    1.0    1.0
+
+[1 rows x 25 columns]
 L2 Error %: 0.0
 Cosine Similarity: 1.0
 ############################## Composition After Initial Remove ###############################
@@ -37765,8 +38095,10 @@ Cosine Similarity: 1.0
 
                     ################ Sample 945 #################
 ############################# Initial Composition ####################################
-     SBS3   SBS5  SBS6  SBS7a  SBS7c  SBS8  SBS9  SBS10b  SBS10d  SBS12  SBS16  SBS21  SBS22  SBS30  SBS33  SBS34  SBS37  SBS39   SBS40  SBS42  SBS50  SBS54  SBS84  SBS86  SBS88  SBS91
-0  2005.0  686.0   1.0    1.0    1.0   3.0   3.0     1.0     1.0    1.0    1.0    1.0    2.0    3.0    1.0    1.0    3.0   10.0  3918.0    1.0    1.0    2.0    2.0    1.0    1.0    1.0
+     SBS3   SBS5  SBS6  SBS7a  SBS7c  SBS8  SBS9  SBS10b  SBS10d  SBS12  SBS16  ...  SBS34  SBS37  SBS39   SBS40  SBS42  SBS50  SBS54  SBS84  SBS86  SBS88  SBS91
+0  2005.0  686.0   1.0    1.0    1.0   3.0   3.0     1.0     1.0    1.0    1.0  ...    1.0    3.0   10.0  3918.0    1.0    1.0    2.0    2.0    1.0    1.0    1.0
+
+[1 rows x 26 columns]
 L2 Error %: 0.0
 Cosine Similarity: 1.0
 ############################## Composition After Initial Remove ###############################
@@ -37885,8 +38217,10 @@ Cosine Similarity: 1.0
 
                     ################ Sample 948 #################
 ############################# Initial Composition ####################################
-      SBS3  SBS4    SBS5  SBS7a  SBS7b  SBS7c  SBS8  SBS9  SBS12  SBS13  SBS16  SBS17a  SBS17b  SBS21  SBS22  SBS24  SBS30  SBS33  SBS37  SBS39   SBS40  SBS84  SBS92  SBS93
-0  12754.0   1.0  1420.0    1.0    1.0    1.0   4.0   1.0    2.0    1.0    2.0     1.0     1.0    1.0    2.0    1.0    4.0    1.0    1.0   10.0  1623.0    2.0    6.0    1.0
+      SBS3  SBS4    SBS5  SBS7a  SBS7b  SBS7c  SBS8  SBS9  SBS12  SBS13  SBS16  ...  SBS21  SBS22  SBS24  SBS30  SBS33  SBS37  SBS39   SBS40  SBS84  SBS92  SBS93
+0  12754.0   1.0  1420.0    1.0    1.0    1.0   4.0   1.0    2.0    1.0    2.0  ...    1.0    2.0    1.0    4.0    1.0    1.0   10.0  1623.0    2.0    6.0    1.0
+
+[1 rows x 24 columns]
 L2 Error %: 0.0
 Cosine Similarity: 1.0
 ############################## Composition After Initial Remove ###############################
@@ -38005,8 +38339,10 @@ Cosine Similarity: 1.0
 
                     ################ Sample 951 #################
 ############################# Initial Composition ####################################
-   SBS2    SBS3  SBS4    SBS5  SBS7c  SBS8  SBS10b  SBS12  SBS16  SBS19  SBS20  SBS24  SBS27  SBS28  SBS30  SBS32  SBS39   SBS40  SBS43  SBS51  SBS53  SBS54  SBS85  SBS88
-0   1.0  1844.0   1.0  1120.0    1.0   1.0     1.0    8.0    5.0    2.0    2.0    4.0    1.0    1.0    1.0    5.0   14.0  5543.0    1.0    2.0    1.0    2.0    1.0    1.0
+   SBS2    SBS3  SBS4    SBS5  SBS7c  SBS8  SBS10b  SBS12  SBS16  SBS19  SBS20  ...  SBS28  SBS30  SBS32  SBS39   SBS40  SBS43  SBS51  SBS53  SBS54  SBS85  SBS88
+0   1.0  1844.0   1.0  1120.0    1.0   1.0     1.0    8.0    5.0    2.0    2.0  ...    1.0    1.0    5.0   14.0  5543.0    1.0    2.0    1.0    2.0    1.0    1.0
+
+[1 rows x 24 columns]
 L2 Error %: 0.0
 Cosine Similarity: 1.0
 ############################## Composition After Initial Remove ###############################
@@ -38085,8 +38421,10 @@ Cosine Similarity: 1.0
 
                     ################ Sample 953 #################
 ############################# Initial Composition ####################################
-   SBS2    SBS3   SBS5  SBS9  SBS10b  SBS11  SBS12  SBS13  SBS16  SBS17b  SBS21  SBS24  SBS25  SBS28  SBS30  SBS34  SBS37  SBS39   SBS40  SBS41  SBS42  SBS47  SBS51  SBS53  SBS54  SBS88
-0   1.0  8224.0  943.0   1.0     1.0    1.0    2.0    1.0    5.0     1.0    1.0    3.0    1.0    1.0    4.0    1.0    1.0    5.0  1507.0    2.0    1.0    1.0    3.0    1.0    2.0    1.0
+   SBS2    SBS3   SBS5  SBS9  SBS10b  SBS11  SBS12  SBS13  SBS16  SBS17b  SBS21  ...  SBS34  SBS37  SBS39   SBS40  SBS41  SBS42  SBS47  SBS51  SBS53  SBS54  SBS88
+0   1.0  8224.0  943.0   1.0     1.0    1.0    2.0    1.0    5.0     1.0    1.0  ...    1.0    1.0    5.0  1507.0    2.0    1.0    1.0    3.0    1.0    2.0    1.0
+
+[1 rows x 26 columns]
 L2 Error %: 0.0
 Cosine Similarity: 1.0
 ############################## Composition After Initial Remove ###############################
@@ -38245,8 +38583,10 @@ Cosine Similarity: 1.0
 
                     ################ Sample 957 #################
 ############################# Initial Composition ####################################
-   SBS2    SBS3    SBS5  SBS8  SBS9  SBS12  SBS13  SBS16  SBS19  SBS20  SBS22  SBS24  SBS25  SBS28  SBS30  SBS33  SBS36  SBS39   SBS40  SBS46  SBS54  SBS84  SBS85  SBS93
-0   1.0  2750.0  1484.0   3.0   3.0    3.0    1.0    3.0    2.0    1.0    1.0    2.0    3.0    1.0    3.0    1.0    1.0    2.0  7434.0    1.0    2.0    3.0    1.0    2.0
+   SBS2    SBS3    SBS5  SBS8  SBS9  SBS12  SBS13  SBS16  SBS19  SBS20  SBS22  ...  SBS28  SBS30  SBS33  SBS36  SBS39   SBS40  SBS46  SBS54  SBS84  SBS85  SBS93
+0   1.0  2750.0  1484.0   3.0   3.0    3.0    1.0    3.0    2.0    1.0    1.0  ...    1.0    3.0    1.0    1.0    2.0  7434.0    1.0    2.0    3.0    1.0    2.0
+
+[1 rows x 24 columns]
 L2 Error %: 0.0
 Cosine Similarity: 1.0
 ############################## Composition After Initial Remove ###############################
@@ -38565,8 +38905,10 @@ Cosine Similarity: 1.0
 
                     ################ Sample 965 #################
 ############################# Initial Composition ####################################
-     SBS3   SBS5  SBS7c  SBS8  SBS10b  SBS12  SBS16  SBS17a  SBS17b  SBS18  SBS22  SBS26  SBS30  SBS32  SBS39   SBS40  SBS51  SBS53  SBS54  SBS84  SBS89  SBS90  SBS91  SBS93
-0  7159.0  396.0    1.0   2.0     1.0    6.0    2.0     1.0     1.0    4.0    1.0    2.0    5.0    2.0    9.0  8024.0    1.0    1.0    2.0    1.0    2.0    1.0    1.0    1.0
+     SBS3   SBS5  SBS7c  SBS8  SBS10b  SBS12  SBS16  SBS17a  SBS17b  SBS18  SBS22  ...  SBS32  SBS39   SBS40  SBS51  SBS53  SBS54  SBS84  SBS89  SBS90  SBS91  SBS93
+0  7159.0  396.0    1.0   2.0     1.0    6.0    2.0     1.0     1.0    4.0    1.0  ...    2.0    9.0  8024.0    1.0    1.0    2.0    1.0    2.0    1.0    1.0    1.0
+
+[1 rows x 24 columns]
 L2 Error %: 0.0
 Cosine Similarity: 1.0
 ############################## Composition After Initial Remove ###############################
@@ -38605,8 +38947,10 @@ Cosine Similarity: 1.0
 
                     ################ Sample 966 #################
 ############################# Initial Composition ####################################
-     SBS3  SBS5  SBS7c  SBS8  SBS9  SBS10b  SBS10d  SBS11  SBS16  SBS23  SBS28  SBS30  SBS32  SBS33  SBS37  SBS39   SBS40  SBS43  SBS49  SBS53  SBS54  SBS57  SBS84  SBS86  SBS92  SBS94
-0  6700.0  92.0    2.0   2.0   2.0     1.0     1.0    1.0    7.0    1.0    1.0    6.0    3.0    1.0    7.0    7.0  2043.0    1.0    1.0    1.0    5.0    1.0    4.0    1.0    5.0    2.0
+     SBS3  SBS5  SBS7c  SBS8  SBS9  SBS10b  SBS10d  SBS11  SBS16  SBS23  SBS28  ...  SBS39   SBS40  SBS43  SBS49  SBS53  SBS54  SBS57  SBS84  SBS86  SBS92  SBS94
+0  6700.0  92.0    2.0   2.0   2.0     1.0     1.0    1.0    7.0    1.0    1.0  ...    7.0  2043.0    1.0    1.0    1.0    5.0    1.0    4.0    1.0    5.0    2.0
+
+[1 rows x 26 columns]
 L2 Error %: 0.0
 Cosine Similarity: 1.0
 ############################## Composition After Initial Remove ###############################
@@ -39085,8 +39429,10 @@ Cosine Similarity: 1.0
 
                     ################ Sample 978 #################
 ############################# Initial Composition ####################################
-   SBS2    SBS3    SBS5  SBS7d  SBS8  SBS9  SBS10a  SBS13  SBS15  SBS16  SBS17b  SBS24  SBS30  SBS39   SBS40  SBS41  SBS42  SBS43  SBS44  SBS53  SBS54  SBS58  SBS87  SBS88  SBS89
-0   2.0  3888.0  1323.0    1.0   1.0   2.0     1.0    1.0    1.0    3.0     1.0    3.0    3.0    7.0  3212.0    1.0    3.0    1.0    1.0    1.0    2.0    4.0    1.0    2.0    1.0
+   SBS2    SBS3    SBS5  SBS7d  SBS8  SBS9  SBS10a  SBS13  SBS15  SBS16  SBS17b  ...   SBS40  SBS41  SBS42  SBS43  SBS44  SBS53  SBS54  SBS58  SBS87  SBS88  SBS89
+0   2.0  3888.0  1323.0    1.0   1.0   2.0     1.0    1.0    1.0    3.0     1.0  ...  3212.0    1.0    3.0    1.0    1.0    1.0    2.0    4.0    1.0    2.0    1.0
+
+[1 rows x 25 columns]
 L2 Error %: 0.0
 Cosine Similarity: 1.0
 ############################## Composition After Initial Remove ###############################
@@ -39125,8 +39471,10 @@ Cosine Similarity: 1.0
 
                     ################ Sample 979 #################
 ############################# Initial Composition ####################################
-     SBS3    SBS5  SBS7a  SBS8  SBS9  SBS10b  SBS12  SBS15  SBS16  SBS19  SBS21  SBS23  SBS24  SBS30  SBS32  SBS33  SBS34  SBS39    SBS40  SBS51  SBS54  SBS84  SBS89  SBS93  SBS94
-0  4027.0  1304.0    2.0   2.0   2.0     1.0    5.0    1.0    7.0    2.0    1.0    1.0    3.0    5.0    1.0    1.0    1.0   10.0  10887.0    2.0    2.0    1.0   11.0    3.0    4.0
+     SBS3    SBS5  SBS7a  SBS8  SBS9  SBS10b  SBS12  SBS15  SBS16  SBS19  SBS21  ...  SBS32  SBS33  SBS34  SBS39    SBS40  SBS51  SBS54  SBS84  SBS89  SBS93  SBS94
+0  4027.0  1304.0    2.0   2.0   2.0     1.0    5.0    1.0    7.0    2.0    1.0  ...    1.0    1.0    1.0   10.0  10887.0    2.0    2.0    1.0   11.0    3.0    4.0
+
+[1 rows x 25 columns]
 L2 Error %: 0.0
 Cosine Similarity: 1.0
 ############################## Composition After Initial Remove ###############################
@@ -39605,8 +39953,10 @@ Cosine Similarity: 1.0
 
                     ################ Sample 991 #################
 ############################# Initial Composition ####################################
-   SBS2    SBS3    SBS5  SBS7a  SBS7c  SBS7d  SBS8  SBS12  SBS13  SBS14  SBS16  SBS17a  SBS18  SBS19  SBS21  SBS28  SBS31  SBS32  SBS39   SBS40  SBS54  SBS59  SBS86  SBS87  SBS89  SBS92
-0   1.0  3685.0  1192.0    1.0    1.0    1.0   5.0    1.0    1.0    1.0    4.0     1.0    1.0    3.0    2.0    2.0    1.0    2.0    1.0  4279.0    3.0    1.0    1.0    1.0    1.0    1.0
+   SBS2    SBS3    SBS5  SBS7a  SBS7c  SBS7d  SBS8  SBS12  SBS13  SBS14  SBS16  ...  SBS28  SBS31  SBS32  SBS39   SBS40  SBS54  SBS59  SBS86  SBS87  SBS89  SBS92
+0   1.0  3685.0  1192.0    1.0    1.0    1.0   5.0    1.0    1.0    1.0    4.0  ...    2.0    1.0    2.0    1.0  4279.0    3.0    1.0    1.0    1.0    1.0    1.0
+
+[1 rows x 26 columns]
 L2 Error %: 0.0
 Cosine Similarity: 1.0
 ############################## Composition After Initial Remove ###############################
@@ -39805,8 +40155,10 @@ Cosine Similarity: 1.0
 
                     ################ Sample 996 #################
 ############################# Initial Composition ####################################
-     SBS3  SBS4   SBS5  SBS7a  SBS7d  SBS10b  SBS12  SBS15  SBS16  SBS17a  SBS20  SBS24  SBS27  SBS30  SBS34  SBS35  SBS37  SBS39   SBS40  SBS42  SBS54  SBS55  SBS84  SBS89  SBS91
-0  4987.0   1.0  551.0    1.0    1.0     1.0    3.0    1.0    5.0     1.0    1.0    1.0    1.0    5.0    1.0    1.0    2.0    2.0  6399.0    1.0    2.0    1.0    2.0    1.0    1.0
+     SBS3  SBS4   SBS5  SBS7a  SBS7d  SBS10b  SBS12  SBS15  SBS16  SBS17a  SBS20  ...  SBS34  SBS35  SBS37  SBS39   SBS40  SBS42  SBS54  SBS55  SBS84  SBS89  SBS91
+0  4987.0   1.0  551.0    1.0    1.0     1.0    3.0    1.0    5.0     1.0    1.0  ...    1.0    1.0    2.0    2.0  6399.0    1.0    2.0    1.0    2.0    1.0    1.0
+
+[1 rows x 25 columns]
 L2 Error %: 0.0
 Cosine Similarity: 1.0
 ############################## Composition After Initial Remove ###############################
