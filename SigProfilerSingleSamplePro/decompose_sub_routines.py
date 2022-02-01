@@ -457,6 +457,7 @@ def make_final_solution(processAvg, allgenomes, allsigids, layer_directory, m, i
         
         #print("\n")
         for r in range(allgenomes.shape[1]):
+            print("Analyzing Sample => " , str(r+1))
             if verbose==True:
                 print("\n\n\n\n\n                                        ################ Sample "+str(r+1)+ " #################")
                      
