@@ -9,6 +9,7 @@ Created on Tue Jan 18 12:21:06 2021
 from SigProfilerSingleSamplePro import decompose_sub_routines as sub
 import numpy as np
 import pandas as pd
+import pdb
 #import SigProfilerExtractor as cosmic
 import os,sys
 
@@ -62,18 +63,20 @@ def Assign( samples,  output, signatures=None, signature_database=None, nnls_add
     index = genomes.index
     colnames = genomes.columns
     #listOfSignatures = processAvg.columns
-    #pdb.set_trace()
     #Get COSMIC SIGNATURES
+    
     if signatures == None:
         processAvg = sub.getProcessAvg(genomes, genome_build, "3.2")
+        processAvg = processAvg.set_index('Type').rename_axis('MutationType')
     else:
         try:
-            processAvg = pd.read_csv(signatures,sep='\t',header=True, index_col=0)
+            processAvg = pd.read_csv(signatures,sep='\t', index_col=0)
         except:
             sys.exit("Something is wrong with input signatures, Pass a text file of signatures in the format of COSMIC sig database")
-    processAvg = processAvg.set_index('Type').rename_axis('MutationType')
-    ##
     #pdb.set_trace()
+
+    ##
+
     #creating list of mutational type to sync with the vcf type input
     if mutation_type == "78":
         mutation_context = "DBS78"
