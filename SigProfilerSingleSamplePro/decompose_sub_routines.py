@@ -457,6 +457,7 @@ def make_final_solution(processAvg, allgenomes, allsigids, layer_directory, m, i
         
         #print("\n")
         for r in range(allgenomes.shape[1]):
+            print("Analyzing Sample => " , str(r+1))
             if verbose==True:
                 print("\n\n\n\n\n                                        ################ Sample "+str(r+1)+ " #################")
                      
@@ -545,7 +546,9 @@ def make_final_solution(processAvg, allgenomes, allsigids, layer_directory, m, i
                     background_sig_idx = get_indeces(allsigids, ["SBS1", "SBS5"])
                 #pdb.set_trace()
                 # if the there is no other signatures to be added on top the existing signatures
+                #pdb.set_trace()
                 try:
+                    #pdb.set_trace()
                     _, exposureAvg[:, r],L2dist,similarity, kldiv, correlation, cosine_similarity_with_four_signatures = ss.add_remove_signatures(processAvg, 
                                                                                                       allgenomes[:,r], 
                                                                                                       metric="l2", 
