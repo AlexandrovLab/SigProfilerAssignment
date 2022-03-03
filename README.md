@@ -50,6 +50,7 @@ sspro_analyze(  samples,  output, signatures=None, signature_database=None,decom
         
 
 #### SSPro analysis Example
+
 <!-->
 ```python 
 from SigProfilerExtractor import decomposition as decomp
@@ -60,6 +61,7 @@ output="name or path/to/output"
 decomp.decompose(signatures, activities, samples, output, genome_build="GRCh37", verbose=False)
 ``` 
 -->
+
 ```python
 import SigProfilerSingleSamplePro as sspro
 from SigProfilerSingleSamplePro import decomposition as decomp
