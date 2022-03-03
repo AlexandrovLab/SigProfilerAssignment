@@ -10,3 +10,4 @@ scikit-learn
 psutil
 reportlab
 PyPDF2
+alive_progress

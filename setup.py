@@ -8,7 +8,7 @@ import subprocess
 if os.path.exists("dist"):
     shutil.rmtree("dist")
 
-VERSION = '0.1.0'
+VERSION = '0.0.1'
 
 
 with open('README.md') as f:
@@ -20,7 +20,7 @@ def write_version_py(filename='SigProfilerSingleSamplePro/version.py'):
 # THIS FILE IS GENERATED FROM SigProfilerSingleSamplePro SETUP.PY
 short_version = '%(version)s'
 version = '%(version)s'
-Update = 'Heirarchy option deleted, clustering deleted and signatures orders by the mutation burden'
+Update = 'updating Repository'
     
     """
     fh = open(filename, 'w')
@@ -66,12 +66,12 @@ requirements=[
 write_version_py()
 setup(name='SigProfilerSingleSamplePro',
       version=VERSION,
-      description='Decompose Denovo solutions to Signature Databases',
+      description='Mutational signatures attribution and decomposition tool',
       long_description=long_description,
       long_description_content_type='text/markdown',  # This is important!	
       url="https://github.com/AlexandrovLab/SigProfilerSingleSamplePro.git",
       author='Raviteja Vangara',
-      author_email='rvangara@ucsd.edu',
+      author_email='rvangara@health.ucsd.edu',
       license='UCSD',
       packages=['SigProfilerSingleSamplePro'],
       install_requires=requirements,
