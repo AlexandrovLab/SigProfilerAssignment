@@ -59,8 +59,8 @@ activities="path/to/De_Novo_Solution_Activities.txt"
 samples="path/to/Samples.txt"
 output="name or path/to/output"
 decomp.decompose(signatures, activities, samples, output, genome_build="GRCh37", verbose=False)
-``` 
--->
+``` -->
+
 
 ```python
 import SigProfilerSingleSamplePro as sspro
@@ -77,4 +77,4 @@ decomp.sspro_analyze( samples, output, signatures=signatures,genome_build="GRCh3
 This software and its documentation are copyright 2022 as a part of the SigProfiler project. The SigProfilerSingleSamplePro framework is free software and is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
 
 ## <a name="contact"></a> Contact Information
-Please address any queries or bug reports to S M Ashiqul Islam (Mishu) at rvangara@health.ucsd.edu
+Please address any queries or bug reports to Raviteja Vangara at rvangara@health.ucsd.edu
