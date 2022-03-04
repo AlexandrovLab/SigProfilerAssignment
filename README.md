@@ -31,7 +31,7 @@ sspro_analyze(  samples,  output, signatures=None, signature_database=None,decom
               nnls_remove_penalty=0.01, initial_remove_penalty=0.05, de_novo_fit_penalty=0.02, 
               genome_build="GRCh37",  make_decomposition_plots=True, collapse_to_SBS96=True,connected_sigs=True, verbose=False): 
 ``` 
-<!--> decompose(signatures, activities, samples,  output, signature_database=None, nnls_add_penalty=0.05, nnls_remove_penalty=0.01, initial_remove_penalty=0.05, de_novo_fit_penalty=0.02, genome_build="GRCh37", refit_denovo_signatures=True, make_decomposition_plots=True, connected_sigs=True, verbose=False) <-->
+
 | Parameter | Variable Type | Parameter Description |
 | --------------------- | -------- |-------- |
 | **signatures** | String | Path to a  tab delimited file that contains the signaure table where the rows are mutation types and colunms are signature IDs. |
