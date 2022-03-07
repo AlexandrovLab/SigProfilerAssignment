@@ -1,6 +1,6 @@
 # SigProfilerSingleSamplePro (SSPro)
 
-SigProfilerSingleSamplePro is a new mutational attribution and decomposition tool the performs the following functions:
+SigProfilerSingleSamplePro is a new mutational attribution and decomposition tool that performs the following functions:
 -   Attributing a known set of mutational signatures to an individual sample.
 -   Decomposing de novo signatures to COSMIC signature database.
 -   Attributing COSMIC database or a custom signature database to given samples.
