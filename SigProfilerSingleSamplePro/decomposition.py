@@ -12,7 +12,7 @@ from SigProfilerSingleSamplePro import decompose_sub_routines as sub
 import numpy as np
 import pandas as pd
 #import SigProfilerExtractor as cosmic
-import os,sys,pdb
+import os,sys
 
 def sspro_analyze(  samples,  output, signatures=None, signature_database=None,decompose_fit= True,denovo_refit=True,cosmic_fit=True, nnls_add_penalty=0.05, 
               nnls_remove_penalty=0.01, initial_remove_penalty=0.05, de_novo_fit_penalty=0.02, 
@@ -70,9 +70,12 @@ def sspro_analyze(  samples,  output, signatures=None, signature_database=None,d
     if (denovo_refit == True or decompose_fit ==True) and signatures == None:
          raise Exception("If denovo_refit or decompose_fit is True, signatures cannot be empty")
 
+    genomes = pd.read_csv(samples, sep = "\t", index_col = 0)
     if signatures == None:
         processAvg = sub.getProcessAvg(genomes, genome_build, "3.2")
-        processAvg = processAvg.set_index('Type').rename_axis('MutationType')
+        processAvg = processAvg.rename_axis('MutationType')
+        #processAvg = processAvg.set_index('Type').rename_axis('MutationType')
+        
     else:
         try:
             processAvg = pd.read_csv(signatures,sep='\t', index_col=0)
@@ -87,7 +90,7 @@ def sspro_analyze(  samples,  output, signatures=None, signature_database=None,d
     #processAvg = pd.read_csv(signatures, sep = "\t", index_col=0) 
     #originalProcessAvg=processAvg
     #exposureAvg = pd.read_csv(activities, sep = "\t", index_col = 0)
-    genomes = pd.read_csv(samples, sep = "\t", index_col = 0)
+    
     mutation_type = str(genomes.shape[0])
     m=mutation_type
     index = genomes.index
