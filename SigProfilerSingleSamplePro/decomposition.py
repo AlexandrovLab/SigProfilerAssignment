@@ -159,12 +159,12 @@ def Assign( samples,  output, signatures=None, signature_database=None, nnls_add
     exposureAvg_dummy = pd.DataFrame(np.random.rand(processAvg.shape[1],genomes.shape[1]),index=allsigids,columns=colnames.to_list()).transpose().rename_axis('Samples')
   
     result = sub.make_final_solution(processAvg, genomes, allsigids, layer_directory1, mutation_type, index, colnames, 
-                            cosmic_sigs=False, attribution = attribution, denovo_exposureAvg  = exposureAvg_dummy ,  
+                            cosmic_sigs=True, attribution = attribution, denovo_exposureAvg  = exposureAvg_dummy ,  
                             background_sigs=background_sigs, verbose=verbose, genome_build=genome_build, 
                             add_penalty=nnls_add_penalty, remove_penalty=nnls_remove_penalty, 
                             initial_remove_penalty=initial_remove_penalty,connected_sigs=connected_sigs,
                             collapse_to_SBS96=collapse_to_SBS96,
-                            refit_denovo_signatures=True)
+                            refit_denovo_signatures=False)
    
     return result
 
