@@ -27,7 +27,7 @@ $ pip install .
 Decomposes the De Novo Signatures into COSMIC Signatures and assigns COSMIC signatures into samples
 
 ```python
-sspro_analyze(  samples,  output, signatures=None, signature_database=None,decompose_fit= True,denovo_refit=True,cosmic_fit=True, nnls_add_penalty=0.05, 
+spa_analyze(  samples,  output, signatures=None, signature_database=None,decompose_fit= True,denovo_refit=True,cosmic_fit=True, nnls_add_penalty=0.05, 
               nnls_remove_penalty=0.01, initial_remove_penalty=0.05, de_novo_fit_penalty=0.02, 
               genome_build="GRCh37",  make_decomposition_plots=True, collapse_to_SBS96=True,connected_sigs=True, verbose=False): 
 ``` 
@@ -53,15 +53,15 @@ sspro_analyze(  samples,  output, signatures=None, signature_database=None,decom
 
 
 ```python
-import SigProfilerSingleSamplePro as spa
-from SigProfilerSingleSamplePro import decomposition as analyze
+import SigProfilerAssignment as spa
+from SigProfilerAssignment import decomposition as decomp
 dir_inp = sspro.__path__[0]+'/data/Examples/'
 signatures = dir_inp+"Results_scenario_8/SBS96/All_Solutions/SBS96_3_Signatures/Signatures/SBS96_S3_Signatures.txt"
 activities=dir_inp+"Results_scenario_8/SBS96/All_Solutions/SBS96_3_Signatures/Activities/SBS96_S3_NMF_Activities.txt"
 samples=dir_inp+"/Input_scenario_8/Samples.txt"
 output="output_example/"
 
-analyze.spa( samples, output, signatures=signatures,genome_build="GRCh37", verbose=False,decompose_fit= True,denovo_refit=True,cosmic_fit=True)
+decomp.spa_analyze( samples, output, signatures=signatures,genome_build="GRCh37", verbose=False,decompose_fit= True,denovo_refit=True,cosmic_fit=True)
 ```
 ## <a name="copyright"></a> Copyright
 This software and its documentation are copyright 2022 as a part of the SigProfiler project. The SigProfilerAssignment framework is free software and is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
