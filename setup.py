@@ -14,10 +14,10 @@ VERSION = '0.0.1'
 with open('README.md') as f:
 	long_description = f.read()
 
-def write_version_py(filename='SigProfilerSingleSamplePro/version.py'):
+def write_version_py(filename='SigProfilerAssignment/version.py'):
     # Copied from numpy setup.py
     cnt = """
-# THIS FILE IS GENERATED FROM SigProfilerSingleSamplePro SETUP.PY
+# THIS FILE IS GENERATED FROM SigProfilerAssignment SETUP.PY
 short_version = '%(version)s'
 version = '%(version)s'
 Update = 'updating Repository'
@@ -38,7 +38,8 @@ requirements=[
           'scikit-learn>=0.24.2',
           'psutil>=5.6.1',
           'reportlab>=3.5.42',
-          'PyPDF2>=1.26.0'
+          'PyPDF2>=1.26.0',
+          'alive_progress'
            ]
 
 # operating_system = sys.platform   
@@ -64,16 +65,16 @@ requirements=[
     
     
 write_version_py()
-setup(name='SigProfilerSingleSamplePro',
+setup(name='SigProfilerAssignment',
       version=VERSION,
       description='Mutational signatures attribution and decomposition tool',
       long_description=long_description,
       long_description_content_type='text/markdown',  # This is important!	
-      url="https://github.com/AlexandrovLab/SigProfilerSingleSamplePro.git",
+      url="https://github.com/AlexandrovLab/SigProfilerAssignment.git",
       author='Raviteja Vangara',
       author_email='rvangara@health.ucsd.edu',
       license='UCSD',
-      packages=['SigProfilerSingleSamplePro'],
+      packages=['SigProfilerAssignment'],
       install_requires=requirements,
       include_package_data=True,      
       zip_safe=False)
