@@ -123,6 +123,8 @@ def spa_analyze(  samples,  output, signatures=None, signature_database=None,dec
     
     if denovo_refit == True:
         refit_denovo_signatures= True
+        init_rem_denovo = 0.0
+        
         # make the texts for signature plotting
         layer_directory1 = output+"/De_Novo_Solution"
         try:
@@ -156,7 +158,7 @@ def spa_analyze(  samples,  output, signatures=None, signature_database=None,dec
                                 cosmic_sigs=True, attribution = attribution, denovo_exposureAvg  = exposureAvg_dummy ,  
                                 background_sigs=background_sigs, verbose=verbose, genome_build=genome_build, 
                                 add_penalty=nnls_add_penalty, remove_penalty=nnls_remove_penalty, 
-                                initial_remove_penalty=initial_remove_penalty,connected_sigs=connected_sigs,
+                                initial_remove_penalty=init_rem_denovo,connected_sigs=connected_sigs,
                                 collapse_to_SBS96=collapse_to_SBS96,refit_denovo_signatures=False)
         #################       
     if decompose_fit ==True:
