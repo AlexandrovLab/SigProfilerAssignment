@@ -1,7 +1,7 @@
 # SigProfilerAssignment
 
 SigProfilerAssignment is a new mutational attribution and decomposition tool that performs the following functions:
--   Attributing a known set of mutational signatures to an individual sample.
+-   Attributing a known set of mutational signatures to an individual sample or multiple samples.
 -   Decomposing de novo signatures to COSMIC signature database.
 -   Attributing COSMIC database or a custom signature database to given samples.
 
@@ -19,7 +19,7 @@ Installing this package : git clone this repo or download the zip file.
 Unzip the contents of SigProfilerExtractor-master.zip or the zip file of a corresponding branch.
 
 ```bash
-$ cd SigProfilerSingleSamplePro-master
+$ cd SigProfilerAssignment-master
 $ pip install .
 ```
 
@@ -53,18 +53,18 @@ sspro_analyze(  samples,  output, signatures=None, signature_database=None,decom
 
 
 ```python
-import SigProfilerSingleSamplePro as sspro
-from SigProfilerSingleSamplePro import decomposition as decomp
+import SigProfilerSingleSamplePro as spa
+from SigProfilerSingleSamplePro import decomposition as analyze
 dir_inp = sspro.__path__[0]+'/data/Examples/'
 signatures = dir_inp+"Results_scenario_8/SBS96/All_Solutions/SBS96_3_Signatures/Signatures/SBS96_S3_Signatures.txt"
 activities=dir_inp+"Results_scenario_8/SBS96/All_Solutions/SBS96_3_Signatures/Activities/SBS96_S3_NMF_Activities.txt"
 samples=dir_inp+"/Input_scenario_8/Samples.txt"
 output="output_example/"
 
-decomp.sspro_analyze( samples, output, signatures=signatures,genome_build="GRCh37", verbose=False,decompose_fit= True,denovo_refit=True,cosmic_fit=True)
+analyze.spa( samples, output, signatures=signatures,genome_build="GRCh37", verbose=False,decompose_fit= True,denovo_refit=True,cosmic_fit=True)
 ```
 ## <a name="copyright"></a> Copyright
-This software and its documentation are copyright 2022 as a part of the SigProfiler project. The SigProfilerSingleSamplePro framework is free software and is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
+This software and its documentation are copyright 2022 as a part of the SigProfiler project. The SigProfilerAssignment framework is free software and is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
 
 ## <a name="contact"></a> Contact Information
 Please address any queries or bug reports to Raviteja Vangara at rvangara@health.ucsd.edu
