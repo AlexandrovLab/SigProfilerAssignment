@@ -55,7 +55,7 @@ spa_analyze(  samples,  output, signatures=None, signature_database=None,decompo
 ```python
 import SigProfilerAssignment as spa
 from SigProfilerAssignment import decomposition as decomp
-dir_inp = sspro.__path__[0]+'/data/Examples/'
+dir_inp = spa.__path__[0]+'/data/Examples/'
 signatures = dir_inp+"Results_scenario_8/SBS96/All_Solutions/SBS96_3_Signatures/Signatures/SBS96_S3_Signatures.txt"
 activities=dir_inp+"Results_scenario_8/SBS96/All_Solutions/SBS96_3_Signatures/Activities/SBS96_S3_NMF_Activities.txt"
 samples=dir_inp+"/Input_scenario_8/Samples.txt"
