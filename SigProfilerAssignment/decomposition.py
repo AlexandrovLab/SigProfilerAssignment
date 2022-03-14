@@ -14,7 +14,8 @@ import pandas as pd
 #import SigProfilerExtractor as cosmic
 import os,sys
 
-def spa_analyze(  samples,  output, signatures=None, signature_database=None,decompose_fit= True,denovo_refit=True,cosmic_fit=True, nnls_add_penalty=0.05, 
+
+def spa_analyze(  samples,  output, signatures=None, signature_database=None,decompose_fit_option= True,denovo_refit_option=True,cosmic_fit_option=True, nnls_add_penalty=0.05, 
               nnls_remove_penalty=0.01, initial_remove_penalty=0.05, de_novo_fit_penalty=0.02, 
               genome_build="GRCh37",  make_decomposition_plots=True, collapse_to_SBS96=True,connected_sigs=True, verbose=False):
 
@@ -67,7 +68,7 @@ def spa_analyze(  samples,  output, signatures=None, signature_database=None,dec
     #     print(args.mutation_type)
     #     print(args.context)
 
-    if (denovo_refit == True or decompose_fit ==True) and signatures == None:
+    if (denovo_refit_option == True or decompose_fit_option ==True) and signatures == None:
          raise Exception("If denovo_refit or decompose_fit is True, signatures cannot be empty")
 
     genomes = pd.read_csv(samples, sep = "\t", index_col = 0)
@@ -121,7 +122,7 @@ def spa_analyze(  samples,  output, signatures=None, signature_database=None,dec
     except: 
         print ("The {} folder could not be created".format("output"))
     
-    if denovo_refit == True:
+    if denovo_refit_option == True:
         refit_denovo_signatures= True
         init_rem_denovo = 0.0
         
@@ -161,7 +162,7 @@ def spa_analyze(  samples,  output, signatures=None, signature_database=None,dec
                                 initial_remove_penalty=init_rem_denovo,connected_sigs=connected_sigs,
                                 collapse_to_SBS96=collapse_to_SBS96,refit_denovo_signatures=False)
         #################       
-    if decompose_fit ==True:
+    if decompose_fit_option ==True:
         layer_directory2 = output+"/Decompose_Solution"
         try:
             if not os.path.exists(layer_directory2):
@@ -207,7 +208,7 @@ def spa_analyze(  samples,  output, signatures=None, signature_database=None,dec
                                 collapse_to_SBS96=collapse_to_SBS96,
                                 refit_denovo_signatures=False)
         
-    if cosmic_fit ==True:
+    if cosmic_fit_option ==True:
         layer_directory3 = output+"/Assignment_Solution"
         try:
             if not os.path.exists(layer_directory3):
