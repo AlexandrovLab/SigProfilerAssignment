@@ -1,6 +1,6 @@
 [![Docs](https://img.shields.io/badge/docs-latest-blue.svg)](https://osf.io/t6j7u/wiki/home/) 
 [![License](https://img.shields.io/badge/License-BSD\%202--Clause-orange.svg)](https://opensource.org/licenses/BSD-2-Clause)
-[![Build Status](https://api.travis-ci.com/AlexandrovLab/SigProfilerAssignment.svg?branch=master)](https://app.travis-ci.com/AlexandrovLab/SigProfilerAssignment)
+[![Build Status](https://api.travis-ci.com/AlexandrovLab/SigProfilerAssignment.svg)](https://app.travis-ci.com/AlexandrovLab/SigProfilerAssignment)
 
 # SigProfilerAssignment
 
