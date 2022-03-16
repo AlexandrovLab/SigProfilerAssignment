@@ -13,10 +13,10 @@ The tool identifies the activity of each signature in the sample and assigns the
 
 
 ## Installs
-for installing dependencies in new conda environment
+for installing from PyPi in new conda environment
 
 ```
-$ pip install -r requirements.txt
+$ pip install SigProfilerAssignment
 ```
 
 Installing this package : git clone this repo or download the zip file.
