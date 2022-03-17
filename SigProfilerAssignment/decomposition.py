@@ -17,7 +17,7 @@ import os,sys
 
 def spa_analyze(  samples,  output, signatures=None, signature_database=None,decompose_fit_option= True,denovo_refit_option=True,cosmic_fit_option=True, nnls_add_penalty=0.05, 
               nnls_remove_penalty=0.01, initial_remove_penalty=0.05, de_novo_fit_penalty=0.02, 
-              genome_build="GRCh37",  make_decomposition_plots=True, collapse_to_SBS96=True,connected_sigs=True, verbose=False):
+              genome_build="GRCh37",  make_decomposition_plots=True, collapse_to_SBS96=True,connected_sigs=True, verbose=False,devopts=None):
 
     
     """
@@ -55,18 +55,15 @@ def spa_analyze(  samples,  output, signatures=None, signature_database=None,dec
         decomp.decompose(signatures, activities, samples, output, genome_build="GRCh37", verbose=False)
 
     """
-    # if __name__ =='__main__':
-    #     parser = argparse.ArgumentParser()
-    #     parser.add_argument("-d", "--dataset", dest="dataset_name", default='SIM',
-    #                             help="set the dataset name (SIM by default)")
-    #     parser.add_argument("-t", "--mutation_type", dest="mutation_type", default='',
-    #                             help="set mutation type (SBS, DBS, ID, SV, CNV)")
-    #     parser.add_argument("-c", "--context", dest="context", default=96, type=int,
-    #                             help="set SBS context (96, 192, 288, 1536)")
-    #     args = parser.parse_args()
-    #     print(args.dataset_name)
-    #     print(args.mutation_type)
-    #     print(args.context)
+    if devopts == None:
+        layer_directory1 = output+"/De_Novo_Solution"
+        layer_directory2 = output+"/Decompose_Solution"
+        layer_directory3 = output+"/Assignment_Solution"
+    else:
+        layer_directory1 = devopts['denovo_outpath']
+        layer_directory2 = devopts['decompose_outpath']
+        layer_directory3 = devopts['Assignment_outpath']
+
 
     if (denovo_refit_option == True or decompose_fit_option ==True) and signatures == None:
          raise Exception("If denovo_refit or decompose_fit is True, signatures cannot be empty")
@@ -127,7 +124,7 @@ def spa_analyze(  samples,  output, signatures=None, signature_database=None,dec
         init_rem_denovo = 0.0
         
         # make the texts for signature plotting
-        layer_directory1 = output+"/De_Novo_Solution"
+        #layer_directory1 = output+"/De_Novo_Solution"
         try:
             if not os.path.exists(layer_directory1):
                 os.makedirs(layer_directory1)
@@ -163,7 +160,7 @@ def spa_analyze(  samples,  output, signatures=None, signature_database=None,dec
                                 collapse_to_SBS96=collapse_to_SBS96,refit_denovo_signatures=False)
         #################       
     if decompose_fit_option ==True:
-        layer_directory2 = output+"/Decompose_Solution"
+        #layer_directory2 = output+"/Decompose_Solution"
         try:
             if not os.path.exists(layer_directory2):
                 os.makedirs(layer_directory2)
@@ -209,7 +206,7 @@ def spa_analyze(  samples,  output, signatures=None, signature_database=None,dec
                                 refit_denovo_signatures=False)
         
     if cosmic_fit_option ==True:
-        layer_directory3 = output+"/Assignment_Solution"
+        #layer_directory3 = output+"/Assignment_Solution"
         try:
             if not os.path.exists(layer_directory3):
                 os.makedirs(layer_directory3)
