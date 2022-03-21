@@ -12,7 +12,6 @@ from SigProfilerAssignment import decompose_sub_routines as sub
 import numpy as np
 import pandas as pd
 #import SigProfilerExtractor as cosmic
-import pdb
 import os,sys
 
 
@@ -170,7 +169,6 @@ def spa_analyze(  samples,  output, signatures=None, signature_database=None,dec
         else:
             background_sigs = []
         exposureAvg_dummy = pd.DataFrame(np.random.rand(processAvg.shape[1],genomes.shape[1]),index=allsigids,columns=colnames.to_list()).transpose().rename_axis('Samples')
-        pdb.set_trace()
         exposureAvg = sub.make_final_solution(processAvg, genomes, allsigids, layer_directory1, mutation_type, index, colnames, 
                                 cosmic_sigs=True, attribution = attribution, denovo_exposureAvg  = exposureAvg_dummy ,  
                                 background_sigs=background_sigs, verbose=verbose, genome_build=genome_build, 
