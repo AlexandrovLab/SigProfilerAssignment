@@ -16,9 +16,9 @@ def main():
     output="output_example/"
     sigs= "COSMIC_v3_SBS_GRCh37_noSBS84-85.txt"
     #decomp.spa_analyze( samples, output, signatures=signatures,signature_database=sigs,genome_build="GRCh37", verbose=False,decompose_fit= True,denovo_refit=True,cosmic_fit=True)
-    Analyze.decompose_fit( samples, output, signatures=signatures,signature_database=sigs,genome_build="GRCh37", verbose=False)
+    #Analyze.decompose_fit( samples, output, signatures=signatures,signature_database=sigs,genome_build="GRCh37", verbose=False)
     Analyze.denovo_fit( samples, output, signatures=signatures,signature_database=sigs,genome_build="GRCh37", verbose=False)
-    Analyze.cosmic_fit( samples, output, signatures=None,signature_database=sigs,genome_build="GRCh37", verbose=False)
+    #Analyze.cosmic_fit( samples, output, signatures=None,signature_database=sigs,genome_build="GRCh37", verbose=False)
 
 
 
