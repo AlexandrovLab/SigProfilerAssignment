@@ -20,7 +20,7 @@ def write_version_py(filename='SigProfilerAssignment/version.py'):
 # THIS FILE IS GENERATED FROM SigProfilerAssignment SETUP.PY
 short_version = '%(version)s'
 version = '%(version)s'
-Update = 'Enabiling linking oprtions with SigProfilerExtractor'
+Update = 'Enabling linking options with SigProfilerExtractor'
     
     """
     fh = open(filename, 'w')
