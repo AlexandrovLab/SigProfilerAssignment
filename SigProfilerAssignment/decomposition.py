@@ -12,6 +12,7 @@ from SigProfilerAssignment import decompose_sub_routines as sub
 import numpy as np
 import pandas as pd
 #import SigProfilerExtractor as cosmic
+import pdb
 import os,sys
 
 
@@ -65,22 +66,29 @@ def spa_analyze(  samples,  output, signatures=None, signature_database=None,dec
         layer_directory3 = devopts['Assignment_outpath']
 
 
-    if (denovo_refit_option == True or decompose_fit_option ==True) and signatures == None:
+    if (denovo_refit_option == True or decompose_fit_option ==True) and signatures is None:
          raise Exception("If denovo_refit or decompose_fit is True, signatures cannot be empty")
-
-    genomes = pd.read_csv(samples, sep = "\t", index_col = 0)
-    if signatures == None:
+    
+    try:
+        genomes = pd.read_csv(samples, sep = "\t", index_col = 0)
+    except:
+        genomes = samples
+        genomes = pd.DataFrame(genomes)
+        
+    if signatures is None:
         processAvg = sub.getProcessAvg(genomes, genome_build, "3.2")
         processAvg = processAvg.rename_axis('MutationType')
-        #processAvg = processAvg.set_index('Type').rename_axis('MutationType')
-        
+        #processAvg = processAvg.set_index('Type').rename_axis('MutationType')   
     else:
         try:
             processAvg = pd.read_csv(signatures,sep='\t', index_col=0)
         except:
-            sys.exit("Something is wrong with the format of input signatures, Pass a text file of signatures in the format of COSMIC sig database")
+            try:
+                processAvg=signatures
+            except:
+                sys.exit("Error in formatting of input signatures, Pass a text file of signatures in the format of COSMIC sig database")
     
-    originalProcessAvg=processAvg
+    
 
 
 
@@ -91,9 +99,18 @@ def spa_analyze(  samples,  output, signatures=None, signature_database=None,dec
     
     mutation_type = str(genomes.shape[0])
     m=mutation_type
-    index = genomes.index
-    colnames = genomes.columns
-    listOfSignatures = processAvg.columns
+    
+    if devopts == None:
+        listOfSignatures = processAvg.columns
+        index = genomes.index
+        colnames = genomes.columns
+    else:
+        listOfSignatures=devopts['listOfSignatures']
+        index=devopts['index']
+        colnames=devopts['colnames']
+        genomes = genomes.set_index(index)
+        genomes.columns = colnames
+        #genomes = genomes.rename_axis("Mutation Types", axis="columns")
     exposureAvg_dummy = pd.DataFrame(np.random.rand(processAvg.shape[1],genomes.shape[1]),index=listOfSignatures,columns=colnames.to_list()).transpose().rename_axis('Samples')
     exposureAvg = exposureAvg_dummy
     #creating list of mutational type to sync with the vcf type input
@@ -106,8 +123,10 @@ def spa_analyze(  samples,  output, signatures=None, signature_database=None,dec
         print("Mutation Type is: CNV")
     else:
         mutation_context = "SBS"+mutation_type
-    
-    allsigids = processAvg.columns.to_list()
+    try:
+        allsigids = processAvg.columns.to_list()
+    except:
+        allsigids = list(listOfSignatures)
     processAvg = np.array(processAvg)    
     signature_names = sub.make_letter_ids(idlenth = processAvg.shape[1], mtype = mutation_context)
     exposureAvg.columns=signature_names   
@@ -151,7 +170,7 @@ def spa_analyze(  samples,  output, signatures=None, signature_database=None,dec
         else:
             background_sigs = []
         exposureAvg_dummy = pd.DataFrame(np.random.rand(processAvg.shape[1],genomes.shape[1]),index=allsigids,columns=colnames.to_list()).transpose().rename_axis('Samples')
-    
+        pdb.set_trace()
         exposureAvg = sub.make_final_solution(processAvg, genomes, allsigids, layer_directory1, mutation_type, index, colnames, 
                                 cosmic_sigs=True, attribution = attribution, denovo_exposureAvg  = exposureAvg_dummy ,  
                                 background_sigs=background_sigs, verbose=verbose, genome_build=genome_build, 
@@ -161,6 +180,10 @@ def spa_analyze(  samples,  output, signatures=None, signature_database=None,dec
         #################       
     if decompose_fit_option ==True:
         #layer_directory2 = output+"/Decompose_Solution"
+        if isinstance(processAvg, pd.DataFrame):
+            pass
+        else:
+            originalProcessAvg=pd.DataFrame(processAvg,index=index,columns=listOfSignatures)
         try:
             if not os.path.exists(layer_directory2):
                 os.makedirs(layer_directory2)
