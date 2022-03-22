@@ -1,14 +1,12 @@
 from setuptools import setup
 import shutil
 import os
-import sys
-import subprocess
 
 #remove the dist folder first if exists
 if os.path.exists("dist"):
     shutil.rmtree("dist")
 
-VERSION = '0.0.3'
+VERSION = '0.0.4'
 
 
 with open('README.md') as f:
