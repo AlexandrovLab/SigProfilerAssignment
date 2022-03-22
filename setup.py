@@ -28,7 +28,7 @@ requirements=[
           'scipy>=1.6.3',
           'numpy>=1.21.2',
           'pandas>=1.2.4', 
-          'SigProfilerExtractor>=1.1.4',
+          'SigProfilerExtractor>=1.1.6',
           'SigProfilerMatrixGenerator>=1.1.30', 
           'sigProfilerPlotting>=1.1.15', 
           'pillow',
