@@ -1,14 +1,12 @@
 from setuptools import setup
 import shutil
 import os
-import sys
-import subprocess
 
 #remove the dist folder first if exists
 if os.path.exists("dist"):
     shutil.rmtree("dist")
 
-VERSION = '0.0.2'
+VERSION = '0.0.4'
 
 
 with open('README.md') as f:
@@ -20,7 +18,7 @@ def write_version_py(filename='SigProfilerAssignment/version.py'):
 # THIS FILE IS GENERATED FROM SigProfilerAssignment SETUP.PY
 short_version = '%(version)s'
 version = '%(version)s'
-Update = 'updating Repository'
+Update = 'Enabling linking options with SigProfilerExtractor'
     
     """
     fh = open(filename, 'w')
@@ -30,7 +28,7 @@ requirements=[
           'scipy>=1.6.3',
           'numpy>=1.21.2',
           'pandas>=1.2.4', 
-          'SigProfilerExtractor>=1.1.4',
+          'SigProfilerExtractor>=1.1.6',
           'SigProfilerMatrixGenerator>=1.1.30', 
           'sigProfilerPlotting>=1.1.15', 
           'pillow',

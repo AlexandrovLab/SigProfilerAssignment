@@ -1,4 +1,4 @@
-include README.rst
+include README.md
 include SigProfilerAssignment/data/*
 include SigProfilerAssignment/data/vcftest/*
 include SigProfilerAssignment/data/Reference_Signatures/GRCh37/*
