@@ -10,6 +10,9 @@ import numpy as np
 import os
 #from matplot,pdblib.backends.backend_pdf import PdfPages
 import pandas as pd
+import matplotlib.pyplot as plt
+plt.switch_backend('agg')
+from matplotlib.backends.backend_pdf import PdfPages
 #from sklearn import metrics
 #import time
 #import multiprocessing
@@ -415,7 +418,7 @@ def make_final_solution(processAvg, allgenomes, allsigids, layer_directory, m, i
                         signature_total_mutations= " ", signature_stats = "none",  cosmic_sigs=False, attribution= 0, denovo_exposureAvg  = "none", add_penalty=0.05, \
                         remove_penalty=0.01, initial_remove_penalty=0.05, de_novo_fit_penalty=0.02, background_sigs=0, genome_build="GRCh37", sequence="genome", export_probabilities=True, \
                         refit_denovo_signatures=True, collapse_to_SBS96=True, connected_sigs=True, pcawg_rule=False, verbose=False):
-    
+
     # Get the type of solution from the last part of the layer_directory name
     solution_type = layer_directory.split("/")[-1]
     solution_prefix = solution_type.split("_")
@@ -588,7 +591,8 @@ def make_final_solution(processAvg, allgenomes, allsigids, layer_directory, m, i
             
     else:   
         # when refilt de_novo_signatures 
-        if refit_denovo_signatures==True:
+        refit_denovo_signatures_old = False
+        if refit_denovo_signatures_old==True:
             exposureAvg=denovo_exposureAvg
             for g in range(allgenomes.shape[1]):
                 print("Analyzing Sample => " , str(g+1))
@@ -617,7 +621,7 @@ def make_final_solution(processAvg, allgenomes, allsigids, layer_directory, m, i
         # when use the exposures from the initial NMF
         else:
             exposureAvg=denovo_exposureAvg
-    
+
     processAvg= pd.DataFrame(processAvg.astype(float))
     processes = processAvg.set_index(index)
     processes.columns = allsigids
@@ -658,7 +662,8 @@ def make_final_solution(processAvg, allgenomes, allsigids, layer_directory, m, i
     else:
         all_similarities.to_csv(layer_directory+"/Solution_Stats/"+solution_prefix+"_Samples_Stats.txt", sep="\t")
     
-    if cosmic_sigs==False:
+    #if cosmic_sigs==False:
+    if refit_denovo_signatures ==True:
         try:
             process_std_error= pd.DataFrame(process_std_error)
             processSTE = process_std_error.set_index(index)
@@ -667,7 +672,8 @@ def make_final_solution(processAvg, allgenomes, allsigids, layer_directory, m, i
             processSTE.to_csv(layer_directory+"/Signatures"+"/"+solution_prefix+"_"+"Signatures_SEM_Error.txt", "\t", float_format='%.2E', index_label=[processes.columns.name]) 
         except:
             pass
-    if cosmic_sigs==False:
+    #if cosmic_sigs==False:
+    if refit_denovo_signatures ==True:
         try: 
             signature_stats = signature_stats.set_index(allsigids)
             signature_stats = signature_stats.rename_axis("Signatures", axis="columns")
@@ -832,3 +838,47 @@ def probabilities(W, H, index, allsigids, allcolnames):
     
         
     return result
+
+def custom_signatures_plot(signatures, output):
+    with PdfPages(output+'/Custom_Signature_Plots.pdf') as pdf:
+        plt.figure(figsize=(10, 3))
+        plt.bar(list(range(1,1+len(signatures.iloc[:,0]))),signatures.iloc[:,0])
+        plt.title('Custom Signature {}'.format(0+1))
+        plt.xticks([])
+        plt.xlabel("Mutation Types")
+        plt.ylabel("Probabilities")
+        pdf.savefig()  # saves the current figure into a pdf page
+        plt.close()
+        for i in range(1,signatures.shape[1]):
+            # if LaTeX is not installed or error caught, change to `usetex=False`
+            plt.rc('text', usetex=False)
+            plt.figure(figsize=(10, 3))
+            plt.bar(list(range(1, 1+len(signatures.iloc[:,i]))),signatures.iloc[:,i])
+            plt.title('Custom Signature {}'.format(i+1))
+            plt.xticks([])
+            plt.xlabel("Mutation Types")
+            plt.ylabel("Probabilities")
+            pdf.attach_note("signature plots")  
+            pdf.savefig()
+            plt.close()
+
+def merge_pdf(input_folder, output_file):
+    pdf2merge = []
+    for filename in os.listdir(input_folder):
+        #print(filename)
+        if filename.endswith('.pdf'):
+            pdf2merge.append(filename)
+            
+    pdf2merge.sort()
+    pdfWriter = PyPDF2.PdfFileWriter()
+    for filename in pdf2merge:
+        pdfFileObj = open(input_folder+"/"+filename,'rb')
+        pdfReader = PyPDF2.PdfFileReader(pdfFileObj)
+        for pageNum in range(pdfReader.numPages):
+            pageObj = pdfReader.getPage(pageNum)
+            pdfWriter.addPage(pageObj)
+            
+    pdfOutput = open(output_file+'.pdf', 'wb')
+    pdfWriter.write(pdfOutput)
+    #Outputting the PDF
+    pdfOutput.close()

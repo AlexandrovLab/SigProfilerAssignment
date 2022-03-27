@@ -11,6 +11,7 @@ Created on Sun May 19 12:21:06 2019
 from SigProfilerAssignment import decompose_sub_routines as sub
 import numpy as np
 import pandas as pd
+
 #import SigProfilerExtractor as cosmic
 import os,sys
 
@@ -169,12 +170,27 @@ def spa_analyze(  samples,  output, signatures=None, signature_database=None,dec
         else:
             background_sigs = []
         exposureAvg_dummy = pd.DataFrame(np.random.rand(processAvg.shape[1],genomes.shape[1]),index=allsigids,columns=colnames.to_list()).transpose().rename_axis('Samples')
-        exposureAvg = sub.make_final_solution(processAvg, genomes, allsigids, layer_directory1, mutation_type, index, colnames, 
-                                cosmic_sigs=True, attribution = attribution, denovo_exposureAvg  = exposureAvg_dummy ,  
-                                background_sigs=background_sigs, verbose=verbose, genome_build=genome_build, 
-                                add_penalty=nnls_add_penalty, remove_penalty=nnls_remove_penalty, 
-                                initial_remove_penalty=init_rem_denovo,connected_sigs=connected_sigs,
-                                collapse_to_SBS96=collapse_to_SBS96,refit_denovo_signatures=False)
+
+        if devopts == None:
+            exposureAvg = sub.make_final_solution(processAvg, genomes, allsigids, layer_directory1, mutation_type, index, colnames, 
+                                    cosmic_sigs=True, attribution = attribution, denovo_exposureAvg  = exposureAvg_dummy , 
+                                    background_sigs=background_sigs, verbose=verbose, genome_build=genome_build, 
+                                    add_penalty=nnls_add_penalty, remove_penalty=nnls_remove_penalty,
+                                    initial_remove_penalty=init_rem_denovo,connected_sigs=connected_sigs,refit_denovo_signatures=False)
+
+        else:
+            signature_stabilities=devopts['signature_stabilities']
+            signature_total_mutations=devopts['signature_total_mutations']
+            signature_stats = devopts['signature_stats']
+            sequence=devopts['sequence']
+            processSTE=devopts['processSTE']
+            sequence =devopts['sequence']
+
+            exposureAvg = sub.make_final_solution(processAvg, genomes, allsigids, layer_directory1, mutation_type, index, colnames, 
+                                    cosmic_sigs=True, attribution = attribution, denovo_exposureAvg  = exposureAvg_dummy , sequence=sequence, 
+                                    background_sigs=background_sigs, verbose=verbose, genome_build=genome_build, signature_total_mutations = signature_total_mutations,
+                                    add_penalty=nnls_add_penalty, remove_penalty=nnls_remove_penalty, process_std_error = processSTE, signature_stabilities = signature_stabilities,
+                                    initial_remove_penalty=init_rem_denovo,connected_sigs=connected_sigs,refit_denovo_signatures=True)
         #################       
     if decompose_fit_option ==True:
         #layer_directory2 = output+"/Decompose_Solution"
