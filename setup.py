@@ -6,7 +6,7 @@ import os
 if os.path.exists("dist"):
     shutil.rmtree("dist")
 
-VERSION = '0.0.4'
+VERSION = '0.0.5'
 
 
 with open('README.md') as f:
@@ -18,7 +18,7 @@ def write_version_py(filename='SigProfilerAssignment/version.py'):
 # THIS FILE IS GENERATED FROM SigProfilerAssignment SETUP.PY
 short_version = '%(version)s'
 version = '%(version)s'
-Update = 'Enabling linking options with SigProfilerExtractor'
+Update = 'Enabling linking options with SigProfilerExtractor and can support different context types and devopts'
     
     """
     fh = open(filename, 'w')
