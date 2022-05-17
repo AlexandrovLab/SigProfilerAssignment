@@ -8,6 +8,7 @@ Created on Sun May 19 12:21:06 2019
 
 #from SigProfilerExtractor import subroutines as sub
 
+from cmath import cos
 from SigProfilerAssignment import decompose_sub_routines as sub
 import numpy as np
 import pandas as pd
@@ -18,7 +19,7 @@ import os,sys
 
 def spa_analyze(  samples,  output, signatures=None, signature_database=None,decompose_fit_option= True,denovo_refit_option=True,cosmic_fit_option=True, nnls_add_penalty=0.05, 
               nnls_remove_penalty=0.01, initial_remove_penalty=0.05, de_novo_fit_penalty=0.02, 
-              genome_build="GRCh37",  make_decomposition_plots=True, collapse_to_SBS96=True,connected_sigs=True, verbose=False,devopts=None):
+              genome_build="GRCh37", cosmic_version=3.2, make_decomposition_plots=True, collapse_to_SBS96=True,connected_sigs=True, verbose=False,devopts=None,new_signature_thresh_hold=0.8):
 
     
     """
@@ -76,7 +77,7 @@ def spa_analyze(  samples,  output, signatures=None, signature_database=None,dec
         genomes = pd.DataFrame(genomes)
         
     if signatures is None:
-        processAvg = sub.getProcessAvg(genomes, genome_build, "3.2")
+        processAvg = sub.getProcessAvg(genomes, genome_build=genome_build, cosmic_version=cosmic_version)[0]
         processAvg = processAvg.rename_axis('MutationType')
         #processAvg = processAvg.set_index('Type').rename_axis('MutationType')   
     else:
@@ -220,7 +221,7 @@ def spa_analyze(  samples,  output, signatures=None, signature_database=None,dec
             processAvg = np.array(processAvg)
                 
         print("\n Decomposing De Novo Signatures  .....")
-        final_signatures = sub.signature_decomposition(processAvg, mutation_type, layer_directory2, genome_build=genome_build,signature_database=signature_database, mutation_context=mutation_context, add_penalty=0.05, connected_sigs=connected_sigs,remove_penalty=0.01, make_decomposition_plots=make_decomposition_plots, originalProcessAvg=originalProcessAvg)    
+        final_signatures = sub.signature_decomposition(processAvg, mutation_type, layer_directory2, genome_build=genome_build,signature_database=signature_database, mutation_context=mutation_context, add_penalty=0.05, connected_sigs=connected_sigs,remove_penalty=0.01, make_decomposition_plots=make_decomposition_plots, originalProcessAvg=originalProcessAvg,new_signature_thresh_hold=new_signature_thresh_hold)    
         #final_signatures = sub.signature_decomposition(processAvg, m, layer_directory2, genome_build=genome_build)
         # extract the global signatures and new signatures from the final_signatures dictionary
         globalsigs = final_signatures["globalsigs"]
@@ -258,16 +259,17 @@ def spa_analyze(  samples,  output, signatures=None, signature_database=None,dec
         #     except:
         #         sys.exit("Something is wrong with the format of input signatures, Pass a text file of signatures in the format of COSMIC sig database")
         if signature_database==None:
-            processAvg = sub.getProcessAvg(genomes, genome_build, "3.2")
+            processAvg = sub.getProcessAvg(genomes, genome_build=genome_build, cosmic_version=cosmic_version)[0]
             #processAvg = processAvg.set_index('Type').rename_axis('MutationType')
         else:
             try:
                 processAvg = pd.read_csv(signature_database,sep='\t', index_col=0)
             except:
                 sys.exit("Something is wrong with the format of signature database, Pass a text file of signatures in the format of COSMIC sig database")
+        
+        import pdb
 
-
-
+        pdb.set_trace()
 
         #processAvg= originalProcessAvg
         #index = genomes.index
@@ -287,6 +289,12 @@ def spa_analyze(  samples,  output, signatures=None, signature_database=None,dec
             background_sigs = []
         exposureAvg_dummy = pd.DataFrame(np.random.rand(processAvg.shape[1],genomes.shape[1]),index=allsigids,columns=colnames.to_list()).transpose().rename_axis('Samples')
         print("Assigning COSMIC sigs or Signature Database ...... ")
+       
+        pdb.set_trace()
+        if processAvg.shape[0] != 96:
+            if genomes.shape[0] == processAvg.shape[0] and collapse_to_SBS96 ==True:
+                sys.exit("Signatures Database and Samples are of same context type and is not equal to 96. please rerun by setting the flag \"collapse_to_SBS96 = False \"")
+
         sub.make_final_solution(processAvg, genomes, allsigids, layer_directory3, mutation_type, index, colnames, 
                             cosmic_sigs=True, attribution = attribution, denovo_exposureAvg  = exposureAvg_dummy ,  
                             background_sigs=background_sigs, verbose=verbose, genome_build=genome_build, 
