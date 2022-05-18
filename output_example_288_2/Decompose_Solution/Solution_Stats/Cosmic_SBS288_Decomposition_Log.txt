@@ -1,0 +1,159 @@
+############################ Signature Decomposition Details ################################
+
+
+Context Type: 288
+Genome Build: GRCh37
+##### Using a custom signature database for decomposition #####
+
+
+
+######################## Decomposing SBS288A ########################
+
+
+!!!!!!!!!!!!!!!!!!!!!!!!! LAYER: 0 !!!!!!!!!!!!!!!!!!!!!!!!!
+Best Signature Composition ['SBSCUST1', 'SBSCUST2']
+L2 Error % 0.32
+Cosine Similarity 0.95
+
+
+!!!!!!!!!!!!!!!!!!!!!!!!! LAYER: 1 !!!!!!!!!!!!!!!!!!!!!!!!!
+Best Signature Composition ['SBSCUST1', 'SBSCUST2']
+L2 Error % 0.32
+Cosine Similarity 0.95
+
+#################### Final Composition #################################
+['SBSCUST1', 'SBSCUST2']
+L2 Error % 0.32
+Cosine Similarity 0.95
+
+
+
+
+######################## Decomposing SBS288B ########################
+
+
+!!!!!!!!!!!!!!!!!!!!!!!!! LAYER: 0 !!!!!!!!!!!!!!!!!!!!!!!!!
+Best Signature Composition ['SBSCUST1']
+L2 Error % 0.6
+Cosine Similarity 0.8
+
+
+!!!!!!!!!!!!!!!!!!!!!!!!! LAYER: 1 !!!!!!!!!!!!!!!!!!!!!!!!!
+Best Signature Composition ['SBSCUST1']
+L2 Error % 0.6
+Cosine Similarity 0.8
+
+#################### Final Composition #################################
+['SBSCUST1']
+L2 Error % 0.6
+Cosine Similarity 0.8
+
+
+
+
+######################## Decomposing SBS288C ########################
+
+
+!!!!!!!!!!!!!!!!!!!!!!!!! LAYER: 0 !!!!!!!!!!!!!!!!!!!!!!!!!
+Best Signature Composition ['SBSCUST2']
+L2 Error % 0.75
+Cosine Similarity 0.67
+
+
+!!!!!!!!!!!!!!!!!!!!!!!!! LAYER: 1 !!!!!!!!!!!!!!!!!!!!!!!!!
+Best Signature Composition ['SBSCUST2']
+L2 Error % 0.75
+Cosine Similarity 0.67
+
+#################### Final Composition #################################
+['SBSCUST2']
+L2 Error % 0.75
+Cosine Similarity 0.67
+
+
+
+
+######################## Decomposing SBS288D ########################
+
+
+!!!!!!!!!!!!!!!!!!!!!!!!! LAYER: 0 !!!!!!!!!!!!!!!!!!!!!!!!!
+Best Signature Composition ['SBSCUST1']
+L2 Error % 0.71
+Cosine Similarity 0.71
+
+
+!!!!!!!!!!!!!!!!!!!!!!!!! LAYER: 1 !!!!!!!!!!!!!!!!!!!!!!!!!
+Best Signature Composition ['SBSCUST1']
+L2 Error % 0.71
+Cosine Similarity 0.71
+
+#################### Final Composition #################################
+['SBSCUST1']
+L2 Error % 0.71
+Cosine Similarity 0.71
+
+
+
+
+######################## Decomposing SBS288E ########################
+
+
+!!!!!!!!!!!!!!!!!!!!!!!!! LAYER: 0 !!!!!!!!!!!!!!!!!!!!!!!!!
+Best Signature Composition ['SBSCUST5']
+L2 Error % 0.41
+Cosine Similarity 0.91
+
+
+!!!!!!!!!!!!!!!!!!!!!!!!! LAYER: 1 !!!!!!!!!!!!!!!!!!!!!!!!!
+Best Signature Composition ['SBSCUST5']
+L2 Error % 0.41
+Cosine Similarity 0.91
+
+#################### Final Composition #################################
+['SBSCUST5']
+L2 Error % 0.41
+Cosine Similarity 0.91
+
+
+
+
+######################## Decomposing SBS288F ########################
+
+
+!!!!!!!!!!!!!!!!!!!!!!!!! LAYER: 0 !!!!!!!!!!!!!!!!!!!!!!!!!
+Best Signature Composition ['SBSCUST5']
+L2 Error % 0.37
+Cosine Similarity 0.93
+
+
+!!!!!!!!!!!!!!!!!!!!!!!!! LAYER: 1 !!!!!!!!!!!!!!!!!!!!!!!!!
+Best Signature Composition ['SBSCUST5']
+L2 Error % 0.37
+Cosine Similarity 0.93
+
+#################### Final Composition #################################
+['SBSCUST5']
+L2 Error % 0.37
+Cosine Similarity 0.93
+
+
+
+
+######################## Decomposing SBS288G ########################
+
+
+!!!!!!!!!!!!!!!!!!!!!!!!! LAYER: 0 !!!!!!!!!!!!!!!!!!!!!!!!!
+Best Signature Composition ['SBSCUST8']
+L2 Error % 0.83
+Cosine Similarity 0.56
+
+
+!!!!!!!!!!!!!!!!!!!!!!!!! LAYER: 1 !!!!!!!!!!!!!!!!!!!!!!!!!
+Best Signature Composition ['SBSCUST8']
+L2 Error % 0.83
+Cosine Similarity 0.56
+
+#################### Final Composition #################################
+['SBSCUST8']
+L2 Error % 0.83
+Cosine Similarity 0.56

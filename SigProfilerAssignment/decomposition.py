@@ -9,6 +9,8 @@ Created on Sun May 19 12:21:06 2019
 #from SigProfilerExtractor import subroutines as sub
 
 from cmath import cos
+
+from torch import sign
 from SigProfilerAssignment import decompose_sub_routines as sub
 import numpy as np
 import pandas as pd
@@ -19,7 +21,7 @@ import os,sys
 
 def spa_analyze(  samples,  output, signatures=None, signature_database=None,decompose_fit_option= True,denovo_refit_option=True,cosmic_fit_option=True, nnls_add_penalty=0.05, 
               nnls_remove_penalty=0.01, initial_remove_penalty=0.05, de_novo_fit_penalty=0.02, 
-              genome_build="GRCh37", cosmic_version=3.2, make_decomposition_plots=True, collapse_to_SBS96=True,connected_sigs=True, verbose=False,devopts=None,new_signature_thresh_hold=0.8):
+              genome_build="GRCh37", cosmic_version=3.2, make_decomposition_plots=True, collapse_to_SBS96=True,connected_sigs=True, verbose=False,devopts=None,new_signature_thresh_hold=0.8,signature_subgroups=None):
 
     
     """
@@ -89,14 +91,53 @@ def spa_analyze(  samples,  output, signatures=None, signature_database=None,dec
             except:
                 sys.exit("Error in formatting of input signatures, Pass a text file of signatures in the format of COSMIC sig database")
     
+    default_subgroups_dict= {'permit_MMR_deficiency_signatures' :True,
+                      'permit_POL_deficiency_signatures' :True,
+                      'permit_HR_deficiency_signatures' :True,
+                      'permit_BER_deficiency_signatures' :True,
+                      'permit_Chemotherapy_signatures' :True,
+                      'permit_APOBEC_signatures' :True,
+                      'permit_Tobacco_signatures' :True,
+                      'permit_UV_signatures' :True,
+                      'permit_AA_signatures' :True,
+                      'permit_Colibactin_signatures' :True,
+                      'permit_Artifact_signatures' :True,
+                      'permit_Lymphoid_signatures}' :True}
+                      
+    default_subgroups_siglists= {'permit_MMR_deficiency_signatures' :['6', '14', '15', '20', '21', '26', '44'],
+                      'permit_POL_deficiency_signatures' :['10a', '10b', '10c', '10d', '28'],
+                      'permit_HR_deficiency_signatures' :['3'],
+                      'permit_BER_deficiency_signatures' :['30','36'],
+                      'permit_Chemotherapy_signatures' :['11','25','31','35','86','87','90'],
+                      'permit_APOBEC_signatures' :['2','13'],
+                      'permit_Tobacco_signatures' :['4','29','92'],
+                      'permit_UV_signatures' :['7a','7b','7c','7d','38'],
+                      'permit_AA_signatures' :['22'],
+                      'permit_Colibactin_signatures' :['88'],
+                      'permit_Artifact_signatures' :['27','43','45','46','47','48','49','51','52','53','54','55','56','57','58','59','60'],
+                      'permit_Lymphoid_signatures}' :['9','84','85']}
+    
     
 
+    if signature_subgroups == None:
+        signature_subgroups = default_subgroups_dict.copy()
+    else:
+        if type(signature_subgroups) is not dict:
+            sys.exit("signature_subgroups input should be a python dictionary with any of the valid keys refer to documentation.")
+        else:
+            for key in default_subgroups_dict:
+                if key not in signature_subgroups:
+                    signature_subgroups[key]=default_subgroups_dict[key]
 
-
-
-    #processAvg = pd.read_csv(signatures, sep = "\t", index_col=0) 
-    #originalProcessAvg=processAvg
-    #exposureAvg = pd.read_csv(activities, sep = "\t", index_col = 0)
+    sig_exclusion_list=[]
+    if signature_subgroups == None:
+        sig_exclusion_list=[]
+    else:
+        for key in signature_subgroups:
+            if not signature_subgroups[key]:
+                sig_exclusion_list.append(default_subgroups_siglists[key])
+    
+    sig_exclusion_list = [item for sublist in sig_exclusion_list for item in sublist]
     
     mutation_type = str(genomes.shape[0])
     m=mutation_type
@@ -138,6 +179,10 @@ def spa_analyze(  samples,  output, signatures=None, signature_database=None,dec
             os.makedirs(output)
     except: 
         print ("The {} folder could not be created".format("output"))
+
+                                                                #################
+                                                                # Denovo refiting 
+                                                                #################
     
     if denovo_refit_option == True:
         refit_denovo_signatures= True
@@ -192,7 +237,11 @@ def spa_analyze(  samples,  output, signatures=None, signature_database=None,dec
                                     background_sigs=background_sigs, verbose=verbose, genome_build=genome_build, signature_total_mutations = signature_total_mutations,
                                     add_penalty=nnls_add_penalty, remove_penalty=nnls_remove_penalty, process_std_error = processSTE, signature_stabilities = signature_stabilities,
                                     initial_remove_penalty=init_rem_denovo,connected_sigs=connected_sigs,refit_denovo_signatures=True)
-        #################       
+
+
+                                                                #################
+                                                                # Decomposition       
+                                                                #################
     if decompose_fit_option ==True:
         #layer_directory2 = output+"/Decompose_Solution"
         if isinstance(processAvg, pd.DataFrame):
@@ -221,7 +270,7 @@ def spa_analyze(  samples,  output, signatures=None, signature_database=None,dec
             processAvg = np.array(processAvg)
                 
         print("\n Decomposing De Novo Signatures  .....")
-        final_signatures = sub.signature_decomposition(processAvg, mutation_type, layer_directory2, genome_build=genome_build,signature_database=signature_database, mutation_context=mutation_context, add_penalty=0.05, connected_sigs=connected_sigs,remove_penalty=0.01, make_decomposition_plots=make_decomposition_plots, originalProcessAvg=originalProcessAvg,new_signature_thresh_hold=new_signature_thresh_hold)    
+        final_signatures = sub.signature_decomposition(processAvg, mutation_type, layer_directory2, genome_build=genome_build,signature_database=signature_database, mutation_context=mutation_context, add_penalty=0.05, connected_sigs=connected_sigs,remove_penalty=0.01, make_decomposition_plots=make_decomposition_plots, originalProcessAvg=originalProcessAvg,new_signature_thresh_hold=new_signature_thresh_hold,sig_exclusion_list=sig_exclusion_list)    
         #final_signatures = sub.signature_decomposition(processAvg, m, layer_directory2, genome_build=genome_build)
         # extract the global signatures and new signatures from the final_signatures dictionary
         globalsigs = final_signatures["globalsigs"]
@@ -242,6 +291,13 @@ def spa_analyze(  samples,  output, signatures=None, signature_database=None,dec
                                 initial_remove_penalty=initial_remove_penalty,connected_sigs=connected_sigs,
                                 collapse_to_SBS96=collapse_to_SBS96,
                                 refit_denovo_signatures=False)
+
+
+
+
+                                                                #################
+                                                                # Cosmic Fitting       
+                                                                #################
         
     if cosmic_fit_option ==True:
         #layer_directory3 = output+"/Assignment_Solution"
@@ -267,10 +323,13 @@ def spa_analyze(  samples,  output, signatures=None, signature_database=None,dec
             except:
                 sys.exit("Something is wrong with the format of signature database, Pass a text file of signatures in the format of COSMIC sig database")
         
-        import pdb
 
-        pdb.set_trace()
+        #processAvg is sigdatabase: remove sigs corresponding to exclusion rules.
+        # sig_exclusion_list= ['SBS'+items for items in sig_exclusion_list]
+        # # 
+        # processAvg.drop(sig_exclusion_list, axis=1, inplace=True,errors='ignore')
 
+        
         #processAvg= originalProcessAvg
         #index = genomes.index
         #colnames = genomes.columns
@@ -290,7 +349,6 @@ def spa_analyze(  samples,  output, signatures=None, signature_database=None,dec
         exposureAvg_dummy = pd.DataFrame(np.random.rand(processAvg.shape[1],genomes.shape[1]),index=allsigids,columns=colnames.to_list()).transpose().rename_axis('Samples')
         print("Assigning COSMIC sigs or Signature Database ...... ")
        
-        pdb.set_trace()
         if processAvg.shape[0] != 96:
             if genomes.shape[0] == processAvg.shape[0] and collapse_to_SBS96 ==True:
                 sys.exit("Signatures Database and Samples are of same context type and is not equal to 96. please rerun by setting the flag \"collapse_to_SBS96 = False \"")

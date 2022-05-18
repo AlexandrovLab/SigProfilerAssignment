@@ -154,7 +154,7 @@ def get_items_from_index(x,y):
             pass
     return z
 
-def signature_decomposition(signatures, mtype, directory, genome_build="GRCh37", cosmic_version=3.2,signature_database=None, add_penalty=0.05, remove_penalty=0.01, mutation_context=None, connected_sigs=True, make_decomposition_plots=True, originalProcessAvg=None,new_signature_thresh_hold=0.8):
+def signature_decomposition(signatures, mtype, directory, genome_build="GRCh37", cosmic_version=3.2,signature_database=None, add_penalty=0.05, remove_penalty=0.01, mutation_context=None, connected_sigs=True, make_decomposition_plots=True, originalProcessAvg=None,new_signature_thresh_hold=0.8,sig_exclusion_list=[]):
 
     originalProcessAvg = originalProcessAvg.reset_index()
     if not os.path.exists(directory+"/Solution_Stats"):
@@ -199,8 +199,8 @@ def signature_decomposition(signatures, mtype, directory, genome_build="GRCh37",
     #     sigDatabase.index=sigDatabase.index.astype(str)
     #     signames=sigDatabase.columns
     #     connected_sigs=False
-    import pdb
-    pdb.set_trace()
+
+
     if signature_database==None:
         sigDatabase,signames,connected_sigs = getProcessAvg(signatures, genome_build, cosmic_version=cosmic_version)
         #processAvg = processAvg.set_index('Type').rename_axis('MutationType')
@@ -221,7 +221,8 @@ def signature_decomposition(signatures, mtype, directory, genome_build="GRCh37",
         except:
             sys.exit("Wrong format of signature database for decompose_fit, Please pass a text file of signatures in the format of COSMIC sig database")
     
-        
+    sig_exclusion_list= ['SBS'+items for items in sig_exclusion_list]
+    sigDatabase.drop(sig_exclusion_list, axis=1, inplace=True,errors='ignore')
     # if type(signature_database)==pd.core.frame.DataFrame:
         
     #     if signatures.shape[0]==signature_database.shape[0]:
