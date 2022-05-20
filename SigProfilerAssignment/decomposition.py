@@ -322,8 +322,6 @@ def spa_analyze(  samples,  output, signatures=None, signature_database=None,dec
             processAvg = sub.getProcessAvg(genomes, genome_build=genome_build, cosmic_version=cosmic_version)[0]
             #processAvg = processAvg.set_index('Type').rename_axis('MutationType')
         else:
-            import pdb
-            pdb.set_trace()
             try:
                 processAvg = pd.read_csv(signature_database,sep='\t', index_col=0)
             except:
