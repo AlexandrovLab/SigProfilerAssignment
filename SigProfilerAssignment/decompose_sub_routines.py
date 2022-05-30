@@ -63,7 +63,7 @@ def getProcessAvg(samples, genome_build="GRCh37", cosmic_version=3.2,signature_d
         signames = sigDatabase.columns
         connected_sigs=False
     else:
-        sigDatabase = pd.DataFrame(Samples)
+        sigDatabase = pd.DataFrame(samples)
         sigDatabase.columns=sigDatabase.columns.astype(str)
         sigDatabase.index=sigDatabase.index.astype(str)
         signames=sigDatabase.columns

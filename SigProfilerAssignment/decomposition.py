@@ -328,6 +328,25 @@ def spa_analyze(  samples,  output, signatures=None, signature_database=None,dec
                 sys.exit("Something is wrong with the format of signature database, Pass a text file of signatures in the format of COSMIC sig database")
         
 
+
+        if processAvg.shape[0]==1536 and collapse_to_SBS96==True: #collapse the 1596 context into 96 only for the deocmposition 
+            processAvg = pd.DataFrame(processAvg, index=index)
+            processAvg = processAvg.groupby(processAvg.index.str[1:8]).sum()
+            genomes = genomes.groupby(genomes.index.str[1:8]).sum()
+            index = genomes.index
+            #processAvg = np.array(processAvg)
+        
+        if processAvg.shape[0]==288 and collapse_to_SBS96==True: #collapse the 288 context into 96 only for the deocmposition 
+            processAvg = pd.DataFrame(processAvg, index=index)
+            processAvg = processAvg.groupby(processAvg.index.str[2:9]).sum()
+            genomes = pd.DataFrame(genomes, index=index)
+            genomes = genomes.groupby(genomes.index.str[2:9]).sum()
+            index = genomes.index
+            #processAvg = np.array(processAvg)
+
+        
+        
+
         #processAvg is sigdatabase: remove sigs corresponding to exclusion rules.
         sig_exclusion_list= ['SBS'+items for items in sig_exclusion_list]
         print("The following signatures are excluded: "+" ".join(str(item) for item in sig_exclusion_list))
