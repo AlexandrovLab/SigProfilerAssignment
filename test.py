@@ -30,14 +30,14 @@ def main():
 
     signature_subgroups = None
 
-    Analyze.decompose_fit( samples, 
-                           output, 
-                           signatures=signatures,
-                           signature_database=sigs,
-                           genome_build="GRCh37", 
-                           verbose=False,
-                           new_signature_thresh_hold=0.8,
-                           signature_subgroups=signature_subgroups)
+    # Analyze.decompose_fit( samples, 
+    #                        output, 
+    #                        signatures=signatures,
+    #                        signature_database=sigs,
+    #                        genome_build="GRCh37", 
+    #                        verbose=False,
+    #                        new_signature_thresh_hold=0.8,
+    #                        signature_subgroups=signature_subgroups)
 
     Analyze.denovo_fit( samples,
                         output, 
@@ -46,14 +46,14 @@ def main():
                         genome_build="GRCh37", 
                         verbose=False)
 
-    Analyze.cosmic_fit( samples, 
-                        output, 
-                        signatures=None,
-                        signature_database=None,
-                        genome_build="GRCh37", 
-                        verbose=False,
-                        collapse_to_SBS96=True,
-                        signature_subgroups=signature_subgroups,make_plots=False)
+    # Analyze.cosmic_fit( samples, 
+    #                     output, 
+    #                     signatures=None,
+    #                     signature_database=None,
+    #                     genome_build="GRCh37", 
+    #                     verbose=False,
+    #                     collapse_to_SBS96=True,
+    #                     signature_subgroups=signature_subgroups,make_plots=False)
 
 if __name__ == '__main__':
     main()  
