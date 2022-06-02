@@ -10,7 +10,7 @@ Created on Sun May 19 12:21:06 2019
 
 from cmath import cos
 
-from torch import sign
+# from torch import sign
 from SigProfilerAssignment import decompose_sub_routines as sub
 import numpy as np
 import pandas as pd
@@ -78,18 +78,18 @@ def spa_analyze(  samples,  output, signatures=None, signature_database=None,dec
         genomes = samples
         genomes = pd.DataFrame(genomes)
         
-    if signatures is None:
-        processAvg = sub.getProcessAvg(genomes, genome_build=genome_build, cosmic_version=cosmic_version)[0]
-        processAvg = processAvg.rename_axis('MutationType')
-        #processAvg = processAvg.set_index('Type').rename_axis('MutationType')   
-    else:
-        try:
-            processAvg = pd.read_csv(signatures,sep='\t', index_col=0)
-        except:
-            try:
-                processAvg=signatures
-            except:
-                sys.exit("Error in formatting of input signatures, Pass a text file of signatures in the format of COSMIC sig database")
+    # if signatures is None:
+    #     processAvg = sub.getProcessAvg(genomes, genome_build=genome_build, cosmic_version=cosmic_version)[0]
+    #     processAvg = processAvg.rename_axis('MutationType')
+    #     #processAvg = processAvg.set_index('Type').rename_axis('MutationType')   
+    # else:
+    #     try:
+    #         processAvg = pd.read_csv(signatures,sep='\t', index_col=0)
+    #     except:
+    #         try:
+    #             processAvg=signatures
+    #         except:
+    #             sys.exit("Error in formatting of input signatures, Pass a text file of signatures in the format of COSMIC sig database")
     
     default_subgroups_dict= {'remove_MMR_deficiency_signatures' :False,
                       'remove_POL_deficiency_signatures' :False,
@@ -142,50 +142,57 @@ def spa_analyze(  samples,  output, signatures=None, signature_database=None,dec
     
     mutation_type = str(genomes.shape[0])
     m=mutation_type
-    
-    if devopts == None:
-        listOfSignatures = processAvg.columns
-        index = genomes.index
-        colnames = genomes.columns
-    else:
-        listOfSignatures=devopts['listOfSignatures']
-        index=devopts['index']
-        colnames=devopts['colnames']
-        genomes = genomes.set_index(index)
-        genomes.columns = colnames
-        #genomes = genomes.rename_axis("Mutation Types", axis="columns")
-    exposureAvg_dummy = pd.DataFrame(np.random.rand(processAvg.shape[1],genomes.shape[1]),index=listOfSignatures,columns=colnames.to_list()).transpose().rename_axis('Samples')
-    exposureAvg = exposureAvg_dummy
-    #creating list of mutational type to sync with the vcf type input
-    if mutation_type == "78":
-        mutation_context = "DBS78"
-    elif mutation_type == "83":
-        mutation_context = "ID83"
-    elif mutation_type=="48":
-        mutation_context = "CNV48"
-        print("Mutation Type is: CNV")
-    else:
-        mutation_context = "SBS"+mutation_type
-    try:
-        allsigids = processAvg.columns.to_list()
-    except:
-        allsigids = list(listOfSignatures)
-    processAvg = np.array(processAvg)    
-    signature_names = sub.make_letter_ids(idlenth = processAvg.shape[1], mtype = mutation_context)
-    exposureAvg.columns=signature_names   
-    # create the folder for the final solution/ De Novo Solution
-    #pdb.set_trace()
+
     try:
         if not os.path.exists(output):
             os.makedirs(output)
-    except: 
+    except:
         print ("The {} folder could not be created".format("output"))
+  
 
                                                                 #################
                                                                 # Denovo refiting #
                                                                 #################
     
     if denovo_refit_option == True:
+
+
+          
+        if devopts == None:
+            listOfSignatures = processAvg.columns
+            index = genomes.index
+            colnames = genomes.columns
+        else:
+            listOfSignatures=devopts['listOfSignatures']
+            index=devopts['index']
+            colnames=devopts['colnames']
+            genomes = genomes.set_index(index)
+            genomes.columns = colnames
+            #genomes = genomes.rename_axis("Mutation Types", axis="columns")
+        exposureAvg_dummy = pd.DataFrame(np.random.rand(processAvg.shape[1],genomes.shape[1]),index=listOfSignatures,columns=colnames.to_list()).transpose().rename_axis('Samples')
+        exposureAvg = exposureAvg_dummy
+        #creating list of mutational type to sync with the vcf type input
+        if mutation_type == "78":
+            mutation_context = "DBS78"
+        elif mutation_type == "83":
+            mutation_context = "ID83"
+        elif mutation_type=="48":
+            mutation_context = "CNV48"
+            print("Mutation Type is: CNV")
+        else:
+            mutation_context = "SBS"+mutation_type
+        try:
+            allsigids = processAvg.columns.to_list()
+        except:
+            allsigids = list(listOfSignatures)
+        processAvg = np.array(processAvg)    
+        signature_names = sub.make_letter_ids(idlenth = processAvg.shape[1], mtype = mutation_context)
+        exposureAvg.columns=signature_names   
+        # create the folder for the final solution/ De Novo Solution
+        #pdb.set_trace()
+
+        
+
         refit_denovo_signatures= True
         init_rem_denovo = 0.0
         
@@ -244,6 +251,38 @@ def spa_analyze(  samples,  output, signatures=None, signature_database=None,dec
                                                                 # Decomposition       
                                                                 #################
     if decompose_fit_option ==True:
+        if devopts == None:
+            listOfSignatures = processAvg.columns
+            index = genomes.index
+            colnames = genomes.columns
+        else:
+            listOfSignatures=devopts['listOfSignatures']
+            index=devopts['index']
+            colnames=devopts['colnames']
+            genomes = genomes.set_index(index)
+            genomes.columns = colnames
+            #genomes = genomes.rename_axis("Mutation Types", axis="columns")
+        exposureAvg_dummy = pd.DataFrame(np.random.rand(processAvg.shape[1],genomes.shape[1]),index=listOfSignatures,columns=colnames.to_list()).transpose().rename_axis('Samples')
+        exposureAvg = exposureAvg_dummy
+        #creating list of mutational type to sync with the vcf type input
+        if mutation_type == "78":
+            mutation_context = "DBS78"
+        elif mutation_type == "83":
+            mutation_context = "ID83"
+        elif mutation_type=="48":
+            mutation_context = "CNV48"
+            print("Mutation Type is: CNV")
+        else:
+            mutation_context = "SBS"+mutation_type
+        try:
+            allsigids = processAvg.columns.to_list()
+        except:
+            allsigids = list(listOfSignatures)
+        processAvg = np.array(processAvg)    
+        signature_names = sub.make_letter_ids(idlenth = processAvg.shape[1], mtype = mutation_context)
+        exposureAvg.columns=signature_names   
+
+        #############################
         #layer_directory2 = output+"/Decompose_Solution"
         if isinstance(processAvg, pd.DataFrame):
             pass
@@ -299,7 +338,6 @@ def spa_analyze(  samples,  output, signatures=None, signature_database=None,dec
                                                                 #################
         
     if cosmic_fit_option ==True:
-        #layer_directory3 = output+"/Assignment_Solution"
         try:
             if not os.path.exists(layer_directory3):
                 os.makedirs(layer_directory3)
@@ -313,10 +351,28 @@ def spa_analyze(  samples,  output, signatures=None, signature_database=None,dec
         #         processAvg = pd.read_csv(signatures,sep='\t', index_col=0)
         #     except:
         #         sys.exit("Something is wrong with the format of input signatures, Pass a text file of signatures in the format of COSMIC sig database")
+        index = genomes.index
+        colnames = genomes.columns
         if (genomes.sum()==0).sum() >0:
             print("Removing samples with zero TMB ...... ")
             genomes=genomes.loc[:, (genomes != 0).any(axis=0)]
             colnames = genomes.columns
+        
+        if genomes.shape[0]==1536 and collapse_to_SBS96==True: #collapse the 1596 context into 96 only for the deocmposition 
+            # processAvg = pd.DataFrame(processAvg, index=index)
+            # processAvg = processAvg.groupby(processAvg.index.str[1:8]).sum()
+            genomes = pd.DataFrame(genomes, index=index)
+            genomes = genomes.groupby(genomes.index.str[1:8]).sum()
+            index = genomes.index
+            #processAvg = np.array(processAvg)
+        
+        if genomes.shape[0]==288 and collapse_to_SBS96==True: #collapse the 288 context into 96 only for the deocmposition 
+            # processAvg = pd.DataFrame(processAvg, index=index)
+            # processAvg = processAvg.groupby(processAvg.index.str[2:9]).sum()
+            genomes = pd.DataFrame(genomes, index=index)
+            genomes = genomes.groupby(genomes.index.str[2:9]).sum()
+            index = genomes.index
+
 
         if signature_database==None:
             processAvg = sub.getProcessAvg(genomes, genome_build=genome_build, cosmic_version=cosmic_version)[0]
@@ -332,6 +388,7 @@ def spa_analyze(  samples,  output, signatures=None, signature_database=None,dec
         if processAvg.shape[0]==1536 and collapse_to_SBS96==True: #collapse the 1596 context into 96 only for the deocmposition 
             processAvg = pd.DataFrame(processAvg, index=index)
             processAvg = processAvg.groupby(processAvg.index.str[1:8]).sum()
+            genomes = pd.DataFrame(genomes, index=index)
             genomes = genomes.groupby(genomes.index.str[1:8]).sum()
             index = genomes.index
             #processAvg = np.array(processAvg)
@@ -349,7 +406,8 @@ def spa_analyze(  samples,  output, signatures=None, signature_database=None,dec
 
         #processAvg is sigdatabase: remove sigs corresponding to exclusion rules.
         sig_exclusion_list= ['SBS'+items for items in sig_exclusion_list]
-        print("The following signatures are excluded: "+" ".join(str(item) for item in sig_exclusion_list))
+        if sig_exclusion_list:
+            print("The following signatures are excluded: "+" ".join(str(item) for item in sig_exclusion_list))
         # # 
         processAvg.drop(sig_exclusion_list, axis=1, inplace=True,errors='ignore')
 
