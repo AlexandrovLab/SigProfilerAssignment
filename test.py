@@ -9,7 +9,7 @@ import SigProfilerAssignment as spa
 from SigProfilerAssignment import Analyzer as Analyze
 dir_inp = spa.__path__[0]+'/data/Examples/'
 def main():
-    # signatures=dir_inp+"SBS288_7_Signatures/Signatures/SBS288_S7_Signatures.txt"
+    #signatures=dir_inp+"SBS288_7_Signatures/Signatures/SBS288_S7_Signatures.txt"
     # samples=dir_inp+"SBS288_7_Signatures/Samples.txt"
     signatures=dir_inp+"SBS1536_5_Signatures/Signatures/SBS1536_S5_Signatures.txt"
     samples=dir_inp+"SBS1536_5_Signatures/Samples.txt"
@@ -32,21 +32,21 @@ def main():
 
     signature_subgroups = None
 
-    # Analyze.decompose_fit( samples, 
-    #                        output, 
-    #                        signatures=signatures,
-    #                        signature_database=sigs,
-    #                        genome_build="GRCh37", 
-    #                        verbose=False,
-    #                        new_signature_thresh_hold=0.8,
-    #                        signature_subgroups=signature_subgroups)
+    Analyze.decompose_fit( samples, 
+                           output, 
+                           signatures=signatures,
+                           signature_database=None,
+                           genome_build="GRCh37", 
+                           verbose=False,
+                           new_signature_thresh_hold=0.8,
+                           signature_subgroups=signature_subgroups)
 
-    # Analyze.denovo_fit( samples,
-    #                     output, 
-    #                     signatures=signatures,
-    #                     signature_database=sigs,
-    #                     genome_build="GRCh37", 
-    #                     verbose=False)
+    Analyze.denovo_fit( samples,
+                        output, 
+                        signatures=signatures,
+                        signature_database=None,
+                        genome_build="GRCh37", 
+                        verbose=False)
 
     Analyze.cosmic_fit( samples, 
                         output, 

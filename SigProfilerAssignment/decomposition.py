@@ -155,8 +155,13 @@ def spa_analyze(  samples,  output, signatures=None, signature_database=None,dec
                                                                 #################
     
     if denovo_refit_option == True:
-
-
+        try:
+            processAvg = pd.read_csv(signatures,sep='\t', index_col=0)
+        except:
+            try:
+                processAvg=signatures
+            except:
+                sys.exit("Error in formatting of input signatures, Pass a text file of signatures in the format of denovo signatures")
           
         if devopts == None:
             listOfSignatures = processAvg.columns
@@ -169,8 +174,7 @@ def spa_analyze(  samples,  output, signatures=None, signature_database=None,dec
             genomes = genomes.set_index(index)
             genomes.columns = colnames
             #genomes = genomes.rename_axis("Mutation Types", axis="columns")
-        exposureAvg_dummy = pd.DataFrame(np.random.rand(processAvg.shape[1],genomes.shape[1]),index=listOfSignatures,columns=colnames.to_list()).transpose().rename_axis('Samples')
-        exposureAvg = exposureAvg_dummy
+       
         #creating list of mutational type to sync with the vcf type input
         if mutation_type == "78":
             mutation_context = "DBS78"
@@ -187,9 +191,12 @@ def spa_analyze(  samples,  output, signatures=None, signature_database=None,dec
             allsigids = list(listOfSignatures)
         processAvg = np.array(processAvg)    
         signature_names = sub.make_letter_ids(idlenth = processAvg.shape[1], mtype = mutation_context)
-        exposureAvg.columns=signature_names   
+       
         # create the folder for the final solution/ De Novo Solution
         #pdb.set_trace()
+        exposureAvg_dummy = pd.DataFrame(np.random.rand(processAvg.shape[1],genomes.shape[1]),index=listOfSignatures,columns=colnames.to_list()).transpose().rename_axis('Samples')
+        exposureAvg = exposureAvg_dummy
+        exposureAvg.columns=signature_names   
 
         
 
@@ -251,6 +258,14 @@ def spa_analyze(  samples,  output, signatures=None, signature_database=None,dec
                                                                 # Decomposition       
                                                                 #################
     if decompose_fit_option ==True:
+        try:
+            processAvg = pd.read_csv(signatures,sep='\t', index_col=0)
+        except:
+            try:
+                processAvg=signatures
+            except:
+                sys.exit("Error in formatting of input signatures, Pass a text file of signatures in the format of denovo signatures")
+
         if devopts == None:
             listOfSignatures = processAvg.columns
             index = genomes.index
@@ -262,8 +277,7 @@ def spa_analyze(  samples,  output, signatures=None, signature_database=None,dec
             genomes = genomes.set_index(index)
             genomes.columns = colnames
             #genomes = genomes.rename_axis("Mutation Types", axis="columns")
-        exposureAvg_dummy = pd.DataFrame(np.random.rand(processAvg.shape[1],genomes.shape[1]),index=listOfSignatures,columns=colnames.to_list()).transpose().rename_axis('Samples')
-        exposureAvg = exposureAvg_dummy
+
         #creating list of mutational type to sync with the vcf type input
         if mutation_type == "78":
             mutation_context = "DBS78"
@@ -280,7 +294,11 @@ def spa_analyze(  samples,  output, signatures=None, signature_database=None,dec
             allsigids = list(listOfSignatures)
         processAvg = np.array(processAvg)    
         signature_names = sub.make_letter_ids(idlenth = processAvg.shape[1], mtype = mutation_context)
+
+        exposureAvg_dummy = pd.DataFrame(np.random.rand(processAvg.shape[1],genomes.shape[1]),index=listOfSignatures,columns=colnames.to_list()).transpose().rename_axis('Samples')
+        exposureAvg = exposureAvg_dummy
         exposureAvg.columns=signature_names   
+
 
         #############################
         #layer_directory2 = output+"/Decompose_Solution"
