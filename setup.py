@@ -6,7 +6,7 @@ import os
 if os.path.exists("dist"):
     shutil.rmtree("dist")
 
-VERSION = '0.0.5'
+VERSION = '0.0.6'
 
 
 with open('README.md') as f:
@@ -18,7 +18,7 @@ def write_version_py(filename='SigProfilerAssignment/version.py'):
 # THIS FILE IS GENERATED FROM SigProfilerAssignment SETUP.PY
 short_version = '%(version)s'
 version = '%(version)s'
-Update = 'Enabling linking options with SigProfilerExtractor and can support different context types and devopts'
+Update = 'New Release. 1.Bug Fixes with differnt context types 2. Updated documentation 3. Included signature subgroups'
     
     """
     fh = open(filename, 'w')
@@ -28,7 +28,7 @@ requirements=[
           'scipy>=1.6.3',
           'numpy>=1.21.2',
           'pandas>=1.2.4', 
-          'SigProfilerExtractor>=1.1.6',
+          'SigProfilerExtractor>=1.1.7',
           'SigProfilerMatrixGenerator>=1.1.30', 
           'sigProfilerPlotting>=1.1.15', 
           'pillow',
