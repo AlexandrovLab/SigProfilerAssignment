@@ -67,7 +67,7 @@ spa_analyze(  samples,  output, signatures=None, signature_database=None,decompo
               genome_build="GRCh37",  make_decomposition_plots=True, collapse_to_SBS96=True,connected_sigs=True, verbose=False): 
 ```  -->
 ### Decompose Fit
-Decomposes the De Novo Signatures into COSMIC Signatures and assigns COSMIC signatures into samples
+Decomposes the De Novo Signatures into COSMIC Signatures and assigns COSMIC signatures into samples.
 <img src="SigProfilerAssignment/src/figures/decomp_pic.jpg" alt="drawing" width="600"/>
 
 ```python
@@ -82,7 +82,8 @@ Analyze.decompose_fit(samples,
                        signature_subgroups=signature_subgroups)
 ```
 ### *De Novo* Fit
-<img src="SigProfilerAssignment/src/figures/cosmic_pic.jpg" alt="drawing" width="600"/>
+Attributes mutations of given Samples to input denovo signatures.
+<img src="SigProfilerAssignment/src/figures/denovo_fit.jpg" alt="drawing" width="600"/>
 
 ```python
 from SigProfilerAssignment import Analyzer as Analyze
@@ -93,8 +94,9 @@ Analyze.denovo_fit( samples,
                     genome_build="GRCh37", 
                     verbose=False)
 ```
-### Cosmic Fit
-<img src="SigProfilerAssignment/src/figures/cosmic_pic.jpg" alt="drawing" width="600"/>
+### COSMIC Fit
+Attributes mutations of given Samples to input COSMIC signatures. Note that penalties associated with denovo fit and COSMIC fits are different.
+<img src="SigProfilerAssignment/src/figures/cosmic_fit.jpg" alt="drawing" width="600"/>
 
 ```python
 from SigProfilerAssignment import Analyzer as Analyze
@@ -108,7 +110,7 @@ Analyze.cosmic_fit( samples,
                     signature_subgroups=signature_subgroups,
                     make_plots=True)
 ```
-## Parameters
+## Main Parameters
 | Parameter | Variable Type | Parameter Description |
 | --------------------- | -------- |-------- |
 | **signatures** | String | Path to a  tab delimited file that contains the signaure table where the rows are mutation types and colunms are signature IDs. |
@@ -116,7 +118,11 @@ Analyze.cosmic_fit( samples,
 | **samples** | String | Path to a tab delimilted file that contains the activity table where the rows are mutation types and colunms are sample IDs. |
 | **output** | String | Path to the output folder. |
 | **genome_build** | String | The genome type. Example: "GRCh37", "GRCh38", "mm9", "mm10". The default value is "GRCh37" |
+| **new_signature_thresh_hold**|Float | Parameter in Cosine similarity to declare a  new signature. Applicable for decompose fit only. The default value is 0.8  |
+| **make_plots** | Boolean | Toggle on and off for making and saving all plots. Default value is True.  |
+| **signature_subgroups** | List | Removes the signatures corresponding to specific subtypes for better fitting. The usage is given above. Default value is None.  |
 | **verbose** | Boolean | Prints statements. Default value is False.  |
+
         
 
 #### SPA analysis Example
