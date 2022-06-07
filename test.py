@@ -8,6 +8,7 @@
 import SigProfilerAssignment as spa
 from SigProfilerAssignment import Analyzer as Analyze
 dir_inp = spa.__path__[0]+'/data/Examples/'
+
 def main():
 
     signatures  = dir_inp+"Results_scenario_8/SBS96/All_Solutions/SBS96_3_Signatures/Signatures/SBS96_S3_Signatures.txt"
@@ -54,7 +55,8 @@ def main():
                         genome_build="GRCh37", 
                         verbose=False,
                         collapse_to_SBS96=True,
-                        signature_subgroups=signature_subgroups,make_plots=False)
+                        signature_subgroups=signature_subgroups,
+                       )
 
 if __name__ == '__main__':
     main()  

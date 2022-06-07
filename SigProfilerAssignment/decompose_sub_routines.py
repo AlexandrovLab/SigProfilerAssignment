@@ -214,7 +214,7 @@ def signature_decomposition(signatures, mtype, directory, genome_build="GRCh37",
             elif sigDatabase.shape[0]==288 : #collapse the 288 context into 96 only for the deocmposition 
                 #sigDatabase = pd.DataFrame(processAvg, index=index)
                 sigDatabase = sigDatabase.groupby(sigDatabase.index.str[2:9]).sum()
-            signames=sigDatabase.columns
+            
             if sigDatabase.shape[0]== 78 or sigDatabase.shape[0]== 83 or sigDatabase.shape[0]== 48:
                 connected_sigs=False
             lognote.write("##### Using a custom signature database for decomposition #####")
@@ -224,6 +224,8 @@ def signature_decomposition(signatures, mtype, directory, genome_build="GRCh37",
     sig_exclusion_list= ['SBS'+items for items in sig_exclusion_list]
     lognote.write("The following signatures are excluded: "+" ".join(str(item) for item in sig_exclusion_list))
     sigDatabase.drop(sig_exclusion_list, axis=1, inplace=True,errors='ignore')
+    signames=sigDatabase.columns
+    
     # if type(signature_database)==pd.core.frame.DataFrame:
         
     #     if signatures.shape[0]==signature_database.shape[0]:
@@ -354,6 +356,8 @@ def signature_decomposition(signatures, mtype, directory, genome_build="GRCh37",
         else:
             mtype_par="none"
         try:
+            # import pdb
+            # pdb.set_trace() 
             if mtype_par!="none" and make_decomposition_plots==True:
                 # Get the names of the columns for each dataframe
                 denovo_col_names = originalProcessAvg.columns
@@ -428,7 +432,9 @@ def signature_decomposition(signatures, mtype, directory, genome_build="GRCh37",
         
     # close the lognote
     lognote.close()
-        
+
+    # import pdb
+    # pdb.set_trace()    
     #return values
     return {"globalsigids": list(detected_signatures), "newsigids": newsig, "globalsigs":globalsigmats, "newsigs":newsigsmats/5000, "dictionary": dictionary, 
             "background_sigs": background_sigs, "activity_percentages": activity_percentages} 
