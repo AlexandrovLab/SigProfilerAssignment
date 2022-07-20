@@ -114,7 +114,7 @@ def spa_analyze(  samples,  output, signatures=None, signature_database=None,dec
                       'remove_UV_signatures' :['7a','7b','7c','7d','38'],
                       'remove_AA_signatures' :['22'],
                       'remove_Colibactin_signatures' :['88'],
-                      'remove_Artifact_signatures' :['27','43','45','46','47','48','49','51','52','53','54','55','56','57','58','59','60'],
+                      'remove_Artifact_signatures' :['27','43','45','46','47','48','49','50','51','52','53','54','55','56','57','58','59','60'],
                       'remove_Lymphoid_signatures' :['9','84','85']}
     
     
