@@ -6,7 +6,7 @@ import os
 if os.path.exists("dist"):
     shutil.rmtree("dist")
 
-VERSION = '0.0.7'
+VERSION = '0.0.8'
 
 
 with open('README.md') as f:
@@ -18,7 +18,7 @@ def write_version_py(filename='SigProfilerAssignment/version.py'):
 # THIS FILE IS GENERATED FROM SigProfilerAssignment SETUP.PY
 short_version = '%(version)s'
 version = '%(version)s'
-Update = 'New Release. 1.Bug Fixes with differnt context types 2. Updated documentation 3. Included signature subgroups'
+Update = '1.Copy number Signatures support 2. Fixed bugs on signature subtypes'
     
     """
     fh = open(filename, 'w')
@@ -39,28 +39,6 @@ requirements=[
           'PyPDF2>=1.26.0',
           'alive_progress'
            ]
-
-# operating_system = sys.platform   
-# print(operating_system)
-# if operating_system  in ['win32','cygwin','windows']:
-#     requirements.remove('matplotlib>=3.3.0')
-#     requirements.remove('torch==1.5.1')
-#     print('Trying to install pytorch!')
-#     code = 1
-#     try:
-#         code = subprocess.call(['pip', 'install', 'torch===1.5.1+cpu',  '-f', 'https://download.pytorch.org/whl/torch_stable.html'])
-#         if code != 0:
-#             raise Exception('Torch  instalation failed !')
-#     except:
-#         try:
-#             code = subprocess.call(['pip3', 'install', 'torch===1.5.1+cpu',  '-f', 'https://download.pytorch.org/whl/torch_stable.html'])
-#             if code != 0:
-#                 raise Exception('Torch instalation failed !')
-#         except:
-#             print('Failed to install pytroch, please install pytroch manually be following the simple instructions over at: https://pytorch.org/get-started/locally/')
-#     if code == 0:
-#         print('Successfully installed pytorch version! (If you need the GPU version, please install it manually, checkout the mindsdb docs and the pytroch docs if you need help)')
-    
     
 write_version_py()
 setup(name='SigProfilerAssignment',
