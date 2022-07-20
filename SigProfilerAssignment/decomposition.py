@@ -21,7 +21,7 @@ import os,sys
 
 def spa_analyze(  samples,  output, signatures=None, signature_database=None,decompose_fit_option= True,denovo_refit_option=True,cosmic_fit_option=True, nnls_add_penalty=0.05, 
               nnls_remove_penalty=0.01, initial_remove_penalty=0.05, de_novo_fit_penalty=0.02, 
-              genome_build="GRCh37", cosmic_version=3.2, make_plots=True, collapse_to_SBS96=True,connected_sigs=True, verbose=False,devopts=None,new_signature_thresh_hold=0.8,signature_subgroups=None):
+              genome_build="GRCh37", cosmic_version=3.3, make_plots=True, collapse_to_SBS96=True,connected_sigs=True, verbose=False,devopts=None,new_signature_thresh_hold=0.8,signature_subgroups=None):
 
     
     """
@@ -96,6 +96,8 @@ def spa_analyze(  samples,  output, signatures=None, signature_database=None,dec
                       'remove_HR_deficiency_signatures' :False,
                       'remove_BER_deficiency_signatures' :False,
                       'remove_Chemotherapy_signatures' :False,
+                      'remove_Immunosuppressants_signatures' :False,
+                      'remove_Iatrogenic_signatures' :False,
                       'remove_APOBEC_signatures' :False,
                       'remove_Tobacco_signatures' :False,
                       'remove_UV_signatures' :False,
@@ -109,12 +111,14 @@ def spa_analyze(  samples,  output, signatures=None, signature_database=None,dec
                       'remove_HR_deficiency_signatures' :['3'],
                       'remove_BER_deficiency_signatures' :['30','36'],
                       'remove_Chemotherapy_signatures' :['11','25','31','35','86','87','90'],
+                      'remove_Immunosuppressants_signatures' :['32'],
+                      'remove_Iatrogenic_signatures' :['11','25','31','32','35','86','87','90'],
                       'remove_APOBEC_signatures' :['2','13'],
                       'remove_Tobacco_signatures' :['4','29','92'],
                       'remove_UV_signatures' :['7a','7b','7c','7d','38'],
                       'remove_AA_signatures' :['22'],
                       'remove_Colibactin_signatures' :['88'],
-                      'remove_Artifact_signatures' :['27','43','45','46','47','48','49','51','52','53','54','55','56','57','58','59','60'],
+                      'remove_Artifact_signatures' :['27','43','45','46','47','48','49','50','51','52','53','54','55','56','57','58','59','60'],
                       'remove_Lymphoid_signatures' :['9','84','85']}
     
     
