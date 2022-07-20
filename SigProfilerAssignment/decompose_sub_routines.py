@@ -49,7 +49,7 @@ def getProcessAvg(samples, genome_build="GRCh37", cosmic_version=3.2,signature_d
         signames = sigDatabase.columns
     
     elif samples.shape[0]==78:
-        sigDatabase = pd.read_csv(paths+"/data/Reference_Signatures/"+"GRCh37"+"/COSMIC_v"+str(cosmic_version)+"_DBS_"+"GRCh37"+".txt", sep="\t", index_col=0)
+        sigDatabase = pd.read_csv(paths+"/data/Reference_Signatures/"+genome_build+"/COSMIC_v"+str(cosmic_version)+"_DBS_"+genome_build+".txt", sep="\t", index_col=0)
         signames = sigDatabase.columns
         connected_sigs=False
         
@@ -59,7 +59,10 @@ def getProcessAvg(samples, genome_build="GRCh37", cosmic_version=3.2,signature_d
         connected_sigs=False
         
     elif samples.shape[0]==48:
-        sigDatabase = pd.read_csv(paths+"/data/CNV_signatures.txt", sep="\t",index_col=0)
+        if cosmic_version < 3.3:
+            print("The selected cosmic version is"+str(cosmic_version)+". CN signatures are available only for version 3.3. So, the cosmic version is reset to v3.3.")
+            cosmic_version=3.3
+        sigDatabase = pd.read_csv(paths+"/data/Reference_Signatures/GRCh37/COSMIC_v"+str(cosmic_version)+"_CN_GRCh37.txt", sep="\t",index_col=0)
         signames = sigDatabase.columns
         connected_sigs=False
     else:
@@ -250,12 +253,23 @@ def signature_decomposition(signatures, mtype, directory, genome_build="GRCh37",
     fh.write("De novo extracted, Global NMF Signatures, L1 Error %, L2 Error %, KL Divergence, Cosine Similarity, Correlation\n")
     fh.close()
     dictionary = {}
+    # bgsigs = (np.where(np.isin(signames.tolist(),['SBS1','SBS5']))[0]).tolist()
+
+        #only for SBS96
+    if mtype == "96" or mtype=="288" or mtype=="1536":        
+        bgsigs = get_indeces(list(signames), ['SBS1', 'SBS5'])
+    else:
+        bgsigs = []
     
+    # import pdb
+    # pdb.set_trace()
+
     # get the names of denovo signatures
     denovo_signature_names = make_letter_ids(signatures.shape[1], mtype=mutation_context)
     #lognote.write("\n********** Starting Signature Decomposition **********\n\n")
     activity_percentages=[]
     merger = PdfFileMerger()
+
     
     for i, j in zip(range(signatures.shape[1]), denovo_signature_names):
         
@@ -271,12 +285,15 @@ def signature_decomposition(signatures, mtype, directory, genome_build="GRCh37",
                 check_rule_negatives = []
                 check_rule_penalty=1.0
             
+            # import pdb
+            # pdb.set_trace()
+            
             _, exposures,L2dist,similarity, kldiv, correlation, cosine_similarity_with_four_signatures = ss.add_remove_signatures(sigDatabase, 
                                                                                                          signatures[:,i], 
                                                                                                          metric="l2", 
                                                                                                          solver="nnls", 
-                                                                                                         background_sigs = [0,4], 
-                                                                                                         permanent_sigs = [0,4], 
+                                                                                                         background_sigs = bgsigs,#[0,4], 
+                                                                                                         permanent_sigs = bgsigs,#[0,4], 
                                                                                                          candidate_sigs="all", 
                                                                                                          allsigids = signames, 
                                                                                                          add_penalty = add_penalty, 
@@ -407,7 +424,7 @@ def signature_decomposition(signatures, mtype, directory, genome_build="GRCh37",
     different_signatures = np.unique(allsignatures)
     different_signatures=different_signatures.astype(int)
     if mtype == "96" or mtype=="288" or mtype=="1536":
-        different_signatures = list(set().union(different_signatures, [0,4]))
+        different_signatures = list(set().union(different_signatures, bgsigs))
         different_signatures.sort()    
       
     

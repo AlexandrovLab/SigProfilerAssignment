@@ -778,7 +778,6 @@ def add_remove_signatures(W,
     else:
         allsigids = candidate_sigs
         
-        
     while True:
         if verbose:
             print("\n\n\n\n!!!!!!!!!!!!!!!!!!STARTING LAYER: ", layer)
