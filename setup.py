@@ -18,7 +18,7 @@ def write_version_py(filename='SigProfilerAssignment/version.py'):
 # THIS FILE IS GENERATED FROM SigProfilerAssignment SETUP.PY
 short_version = '%(version)s'
 version = '%(version)s'
-Update = '1.Copy number Signatures support 2. Fixed bugs on signature subtypes'
+Update = '1. Make consistent MutationType column 2. Update subgroups'
     
     """
     fh = open(filename, 'w')
