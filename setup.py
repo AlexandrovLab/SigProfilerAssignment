@@ -6,7 +6,7 @@ import os
 if os.path.exists("dist"):
     shutil.rmtree("dist")
 
-VERSION = '0.0.8'
+VERSION = '0.0.9'
 
 
 with open('README.md') as f:
@@ -18,7 +18,7 @@ def write_version_py(filename='SigProfilerAssignment/version.py'):
 # THIS FILE IS GENERATED FROM SigProfilerAssignment SETUP.PY
 short_version = '%(version)s'
 version = '%(version)s'
-Update = '1.Copy number Signatures support 2. Fixed bugs on signature subtypes'
+Update = '1. Make consistent MutationType column 2. Update subgroups'
     
     """
     fh = open(filename, 'w')
@@ -28,9 +28,9 @@ requirements=[
           'scipy>=1.6.3',
           'numpy>=1.21.2',
           'pandas>=1.2.4', 
-          'SigProfilerExtractor>=1.1.7',
-          'SigProfilerMatrixGenerator>=1.1.30', 
-          'sigProfilerPlotting>=1.1.15', 
+          'SigProfilerExtractor>=1.1.9',
+          'SigProfilerMatrixGenerator>=1.2.9', 
+          'sigProfilerPlotting>=1.2.2', 
           'pillow',
           'statsmodels>=0.9.0',
           'scikit-learn>=0.24.2',
