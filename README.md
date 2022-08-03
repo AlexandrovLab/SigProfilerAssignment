@@ -36,7 +36,7 @@ signature_subgroups = ['remove_MMR_deficiency_signatures',
                        'remove_BER_deficiency_signatures',
                        'remove_Chemotherapy_signatures',
                        'remove_Immunosuppressants_signatures'
-                       'remove_Iatrogenic_signatures'
+                       'remove_Treatment_signatures'
                        'remove_APOBEC_signatures',
                        'remove_Tobacco_signatures',
                        'remove_UV_signatures',
@@ -55,7 +55,7 @@ signature_subgroups = ['remove_MMR_deficiency_signatures',
 |BER_deficiency_signatures|	30, 36|
 |Chemotherapy_signatures|	11, 25, 31, 35, 86, 87, 90|
 |Immunosuppressants_signatures|	32|
-|Iatrogenic_signatures|	11, 25, 31, 32, 35, 86, 87, 90|
+|Treatment_signatures|	11, 25, 31, 32, 35, 86, 87, 90|
 |APOBEC_signatures|	2, 13|
 |Tobacco_signatures	|4, 29, 92|
 |UV_signatures|	7a, 7b, 7c, 7d, 38|
