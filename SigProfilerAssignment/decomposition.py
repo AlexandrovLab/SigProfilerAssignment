@@ -33,7 +33,7 @@ def spa_analyze(  samples,  output, signatures=None, signature_database=None,dec
         activities: A string. Path to a tab delimilted file that contains the activity table where the rows are sample IDs and colunms are signature IDs.
         samples: A string. Path to a tab delimilted file that contains the activity table where the rows are mutation types and colunms are sample IDs.
         output: A string. Path to the output folder.
-        genome_build = A string. The genome type. Example: "GRCh37", "GRCh38", "mm9", "mm10". The default value is "GRCh37"
+        genome_build = A string. The genome type. Available reference genomes: "GRCh37", "GRCh38", "mm9", "mm10" and "rn6". The default value is "GRCh37". If a different genome is selected, the default genome will be used.
         verbose = Boolean. Prints statements. Default value is False. 
         
     Values:

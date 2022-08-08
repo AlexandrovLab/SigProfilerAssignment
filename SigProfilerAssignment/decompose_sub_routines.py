@@ -36,6 +36,12 @@ from alive_progress import alive_bar
 def getProcessAvg(samples, genome_build="GRCh37", cosmic_version=3.2,signature_database=None,connected_sigs = True):
     paths = spa.__path__[0]
     
+    if genome_build == "GRCh37" or genome_build == "GRCh38" or genome_build == "mm9" or genome_build == "mm10" or genome_build == "rn6":
+        genome_build = genome_build
+    else:
+        print("The selected genome build is "+str(genome_build)+". COSMIC signatures are available only for GRCh37/38, mm9/10 and rn6 genomes. So, the genome build is reset to GRCh37.")
+        genome_build = "GRCh37"
+
     if samples.shape[0]==96:
         sigDatabase = pd.read_csv(paths+"/data/Reference_Signatures/"+genome_build+"/COSMIC_v"+str(cosmic_version)+"_SBS_"+genome_build+".txt", sep="\t", index_col=0)
         signames = sigDatabase.columns   
@@ -45,7 +51,7 @@ def getProcessAvg(samples, genome_build="GRCh37", cosmic_version=3.2,signature_d
         signames = sigDatabase.columns
         
     elif samples.shape[0]==1536:
-        sigDatabase = pd.read_csv(paths+"/data/Reference_Signatures/"+"GRCh37"+"/COSMIC_v"+str(cosmic_version)+"_SBS"+str(samples.shape[0])+"_GRCh37.txt", sep="\t", index_col=0)
+        sigDatabase = pd.read_csv(paths+"/data/Reference_Signatures/GRCh37/COSMIC_v"+str(cosmic_version)+"_SBS"+str(samples.shape[0])+"_GRCh37.txt", sep="\t", index_col=0)
         signames = sigDatabase.columns
     
     elif samples.shape[0]==78:
@@ -60,7 +66,7 @@ def getProcessAvg(samples, genome_build="GRCh37", cosmic_version=3.2,signature_d
         
     elif samples.shape[0]==48:
         if cosmic_version < 3.3:
-            print("The selected cosmic version is"+str(cosmic_version)+". CN signatures are available only for version 3.3. So, the cosmic version is reset to v3.3.")
+            print("The selected cosmic version is "+str(cosmic_version)+". CN signatures are available only for version 3.3. So, the cosmic version is reset to v3.3.")
             cosmic_version=3.3
         sigDatabase = pd.read_csv(paths+"/data/Reference_Signatures/GRCh37/COSMIC_v"+str(cosmic_version)+"_CN_GRCh37.txt", sep="\t",index_col=0)
         signames = sigDatabase.columns
