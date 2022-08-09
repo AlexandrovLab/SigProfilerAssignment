@@ -33,11 +33,14 @@ from SigProfilerAssignment import single_sample as ss
 from scipy.spatial.distance import correlation as cor
 from alive_progress import alive_bar
 
-def getProcessAvg(samples, genome_build="GRCh37", cosmic_version=3.2,signature_database=None,connected_sigs = True, exome=False):
+def getProcessAvg(samples, genome_build="GRCh37", cosmic_version=3.2, signature_database=None, connected_sigs = True, exome=False):
     paths = spa.__path__[0]
     
     if samples.shape[0]==96:
-        sigDatabase = pd.read_csv(paths+"/data/Reference_Signatures/"+genome_build+"/COSMIC_v"+str(cosmic_version)+"_SBS_"+genome_build+".txt", sep="\t", index_col=0)
+        if exome==False:
+            sigDatabase = pd.read_csv(paths+"/data/Reference_Signatures/"+genome_build+"/COSMIC_v"+str(cosmic_version)+"_SBS_"+genome_build+".txt", sep="\t", index_col=0)
+        else:
+            sigDatabase = pd.read_csv(paths+"/data/Reference_Signatures/"+genome_build+"/COSMIC_v"+str(cosmic_version)+"_SBS_"+genome_build+"_exome.txt", sep="\t", index_col=0)
         signames = sigDatabase.columns   
         
     elif samples.shape[0]==288:
@@ -49,7 +52,10 @@ def getProcessAvg(samples, genome_build="GRCh37", cosmic_version=3.2,signature_d
         signames = sigDatabase.columns
     
     elif samples.shape[0]==78:
-        sigDatabase = pd.read_csv(paths+"/data/Reference_Signatures/"+genome_build+"/COSMIC_v"+str(cosmic_version)+"_DBS_"+genome_build+".txt", sep="\t", index_col=0)
+        if exome==False:
+            sigDatabase = pd.read_csv(paths+"/data/Reference_Signatures/"+genome_build+"/COSMIC_v"+str(cosmic_version)+"_DBS_"+genome_build+".txt", sep="\t", index_col=0)
+        else:
+            sigDatabase = pd.read_csv(paths+"/data/Reference_Signatures/"+genome_build+"/COSMIC_v"+str(cosmic_version)+"_DBS_"+genome_build+"_exome.txt", sep="\t", index_col=0)
         signames = sigDatabase.columns
         connected_sigs=False
         
