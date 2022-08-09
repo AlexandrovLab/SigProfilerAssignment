@@ -33,7 +33,7 @@ from SigProfilerAssignment import single_sample as ss
 from scipy.spatial.distance import correlation as cor
 from alive_progress import alive_bar
 
-def getProcessAvg(samples, genome_build="GRCh37", cosmic_version=3.2, signature_database=None, connected_sigs = True, exome=False):
+def getProcessAvg(samples, genome_build="GRCh37", cosmic_version=3.3, signature_database=None, connected_sigs = True, exome=False):
     paths = spa.__path__[0]
     
     if samples.shape[0]==96:
@@ -163,7 +163,7 @@ def get_items_from_index(x,y):
             pass
     return z
 
-def signature_decomposition(signatures, mtype, directory, genome_build="GRCh37", cosmic_version=3.2,signature_database=None, add_penalty=0.05, remove_penalty=0.01, mutation_context=None, connected_sigs=True, make_decomposition_plots=True, originalProcessAvg=None,new_signature_thresh_hold=0.8,sig_exclusion_list=[],exome=False):
+def signature_decomposition(signatures, mtype, directory, genome_build="GRCh37", cosmic_version=3.3,signature_database=None, add_penalty=0.05, remove_penalty=0.01, mutation_context=None, connected_sigs=True, make_decomposition_plots=True, originalProcessAvg=None,new_signature_thresh_hold=0.8,sig_exclusion_list=[],exome=False):
 
     originalProcessAvg = originalProcessAvg.reset_index()
     if not os.path.exists(directory+"/Solution_Stats"):
