@@ -83,7 +83,8 @@ Analyze.decompose_fit(samples,
                        genome_build="GRCh37", 
                        verbose=False,
                        new_signature_thresh_hold=0.8,
-                       signature_subgroups=signature_subgroups)
+                       signature_subgroups=signature_subgroups,
+                       exome=False)
 ```
 ### *De Novo* Fit
 Attributes mutations of given Samples to input denovo signatures.
@@ -111,8 +112,10 @@ Analyze.cosmic_fit( samples,
                     genome_build="GRCh37", 
                     verbose=False,
                     collapse_to_SBS96=False,
+                    make_plots=True,
                     signature_subgroups=signature_subgroups,
-                    make_plots=True)
+                    exome=False
+)
 ```
 ## Main Parameters
 | Parameter | Variable Type | Parameter Description |
@@ -122,10 +125,11 @@ Analyze.cosmic_fit( samples,
 | **samples** | String | Path to a tab delimilted file that contains the activity table where the rows are mutation types and colunms are sample IDs. |
 | **output** | String | Path to the output folder. |
 | **genome_build** | String | The genome type. Example: "GRCh37", "GRCh38", "mm9", "mm10". The default value is "GRCh37" |
-| **new_signature_thresh_hold**|Float | Parameter in Cosine similarity to declare a  new signature. Applicable for decompose fit only. The default value is 0.8  |
-| **make_plots** | Boolean | Toggle on and off for making and saving all plots. Default value is True.  |
-| **signature_subgroups** | List | Removes the signatures corresponding to specific subtypes for better fitting. The usage is given above. Default value is None.  |
-| **verbose** | Boolean | Prints statements. Default value is False.  |
+| **new_signature_thresh_hold**|Float | Parameter in Cosine similarity to declare a  new signature. Applicable for decompose fit only. The default value is 0.8 |
+| **make_plots** | Boolean | Toggle on and off for making and saving all plots. Default value is True. |
+| **signature_subgroups** | List | Removes the signatures corresponding to specific subtypes for better fitting. The usage is given above. Default value is None. |
+| **exome** | Boolean | Defines if the exome renormalized signatures will be used. The default value is False. |
+| **verbose** | Boolean | Prints statements. Default value is False. |
 
         
 
@@ -153,8 +157,9 @@ Analyze.cosmic_fit( samples,
                     genome_build="GRCh37", 
                     verbose=False,
                     collapse_to_SBS96=False,
-                    signature_subgroups=signature_subgroups,
-                    make_plots=True)
+                    make_plots=True,
+                    signature_subgroups=None,
+                    exome=False)
 
 ```
 ## <a name="copyright"></a> Copyright
