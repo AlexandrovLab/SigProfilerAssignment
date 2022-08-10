@@ -21,7 +21,8 @@ import os,sys
 
 def spa_analyze(  samples,  output, signatures=None, signature_database=None,decompose_fit_option= True,denovo_refit_option=True,cosmic_fit_option=True, nnls_add_penalty=0.05, 
               nnls_remove_penalty=0.01, initial_remove_penalty=0.05, de_novo_fit_penalty=0.02, 
-              genome_build="GRCh37", cosmic_version=3.3, make_plots=True, collapse_to_SBS96=True,connected_sigs=True, verbose=False,devopts=None,new_signature_thresh_hold=0.8,signature_subgroups=None):
+              genome_build="GRCh37", cosmic_version=3.3, make_plots=True, collapse_to_SBS96=True,connected_sigs=True, verbose=False,devopts=None,new_signature_thresh_hold=0.8,
+              signature_subgroups=None, exome=False):
 
     
     """
@@ -33,8 +34,9 @@ def spa_analyze(  samples,  output, signatures=None, signature_database=None,dec
         activities: A string. Path to a tab delimilted file that contains the activity table where the rows are sample IDs and colunms are signature IDs.
         samples: A string. Path to a tab delimilted file that contains the activity table where the rows are mutation types and colunms are sample IDs.
         output: A string. Path to the output folder.
-        genome_build = A string. The genome type. Example: "GRCh37", "GRCh38", "mm9", "mm10". The default value is "GRCh37"
+        genome_build = A string. The reference genome build. List of supported genomes: "GRCh37", "GRCh38", "mm9", "mm10" and "rn6". The default value is "GRCh37". If the selected genome is not in the supported list, the default genome will be used.
         verbose = Boolean. Prints statements. Default value is False. 
+        exome = Boolean. Defines if the exome renormalized signatures will be used. The default value is False.
         
     Values:
         The files below will be generated in the output folder. 
@@ -332,7 +334,7 @@ def spa_analyze(  samples,  output, signatures=None, signature_database=None,dec
             processAvg = np.array(processAvg)
                 
         print("\n Decomposing De Novo Signatures  .....")
-        final_signatures = sub.signature_decomposition(processAvg, mutation_type, layer_directory2, genome_build=genome_build,signature_database=signature_database, mutation_context=mutation_context, add_penalty=0.05, connected_sigs=connected_sigs,remove_penalty=0.01, make_decomposition_plots=make_plots, originalProcessAvg=originalProcessAvg,new_signature_thresh_hold=new_signature_thresh_hold,sig_exclusion_list=sig_exclusion_list)    
+        final_signatures = sub.signature_decomposition(processAvg, mutation_type, layer_directory2, genome_build=genome_build,cosmic_version=cosmic_version,signature_database=signature_database, mutation_context=mutation_context, add_penalty=0.05, connected_sigs=connected_sigs,remove_penalty=0.01, make_decomposition_plots=make_plots, originalProcessAvg=originalProcessAvg,new_signature_thresh_hold=new_signature_thresh_hold,sig_exclusion_list=sig_exclusion_list,exome=exome)    
         #final_signatures = sub.signature_decomposition(processAvg, m, layer_directory2, genome_build=genome_build)
         # extract the global signatures and new signatures from the final_signatures dictionary
         globalsigs = final_signatures["globalsigs"]
@@ -397,7 +399,7 @@ def spa_analyze(  samples,  output, signatures=None, signature_database=None,dec
 
 
         if signature_database==None:
-            processAvg = sub.getProcessAvg(genomes, genome_build=genome_build, cosmic_version=cosmic_version)[0]
+            processAvg = sub.getProcessAvg(genomes, genome_build=genome_build, cosmic_version=cosmic_version, exome=exome)[0]
             #processAvg = processAvg.set_index('Type').rename_axis('MutationType')
         else:
             try:
