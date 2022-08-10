@@ -83,7 +83,8 @@ Analyze.decompose_fit(samples,
                        genome_build="GRCh37", 
                        verbose=False,
                        new_signature_thresh_hold=0.8,
-                       signature_subgroups=signature_subgroups)
+                       signature_subgroups=signature_subgroups,
+                       exome=False)
 ```
 ### *De Novo* Fit
 Attributes mutations of given Samples to input denovo signatures.
@@ -111,21 +112,25 @@ Analyze.cosmic_fit( samples,
                     genome_build="GRCh37", 
                     verbose=False,
                     collapse_to_SBS96=False,
+                    make_plots=True,
                     signature_subgroups=signature_subgroups,
-                    make_plots=True)
+                    exome=False
+)
 ```
 ## Main Parameters
 | Parameter | Variable Type | Parameter Description |
 | --------------------- | -------- |-------- |
-| **signatures** | String | Path to a  tab delimited file that contains the signaure table where the rows are mutation types and colunms are signature IDs. |
-| **activities** | String | Path to a tab delimilted file that contains the activity table where the rows are sample IDs and colunms are signature IDs. |
-| **samples** | String | Path to a tab delimilted file that contains the activity table where the rows are mutation types and colunms are sample IDs. |
+| **samples** | String | Path to a tab delimilted file that contains the samples table where the rows are mutation types and colunms are sample IDs. |
 | **output** | String | Path to the output folder. |
+| **signatures** | String | Path to a tab delimited file that contains the signature table where the rows are mutation types and colunms are signature IDs. |
 | **genome_build** | String | The reference genome build. List of supported genomes: "GRCh37", "GRCh38", "mm9", "mm10" and "rn6". The default value is "GRCh37". If the selected genome is not in the supported list, the default genome will be used. |
-| **new_signature_thresh_hold**|Float | Parameter in Cosine similarity to declare a  new signature. Applicable for decompose fit only. The default value is 0.8  |
-| **make_plots** | Boolean | Toggle on and off for making and saving all plots. Default value is True.  |
-| **signature_subgroups** | List | Removes the signatures corresponding to specific subtypes for better fitting. The usage is given above. Default value is None.  |
-| **verbose** | Boolean | Prints statements. Default value is False.  |
+| **cosmic_version** | Float | Takes a positive float among 1, 2, 3, 3.1, 3.2 and 3.3. Defines the version of the COSMIC reference signatures. The default value is 3.3. |
+| **new_signature_thresh_hold**| Float | Parameter in cosine similarity to declare a new signature. Applicable for decompose_fit only. The default value is 0.8. |
+| **make_plots** | Boolean | Toggle on and off for making and saving all plots. Default value is True. |
+| **signature_subgroups** | List | Removes the signatures corresponding to specific subtypes for better fitting. The usage is given above. Default value is None. |
+| **exome** | Boolean | Defines if the exome renormalized signatures will be used. The default value is False. |
+| **verbose** | Boolean | Prints statements. Default value is False. |
+
 
         
 
@@ -139,10 +144,9 @@ from SigProfilerAssignment import Analyzer as Analyze
 
 #set directories and paths to signatures and samples
 dir_inp     = spa.__path__[0]+'/data/Examples/'
-signatures  = dir_inp+"Results_scenario_8/SBS96/All_Solutions/SBS96_3_Signatures/Signatures/SBS96_S3_Signatures.txt"
-activities  = dir_inp+"Results_scenario_8/SBS96/All_Solutions/SBS96_3_Signatures/Activities/SBS96_S3_NMF_Activities.txt"
 samples     = dir_inp+"Input_scenario_8/Samples.txt"
 output      = "output_example/"
+signatures  = dir_inp+"Results_scenario_8/SBS96/All_Solutions/SBS96_3_Signatures/Signatures/SBS96_S3_Signatures.txt"
 sigs        = "COSMIC_v3_SBS_GRCh37_noSBS84-85.txt" #Custom Signature Database
 
 #Analysis of SP Assignment 
@@ -150,11 +154,13 @@ Analyze.cosmic_fit( samples,
                     output, 
                     signatures=None,
                     signature_database=sigs,
-                    genome_build="GRCh37", 
+                    genome_build="GRCh37",
+                    cosmic_version=3.3,
                     verbose=False,
                     collapse_to_SBS96=False,
-                    signature_subgroups=signature_subgroups,
-                    make_plots=True)
+                    make_plots=True,
+                    signature_subgroups=None,
+                    exome=False)
 
 ```
 ## <a name="copyright"></a> Copyright
