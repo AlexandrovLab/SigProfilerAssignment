@@ -103,14 +103,17 @@ def get_changed_background_sig_idx(exposures, background_sigs):
 # Round counts conserving integer total
 def roundConserveSum(x):
 
+    # Convert to array
+    x_in = np.array(x)
+
     # Total to be conserved
-    total = np.round(np.sum(x))
+    total = np.round(np.sum(x_in))
 
     # Round to nearest integer above
-    x_out = np.ceil(x)
+    x_out = np.ceil(x_in+1e-10)
 
     # Order integer residuals
-    order = np.argsort(x-x_out)
+    order = np.argsort(x_in-x_out)
 
     # Take one off first n residuals to correct total
     x_out[order[:int(np.sum(x_out)-total+1e-10)]] -= 1
