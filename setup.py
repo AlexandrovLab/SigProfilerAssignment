@@ -6,8 +6,7 @@ import os
 if os.path.exists("dist"):
     shutil.rmtree("dist")
 
-VERSION = '0.0.10'
-
+VERSION = '0.0.11'
 
 with open('README.md') as f:
 	long_description = f.read()
@@ -18,7 +17,7 @@ def write_version_py(filename='SigProfilerAssignment/version.py'):
 # THIS FILE IS GENERATED FROM SigProfilerAssignment SETUP.PY
 short_version = '%(version)s'
 version = '%(version)s'
-Update = '1. Reset reference genome to GRCh37 if a not supported genome is selected. 2. Add support for COSMIC exome reference signatures'
+Update = 'Integration of VCF files as input'
     
     """
     fh = open(filename, 'w')
