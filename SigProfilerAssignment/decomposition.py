@@ -14,6 +14,8 @@ from cmath import cos
 from SigProfilerAssignment import decompose_sub_routines as sub
 import numpy as np
 import pandas as pd
+import SigProfilerMatrixGenerator
+from SigProfilerMatrixGenerator.scripts import SigProfilerMatrixGeneratorFunc as datadump 
 
 #import SigProfilerExtractor as cosmic
 import os,sys
@@ -22,7 +24,7 @@ import os,sys
 def spa_analyze(  samples,  output, signatures=None, signature_database=None,decompose_fit_option= True,denovo_refit_option=True,cosmic_fit_option=True, nnls_add_penalty=0.05, 
               nnls_remove_penalty=0.01, initial_remove_penalty=0.05, de_novo_fit_penalty=0.02, 
               genome_build="GRCh37", cosmic_version=3.3, make_plots=True, collapse_to_SBS96=True,connected_sigs=True, verbose=False,devopts=None,new_signature_thresh_hold=0.8,
-              signature_subgroups=None, exome=False):
+              signature_subgroups=None, exome=False,vcf_opts=None):
 
     
     """
@@ -74,11 +76,25 @@ def spa_analyze(  samples,  output, signatures=None, signature_database=None,dec
     if (denovo_refit_option == True or decompose_fit_option ==True) and signatures is None:
          raise Exception("If denovo_refit or decompose_fit is True, signatures cannot be empty")
     
-    try:
-        genomes = pd.read_csv(samples, sep = "\t", index_col = 0)
-    except:
-        genomes = samples
-        genomes = pd.DataFrame(genomes)
+    if vcf_opts is not None:
+        if 'project_name' in vcf_opts:
+            project_name = vcf_opts['project_name']
+        else:
+            project_name = 'Input_vcffiles'
+        
+        if 'vcf_context' in vcf_opts:
+            vcf_context = vcf_opts['vcf_context']
+        else:
+            vcf_context ='96'
+
+        data = datadump.SigProfilerMatrixGeneratorFunc(project_name, genome_build, samples, exome=exome,  bed_file=None, chrom_based=False, plot=False, gs=False)
+        genomes = data[vcf_context]
+    else:  
+        try:
+            genomes = pd.read_csv(samples, sep = "\t", index_col = 0)
+        except:
+            genomes = samples
+            genomes = pd.DataFrame(genomes)
         
     # if signatures is None:
     #     processAvg = sub.getProcessAvg(genomes, genome_build=genome_build, cosmic_version=cosmic_version)[0]

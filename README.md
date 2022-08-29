@@ -101,6 +101,7 @@ Analyze.denovo_fit( samples,
 ```
 ### COSMIC Fit
 Attributes mutations of given Samples to input COSMIC signatures. Note that penalties associated with denovo fit and COSMIC fits are different.
+
 <img src="SigProfilerAssignment/src/figures/cosmic_fit.jpg" alt="drawing" width="600"/>
 
 ```python
@@ -120,7 +121,7 @@ Analyze.cosmic_fit( samples,
 ## Main Parameters
 | Parameter | Variable Type | Parameter Description |
 | --------------------- | -------- |-------- |
-| **samples** | String | Path to a tab delimilted file that contains the samples table where the rows are mutation types and colunms are sample IDs. |
+| **samples** | String | Path to a tab delimilted file that contains the samples table where the rows are mutation types and colunms are sample IDs. or Path to VCF files directory if input files are VCF Files. |
 | **output** | String | Path to the output folder. |
 | **signatures** | String | Path to a tab delimited file that contains the signature table where the rows are mutation types and colunms are signature IDs. |
 | **genome_build** | String | The reference genome build. List of supported genomes: "GRCh37", "GRCh38", "mm9", "mm10" and "rn6". The default value is "GRCh37". If the selected genome is not in the supported list, the default genome will be used. |
@@ -129,6 +130,7 @@ Analyze.cosmic_fit( samples,
 | **make_plots** | Boolean | Toggle on and off for making and saving all plots. Default value is True. |
 | **signature_subgroups** | List | Removes the signatures corresponding to specific subtypes for better fitting. The usage is given above. Default value is None. |
 | **exome** | Boolean | Defines if the exome renormalized signatures will be used. The default value is False. |
+| **vcf_opts**|Dict with keys 'project_name' and 'vcf_context'| Reqd options if  vcf files are provided as input. 'project_name' key takes a string of the cohort of VCF samples and 'vcf_context' takes what context type of the mutation matrix to be considered for assignment. Valid options include '96', '6', '24', '4608', '288', '18','6144', '384', '1536',  'DINUC'|
 | **verbose** | Boolean | Prints statements. Default value is False. |
 
 
