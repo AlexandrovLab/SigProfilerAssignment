@@ -31,19 +31,19 @@ $ pip install .
 ## Signature Subtypes
 ```python
 exclude_signature_subgroups = ['remove_MMR_deficiency_signatures',
-                       'remove_POL_deficiency_signatures',
-                       'remove_HR_deficiency_signatures' ,
-                       'remove_BER_deficiency_signatures',
-                       'remove_Chemotherapy_signatures',
-                       'remove_Immunosuppressants_signatures'
-                       'remove_Treatment_signatures'
-                       'remove_APOBEC_signatures',
-                       'remove_Tobacco_signatures',
-                       'remove_UV_signatures',
-                       'remove_AA_signatures',
-                       'remove_Colibactin_signatures',
-                       'remove_Artifact_signatures',
-                       'remove_Lymphoid_signatures']
+                               'remove_POL_deficiency_signatures',
+                               'remove_HR_deficiency_signatures' ,
+                               'remove_BER_deficiency_signatures',
+                               'remove_Chemotherapy_signatures',
+                               'remove_Immunosuppressants_signatures'
+                               'remove_Treatment_signatures'
+                               'remove_APOBEC_signatures',
+                               'remove_Tobacco_signatures',
+                               'remove_UV_signatures',
+                               'remove_AA_signatures',
+                               'remove_Colibactin_signatures',
+                               'remove_Artifact_signatures',
+                               'remove_Lymphoid_signatures']
 ```
 
 
