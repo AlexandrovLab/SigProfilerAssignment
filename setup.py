@@ -6,7 +6,7 @@ import os
 if os.path.exists("dist"):
     shutil.rmtree("dist")
 
-VERSION = '0.0.11'
+VERSION = '0.0.12'
 
 with open('README.md') as f:
 	long_description = f.read()
@@ -17,7 +17,7 @@ def write_version_py(filename='SigProfilerAssignment/version.py'):
 # THIS FILE IS GENERATED FROM SigProfilerAssignment SETUP.PY
 short_version = '%(version)s'
 version = '%(version)s'
-Update = 'Integration of VCF files as input'
+Update = 'Including input_type and context_type'
     
     """
     fh = open(filename, 'w')
@@ -27,8 +27,8 @@ requirements=[
           'scipy>=1.6.3',
           'numpy>=1.21.2',
           'pandas>=1.2.4', 
-          'SigProfilerExtractor>=1.1.9',
-          'SigProfilerMatrixGenerator>=1.2.9', 
+          'SigProfilerExtractor>=1.1.11',
+          'SigProfilerMatrixGenerator>=1.2.12', 
           'sigProfilerPlotting>=1.2.2', 
           'pillow',
           'statsmodels>=0.9.0',

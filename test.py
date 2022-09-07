@@ -20,7 +20,7 @@ def main():
     
     # vcf_opts={'project_name': 'test_sample','vcf_context': '288' } # Uncomment this  If  vcf files are provided as input. 
 
-    # signature_subgroups = ['remove_MMR_deficiency_signatures',
+    # exclude_signature_subgroups = ['remove_MMR_deficiency_signatures',
     #                         'remove_POL_deficiency_signatures',
     #                         'remove_HR_deficiency_signatures' ,
     #                         'remove_BER_deficiency_signatures',
@@ -33,7 +33,7 @@ def main():
     #                         'remove_Artifact_signatures', 
     #                         'remove_Lymphoid_signatures']
 
-    signature_subgroups = None
+    exclude_signature_subgroups = None
 
     Analyze.decompose_fit( samples, 
                            output, 
@@ -42,7 +42,7 @@ def main():
                            genome_build="GRCh37", 
                            verbose=False,
                            new_signature_thresh_hold=0.8,
-                           signature_subgroups=signature_subgroups,
+                           exclude_signature_subgroups=exclude_signature_subgroups,
                         #    vcf_opts=vcf_opts
                            )
 
@@ -62,7 +62,7 @@ def main():
                         genome_build="GRCh37", 
                         verbose=False,
                         collapse_to_SBS96=True,
-                        signature_subgroups=signature_subgroups,
+                        exclude_signature_subgroups=exclude_signature_subgroups,
                         # vcf_opts=vcf_opts
                        )
 
