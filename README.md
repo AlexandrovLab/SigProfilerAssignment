@@ -30,7 +30,7 @@ $ pip install .
 ```
 ## Signature Subtypes
 ```python
-signature_subgroups = ['remove_MMR_deficiency_signatures',
+exclude_signature_subgroups = ['remove_MMR_deficiency_signatures',
                        'remove_POL_deficiency_signatures',
                        'remove_HR_deficiency_signatures' ,
                        'remove_BER_deficiency_signatures',
@@ -83,7 +83,7 @@ Analyze.decompose_fit(samples,
                        genome_build="GRCh37", 
                        verbose=False,
                        new_signature_thresh_hold=0.8,
-                       signature_subgroups=signature_subgroups,
+                       exclude_signature_subgroups=exclude_signature_subgroups,
                        exome=False)
 ```
 ### *De Novo* Fit
@@ -114,7 +114,7 @@ Analyze.cosmic_fit( samples,
                     verbose=False,
                     collapse_to_SBS96=False,
                     make_plots=True,
-                    signature_subgroups=signature_subgroups,
+                    exclude_signature_subgroups=exclude_signature_subgroups,
                     exome=False
 )
 ```
@@ -123,20 +123,21 @@ Analyze.cosmic_fit( samples,
 | --------------------- | -------- |-------- |
 | **samples** | String | Path to a tab delimilted file that contains the samples table where the rows are mutation types and colunms are sample IDs. or Path to VCF files directory if input files are VCF Files. |
 | **output** | String | Path to the output folder. |
+ | **input_type** | String | The type of input:<br><ul><li>"vcf": used for vcf format inputs.</li><li>"matrix": used for table format inputs using a tab seperated file.</li></ul> Default value is "matrix"|
 | **signatures** | String | Path to a tab delimited file that contains the signature table where the rows are mutation types and colunms are signature IDs. |
 | **genome_build** | String | The reference genome build. List of supported genomes: "GRCh37", "GRCh38", "mm9", "mm10" and "rn6". The default value is "GRCh37". If the selected genome is not in the supported list, the default genome will be used. |
 | **cosmic_version** | Float | Takes a positive float among 1, 2, 3, 3.1, 3.2 and 3.3. Defines the version of the COSMIC reference signatures. The default value is 3.3. |
 | **new_signature_thresh_hold**| Float | Parameter in cosine similarity to declare a new signature. Applicable for decompose_fit only. The default value is 0.8. |
 | **make_plots** | Boolean | Toggle on and off for making and saving all plots. Default value is True. |
-| **signature_subgroups** | List | Removes the signatures corresponding to specific subtypes for better fitting. The usage is given above. Default value is None. |
+| **exclude_signature_subgroups** | List | Removes the signatures corresponding to specific subtypes for better fitting. The usage is given above. Default value is None. |
 | **exome** | Boolean | Defines if the exome renormalized signatures will be used. The default value is False. |
-| **vcf_opts**|Dict with keys 'project_name' and 'vcf_context'| Reqd options if  vcf files are provided as input. 'project_name' key takes a string of the cohort of VCF samples and 'vcf_context' takes what context type of the mutation matrix to be considered for assignment. Valid options include '96', '6', '24', '4608', '288', '18','6144', '384', '1536',  'DINUC'|
+| **context_type**| String| Reqd context type if  "input_type" is "vcf". 'context_type' takes what context type of the mutation matrix to be considered for assignment. Valid options include '96', '6', '24', '4608', '288', '18','6144', '384', '1536',  'DINUC'. Default Value is '96'|
 | **verbose** | Boolean | Prints statements. Default value is False. |
 
 
         
 
-#### SPA analysis Example
+#### SPA analysis Example for a matrix
 
 
 ```python
@@ -161,7 +162,39 @@ Analyze.cosmic_fit( samples,
                     verbose=False,
                     collapse_to_SBS96=False,
                     make_plots=True,
-                    signature_subgroups=None,
+                    exclude_signature_subgroups=None,
+                    exome=False)
+
+```
+
+#### SPA analysis Example for input vcf files
+
+
+```python
+#import modules
+import SigProfilerAssignment as spa
+from SigProfilerAssignment import Analyzer as Analyze
+
+#set directories and paths to signatures and samples
+dir_inp     = spa.__path__[0]+'/data/Examples/'
+samples = spa.__path__[0]+'/data/vcftest/' #directory of vcf files
+output      = "output_example/"
+signatures  = dir_inp+"Results_scenario_8/SBS96/All_Solutions/SBS96_3_Signatures/Signatures/SBS96_S3_Signatures.txt"
+sigs        = "COSMIC_v3_SBS_GRCh37_noSBS84-85.txt" #Custom Signature Database
+
+#Analysis of SP Assignment 
+Analyze.cosmic_fit( samples, 
+                    output,
+                    input_type="vcf",
+                    context_type="96", 
+                    signatures=None,
+                    signature_database=sigs,
+                    genome_build="GRCh37",
+                    cosmic_version=3.3,
+                    verbose=False,
+                    collapse_to_SBS96=False,
+                    make_plots=True,
+                    exclude_signature_subgroups=None,
                     exome=False)
 
 ```

@@ -24,7 +24,7 @@ import os,sys
 def spa_analyze(  samples,  output,input_type='matrix',context_type="96", signatures=None, signature_database=None,decompose_fit_option= True,denovo_refit_option=True,cosmic_fit_option=True, nnls_add_penalty=0.05, 
               nnls_remove_penalty=0.01, initial_remove_penalty=0.05, de_novo_fit_penalty=0.02, 
               genome_build="GRCh37", cosmic_version=3.3, make_plots=True, collapse_to_SBS96=True,connected_sigs=True, verbose=False,devopts=None,new_signature_thresh_hold=0.8,
-              signature_subgroups=None, exome=False):
+              exclude_signature_subgroups=None, exome=False):
 
     
     """
@@ -123,19 +123,19 @@ def spa_analyze(  samples,  output,input_type='matrix',context_type="96", signat
     
     
     signature_subgroups_dict = default_subgroups_dict.copy()
-    if signature_subgroups == None:
+    if exclude_signature_subgroups == None:
         pass
     else:
-        if type(signature_subgroups) is not list:
-            sys.exit("signature_subgroups input should be a list of appropriate flags, please refer to documentation.")
+        if type(exclude_signature_subgroups) is not list:
+            sys.exit("exclude_signature_subgroups input should be a list of appropriate flags, please refer to documentation.")
         else:
 
             for key in default_subgroups_dict:
-                if key in signature_subgroups:
+                if key in exclude_signature_subgroups:
                     signature_subgroups_dict[key]=True
 
     sig_exclusion_list=[]
-    if signature_subgroups == None:
+    if exclude_signature_subgroups == None:
         sig_exclusion_list=[]
     else:
         for key in signature_subgroups_dict:
