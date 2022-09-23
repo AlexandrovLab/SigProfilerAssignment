@@ -61,7 +61,7 @@ exclude_signature_subgroups = ['remove_MMR_deficiency_signatures',
 |UV_signatures|	7a, 7b, 7c, 7d, 38|
 |AA_signatures|	22|
 |Colibactin_signatures|	88|
-|Artifact_signatures|	27, 43, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60|
+|Artifact_signatures|	27, 43, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 95|
 |Lymphoid_signatures|	9, 84, 85|
 
 <!-- 
