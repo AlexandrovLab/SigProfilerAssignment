@@ -11,7 +11,7 @@ Created on Sun May 19 12:21:06 2019
 from cmath import cos
 
 # from torch import sign
-from SigProfilerAssignment import decompose_sub_routines as sub
+from SigProfilerAssignment import decompose_subroutines as sub
 import numpy as np
 import pandas as pd
 import SigProfilerMatrixGenerator
