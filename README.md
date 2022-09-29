@@ -3,7 +3,7 @@
 
 
 
-<img src="SigProfilerAssignment/src/figures/SigProfilerAssignment.png" alt="drawing" width="1000"/>
+<img src="SigProfilerAssignment/figures/SigProfilerAssignment.png" alt="drawing" width="1000"/>
 
 # SigProfilerAssignment
 SigProfilerAssignment is a new mutational attribution and decomposition tool that performs the following functions:
@@ -72,7 +72,7 @@ spa_analyze(  samples,  output, signatures=None, signature_database=None,decompo
 ```  -->
 ### Decompose Fit
 Decomposes the De Novo Signatures into COSMIC Signatures and assigns COSMIC signatures into samples.
-<img src="SigProfilerAssignment/src/figures/decomp_pic.jpg" alt="drawing" width="600"/>
+<img src="SigProfilerAssignment/figures/decomp_pic.jpg" alt="drawing" width="600"/>
 
 ```python
 from SigProfilerAssignment import Analyzer as Analyze
@@ -88,7 +88,7 @@ Analyze.decompose_fit(samples,
 ```
 ### *De Novo* Fit
 Attributes mutations of given Samples to input denovo signatures.
-<img src="SigProfilerAssignment/src/figures/denovo_fit.jpg" alt="drawing" width="600"/>
+<img src="SigProfilerAssignment/figures/denovo_fit.jpg" alt="drawing" width="600"/>
 
 ```python
 from SigProfilerAssignment import Analyzer as Analyze
@@ -102,7 +102,7 @@ Analyze.denovo_fit( samples,
 ### COSMIC Fit
 Attributes mutations of given Samples to input COSMIC signatures. Note that penalties associated with denovo fit and COSMIC fits are different.
 
-<img src="SigProfilerAssignment/src/figures/cosmic_fit.jpg" alt="drawing" width="600"/>
+<img src="SigProfilerAssignment/figures/cosmic_fit.jpg" alt="drawing" width="600"/>
 
 ```python
 from SigProfilerAssignment import Analyzer as Analyze
