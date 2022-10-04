@@ -121,10 +121,10 @@ Analyze.cosmic_fit( samples,
 ## Main Parameters
 | Parameter | Variable Type | Parameter Description |
 | --------------------- | -------- |-------- |
-| **samples** | String | Path to input file for `input_type`:<ul><li>matrix</li><li>seg:TYPE</li></ul> Path to input folder for `input_type`:<ul><li>vcf</li></ul>|
+| **samples** | String | Path to input file for `input_type`:<ul><li>"matrix"</li><li>"seg:TYPE"</li></ul> Path to input folder for `input_type`:<ul><li>"vcf"</li></ul>|
 | **output** | String | Path to the output folder. |
  | **input_type** | String | The type of input:<br><ul><li>"matrix": used for table format inputs using a tab-separated file where the rows are mutation types and the columns are sample IDs.</li><li>"vcf": used for mutation calling file inputs (VCFs, MAFs or simple text files).</li><li>"seg:TYPE": used for a multi-sample segmentation file for copy number analysis. The accepted callers for TYPE are the following {"ASCAT", "ASCAT_NGS", "SEQUENZA", "ABSOLUTE", "BATTENBERG", "FACETS", "PURPLE", "TCGA"}. For example, when using segmentation file from BATTENBERG then set input_type to "seg:BATTENBERG".</li></ul> The default value is "matrix".|
-| **context_type**| String| Required context type if `input_type` is `vcf`. `context_type` takes which context type of the input data is considered for assignment. Valid options include '96', '288', '1536', 'DINUC', and 'INDEL'. The default value is '96'.|
+| **context_type**| String| Required context type if `input_type` is "vcf". `context_type` takes which context type of the input data is considered for assignment. Valid options include "96", "288", "1536", "DINUC", and "INDEL". The default value is "96".|
 | **signatures** | String | Path to a tab delimited file that contains the signature table where the rows are mutation types and colunms are signature IDs. |
 | **genome_build** | String | The reference genome build. List of supported genomes: "GRCh37", "GRCh38", "mm9", "mm10" and "rn6". The default value is "GRCh37". If the selected genome is not in the supported list, the default genome will be used. |
 | **cosmic_version** | Float | Takes a positive float among 1, 2, 3, 3.1, 3.2 and 3.3. Defines the version of the COSMIC reference signatures. The default value is 3.3. |
