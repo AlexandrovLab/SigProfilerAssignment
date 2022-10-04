@@ -86,6 +86,9 @@ Analyze.decompose_fit(samples,
                        exclude_signature_subgroups=exclude_signature_subgroups,
                        exome=False)
 ```
+
+## Analysis
+
 ### *De Novo* Fit
 Attributes mutations of given Samples to input denovo signatures.
 <img src="SigProfilerAssignment/src/figures/denovo_fit.jpg" alt="drawing" width="600"/>
@@ -137,7 +140,9 @@ Analyze.cosmic_fit( samples,
 
         
 
-#### SPA analysis Example for a matrix
+## Examples
+
+### SPA analysis - Example for a matrix
 
 
 ```python
@@ -167,7 +172,7 @@ Analyze.cosmic_fit( samples,
 
 ```
 
-#### SPA analysis Example for input vcf files
+### SPA analysis - Example for input vcf files
 
 
 ```python
@@ -198,6 +203,36 @@ Analyze.cosmic_fit( samples,
                     exome=False)
 
 ```
+
+### SPA analysis - Example for an input multi-sample segmentation file
+
+
+```python
+#import modules
+import SigProfilerAssignment as spa
+from SigProfilerAssignment import Analyzer as Analyze
+
+#set directories and paths to signatures and samples
+dir_inp     = spa.__path__[0]+'/data/Examples/'
+samples = spa.__path__[0]+'/data/cnvtest/all.breast.ascat.summary.sample.tsv' # segmentation file
+output      = "output_example/"
+
+#Analysis of SP Assignment 
+Analyze.cosmic_fit( samples, 
+                    output,
+                    input_type="seg:ASCAT_NGS",
+                    context_type="CNV48", 
+                    signatures=None,
+                    signature_database=None,
+                    genome_build="GRCh37",
+                    cosmic_version=3.3,
+                    verbose=False,
+                    collapse_to_SBS96=False,
+                    make_plots=True,
+                    exclude_signature_subgroups=None,
+                    exome=False)
+```
+
 ## <a name="copyright"></a> Copyright
 This software and its documentation are copyright 2022 as a part of the SigProfiler project. The SigProfilerAssignment framework is free software and is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
 
