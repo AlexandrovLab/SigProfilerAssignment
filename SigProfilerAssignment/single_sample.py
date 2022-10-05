@@ -9,8 +9,7 @@ import numpy as np
 from numpy import linalg as LA
 from scipy.optimize import nnls
 from scipy.optimize import minimize
-#from SigProfilerExtractor import subroutines as sub
-from SigProfilerAssignment import decompose_sub_routines as sub
+from SigProfilerAssignment import decompose_subroutines as sub
 import scipy.stats
 import copy 
 import os

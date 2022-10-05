@@ -6,7 +6,7 @@ import os
 if os.path.exists("dist"):
     shutil.rmtree("dist")
 
-VERSION = '0.0.13'
+VERSION = '0.0.14'
 
 with open('README.md') as f:
 	long_description = f.read()
@@ -17,7 +17,7 @@ def write_version_py(filename='SigProfilerAssignment/version.py'):
 # THIS FILE IS GENERATED FROM SigProfilerAssignment SETUP.PY
 short_version = '%(version)s'
 version = '%(version)s'
-Update = 'Update COSMIC v3.3'
+Update = '1. Add support for multi-sample segmentation files. 2. Move decomposition plots to SigProfilerAssignment.'
     
     """
     fh = open(filename, 'w')
