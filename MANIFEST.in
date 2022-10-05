@@ -6,6 +6,5 @@ include SigProfilerAssignment/data/Reference_Signatures/GRCh38/*
 include SigProfilerAssignment/data/Reference_Signatures/mm9/*
 include SigProfilerAssignment/data/Reference_Signatures/mm10/*
 include SigProfilerAssignment/data/Reference_Signatures/rn6/*
-include SigProfilerAssignment/src/FormatFiles/*
-include SigProfilerAssignment/src/Fonts/*
-include SigProfilerAssignment/src/*
+include SigProfilerAssignment/DecompositionPlots/reference_files/Fonts/*
+include SigProfilerAssignment/DecompositionPlots/reference_files/*
