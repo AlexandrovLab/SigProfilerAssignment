@@ -17,7 +17,7 @@ def write_version_py(filename='SigProfilerAssignment/version.py'):
 # THIS FILE IS GENERATED FROM SigProfilerAssignment SETUP.PY
 short_version = '%(version)s'
 version = '%(version)s'
-Update = 'Add support for multi-sample segmentation files'
+Update = '1. Add support for multi-sample segmentation files. 2. Move decomposition plots to SigProfilerAssignment.'
     
     """
     fh = open(filename, 'w')
