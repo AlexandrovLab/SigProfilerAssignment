@@ -16,12 +16,13 @@ import numpy as np
 import pandas as pd
 import SigProfilerMatrixGenerator
 from SigProfilerMatrixGenerator.scripts import SigProfilerMatrixGeneratorFunc as datadump 
+from SigProfilerMatrixGenerator.scripts import CNVMatrixGenerator as scna
 
 #import SigProfilerExtractor as cosmic
 import os,sys
 
 
-def spa_analyze(  samples,  output,input_type='matrix',context_type="96", signatures=None, signature_database=None,decompose_fit_option= True,denovo_refit_option=True,cosmic_fit_option=True, nnls_add_penalty=0.05, 
+def spa_analyze(samples, output, input_type='matrix', context_type="96", signatures=None, signature_database=None,decompose_fit_option= True,denovo_refit_option=True,cosmic_fit_option=True, nnls_add_penalty=0.05, 
               nnls_remove_penalty=0.01, initial_remove_penalty=0.05, de_novo_fit_penalty=0.02, 
               genome_build="GRCh37", cosmic_version=3.3, make_plots=True, collapse_to_SBS96=True,connected_sigs=True, verbose=False,devopts=None,new_signature_thresh_hold=0.8,
               exclude_signature_subgroups=None, exome=False):
@@ -79,10 +80,16 @@ def spa_analyze(  samples,  output,input_type='matrix',context_type="96", signat
     if input_type=="vcf":
         project_name = 'Input_vcffiles'
         vcf_context = context_type
-        data = datadump.SigProfilerMatrixGeneratorFunc(project_name, genome_build, samples, exome=exome,  bed_file=None, chrom_based=False, plot=False, gs=False)
+        data = datadump.SigProfilerMatrixGeneratorFunc(project_name, genome_build, samples, exome=exome, bed_file=None, chrom_based=False, plot=False, gs=False)
         genomes = data[vcf_context]
-        
-    elif input_type=="matrix":  
+
+    elif input_type.split(":")[0].lower()=="seg":
+        cnv_file_type = input_type.split(":")[1].upper()
+        context_type = "CNV48"
+        genomes = scna.generateCNVMatrix(cnv_file_type, samples, cnv_file_type, os.path.dirname(samples) + '/')
+        genomes = genomes.set_index('MutationType')
+
+    elif input_type=="matrix":
         try:
             genomes = pd.read_csv(samples, sep = "\t", index_col = 0)
         except:
@@ -197,7 +204,6 @@ def spa_analyze(  samples,  output,input_type='matrix',context_type="96", signat
         signature_names = sub.make_letter_ids(idlenth = processAvg.shape[1], mtype = mutation_context)
        
         # create the folder for the final solution/ De Novo Solution
-        #pdb.set_trace()
         exposureAvg_dummy = pd.DataFrame(np.random.rand(processAvg.shape[1],genomes.shape[1]),index=listOfSignatures,columns=colnames.to_list()).transpose().rename_axis('Samples')
         exposureAvg = exposureAvg_dummy
         exposureAvg.columns=signature_names   
@@ -433,8 +439,6 @@ def spa_analyze(  samples,  output,input_type='matrix',context_type="96", signat
         # # 
         processAvg.drop(sig_exclusion_list, axis=1, inplace=True,errors='ignore')
 
-        # import pdb
-        # pdb.set_trace()        
         #processAvg= originalProcessAvg
         #index = genomes.index
         #colnames = genomes.columns
@@ -444,7 +448,6 @@ def spa_analyze(  samples,  output,input_type='matrix',context_type="96", signat
         for i in allsigids:
             attribution[i]= [i] 
         #only for SBS96
-        # pdb.set_trace()
         if mutation_type == "96" or mutation_type=="288" or mutation_type=="1536":        
             background_sigs = sub.get_indeces(list(allsigids), ['SBS1', 'SBS5'])
             # add connected signatures   
@@ -459,8 +462,6 @@ def spa_analyze(  samples,  output,input_type='matrix',context_type="96", signat
             if genomes.shape[0] == processAvg.shape[0] and collapse_to_SBS96 ==True:
                 sys.exit("Signatures Database and Samples are of same context type and is not equal to 96. please rerun by setting the flag \"collapse_to_SBS96 = False \"")
         
-        # import pdb
-        # pdb.set_trace()
 
 
         sub.make_final_solution(processAvg, genomes, allsigids, layer_directory3, mutation_type, index, colnames, 
