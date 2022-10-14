@@ -169,7 +169,7 @@ def get_items_from_index(x,y):
             pass
     return z
 
-def signature_decomposition(signatures, mtype, directory, genome_build="GRCh37", cosmic_version=3.3,signature_database=None, add_penalty=0.05, remove_penalty=0.01, mutation_context=None, connected_sigs=True, make_decomposition_plots=True, originalProcessAvg=None,new_signature_thresh_hold=0.8,sig_exclusion_list=[],exome=False):
+def signature_decomposition(signatures, mtype, directory, genome_build="GRCh37", cosmic_version=3.3,signature_database=None, add_penalty=0.05, remove_penalty=0.01, mutation_context=None, connected_sigs=True, make_decomposition_plots=True, originalProcessAvg=None,new_signature_thresh_hold=0.8,sig_exclusion_list=[],exome=False, m_for_subgroups='SBS'):
 
     originalProcessAvg = originalProcessAvg.reset_index()
     if not os.path.exists(directory+"/Solution_Stats"):
@@ -236,7 +236,7 @@ def signature_decomposition(signatures, mtype, directory, genome_build="GRCh37",
         except:
             sys.exit("Wrong format of signature database for decompose_fit, Please pass a text file of signatures in the format of COSMIC sig database")
     
-    sig_exclusion_list= ['SBS'+items for items in sig_exclusion_list]
+    sig_exclusion_list= [m_for_subgroups+items for items in sig_exclusion_list]
     lognote.write("The following signatures are excluded: "+" ".join(str(item) for item in sig_exclusion_list))
     sigDatabase.drop(sig_exclusion_list, axis=1, inplace=True,errors='ignore')
     signames=sigDatabase.columns
