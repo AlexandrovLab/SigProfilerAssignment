@@ -17,9 +17,6 @@ def main():
     output="output_example/"
     sigs= "COSMIC_v3_SBS_GRCh37_noSBS84-85.txt"
     
-    
-    # vcf_opts={'project_name': 'test_sample','vcf_context': '288' } # Uncomment this  If  vcf files are provided as input. 
-
     # exclude_signature_subgroups = ['remove_MMR_deficiency_signatures',
     #                         'remove_POL_deficiency_signatures',
     #                         'remove_HR_deficiency_signatures' ,
@@ -43,7 +40,6 @@ def main():
                            verbose=False,
                            new_signature_thresh_hold=0.8,
                            exclude_signature_subgroups=exclude_signature_subgroups,
-                        #    vcf_opts=vcf_opts
                            )
 
     Analyze.denovo_fit( samples,
@@ -52,7 +48,6 @@ def main():
                         signature_database=None,
                         genome_build="GRCh37", 
                         verbose=False,
-                        # vcf_opts=vcf_opts
                         )
 
     Analyze.cosmic_fit( samples, 
@@ -63,7 +58,6 @@ def main():
                         verbose=False,
                         collapse_to_SBS96=True,
                         exclude_signature_subgroups=exclude_signature_subgroups,
-                        # vcf_opts=vcf_opts
                        )
 
 if __name__ == '__main__':
