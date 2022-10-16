@@ -132,10 +132,11 @@ Analyze.cosmic_fit( samples,
 | **genome_build** | String | The reference genome build. List of supported genomes: "GRCh37", "GRCh38", "mm9", "mm10" and "rn6". The default value is "GRCh37". If the selected genome is not in the supported list, the default genome will be used. |
 | **cosmic_version** | Float | Takes a positive float among 1, 2, 3, 3.1, 3.2 and 3.3. Defines the version of the COSMIC reference signatures. The default value is 3.3. |
 | **new_signature_thresh_hold**| Float | Parameter in cosine similarity to declare a new signature. Applicable for decompose_fit only. The default value is 0.8. |
-| **make_plots** | Boolean | Toggle on and off for making and saving all plots. Default value is True. |
-| **exclude_signature_subgroups** | List | Removes the signatures corresponding to specific subtypes for better fitting. The usage is given above. Default value is None. |
+| **exclude_signature_subgroups** | List | Removes the signatures corresponding to specific subtypes for better fitting. The usage is given above. The default value is None. |
 | **exome** | Boolean | Defines if the exome renormalized signatures will be used. The default value is False. |
-| **verbose** | Boolean | Prints statements. Default value is False. |
+| **export_probabilities** | Boolean | Defines if the probability matrix is created. The default value is True. |
+| **make_plots** | Boolean | Toggle on and off for making and saving all plots. The default value is True. |
+| **verbose** | Boolean | Prints statements. The default value is False. |
 
 
         

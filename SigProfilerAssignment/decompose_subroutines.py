@@ -775,16 +775,17 @@ def make_final_solution(processAvg, allgenomes, allsigids, layer_directory, m, i
     probability = probabilities(processAvg, exposureAvg, index, allsigids, allcolnames)
     probability=probability.set_index("Sample Names" )
     
-    if cosmic_sigs==False:
-        
-        if refit_denovo_signatures==True:
-            probability.to_csv(layer_directory+"/Activities"+"/"+"De_Novo_Mutation_Probabilities_refit.txt", "\t") 
-        else:
-            probability.to_csv(layer_directory+"/Activities"+"/"+"De_Novo_Mutation_Probabilities.txt", "\t") 
-    if cosmic_sigs==True:
-        probability.to_csv(layer_directory+"/Activities"+"/"+"Decomposed_Mutation_Probabilities.txt", "\t") 
+    if export_probabilities==True:
+        if cosmic_sigs==False:
+            
+            if refit_denovo_signatures==True:
+                probability.to_csv(layer_directory+"/Activities"+"/"+"De_Novo_Mutation_Probabilities_refit.txt", "\t") 
+            else:
+                probability.to_csv(layer_directory+"/Activities"+"/"+"De_Novo_Mutation_Probabilities.txt", "\t") 
+        if cosmic_sigs==True:
+            probability.to_csv(layer_directory+"/Activities"+"/"+"Decomposed_Mutation_Probabilities.txt", "\t") 
     
-
+    
     return exposures
 ################################################################### FUNCTION ONE ###################################################################
 #function to calculate multiple similarities/distances
