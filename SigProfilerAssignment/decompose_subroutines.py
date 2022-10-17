@@ -772,10 +772,11 @@ def make_final_solution(processAvg, allgenomes, allsigids, layer_directory, m, i
         else:
             custom_signatures_plot(processes, layer_directory+"/Signatures")
     
-    probability = probabilities(processAvg, exposureAvg, index, allsigids, allcolnames)
-    probability=probability.set_index("Sample Names" )
-    
     if export_probabilities==True:
+
+        probability = probabilities(processAvg, exposureAvg, index, allsigids, allcolnames)
+        probability=probability.set_index("Sample Names" )
+    
         if cosmic_sigs==False:
             
             if refit_denovo_signatures==True:
