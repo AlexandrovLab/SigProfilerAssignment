@@ -6,7 +6,7 @@ import os
 if os.path.exists("dist"):
     shutil.rmtree("dist")
 
-VERSION = '0.0.14'
+VERSION = '0.0.15'
 
 with open('README.md') as f:
 	long_description = f.read()
@@ -17,7 +17,7 @@ def write_version_py(filename='SigProfilerAssignment/version.py'):
 # THIS FILE IS GENERATED FROM SigProfilerAssignment SETUP.PY
 short_version = '%(version)s'
 version = '%(version)s'
-Update = '1. Add support for multi-sample segmentation files. 2. Move decomposition plots to SigProfilerAssignment.'
+Update = '1. Add subgroups for DBS and ID COSMIC signatures. 2. Add export_probabilities parameter .'
     
     """
     fh = open(filename, 'w')
@@ -27,7 +27,7 @@ requirements=[
           'scipy>=1.6.3',
           'numpy>=1.21.2',
           'pandas>=1.2.4', 
-          'SigProfilerExtractor>=1.1.11',
+          'SigProfilerExtractor>=1.1.14',
           'SigProfilerMatrixGenerator>=1.2.12', 
           'sigProfilerPlotting>=1.2.2', 
           'pillow',

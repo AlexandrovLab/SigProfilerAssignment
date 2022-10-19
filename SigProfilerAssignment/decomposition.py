@@ -25,7 +25,7 @@ import os,sys
 def spa_analyze(samples, output, input_type='matrix', context_type="96", signatures=None, signature_database=None,decompose_fit_option= True,denovo_refit_option=True,cosmic_fit_option=True, nnls_add_penalty=0.05, 
               nnls_remove_penalty=0.01, initial_remove_penalty=0.05, de_novo_fit_penalty=0.02, 
               genome_build="GRCh37", cosmic_version=3.3, make_plots=True, collapse_to_SBS96=True,connected_sigs=True, verbose=False,devopts=None,new_signature_thresh_hold=0.8,
-              exclude_signature_subgroups=None, exome=False):
+              exclude_signature_subgroups=None, exome=False, export_probabilities=True):
 
     
     """
@@ -98,6 +98,17 @@ def spa_analyze(samples, output, input_type='matrix', context_type="96", signatu
     else:
         sys.exit("Invalid input_type specified")
 
+    mutation_type = str(genomes.shape[0])
+    m=mutation_type
+
+    if m=='96' or m=='288' or m=='1536':
+        m_for_subgroups = 'SBS'
+    if m=='78':
+        m_for_subgroups = 'DBS'
+    if m=='83':
+        m_for_subgroups = 'ID'
+
+
     default_subgroups_dict= {'remove_MMR_deficiency_signatures' :False,
                       'remove_POL_deficiency_signatures' :False,
                       'remove_HR_deficiency_signatures' :False,
@@ -113,20 +124,20 @@ def spa_analyze(samples, output, input_type='matrix', context_type="96", signatu
                       'remove_Artifact_signatures' :False,
                       'remove_Lymphoid_signatures' :False}
                       
-    default_subgroups_siglists= {'remove_MMR_deficiency_signatures' :['6', '14', '15', '20', '21', '26', '44'],
-                      'remove_POL_deficiency_signatures' :['10a', '10b', '10c', '10d', '28'],
-                      'remove_HR_deficiency_signatures' :['3'],
-                      'remove_BER_deficiency_signatures' :['30','36'],
-                      'remove_Chemotherapy_signatures' :['11','25','31','35','86','87','90'],
-                      'remove_Immunosuppressants_signatures' :['32'],
-                      'remove_Treatment_signatures' :['11','25','31','32','35','86','87','90'],
-                      'remove_APOBEC_signatures' :['2','13'],
-                      'remove_Tobacco_signatures' :['4','29','92'],
-                      'remove_UV_signatures' :['7a','7b','7c','7d','38'],
-                      'remove_AA_signatures' :['22'],
-                      'remove_Colibactin_signatures' :['88'],
-                      'remove_Artifact_signatures' :['27','43','45','46','47','48','49','50','51','52','53','54','55','56','57','58','59','60','95'],
-                      'remove_Lymphoid_signatures' :['9','84','85']}
+    default_subgroups_siglists= {'remove_MMR_deficiency_signatures' :{'SBS':['6', '14', '15', '20', '21', '26', '44'], 'DBS':['7', '10'], 'ID':['7']},
+                      'remove_POL_deficiency_signatures' :{'SBS':['10a', '10b', '10c', '10d', '28'], 'DBS':['3'], 'ID':[]},
+                      'remove_HR_deficiency_signatures' :{'SBS':['3'], 'DBS':[], 'ID':['6']},
+                      'remove_BER_deficiency_signatures' :{'SBS':['30','36'], 'DBS':[], 'ID':[]},
+                      'remove_Chemotherapy_signatures' :{'SBS':['11','25','31','35','86','87','90'], 'DBS':['5'], 'ID':[]},
+                      'remove_Immunosuppressants_signatures' :{'SBS':['32'], 'DBS':[], 'ID':[]},
+                      'remove_Treatment_signatures' :{'SBS':['11','25','31','32','35','86','87','90'], 'DBS':['5'], 'ID':[]},
+                      'remove_APOBEC_signatures' :{'SBS':['2','13'], 'DBS':[], 'ID':[]},
+                      'remove_Tobacco_signatures' :{'SBS':['4','29','92'], 'DBS':['2'], 'ID':['3']},
+                      'remove_UV_signatures' :{'SBS':['7a','7b','7c','7d','38'], 'DBS':['1'], 'ID':['13']},
+                      'remove_AA_signatures' :{'SBS':['22'], 'DBS':[], 'ID':[]},
+                      'remove_Colibactin_signatures' :{'SBS':['88'], 'DBS':[], 'ID':['18']},
+                      'remove_Artifact_signatures' :{'SBS':['27','43','45','46','47','48','49','50','51','52','53','54','55','56','57','58','59','60','95'], 'DBS':[], 'ID':[]},
+                      'remove_Lymphoid_signatures' :{'SBS':['9','84','85'], 'DBS':[], 'ID':[]}}
     
     
     signature_subgroups_dict = default_subgroups_dict.copy()
@@ -147,12 +158,9 @@ def spa_analyze(samples, output, input_type='matrix', context_type="96", signatu
     else:
         for key in signature_subgroups_dict:
             if signature_subgroups_dict[key]:
-                sig_exclusion_list.append(default_subgroups_siglists[key])
-    
+                sig_exclusion_list.append(default_subgroups_siglists[key][m_for_subgroups])
+
     sig_exclusion_list = [item for sublist in sig_exclusion_list for item in sublist]
-    
-    mutation_type = str(genomes.shape[0])
-    m=mutation_type
 
     try:
         if not os.path.exists(output):
@@ -193,7 +201,6 @@ def spa_analyze(samples, output, input_type='matrix', context_type="96", signatu
             mutation_context = "ID83"
         elif mutation_type=="48":
             mutation_context = "CNV48"
-            print("Mutation Type is: CNV")
         else:
             mutation_context = "SBS"+mutation_type
         try:
@@ -247,7 +254,8 @@ def spa_analyze(samples, output, input_type='matrix', context_type="96", signatu
                                     cosmic_sigs=True, attribution = attribution, denovo_exposureAvg  = exposureAvg_dummy , 
                                     background_sigs=background_sigs, verbose=verbose, genome_build=genome_build, 
                                     add_penalty=nnls_add_penalty, remove_penalty=nnls_remove_penalty,
-                                    initial_remove_penalty=init_rem_denovo,connected_sigs=connected_sigs,refit_denovo_signatures=False,make_plots=make_plots)
+                                    initial_remove_penalty=init_rem_denovo,connected_sigs=connected_sigs,refit_denovo_signatures=False,
+                                    make_plots=make_plots,export_probabilities=export_probabilities)
 
         else:
             signature_stabilities=devopts['signature_stabilities']
@@ -261,7 +269,7 @@ def spa_analyze(samples, output, input_type='matrix', context_type="96", signatu
                                     cosmic_sigs=True, attribution = attribution, denovo_exposureAvg  = exposureAvg_dummy , sequence=sequence, 
                                     background_sigs=background_sigs, verbose=verbose, genome_build=genome_build, signature_total_mutations = signature_total_mutations,
                                     add_penalty=nnls_add_penalty, remove_penalty=nnls_remove_penalty, process_std_error = processSTE, signature_stabilities = signature_stabilities,
-                                    initial_remove_penalty=init_rem_denovo,connected_sigs=connected_sigs,refit_denovo_signatures=True)
+                                    initial_remove_penalty=init_rem_denovo,connected_sigs=connected_sigs,refit_denovo_signatures=True,export_probabilities=export_probabilities)
 
 
                                                                 #################
@@ -295,7 +303,6 @@ def spa_analyze(samples, output, input_type='matrix', context_type="96", signatu
             mutation_context = "ID83"
         elif mutation_type=="48":
             mutation_context = "CNV48"
-            print("Mutation Type is: CNV")
         else:
             mutation_context = "SBS"+mutation_type
         try:
@@ -338,7 +345,7 @@ def spa_analyze(samples, output, input_type='matrix', context_type="96", signatu
             processAvg = np.array(processAvg)
                 
         print("\n Decomposing De Novo Signatures  .....")
-        final_signatures = sub.signature_decomposition(processAvg, mutation_type, layer_directory2, genome_build=genome_build,cosmic_version=cosmic_version,signature_database=signature_database, mutation_context=mutation_context, add_penalty=0.05, connected_sigs=connected_sigs,remove_penalty=0.01, make_decomposition_plots=make_plots, originalProcessAvg=originalProcessAvg,new_signature_thresh_hold=new_signature_thresh_hold,sig_exclusion_list=sig_exclusion_list,exome=exome)    
+        final_signatures = sub.signature_decomposition(processAvg, mutation_type, layer_directory2, genome_build=genome_build,cosmic_version=cosmic_version,signature_database=signature_database, mutation_context=mutation_context, add_penalty=0.05, connected_sigs=connected_sigs,remove_penalty=0.01, make_decomposition_plots=make_plots, originalProcessAvg=originalProcessAvg,new_signature_thresh_hold=new_signature_thresh_hold,sig_exclusion_list=sig_exclusion_list,exome=exome, m_for_subgroups=m_for_subgroups)    
         #final_signatures = sub.signature_decomposition(processAvg, m, layer_directory2, genome_build=genome_build)
         # extract the global signatures and new signatures from the final_signatures dictionary
         globalsigs = final_signatures["globalsigs"]
@@ -358,7 +365,8 @@ def spa_analyze(samples, output, input_type='matrix', context_type="96", signatu
                                 add_penalty=nnls_add_penalty, remove_penalty=nnls_remove_penalty, 
                                 initial_remove_penalty=initial_remove_penalty,connected_sigs=connected_sigs,
                                 collapse_to_SBS96=collapse_to_SBS96,
-                                refit_denovo_signatures=False,make_plots=make_plots)
+                                refit_denovo_signatures=False,
+                                make_plots=make_plots,export_probabilities=export_probabilities)
 
 
                                                                 #################
@@ -433,7 +441,7 @@ def spa_analyze(samples, output, input_type='matrix', context_type="96", signatu
         
 
         #processAvg is sigdatabase: remove sigs corresponding to exclusion rules.
-        sig_exclusion_list= ['SBS'+items for items in sig_exclusion_list]
+        sig_exclusion_list= [m_for_subgroups+items for items in sig_exclusion_list]
         if sig_exclusion_list:
             print("The following signatures are excluded: "+" ".join(str(item) for item in sig_exclusion_list))
         # # 
@@ -469,7 +477,8 @@ def spa_analyze(samples, output, input_type='matrix', context_type="96", signatu
                             background_sigs=background_sigs, verbose=verbose, genome_build=genome_build, 
                             add_penalty=nnls_add_penalty, remove_penalty=nnls_remove_penalty, 
                             initial_remove_penalty=initial_remove_penalty,connected_sigs=connected_sigs,
-                            collapse_to_SBS96=collapse_to_SBS96,refit_denovo_signatures=False, make_plots =make_plots)
+                            collapse_to_SBS96=collapse_to_SBS96,refit_denovo_signatures=False,
+                            make_plots =make_plots,export_probabilities=export_probabilities)
    
   
 
