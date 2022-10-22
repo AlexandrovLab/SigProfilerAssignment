@@ -167,7 +167,12 @@ def spa_analyze(samples, output, input_type='matrix', context_type="96", signatu
             os.makedirs(output)
     except:
         print ("The {} folder could not be created".format("output"))
-  
+
+    # Add sequence parameter to control the tmbplot y-axis scale
+    if exome == True:
+        sequence = 'exome'
+    else:
+        sequence = 'genome'
 
                                                                 #################
                                                                 # Denovo refiting #
@@ -251,7 +256,7 @@ def spa_analyze(samples, output, input_type='matrix', context_type="96", signatu
 
         if devopts == None:
             exposureAvg = sub.make_final_solution(processAvg, genomes, allsigids, layer_directory1, mutation_type, index, colnames, 
-                                    cosmic_sigs=True, attribution = attribution, denovo_exposureAvg  = exposureAvg_dummy , 
+                                    cosmic_sigs=True, attribution = attribution, denovo_exposureAvg  = exposureAvg_dummy, sequence=sequence, 
                                     background_sigs=background_sigs, verbose=verbose, genome_build=genome_build, 
                                     add_penalty=nnls_add_penalty, remove_penalty=nnls_remove_penalty,
                                     initial_remove_penalty=init_rem_denovo,connected_sigs=connected_sigs,refit_denovo_signatures=False,
@@ -263,10 +268,9 @@ def spa_analyze(samples, output, input_type='matrix', context_type="96", signatu
             signature_stats = devopts['signature_stats']
             sequence=devopts['sequence']
             processSTE=devopts['processSTE']
-            sequence =devopts['sequence']
 
             exposureAvg = sub.make_final_solution(processAvg, genomes, allsigids, layer_directory1, mutation_type, index, colnames, 
-                                    cosmic_sigs=True, attribution = attribution, denovo_exposureAvg  = exposureAvg_dummy , sequence=sequence, 
+                                    cosmic_sigs=True, attribution = attribution, denovo_exposureAvg  = exposureAvg_dummy, sequence=sequence, 
                                     background_sigs=background_sigs, verbose=verbose, genome_build=genome_build, signature_total_mutations = signature_total_mutations,
                                     add_penalty=nnls_add_penalty, remove_penalty=nnls_remove_penalty, process_std_error = processSTE, signature_stabilities = signature_stabilities,
                                     initial_remove_penalty=init_rem_denovo,connected_sigs=connected_sigs,refit_denovo_signatures=True,export_probabilities=export_probabilities)
@@ -360,7 +364,7 @@ def spa_analyze(samples, output, input_type='matrix', context_type="96", signatu
 
         print("\n Assigning decomposed signature")
         result = sub.make_final_solution(processAvg, genomes, allsigids, layer_directory2, mutation_type, index, colnames, 
-                                cosmic_sigs=True, attribution = attribution, denovo_exposureAvg  = exposureAvg ,  
+                                cosmic_sigs=True, attribution = attribution, denovo_exposureAvg  = exposureAvg, sequence=sequence,  
                                 background_sigs=background_sigs, verbose=verbose, genome_build=genome_build, 
                                 add_penalty=nnls_add_penalty, remove_penalty=nnls_remove_penalty, 
                                 initial_remove_penalty=initial_remove_penalty,connected_sigs=connected_sigs,
@@ -473,7 +477,7 @@ def spa_analyze(samples, output, input_type='matrix', context_type="96", signatu
 
 
         sub.make_final_solution(processAvg, genomes, allsigids, layer_directory3, mutation_type, index, colnames, 
-                            cosmic_sigs=True, attribution = attribution, denovo_exposureAvg  = exposureAvg_dummy ,  
+                            cosmic_sigs=True, attribution = attribution, denovo_exposureAvg  = exposureAvg_dummy, sequence=sequence, 
                             background_sigs=background_sigs, verbose=verbose, genome_build=genome_build, 
                             add_penalty=nnls_add_penalty, remove_penalty=nnls_remove_penalty, 
                             initial_remove_penalty=initial_remove_penalty,connected_sigs=connected_sigs,
