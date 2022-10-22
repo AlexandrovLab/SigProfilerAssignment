@@ -6,7 +6,7 @@ import os
 if os.path.exists("dist"):
     shutil.rmtree("dist")
 
-VERSION = '0.0.15'
+VERSION = '0.0.16'
 
 with open('README.md') as f:
 	long_description = f.read()
@@ -17,7 +17,7 @@ def write_version_py(filename='SigProfilerAssignment/version.py'):
 # THIS FILE IS GENERATED FROM SigProfilerAssignment SETUP.PY
 short_version = '%(version)s'
 version = '%(version)s'
-Update = '1. Add subgroups for DBS and ID COSMIC signatures. 2. Add export_probabilities parameter .'
+Update = 'Fix TMB plot y-axis when using exome parameter'
     
     """
     fh = open(filename, 'w')
@@ -29,7 +29,7 @@ requirements=[
           'pandas>=1.2.4', 
           'SigProfilerExtractor>=1.1.14',
           'SigProfilerMatrixGenerator>=1.2.12', 
-          'sigProfilerPlotting>=1.2.2', 
+          'sigProfilerPlotting==1.2.2', 
           'pillow',
           'statsmodels>=0.9.0',
           'scikit-learn>=0.24.2',
