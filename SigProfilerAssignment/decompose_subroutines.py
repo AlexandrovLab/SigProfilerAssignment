@@ -20,7 +20,7 @@ from matplotlib.backends.backend_pdf import PdfPages
 # from functools import partial
 # from numpy import linalg as LA
 import sigProfilerPlotting as plot
-from SigProfilerExtractor import PlotDecomposition as sp
+from SigProfilerAssignment.DecompositionPlots import PlotDecomposition as sp
 from SigProfilerExtractor import plotActivity as plot_ac
 from SigProfilerExtractor import tmbplot as tmb
 import string 
@@ -385,8 +385,6 @@ def signature_decomposition(signatures, mtype, directory, genome_build="GRCh37",
         else:
             mtype_par="none"
         try:
-            # import pdb
-            # pdb.set_trace() 
             if mtype_par!="none" and make_decomposition_plots==True:
                 # Get the names of the columns for each dataframe
                 denovo_col_names = originalProcessAvg.columns
@@ -402,7 +400,6 @@ def signature_decomposition(signatures, mtype, directory, genome_build="GRCh37",
                 merger.append(byte_plot)
                 with alive_bar(1, ctrl_c=False,bar='blocks', title=f'Decompositon Plot:{denovo_name}') as bar:
                     bar()
-                #print("Decompositon Plot made for {}".format(denovo_name))
         except:
             print("The context-" + str(mtype_par) + " decomposition plots pages were not able to be generated.")
         

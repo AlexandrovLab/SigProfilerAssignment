@@ -8,3 +8,4 @@ include SigProfilerAssignment/data/Reference_Signatures/mm10/*
 include SigProfilerAssignment/data/Reference_Signatures/rn6/*
 include SigProfilerAssignment/DecompositionPlots/reference_files/Fonts/*
 include SigProfilerAssignment/DecompositionPlots/reference_files/*
+include SigProfilerAssignment/DecompositionPlots/*
