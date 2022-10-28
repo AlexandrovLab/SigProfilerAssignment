@@ -29,7 +29,7 @@ requirements=[
           'pandas>=1.2.4', 
           'SigProfilerExtractor>=1.1.14',
           'SigProfilerMatrixGenerator>=1.2.12', 
-          'sigProfilerPlotting>=1.3.1', 
+          'sigProfilerPlotting>=1.3.2', 
           'pillow',
           'statsmodels>=0.9.0',
           'scikit-learn>=0.24.2',
