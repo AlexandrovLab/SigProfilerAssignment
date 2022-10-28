@@ -21,8 +21,8 @@ from matplotlib.backends.backend_pdf import PdfPages
 # from numpy import linalg as LA
 import sigProfilerPlotting as plot
 from SigProfilerExtractor import PlotDecomposition as sp
-from SigProfilerExtractor import plotActivity as plot_ac
-from SigProfilerExtractor import tmbplot as tmb
+from SigProfilerPlotting import plotActivity as plot_ac
+from SigProfilerPlotting import tmbplot as tmb
 import string 
 import PyPDF2
 import scipy
