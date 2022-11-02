@@ -101,6 +101,7 @@ def spa_analyze(samples, output, input_type='matrix', context_type="96", signatu
     mutation_type = str(genomes.shape[0])
     m=mutation_type
 
+    m_for_subgroups = ''
     if m=='96' or m=='288' or m=='1536':
         m_for_subgroups = 'SBS'
     if m=='78':
