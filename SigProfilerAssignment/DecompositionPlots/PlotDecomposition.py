@@ -202,8 +202,8 @@ def gen_reconstructed_png(denovo_name, basis_mtx, basis_names, weights, output_p
 	elif mtype in ID_CONTEXTS:
 		reconstruction_plot=sigPlt.plotID(reconstruction_mtx, output_path, "reconstruction_" + project, mtype, True)
 	elif mtype in CNV_CONTEXTS:
-		 reconstruction_plot = pltCNV.plotCNV(reconstruction_mtx, output_path, "reconstruction_"+project, plot_type="pdf", \
-		 	percentage=True, aggregate=False, read_from_file=False, write_to_file=False)
+		reconstruction_plot = pltCNV.plotCNV(reconstruction_mtx, output_path, "reconstruction_"+project, plot_type="pdf", \
+			percentage=True, aggregate=False, read_from_file=False, write_to_file=False)
 	else:
 		print("ERROR: mtype is " + mtype + " and is not yet supported.")
 
@@ -323,14 +323,11 @@ def run_PlotDecomposition(denovo_mtx, denovo_name, basis_mtx, basis_names, \
 	denovo_plots_dict,basis_plots_dict=gen_sub_plots(denovo_mtx, basis_mtx, output_path, project, mtype)
 	reconstructed_mtx,reconstruction_plot_dict = gen_reconstructed_png(denovo_name, basis_mtx, basis_names, \
 		weights, output_path, project, mtype)
-	
 	present_sigs=np.array(basis_mtx[basis_names])
 	reconstructed_mtx = np.dot(present_sigs,nonzero_exposures)
-	
 	denovo_plots_dict = open_byte_to_img_dict(denovo_plots_dict)
 	basis_plots_dict = open_byte_to_img_dict(basis_plots_dict)
 	reconstruction_plot_dict = open_byte_to_img_dict(reconstruction_plot_dict)
-	
 	statistics=calculate_similarities(denovo_mtx, denovo_name, reconstructed_mtx)
 	byte_plot = gen_decomposition(denovo_name, basis_names, weights, output_path, project, \
 		mtype, denovo_plots_dict, basis_plots_dict, reconstruction_plot_dict, \

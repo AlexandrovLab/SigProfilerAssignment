@@ -17,9 +17,8 @@ import io
 from PIL import Image
 # imports for dashed line
 from reportlab.lib.colors import black
-paths = spa_path.__path__[0]
-# Page Formatting
-inch = 72
+PATHS = spa_path.__path__[0]
+
 # USING LETTER PORTRAIT DIMENSIONS
 WIDTH_LETTER = 965
 HEIGHT_LETTER = 755
@@ -44,8 +43,8 @@ GRAPH_Y_COORD = (HEIGHT_LETTER - HEIGHT_GAP)
 TEXT_X_COORD = GRAPH_X_COORD + WIDTH_GRAPH - 50
 TEXT_Y_COORD = (HEIGHT_LETTER - HEIGHT_GAP) + 55.75
 
-FONTS_DIR = os.path.join(paths+'decomposition_plots/reference_files/Fonts/')
-BRACKET_PATH=os.path.join(paths+"/decomposition_plots/reference_files/Accolade_fermante.png")
+FONTS_DIR = os.path.join(PATHS, "DecompositionPlots/reference_files/Fonts/")
+BRACKET_PATH=os.path.join(PATHS, "DecompositionPlots/reference_files/Accolade_fermante.png")
 reportlab.rl_config.TTFSearchPath.append(FONTS_DIR)
 pdfmetrics.registerFont(TTFont('Arial-Bold', 'Arial Bold.ttf'))
 
@@ -217,8 +216,6 @@ def draw_statistics(c_draw, statistics, sig_version, custom_text):
 #	num_bases 	- (Integer) The number of bases to be plotted.
 #	c_draw 		- (Canvas) The canvas to draw the graph decomposition on.
 def draw_bracket(num_bases, c_draw):
-    paths = cosmic.__path__[0]
-
     num_plts = num_bases - 1
 	
     if(num_bases >= 5):

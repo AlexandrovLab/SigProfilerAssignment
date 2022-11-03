@@ -180,13 +180,17 @@ Analyze.cosmic_fit( samples,
 #import modules
 import SigProfilerAssignment as spa
 from SigProfilerAssignment import Analyzer as Analyze
+import os
 
 #set directories and paths to signatures and samples
-dir_inp     = spa.__path__[0]+'/data/Examples/'
-samples = spa.__path__[0]+'/data/vcftest/' #directory of vcf files
-output      = "output_example/"
-signatures  = dir_inp+"Results_scenario_8/SBS96/All_Solutions/SBS96_3_Signatures/Signatures/SBS96_S3_Signatures.txt"
-sigs        = "COSMIC_v3_SBS_GRCh37_noSBS84-85.txt" #Custom Signature Database
+dir_inp = os.path.join(spa.__path__[0], '/data/Examples/')
+# directory of vcf files
+samples = os.path.join(spa.__path__[0], '/data/tests/vcf_input/')
+output = "output_example/"
+signatures = os.path.join(dir_inp, \
+    "Results_scenario_8/SBS96/All_Solutions/SBS96_3_Signatures/Signatures/" \
+    + "SBS96_S3_Signatures.txt")
+sigs = "COSMIC_v3_SBS_GRCh37_noSBS84-85.txt" #Custom Signature Database
 
 #Analysis of SP Assignment 
 Analyze.cosmic_fit( samples, 
@@ -212,11 +216,14 @@ Analyze.cosmic_fit( samples,
 #import modules
 import SigProfilerAssignment as spa
 from SigProfilerAssignment import Analyzer as Analyze
+import os
 
 #set directories and paths to signatures and samples
-dir_inp     = spa.__path__[0]+'/data/Examples/'
-samples = spa.__path__[0]+'/data/cnvtest/all.breast.ascat.summary.sample.tsv' # segmentation file
-output      = "output_example/"
+dir_inp = os.path.join(spa.__path__[0], 'data/Examples/')
+# segmentation file
+samples = os.path.join(spa.__path__[0], \
+    '/data/tests/cnv_input/all.breast.ascat.summary.sample.tsv')
+output = "output_example/"
 
 #Analysis of SP Assignment 
 Analyze.cosmic_fit( samples, 

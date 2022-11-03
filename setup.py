@@ -6,7 +6,7 @@ import os
 if os.path.exists("dist"):
     shutil.rmtree("dist")
 
-VERSION = '0.0.17'
+VERSION = '0.0.18'
 
 with open('README.md') as f:
 	long_description = f.read()
@@ -17,7 +17,7 @@ def write_version_py(filename='SigProfilerAssignment/version.py'):
 # THIS FILE IS GENERATED FROM SigProfilerAssignment SETUP.PY
 short_version = '%(version)s'
 version = '%(version)s'
-Update = 'Fix TMB plot y-axis when using exome parameter'
+Update = '(1) Import decomposition plots from SPA (2) Resolve issue with m_for_subgroups (3) Expand tests'
     
     """
     fh = open(filename, 'w')
@@ -26,9 +26,8 @@ Update = 'Fix TMB plot y-axis when using exome parameter'
 requirements=[
           'scipy>=1.6.3',
           'numpy>=1.21.2',
-          'pandas>=1.2.4', 
-          'SigProfilerExtractor>=1.1.14',
-          'SigProfilerMatrixGenerator>=1.2.12', 
+          'pandas>=1.2.4',
+          'SigProfilerMatrixGenerator>=1.2.13', 
           'sigProfilerPlotting>=1.3.2', 
           'pillow',
           'statsmodels>=0.9.0',

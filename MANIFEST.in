@@ -8,3 +8,7 @@ include SigProfilerAssignment/data/Reference_Signatures/mm10/*
 include SigProfilerAssignment/data/Reference_Signatures/rn6/*
 include SigProfilerAssignment/DecompositionPlots/reference_files/Fonts/*
 include SigProfilerAssignment/DecompositionPlots/reference_files/*
+include SigProfilerAssignment/DecompositionPlots/*
+include SigProfilerAssignment/data/tests/vcf_input/*
+include SigProfilerAssignment/data/tests/txt_input/*
+include SigProfilerAssignment/data/tests/cnv_input/*
