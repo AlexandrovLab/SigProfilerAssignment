@@ -26,8 +26,7 @@ Update = 'Fix TMB plot y-axis when using exome parameter'
 requirements=[
           'scipy>=1.6.3',
           'numpy>=1.21.2',
-          'pandas>=1.2.4', 
-          'SigProfilerExtractor>=1.1.14',
+          'pandas>=1.2.4',
           'SigProfilerMatrixGenerator>=1.2.12', 
           'sigProfilerPlotting>=1.3.2', 
           'pillow',

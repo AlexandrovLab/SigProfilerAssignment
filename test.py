@@ -7,58 +7,42 @@
 
 import SigProfilerAssignment as spa
 from SigProfilerAssignment import Analyzer as Analyze
-dir_inp = spa.__path__[0]+'/data/Examples/'
+import os
+DIR_INPUT = spa.__path__[0]+'/data/tests/'
+OUTPUT = "output_example/"
+TXT_SIGNATURES = os.path.join(DIR_INPUT, "txt_input/SBS96_S3_Signatures.txt")
+TXT_SAMPLES = os.path.join(DIR_INPUT, "txt_input/sample_matrix.txt")
+exclude_signature_subgroups = None
 
-def main():
+def cosmic_fit_test():
+    Analyze.cosmic_fit(TXT_SAMPLES,
+        OUTPUT,
+        signatures=None,
+        signature_database=None,
+        genome_build="GRCh37",
+        verbose=False,
+        collapse_to_SBS96=True,
+        exclude_signature_subgroups=exclude_signature_subgroups)
 
-    signatures  = dir_inp+"Results_scenario_8/SBS96/All_Solutions/SBS96_3_Signatures/Signatures/SBS96_S3_Signatures.txt"
-    samples     = dir_inp+"Input_scenario_8/Samples.txt"
-    # samples = spa.__path__[0]+'/data/vcftest/' If input is a directory of  vcf files. 
-    output="output_example/"
-    sigs= "COSMIC_v3_SBS_GRCh37_noSBS84-85.txt"
-    
-    # exclude_signature_subgroups = ['remove_MMR_deficiency_signatures',
-    #                         'remove_POL_deficiency_signatures',
-    #                         'remove_HR_deficiency_signatures' ,
-    #                         'remove_BER_deficiency_signatures',
-    #                         'remove_Chemotherapy_signatures', 
-    #                         'remove_APOBEC_signatures', 
-    #                         'remove_Tobacco_signatures', 
-    #                         'remove_UV_signatures', 
-    #                         'remove_AA_signatures',
-    #                         'remove_Colibactin_signatures', 
-    #                         'remove_Artifact_signatures', 
-    #                         'remove_Lymphoid_signatures']
+def denovo_fit_test():
+    Analyze.denovo_fit(TXT_SAMPLES,
+        OUTPUT,
+        signatures=TXT_SIGNATURES,
+        signature_database=None,
+        genome_build="GRCh37",
+        verbose=False)
 
-    exclude_signature_subgroups = None
-
-    Analyze.decompose_fit( samples, 
-                           output, 
-                           signatures=signatures,
-                           signature_database=None,
-                           genome_build="GRCh37", 
-                           verbose=False,
-                           new_signature_thresh_hold=0.8,
-                           exclude_signature_subgroups=exclude_signature_subgroups,
-                           )
-
-    Analyze.denovo_fit( samples,
-                        output, 
-                        signatures=signatures,
-                        signature_database=None,
-                        genome_build="GRCh37", 
-                        verbose=False,
-                        )
-
-    Analyze.cosmic_fit( samples, 
-                        output, 
-                        signatures=None,
-                        signature_database=None,
-                        genome_build="GRCh37", 
-                        verbose=False,
-                        collapse_to_SBS96=True,
-                        exclude_signature_subgroups=exclude_signature_subgroups,
-                       )
+def decompose_fit_test():
+    Analyze.decompose_fit(TXT_SAMPLES,
+        OUTPUT,
+        signatures=TXT_SIGNATURES,
+        signature_database=None,
+        genome_build="GRCh37",
+        verbose=False,
+        new_signature_thresh_hold=0.8,
+        exclude_signature_subgroups=exclude_signature_subgroups)
 
 if __name__ == '__main__':
-    main()  
+    cosmic_fit_test()
+    denovo_fit_test()
+    decompose_fit_test()
