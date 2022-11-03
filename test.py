@@ -7,10 +7,16 @@
 
 import SigProfilerAssignment as spa
 from SigProfilerAssignment import Analyzer as Analyze
+from SigProfilerAssignment.DecompositionPlots import PlotDecomposition as sp
+from PyPDF2 import PdfFileMerger
+import numpy as np
+import pandas as pd
+import time
 import os
+
 DIR_INPUT = spa.__path__[0]+'/data/tests/'
-OUTPUT_TXT = "output_txt_example/"
-OUTPUT_VCF = "output_vcf_example/"
+OUTPUT_TXT = "TestOutput/output_txt_example/"
+OUTPUT_VCF = "TestOutput/output_vcf_example/"
 SIGNATURES_TXT = os.path.join(DIR_INPUT, "txt_input/SBS96_S3_Signatures.txt")
 SAMPLES_TXT = os.path.join(DIR_INPUT, "txt_input/sample_matrix.txt")
 SAMPLES_VCF = os.path.join(DIR_INPUT, "vcf_input/")
@@ -78,10 +84,245 @@ def denovo_fit_vcf_test():
         make_plots=True,
         input_type="vcf")
 
+################################################
+#           Decomposition Plot Tests           #
+################################################
+def gen_SBS96():
+    s = time.time()
+    merger = PdfFileMerger()
+    file1="SigProfilerAssignment/DecompositionPlots/ExampleSample/De_Novo_Solution_Signatures_SBS96.txt"
+    file2="SigProfilerAssignment/DecompositionPlots/ExampleSample/Decomposed_Solution_Signatures_SBS96.txt"
+    denovo_mtx = pd.read_csv(file1, sep="\t")
+    basis_mtx = pd.read_csv(file2, sep="\t")
+    output_path = "TestOutput/Results/"
+    project = "test_run"
+    mtype="96"
+
+    denovo_name="SBS96A"
+    basis_names=["SBS1", "SBS3", "SBS5", "SBS13", "SBS50", "SBS2"]
+    weights=["0.94%", "48.72%", "28.44%", "8.42%", "13.48%", "0%"]
+    denovo_cols = ["MutationsType", "SBS96A"]
+    basis_cols=basis_names.copy()
+    basis_cols.insert(0, "MutationsType")
+    nonzero_exposures=np.random.uniform(size=len(basis_names))
+    result = sp.run_PlotDecomposition(denovo_mtx[denovo_cols], denovo_name, basis_mtx[basis_cols], basis_names, weights, nonzero_exposures, output_path, project, mtype)
+    merger.append(result)
+
+    for ind in range(5, 0, -1):
+        basis_names=basis_names[:ind]
+        weights=weights[:ind]
+        denovo_cols = ["MutationsType", "SBS96A"]
+        basis_cols=basis_names.copy()
+        basis_cols.insert(0, "MutationsType")
+        nonzero_exposures=np.random.uniform(size=len(basis_names))
+        result = sp.run_PlotDecomposition(denovo_mtx[denovo_cols], denovo_name, basis_mtx[basis_cols], basis_names, weights, nonzero_exposures, output_path, project, mtype)
+        merger.append(result)
+
+    merger.write(os.path.join(output_path,"Result_Decomposition_Plots_SBS96.pdf"))
+    return(time.time() - s)
+
+
+def gen_SBS1536():
+    s = time.time()
+    merger = PdfFileMerger()
+    file1="SigProfilerAssignment/DecompositionPlots/ExampleSample/De_Novo_Solution_Signatures_SBS1536.txt"
+    file2="SigProfilerAssignment/DecompositionPlots/ExampleSample/Decomposed_Solution_Signatures_SBS1536.txt"
+    denovo_mtx = pd.read_csv(file1, sep="\t")
+    basis_mtx = pd.read_csv(file2, sep="\t")
+    output_path = "TestOutput/Results/"
+    project = "test_run"
+    mtype="1536"
+
+    denovo_name="SBS1536A"
+    basis_names=["SBS1", "SBS2", "SBS5", "SBS13", "SBS15", "SBS18"]
+    weights=["0.94%", "48.72%", "28.44%", "8.42%", "13.48%", "0%"]
+    denovo_cols = ["MutationsType", "SBS1536A"]
+    basis_cols=basis_names.copy()
+    basis_cols.insert(0, "MutationsType")
+    nonzero_exposures=np.random.uniform(size=len(basis_names))
+    # breakpoint()
+    result = sp.run_PlotDecomposition(denovo_mtx[denovo_cols], denovo_name, basis_mtx[basis_cols], basis_names, weights, nonzero_exposures, output_path, project, mtype)
+    #sp.run_PlotDecomposition(denovo_mtx, basis_names, weights, output_path, project, mtype, True, statistics, "COSMICv3-GRCh37", "This is where a custom message would go.")
+    merger.append(result)
+
+    for ind in range(5, 0, -1):
+        basis_names=basis_names[:ind]
+        weights=weights[:ind]
+        denovo_cols = ["MutationsType", "SBS1536A"]
+        basis_cols=basis_names.copy()
+        basis_cols.insert(0, "MutationsType")
+        nonzero_exposures=np.random.uniform(size=len(basis_names))
+        result = sp.run_PlotDecomposition(denovo_mtx[denovo_cols], denovo_name, basis_mtx[basis_cols], basis_names, weights, nonzero_exposures, output_path, project, mtype)
+        merger.append(result)
+
+    merger.write(os.path.join(output_path,"Result_Decomposition_Plots_SBS1536.pdf"))
+    return(time.time() - s)
+
+
+def gen_SBS288():
+    s=time.time()
+    merger = PdfFileMerger()
+    file1="SigProfilerAssignment/DecompositionPlots/ExampleSample/De_Novo_Solution_Signatures_SBS288.txt"
+    file2="SigProfilerAssignment/DecompositionPlots/ExampleSample/COSMIC_SBS288_Signatures.txt"
+    denovo_mtx = pd.read_csv(file1, sep="\t")
+    basis_mtx = pd.read_csv(file2, sep="\t")
+    output_path = "TestOutput/Results/"
+    project = "test_run"
+    mtype="288"
+
+    denovo_name="SBS288A"
+    basis_names=["SBS1", "SBS2", "SBS4", "SBS5", "SBS8", "SBS90"]
+    weights=["0.94%", "48.72%", "28.44%", "8.42%", "13.48%", "0%"]
+    denovo_cols = ["MutationsType", "SBS288A"]
+    basis_cols=basis_names.copy()
+    basis_cols.insert(0, "MutationsType")
+    nonzero_exposures=np.random.uniform(size=len(basis_names))
+    result = sp.run_PlotDecomposition(denovo_mtx[denovo_cols], denovo_name, basis_mtx[basis_cols], basis_names, weights, nonzero_exposures, output_path, project, mtype)
+    merger.append(result)
+
+    for ind in range(5, 0, -1):
+        basis_names=basis_names[:ind]
+        weights=weights[:ind]
+        denovo_cols = ["MutationsType", "SBS288A"]
+        basis_cols=basis_names.copy()
+        basis_cols.insert(0, "MutationsType")
+        nonzero_exposures=np.random.uniform(size=len(basis_names))
+        result = sp.run_PlotDecomposition(denovo_mtx[denovo_cols], denovo_name, \
+            basis_mtx[basis_cols], basis_names, weights, nonzero_exposures, output_path, project, mtype)
+        merger.append(result)
+
+    merger.write(os.path.join(output_path,"Result_Decomposition_Plots_SBS288.pdf"))
+    return(time.time() - s)
+
+def gen_ID83():
+    s = time.time()
+    merger = PdfFileMerger()
+    file1="SigProfilerAssignment/DecompositionPlots/ExampleSample/De_Novo_Solution_Signatures_INDEL.txt"
+    file2="SigProfilerAssignment/DecompositionPlots/ExampleSample/COSMIC_ID83_Signatures.txt"
+    denovo_mtx = pd.read_csv(file1, sep="\t")
+    basis_mtx = pd.read_csv(file2, sep="\t")
+    output_path = "TestOutput/Results/"
+    project = "test_run"
+    mtype="83"
+
+    denovo_name="ID83A"
+    basis_names=["ID1", "ID2", "ID4", "ID5", "ID8", "ID9"]
+    weights=["0.94%", "48.72%", "28.44%", "8.42%", "13.48%", "0%"]
+    denovo_cols = ["MutationsType", "ID83A"]
+    basis_cols=basis_names.copy()
+    basis_cols.insert(0, "MutationsType")
+    nonzero_exposures=np.random.uniform(size=len(basis_names))
+    result = sp.run_PlotDecomposition(denovo_mtx[denovo_cols], denovo_name, \
+        basis_mtx[basis_cols], basis_names, weights, nonzero_exposures, output_path, project, mtype)
+    merger.append(result)
+
+    for ind in range(5, 0, -1):
+        basis_names=basis_names[:ind]
+        weights=weights[:ind]
+        denovo_cols = ["MutationsType", "ID83A"]
+        basis_cols=basis_names.copy()
+        basis_cols.insert(0, "MutationsType")
+        nonzero_exposures=np.random.uniform(size=len(basis_names))
+        result = sp.run_PlotDecomposition(denovo_mtx[denovo_cols], denovo_name, \
+            basis_mtx[basis_cols], basis_names, weights, nonzero_exposures, output_path, project, mtype)
+        merger.append(result)
+
+    merger.write(os.path.join(output_path,"Result_Decomposition_Plots_ID83.pdf"))
+    return(time.time() - s)
+
+def gen_DBS78():
+    s = time.time()
+    merger = PdfFileMerger()
+    file1="SigProfilerAssignment/DecompositionPlots/ExampleSample/De_Novo_Solution_Signatures_DINUC.txt"
+    file2="SigProfilerAssignment/DecompositionPlots/ExampleSample/COSMIC_DBS78_Signatures.txt"
+    denovo_mtx = pd.read_csv(file1, sep="\t")
+    basis_mtx = pd.read_csv(file2, sep="\t")
+    output_path = "TestOutput/Results/"
+    project = "test_run"
+    mtype="78"
+
+    denovo_name="DBS78A"
+    basis_names=["DBS1", "DBS2", "DBS4", "DBS5", "DBS8", "DBS9"]
+    weights=["0.94%", "48.72%", "28.44%", "8.42%", "13.48%", "0%"]
+    denovo_cols = ["MutationsType", "DBS78A"]
+    basis_cols=basis_names.copy()
+    basis_cols.insert(0, "MutationsType")
+    nonzero_exposures=np.random.uniform(size=len(basis_names))
+    result = sp.run_PlotDecomposition(denovo_mtx[denovo_cols], denovo_name, \
+        basis_mtx[basis_cols], basis_names, weights, nonzero_exposures, output_path, project, mtype)
+    merger.append(result)
+
+    for ind in range(5, 0, -1):
+        basis_names=basis_names[:ind]
+        weights=weights[:ind]
+        denovo_cols = ["MutationsType", "DBS78A"]
+        basis_cols=basis_names.copy()
+        basis_cols.insert(0, "MutationsType")
+        nonzero_exposures=np.random.uniform(size=len(basis_names))
+        result = sp.run_PlotDecomposition(denovo_mtx[denovo_cols], denovo_name, \
+            basis_mtx[basis_cols], basis_names, weights, nonzero_exposures, output_path, project, mtype)
+        merger.append(result)
+
+    merger.write(os.path.join(output_path,"Result_Decomposition_Plots_DBS78.pdf"))
+    return(time.time() - s)
+
+def gen_CNV48():
+    s = time.time()
+    merger = PdfFileMerger()
+    file1="SigProfilerAssignment/DecompositionPlots/ExampleSample/CNV48_De-Novo_Signatures.txt"
+    file2="SigProfilerAssignment/DecompositionPlots/ExampleSample/COSMIC_CNV48_Signatures.txt"
+    denovo_mtx = pd.read_csv(file1, sep="\t")
+    basis_mtx = pd.read_csv(file2, sep="\t")
+    output_path = "TestOutput/Results/"
+    project = "test_run"
+    mtype="48"
+
+    denovo_name="CNV48A"
+    basis_names=["CN1", "CN2", "CN9", "CN20", "CNV48B", "CNV48D"]
+    weights=["0.94%", "48.72%", "28.44%", "8.42%", "13.48%", "0%"]
+    denovo_cols = ["MutationType", "CNV48A"]
+    basis_cols=basis_names.copy()
+    basis_cols.insert(0, "MutationType")
+    nonzero_exposures=np.random.uniform(size=len(basis_names))
+    # breakpoint()
+    result = sp.run_PlotDecomposition(denovo_mtx[denovo_cols], denovo_name, basis_mtx[basis_cols], basis_names, weights, nonzero_exposures, output_path, project, mtype)
+    #sp.run_PlotDecomposition(denovo_mtx, basis_names, weights, output_path, project, mtype, True, statistics, "COSMICv3-GRCh37", "This is where a custom message would go.")
+    merger.append(result)
+
+    for ind in range(5, 0, -1):
+        basis_names=basis_names[:ind]
+        weights=weights[:ind]
+        denovo_cols = ["MutationType", "CNV48A"]
+        basis_cols=basis_names.copy()
+        basis_cols.insert(0, "MutationType")
+        nonzero_exposures=np.random.uniform(size=len(basis_names))
+        result = sp.run_PlotDecomposition(denovo_mtx[denovo_cols], denovo_name, basis_mtx[basis_cols], basis_names, weights, nonzero_exposures, output_path, project, mtype)
+        merger.append(result)
+
+    merger.write(os.path.join(output_path,"Result_Decomposition_Plots_CNV48.pdf"))
+    return(time.time() - s)
+
+
 if __name__ == '__main__':
+    print("Text input tests...")
     cosmic_fit_txt_test()
     denovo_fit_txt_test()
     decompose_fit_txt_test()
+    print("VCF input tests...")
     cosmic_fit_vcf_test()
     decompose_fit_vcf_test()
     denovo_fit_vcf_test()
+
+    print("Decomposition Plot tests...")
+    time_96 = gen_SBS96()
+    print("Completed SBS96 plots in", time_96, "seconds.")
+    time_288 = gen_SBS288()
+    print("Completed SBS288 plots in", time_288, "seconds.")
+    time_1536 = gen_SBS1536()
+    print("Completed SBS1536 plots in", time_1536, "seconds.")
+    time_78 = gen_DBS78()
+    print("Completed DBS78 plots in", time_78, "seconds.")
+    time_83 = gen_ID83()
+    print("Completed ID83 plots in", time_83, "seconds.")
+    time_48 = gen_CNV48()
+    print("Completed CNV48 plots in", time_48, "seconds.")
