@@ -384,24 +384,27 @@ def signature_decomposition(signatures, mtype, directory, genome_build="GRCh37",
             mtype_par="48"
         else:
             mtype_par="none"
-        try:
-            if mtype_par!="none" and make_decomposition_plots==True:
-                # Get the names of the columns for each dataframe
-                denovo_col_names = originalProcessAvg.columns
-                cosmic_col_names = sigDatabases_DF.columns
-                # Get the name for the MutationType column
-                cosmic_mut_types_col = cosmic_col_names[0]
-                denovo_mut_types_col =  denovo_col_names[0]
-                # create lists of implemented columns
-                basis_cols = basis_names.copy()
-                basis_cols.insert(0,cosmic_mut_types_col)
-                denovo_cols=[denovo_mut_types_col, denovo_name]
-                byte_plot = sp.run_PlotDecomposition(originalProcessAvg[denovo_cols], denovo_name, sigDatabases_DF[basis_cols], basis_names, weights, nonzero_exposures/5000, directory, "test", mtype_par)
-                merger.append(byte_plot)
-                with alive_bar(1, ctrl_c=False,bar='blocks', title=f'Decompositon Plot:{denovo_name}') as bar:
-                    bar()
-        except:
-            print("The context-" + str(mtype_par) + " decomposition plots pages were not able to be generated.")
+        # try:
+        if mtype_par!="none" and make_decomposition_plots==True:
+            # reformat the first column of cosmic signature dataframe
+            cosmic_sigs_DF = sigDatabases_DF.copy(deep=True)
+            cosmic_sigs_DF.columns = ["MutationType"] + cosmic_sigs_DF.columns[1:].to_list()
+            # Get the names of the columns for each dataframe
+            denovo_col_names = originalProcessAvg.columns
+            cosmic_col_names = cosmic_sigs_DF.columns
+            # Get the name for the MutationType column
+            cosmic_mut_types_col = cosmic_col_names[0]
+            denovo_mut_types_col =  denovo_col_names[0]
+            # create lists of implemented columns
+            basis_cols = basis_names.copy()
+            basis_cols.insert(0,cosmic_mut_types_col)
+            denovo_cols=[denovo_mut_types_col, denovo_name]
+            byte_plot = sp.run_PlotDecomposition(originalProcessAvg[denovo_cols], denovo_name, cosmic_sigs_DF[basis_cols], basis_names, weights, nonzero_exposures/5000, directory, "test", mtype_par)
+            merger.append(byte_plot)
+            with alive_bar(1, ctrl_c=False,bar='blocks', title=f'Decompositon Plot:{denovo_name}') as bar:
+                bar()
+        # except:
+        #     print("The context-" + str(mtype_par) + " decomposition plots pages were not able to be generated.")
         
         strings ="Signature %s-%s,"+" Signature %s (%0.2f%s) &"*(len(np.nonzero(exposures)[0])-1)+" Signature %s (%0.2f%s), %0.2f,  %0.2f, %0.3f, %0.2f, %0.2f\n" 
         #new_signature_thresh_hold = 0.8
