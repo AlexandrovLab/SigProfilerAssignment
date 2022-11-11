@@ -16,7 +16,7 @@ requirements=[
           'numpy>=1.21.2',
           'pandas>=1.2.4',
           'SigProfilerMatrixGenerator>=1.2.13', 
-          'sigProfilerPlotting>=1.3.2', 
+          'sigProfilerPlotting>=1.3.3', 
           'pillow>=9.1.1',
           'statsmodels>=0.9.0',
           'scikit-learn>=0.24.2',
@@ -24,7 +24,8 @@ requirements=[
           'reportlab>=3.5.42',
           'PyPDF2>=1.26.0',
           'alive_progress>=2.4.1',
-          'PyPDf2>=1.28.4'
+          'PyPDf2>=1.28.4',
+          'pdf2image>=1.16.0',
            ]
     
 setup(name='SigProfilerAssignment',
