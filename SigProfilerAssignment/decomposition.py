@@ -25,7 +25,7 @@ import os,sys
 def spa_analyze(samples, output, input_type='matrix', context_type="96", signatures=None, signature_database=None,decompose_fit_option= True,denovo_refit_option=True,cosmic_fit_option=True, nnls_add_penalty=0.05, 
               nnls_remove_penalty=0.01, initial_remove_penalty=0.05, de_novo_fit_penalty=0.02, 
               genome_build="GRCh37", cosmic_version=3.3, make_plots=True, collapse_to_SBS96=True,connected_sigs=True, verbose=False,devopts=None,new_signature_thresh_hold=0.8,
-              exclude_signature_subgroups=None, exome=False, export_probabilities=True):
+              exclude_signature_subgroups=None, exome=False, export_probabilities=True, export_probabilities_per_mutation=False):
 
     
     """
@@ -261,7 +261,7 @@ def spa_analyze(samples, output, input_type='matrix', context_type="96", signatu
                                     background_sigs=background_sigs, verbose=verbose, genome_build=genome_build, 
                                     add_penalty=nnls_add_penalty, remove_penalty=nnls_remove_penalty,
                                     initial_remove_penalty=init_rem_denovo,connected_sigs=connected_sigs,refit_denovo_signatures=False,
-                                    make_plots=make_plots,export_probabilities=export_probabilities)
+                                    make_plots=make_plots,export_probabilities=export_probabilities, export_probabilities_per_mutation=export_probabilities_per_mutation)
 
         else:
             signature_stabilities=devopts['signature_stabilities']
@@ -274,7 +274,7 @@ def spa_analyze(samples, output, input_type='matrix', context_type="96", signatu
                                     cosmic_sigs=True, attribution = attribution, denovo_exposureAvg  = exposureAvg_dummy, sequence=sequence, 
                                     background_sigs=background_sigs, verbose=verbose, genome_build=genome_build, signature_total_mutations = signature_total_mutations,
                                     add_penalty=nnls_add_penalty, remove_penalty=nnls_remove_penalty, process_std_error = processSTE, signature_stabilities = signature_stabilities,
-                                    initial_remove_penalty=init_rem_denovo,connected_sigs=connected_sigs,refit_denovo_signatures=True,export_probabilities=export_probabilities)
+                                    initial_remove_penalty=init_rem_denovo,connected_sigs=connected_sigs,refit_denovo_signatures=True,export_probabilities=export_probabilities, export_probabilities_per_mutation=export_probabilities_per_mutation)
 
 
                                                                 #################
@@ -371,7 +371,9 @@ def spa_analyze(samples, output, input_type='matrix', context_type="96", signatu
                                 initial_remove_penalty=initial_remove_penalty,connected_sigs=connected_sigs,
                                 collapse_to_SBS96=collapse_to_SBS96,
                                 refit_denovo_signatures=False,
-                                make_plots=make_plots,export_probabilities=export_probabilities)
+                                make_plots=make_plots,
+                                export_probabilities=export_probabilities,
+                                export_probabilities_per_mutation=export_probabilities_per_mutation)
 
 
                                                                 #################
@@ -483,7 +485,8 @@ def spa_analyze(samples, output, input_type='matrix', context_type="96", signatu
                             add_penalty=nnls_add_penalty, remove_penalty=nnls_remove_penalty, 
                             initial_remove_penalty=initial_remove_penalty,connected_sigs=connected_sigs,
                             collapse_to_SBS96=collapse_to_SBS96,refit_denovo_signatures=False,
-                            make_plots =make_plots,export_probabilities=export_probabilities)
+                            make_plots =make_plots,export_probabilities=export_probabilities,
+                            export_probabilities_per_mutation=export_probabilities_per_mutation)
    
   
 
