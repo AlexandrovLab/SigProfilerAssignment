@@ -472,7 +472,7 @@ def signature_decomposition(signatures, mtype, directory, genome_build="GRCh37",
 def make_final_solution(processAvg, allgenomes, allsigids, layer_directory, m, index, allcolnames, process_std_error = "none", signature_stabilities = " ", \
                         signature_total_mutations= " ", signature_stats = "none",  cosmic_sigs=False, attribution= 0, denovo_exposureAvg  = "none", add_penalty=0.05, \
                         remove_penalty=0.01, initial_remove_penalty=0.05, de_novo_fit_penalty=0.02, background_sigs=0, genome_build="GRCh37", sequence="genome", export_probabilities=True, export_probabilities_per_mutation=False, \
-                        refit_denovo_signatures=True, collapse_to_SBS96=True, connected_sigs=True, pcawg_rule=False, verbose=False,make_plots = True, samples='./', input_type='matrix'):
+                        refit_denovo_signatures=True, collapse_to_SBS96=True, connected_sigs=True, pcawg_rule=False, verbose=False,make_plots = True, samples='./', input_type='matrix', denovo_refit_option=True):
 
     if processAvg.shape[0]==allgenomes.shape[0] and processAvg.shape[0] != 96:
         collapse_to_SBS96=False
@@ -774,12 +774,12 @@ def make_final_solution(processAvg, allgenomes, allsigids, layer_directory, m, i
         probability = probabilities(processAvg, exposureAvg, index, allsigids, allcolnames)
         probability=probability.set_index("Sample Names" )
     
-        if cosmic_sigs==False:
+        if denovo_refit_option==True:
             if refit_denovo_signatures==True:
                 probability.to_csv(layer_directory+"/Activities"+"/"+"De_Novo_Mutation_Probabilities_refit.txt", "\t") 
             else:
                 probability.to_csv(layer_directory+"/Activities"+"/"+"De_Novo_Mutation_Probabilities.txt", "\t") 
-        if cosmic_sigs==True:
+        if denovo_refit_option==False:
             probability.to_csv(layer_directory+"/Activities"+"/"+"Decomposed_Mutation_Probabilities.txt", "\t") 
     
     if export_probabilities_per_mutation==True:
@@ -788,7 +788,7 @@ def make_final_solution(processAvg, allgenomes, allsigids, layer_directory, m, i
                 if m=='96' or m=='78' or m=='83':
                     probability_per_mutation, samples_prob_per_mut = probabilities_per_mutation(probability, samples, m)
 
-                    if cosmic_sigs==False:
+                    if denovo_refit_option==True:
                         if refit_denovo_signatures==True:
                             ppm_file_name = "De_Novo_Mutation_Probabilities_refit_Per_Mutation"
                             output_path_prob_per_mut = layer_directory+"/Activities"+"/"+ppm_file_name
