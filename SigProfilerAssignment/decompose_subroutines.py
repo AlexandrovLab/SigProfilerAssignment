@@ -784,25 +784,28 @@ def make_final_solution(processAvg, allgenomes, allsigids, layer_directory, m, i
     
     if export_probabilities_per_mutation==True:
         if input_type=='vcf':
-            probability_per_mutation, samples_prob_per_mut = probabilities_per_mutation(probability, samples, m)
+            if m=='96' or m=='78' or m=='83':
+                probability_per_mutation, samples_prob_per_mut = probabilities_per_mutation(probability, samples, m)
 
-            if cosmic_sigs==False:
-                if refit_denovo_signatures==True:
-                    ppm_file_name = "De_Novo_Mutation_Probabilities_refit_Per_Mutation"
-                    output_path_prob_per_mut = layer_directory+"/Activities"+"/"+ppm_file_name
+                if cosmic_sigs==False:
+                    if refit_denovo_signatures==True:
+                        ppm_file_name = "De_Novo_Mutation_Probabilities_refit_Per_Mutation"
+                        output_path_prob_per_mut = layer_directory+"/Activities"+"/"+ppm_file_name
+                    else:
+                        ppm_file_name = "De_Novo_Mutation_Probabilities_Per_Mutation"
+                        output_path_prob_per_mut = layer_directory+"/Activities"+"/"+ppm_file_name
                 else:
-                    ppm_file_name = "De_Novo_Mutation_Probabilities_Per_Mutation"
+                    ppm_file_name = "Decomposed_Mutation_Probabilities_Per_Mutation"
                     output_path_prob_per_mut = layer_directory+"/Activities"+"/"+ppm_file_name
-            else:
-                ppm_file_name = "Decomposed_Mutation_Probabilities_Per_Mutation"
-                output_path_prob_per_mut = layer_directory+"/Activities"+"/"+ppm_file_name
 
-            if not os.path.exists(output_path_prob_per_mut):
-                os.makedirs(output_path_prob_per_mut)
-            for matrix,sample in zip(probability_per_mutation, samples_prob_per_mut):
-                matrix=matrix.set_index('Sample Names')
-                matrix=matrix.sort_values(by=['Chr','Pos'])
-                matrix.to_csv(layer_directory+"/Activities"+"/"+ ppm_file_name + "/" + ppm_file_name + "_" + sample + ".txt", "\t")
+                if not os.path.exists(output_path_prob_per_mut):
+                    os.makedirs(output_path_prob_per_mut)
+                for matrix,sample in zip(probability_per_mutation, samples_prob_per_mut):
+                    matrix=matrix.set_index('Sample Names')
+                    matrix=matrix.sort_values(by=['Chr','Pos'])
+                    matrix.to_csv(layer_directory+"/Activities"+"/"+ ppm_file_name + "/" + ppm_file_name + "_" + sample + ".txt", "\t")
+            else:
+                print('Probabilities per mutation are only calculated for SBS96, DBS78 and ID83 mutational contexts')
         else:
             print('Probabilities per mutation are only calculated if input_type is "vcf"')
     
@@ -935,6 +938,14 @@ def probabilities_per_mutation(probability_matrix, samples_path, m):
         seqinfo_path = samples_path + '/output/vcf_files/SNV/'
         interval_low = 3
         interval_high = -1
+    if m=='78':
+        seqinfo_path = samples_path + '/output/vcf_files/DBS/'
+        interval_low = 4
+        interval_high = -2
+    if m=='83':
+        seqinfo_path = samples_path + '/output/vcf_files/ID/'
+        interval_low = 2
+        interval_high = 100
 #
     seqinfo_files = os.listdir(seqinfo_path)
     seqinfo_files.sort()
@@ -947,17 +958,24 @@ def probabilities_per_mutation(probability_matrix, samples_path, m):
         except (pd.errors.EmptyDataError):
             pass
     all_mutations[3] = all_mutations[3].str[interval_low:interval_high]
-    del all_mutations[4]
+    if m=='96' or m=='78':
+        del all_mutations[4]
+    else:
+        del all_mutations[6]
+        del all_mutations[5]
+        del all_mutations[4]
+
     all_mutations.columns = ['Sample Names', 'Chr', 'Pos', 'MutationType']
 #
     all_samples_mutations = [y for x, y in all_mutations.groupby('Sample Names')]
 #
     prob_per_mut = []
+    sample_names = []
     for sample_mutations in all_samples_mutations:
         new = sample_mutations.merge(probability_matrix)
         prob_per_mut.append(new)
+        sample_names.append(new['Sample Names'][0])
 #
-    sample_names = all_mutations['Sample Names'].unique()
     result = [prob_per_mut, sample_names]
 #
     return result
