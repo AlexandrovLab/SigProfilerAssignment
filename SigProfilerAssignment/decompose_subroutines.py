@@ -783,31 +783,34 @@ def make_final_solution(processAvg, allgenomes, allsigids, layer_directory, m, i
             probability.to_csv(layer_directory+"/Activities"+"/"+"Decomposed_Mutation_Probabilities.txt", "\t") 
     
     if export_probabilities_per_mutation==True:
-        if input_type=='vcf':
-            if m=='96' or m=='78' or m=='83':
-                probability_per_mutation, samples_prob_per_mut = probabilities_per_mutation(probability, samples, m)
+        if export_probabilities==True:
+            if input_type=='vcf':
+                if m=='96' or m=='78' or m=='83':
+                    probability_per_mutation, samples_prob_per_mut = probabilities_per_mutation(probability, samples, m)
 
-                if cosmic_sigs==False:
-                    if refit_denovo_signatures==True:
-                        ppm_file_name = "De_Novo_Mutation_Probabilities_refit_Per_Mutation"
-                        output_path_prob_per_mut = layer_directory+"/Activities"+"/"+ppm_file_name
+                    if cosmic_sigs==False:
+                        if refit_denovo_signatures==True:
+                            ppm_file_name = "De_Novo_Mutation_Probabilities_refit_Per_Mutation"
+                            output_path_prob_per_mut = layer_directory+"/Activities"+"/"+ppm_file_name
+                        else:
+                            ppm_file_name = "De_Novo_Mutation_Probabilities_Per_Mutation"
+                            output_path_prob_per_mut = layer_directory+"/Activities"+"/"+ppm_file_name
                     else:
-                        ppm_file_name = "De_Novo_Mutation_Probabilities_Per_Mutation"
+                        ppm_file_name = "Decomposed_Mutation_Probabilities_Per_Mutation"
                         output_path_prob_per_mut = layer_directory+"/Activities"+"/"+ppm_file_name
-                else:
-                    ppm_file_name = "Decomposed_Mutation_Probabilities_Per_Mutation"
-                    output_path_prob_per_mut = layer_directory+"/Activities"+"/"+ppm_file_name
 
-                if not os.path.exists(output_path_prob_per_mut):
-                    os.makedirs(output_path_prob_per_mut)
-                for matrix,sample in zip(probability_per_mutation, samples_prob_per_mut):
-                    matrix=matrix.set_index('Sample Names')
-                    matrix=matrix.sort_values(by=['Chr','Pos'])
-                    matrix.to_csv(layer_directory+"/Activities"+"/"+ ppm_file_name + "/" + ppm_file_name + "_" + sample + ".txt", "\t")
+                    if not os.path.exists(output_path_prob_per_mut):
+                        os.makedirs(output_path_prob_per_mut)
+                    for matrix,sample in zip(probability_per_mutation, samples_prob_per_mut):
+                        matrix=matrix.set_index('Sample Names')
+                        matrix=matrix.sort_values(by=['Chr','Pos'])
+                        matrix.to_csv(layer_directory+"/Activities"+"/"+ ppm_file_name + "/" + ppm_file_name + "_" + sample + ".txt", "\t")
+                else:
+                    print('Probabilities per mutation are only calculated for SBS96, DBS78 and ID83 mutational contexts.')
             else:
-                print('Probabilities per mutation are only calculated for SBS96, DBS78 and ID83 mutational contexts')
+                print('Probabilities per mutation are only calculated if input_type is "vcf".')
         else:
-            print('Probabilities per mutation are only calculated if input_type is "vcf"')
+            print('Probabilities per mutation require to calculate probabilities per context type. Please re-run your analysis setting export_probabilites=True.')
     
     # import pdb; pdb.set_trace()
     

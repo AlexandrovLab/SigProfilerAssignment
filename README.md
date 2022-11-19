@@ -134,7 +134,8 @@ Analyze.cosmic_fit( samples,
 | **new_signature_thresh_hold**| Float | Parameter in cosine similarity to declare a new signature. Applicable for decompose_fit only. The default value is 0.8. |
 | **exclude_signature_subgroups** | List | Removes the signatures corresponding to specific subtypes for better fitting. The usage is given above. The default value is None. |
 | **exome** | Boolean | Defines if the exome renormalized signatures will be used. The default value is False. |
-| **export_probabilities** | Boolean | Defines if the probability matrix is created. The default value is True. |
+| **export_probabilities** | Boolean | Defines if the probability matrix per mutational context for all samples is created. The default value is True. |
+| **export_probabilities_per_mutation** | Boolean | Defines if the probability matrices per mutation for all samples are created. The default value is False. |
 | **make_plots** | Boolean | Toggle on and off for making and saving all plots. The default value is True. |
 | **verbose** | Boolean | Prints statements. The default value is False. |
 
