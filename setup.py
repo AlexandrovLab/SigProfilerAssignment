@@ -6,7 +6,7 @@ import os
 if os.path.exists("dist"):
     shutil.rmtree("dist")
 
-VERSION = '0.0.18'
+VERSION = '0.0.19'
 
 with open('README.md') as f:
 	long_description = f.read()
@@ -17,7 +17,7 @@ def write_version_py(filename='SigProfilerAssignment/version.py'):
 # THIS FILE IS GENERATED FROM SigProfilerAssignment SETUP.PY
 short_version = '%(version)s'
 version = '%(version)s'
-Update = '(1) Import decomposition plots from SPA (2) Resolve issue with m_for_subgroups (3) Expand tests'
+Update = '(1) Add probabilities per mutation'
     
     """
     fh = open(filename, 'w')
