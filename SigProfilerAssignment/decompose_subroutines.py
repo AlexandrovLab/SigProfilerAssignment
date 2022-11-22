@@ -776,11 +776,11 @@ def make_final_solution(processAvg, allgenomes, allsigids, layer_directory, m, i
     
         if denovo_refit_option==True:
             if refit_denovo_signatures==True:
-                probability.to_csv(layer_directory+"/Activities"+"/"+"De_Novo_Mutation_Probabilities_refit.txt", "\t") 
+                probability.to_csv(layer_directory+"/Activities"+"/"+"De_Novo_MutationType_Probabilities_refit.txt", "\t") 
             else:
-                probability.to_csv(layer_directory+"/Activities"+"/"+"De_Novo_Mutation_Probabilities.txt", "\t") 
+                probability.to_csv(layer_directory+"/Activities"+"/"+"De_Novo_MutationType_Probabilities.txt", "\t") 
         if denovo_refit_option==False:
-            probability.to_csv(layer_directory+"/Activities"+"/"+"Decomposed_Mutation_Probabilities.txt", "\t") 
+            probability.to_csv(layer_directory+"/Activities"+"/"+"Decomposed_MutationType_Probabilities.txt", "\t") 
     
     if export_probabilities_per_mutation==True:
         if export_probabilities==True:
@@ -790,13 +790,13 @@ def make_final_solution(processAvg, allgenomes, allsigids, layer_directory, m, i
 
                     if denovo_refit_option==True:
                         if refit_denovo_signatures==True:
-                            ppm_file_name = "De_Novo_Mutation_Probabilities_refit_Per_Mutation"
+                            ppm_file_name = "De_Novo_Mutation_Probabilities_refit"
                             output_path_prob_per_mut = layer_directory+"/Activities"+"/"+ppm_file_name
                         else:
-                            ppm_file_name = "De_Novo_Mutation_Probabilities_Per_Mutation"
+                            ppm_file_name = "De_Novo_Mutation_Probabilities"
                             output_path_prob_per_mut = layer_directory+"/Activities"+"/"+ppm_file_name
                     else:
-                        ppm_file_name = "Decomposed_Mutation_Probabilities_Per_Mutation"
+                        ppm_file_name = "Decomposed_Mutation_Probabilities"
                         output_path_prob_per_mut = layer_directory+"/Activities"+"/"+ppm_file_name
 
                     if not os.path.exists(output_path_prob_per_mut):
