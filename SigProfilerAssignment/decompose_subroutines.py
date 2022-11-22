@@ -471,8 +471,8 @@ def signature_decomposition(signatures, mtype, directory, genome_build="GRCh37",
 #############################################################################################################
 def make_final_solution(processAvg, allgenomes, allsigids, layer_directory, m, index, allcolnames, process_std_error = "none", signature_stabilities = " ", \
                         signature_total_mutations= " ", signature_stats = "none",  cosmic_sigs=False, attribution= 0, denovo_exposureAvg  = "none", add_penalty=0.05, \
-                        remove_penalty=0.01, initial_remove_penalty=0.05, de_novo_fit_penalty=0.02, background_sigs=0, genome_build="GRCh37", sequence="genome", export_probabilities=True, \
-                        refit_denovo_signatures=True, collapse_to_SBS96=True, connected_sigs=True, pcawg_rule=False, verbose=False,make_plots = True):
+                        remove_penalty=0.01, initial_remove_penalty=0.05, de_novo_fit_penalty=0.02, background_sigs=0, genome_build="GRCh37", sequence="genome", export_probabilities=True, export_probabilities_per_mutation=False, \
+                        refit_denovo_signatures=True, collapse_to_SBS96=True, connected_sigs=True, pcawg_rule=False, verbose=False,make_plots = True, samples='./', input_type='matrix', denovo_refit_option=True):
 
     if processAvg.shape[0]==allgenomes.shape[0] and processAvg.shape[0] != 96:
         collapse_to_SBS96=False
@@ -774,15 +774,45 @@ def make_final_solution(processAvg, allgenomes, allsigids, layer_directory, m, i
         probability = probabilities(processAvg, exposureAvg, index, allsigids, allcolnames)
         probability=probability.set_index("Sample Names" )
     
-        if cosmic_sigs==False:
-            
+        if denovo_refit_option==True:
             if refit_denovo_signatures==True:
-                probability.to_csv(layer_directory+"/Activities"+"/"+"De_Novo_Mutation_Probabilities_refit.txt", "\t") 
+                probability.to_csv(layer_directory+"/Activities"+"/"+"De_Novo_MutationType_Probabilities_refit.txt", "\t") 
             else:
-                probability.to_csv(layer_directory+"/Activities"+"/"+"De_Novo_Mutation_Probabilities.txt", "\t") 
-        if cosmic_sigs==True:
-            probability.to_csv(layer_directory+"/Activities"+"/"+"Decomposed_Mutation_Probabilities.txt", "\t") 
+                probability.to_csv(layer_directory+"/Activities"+"/"+"De_Novo_MutationType_Probabilities.txt", "\t") 
+        if denovo_refit_option==False:
+            probability.to_csv(layer_directory+"/Activities"+"/"+"Decomposed_MutationType_Probabilities.txt", "\t") 
     
+    if export_probabilities_per_mutation==True:
+        if export_probabilities==True:
+            if input_type=='vcf':
+                if m=='96' or m=='78' or m=='83':
+                    probability_per_mutation, samples_prob_per_mut = probabilities_per_mutation(probability, samples, m)
+
+                    if denovo_refit_option==True:
+                        if refit_denovo_signatures==True:
+                            ppm_file_name = "De_Novo_Mutation_Probabilities_refit"
+                            output_path_prob_per_mut = layer_directory+"/Activities"+"/"+ppm_file_name
+                        else:
+                            ppm_file_name = "De_Novo_Mutation_Probabilities"
+                            output_path_prob_per_mut = layer_directory+"/Activities"+"/"+ppm_file_name
+                    else:
+                        ppm_file_name = "Decomposed_Mutation_Probabilities"
+                        output_path_prob_per_mut = layer_directory+"/Activities"+"/"+ppm_file_name
+
+                    if not os.path.exists(output_path_prob_per_mut):
+                        os.makedirs(output_path_prob_per_mut)
+                    for matrix,sample in zip(probability_per_mutation, samples_prob_per_mut):
+                        matrix=matrix.set_index('Sample Names')
+                        matrix=matrix.sort_values(by=['Chr','Pos'])
+                        matrix.to_csv(layer_directory+"/Activities"+"/"+ ppm_file_name + "/" + ppm_file_name + "_" + sample + ".txt", "\t")
+                else:
+                    print('Probabilities per mutation are only calculated for SBS96, DBS78 and ID83 mutational contexts.')
+            else:
+                print('Probabilities per mutation are only calculated if input_type is "vcf".')
+        else:
+            print('Probabilities per mutation require to calculate probabilities per context type. Please re-run your analysis setting export_probabilites=True.')
+    
+    # import pdb; pdb.set_trace()
     
     return exposures
 ################################################################### FUNCTION ONE ###################################################################
@@ -900,6 +930,59 @@ def probabilities(W, H, index, allsigids, allcolnames):
     
         
     return result
+
+
+################################################### Generation of probabilities for each processes given to A mutation ############################################
+def probabilities_per_mutation(probability_matrix, samples_path, m):  
+#
+    probability_matrix=probability_matrix.reset_index()
+#
+    if m=='96':
+        seqinfo_path = samples_path + '/output/vcf_files/SNV/'
+        interval_low = 3
+        interval_high = -1
+    if m=='78':
+        seqinfo_path = samples_path + '/output/vcf_files/DBS/'
+        interval_low = 4
+        interval_high = -2
+    if m=='83':
+        seqinfo_path = samples_path + '/output/vcf_files/ID/'
+        interval_low = 2
+        interval_high = 100
+#
+    seqinfo_files = os.listdir(seqinfo_path)
+    seqinfo_files.sort()
+#
+    all_mutations = pd.DataFrame()
+    for file in seqinfo_files:
+        try:
+            new = pd.read_csv(seqinfo_path + file, sep='\t',header=None)
+            all_mutations = pd.concat([all_mutations, new])
+        except (pd.errors.EmptyDataError):
+            pass
+    all_mutations[3] = all_mutations[3].str[interval_low:interval_high]
+    if m=='96' or m=='78':
+        del all_mutations[4]
+    else:
+        del all_mutations[6]
+        del all_mutations[5]
+        del all_mutations[4]
+
+    all_mutations.columns = ['Sample Names', 'Chr', 'Pos', 'MutationType']
+#
+    all_samples_mutations = [y for x, y in all_mutations.groupby('Sample Names')]
+#
+    prob_per_mut = []
+    sample_names = []
+    for sample_mutations in all_samples_mutations:
+        new = sample_mutations.merge(probability_matrix)
+        prob_per_mut.append(new)
+        sample_names.append(new['Sample Names'][0])
+#
+    result = [prob_per_mut, sample_names]
+#
+    return result
+
 
 def custom_signatures_plot(signatures, output):
     with PdfPages(output+'/Custom_Signature_Plots.pdf') as pdf:
