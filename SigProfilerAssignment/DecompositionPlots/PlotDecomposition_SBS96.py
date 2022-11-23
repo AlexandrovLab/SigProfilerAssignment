@@ -41,8 +41,8 @@ GRAPH_Y_COORD = (HEIGHT_LETTER - HEIGHT_GAP)
 TEXT_X_COORD = GRAPH_X_COORD + WIDTH_GRAPH - 50
 TEXT_Y_COORD = (HEIGHT_LETTER - HEIGHT_GAP) + 63.75
 
-FONTS_DIR = os.path.join(PATHS, "DecompositionPlots/reference_files/Fonts/")
-BRACKET_PATH=os.path.join(PATHS, "DecompositionPlots/reference_files/Accolade_fermante.png")
+FONTS_DIR = os.path.join(PATHS, "DecompositionPlots/ReferenceFiles/Fonts/")
+BRACKET_PATH=os.path.join(PATHS, "DecompositionPlots/ReferenceFiles/Accolade_fermante.png")
 reportlab.rl_config.TTFSearchPath.append(FONTS_DIR)
 pdfmetrics.registerFont(TTFont('Arial-Bold', 'Arial Bold.ttf'))
 

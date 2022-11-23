@@ -1,7 +1,6 @@
 scipy
 numpy
 pandas 
-SigProfilerExtractor 
 SigProfilerMatrixGenerator 
 sigProfilerPlotting 
 pillow
