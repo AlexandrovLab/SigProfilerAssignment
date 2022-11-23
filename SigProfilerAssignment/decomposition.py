@@ -367,12 +367,14 @@ def spa_analyze(samples, output, input_type='matrix', context_type="96", signatu
             listOfSignatures = processAvg.columns
             index = genomes.index
             colnames = genomes.columns
+            make_decomposition_plots=make_plots
         else:
             listOfSignatures=devopts['listOfSignatures']
             index=devopts['index']
             colnames=devopts['colnames']
             genomes = genomes.set_index(index)
             genomes.columns = colnames
+            make_decomposition_plots = devopts['make_decomposition_plots']
             #genomes = genomes.rename_axis("Mutation Types", axis="columns")
 
         #creating list of mutational type to sync with the vcf type input
@@ -427,7 +429,7 @@ def spa_analyze(samples, output, input_type='matrix', context_type="96", signatu
         current_time_start = datetime.datetime.now()
         with open(output+"JOB_METADATA.txt","a") as sysdata:
             sysdata.write("\n Decomposing De Novo Signatures  .....")
-        final_signatures = sub.signature_decomposition(processAvg, mutation_type, layer_directory2, genome_build=genome_build,cosmic_version=cosmic_version,signature_database=signature_database, mutation_context=mutation_context, add_penalty=0.05, connected_sigs=connected_sigs,remove_penalty=0.01, make_decomposition_plots=make_plots, originalProcessAvg=originalProcessAvg,new_signature_thresh_hold=new_signature_thresh_hold,sig_exclusion_list=sig_exclusion_list,exome=exome, m_for_subgroups=m_for_subgroups)    
+        final_signatures = sub.signature_decomposition(processAvg, mutation_type, layer_directory2, genome_build=genome_build,cosmic_version=cosmic_version,signature_database=signature_database, mutation_context=mutation_context, add_penalty=0.05, connected_sigs=connected_sigs,remove_penalty=0.01, make_decomposition_plots=make_decomposition_plots, originalProcessAvg=originalProcessAvg,new_signature_thresh_hold=new_signature_thresh_hold,sig_exclusion_list=sig_exclusion_list,exome=exome, m_for_subgroups=m_for_subgroups)    
         #final_signatures = sub.signature_decomposition(processAvg, m, layer_directory2, genome_build=genome_build)
         # extract the global signatures and new signatures from the final_signatures dictionary
         globalsigs = final_signatures["globalsigs"]
