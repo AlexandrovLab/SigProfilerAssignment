@@ -21,8 +21,8 @@ import os
 import pandas as pd
 import numpy as np
 import scipy.stats
-import sigProfilerPlotting as pltCNV
-from SigProfilerAssignment.DecompositionPlots import SigProfilerPlottingMatrix as sigPlt
+import sigProfilerPlotting as sigPlt
+from SigProfilerAssignment.DecompositionPlots import SigProfilerPlottingMatrix as mPlt
 from SigProfilerAssignment.DecompositionPlots import PlotDecomposition_SBS96 as spd_96
 from SigProfilerAssignment.DecompositionPlots import PlotDecomposition_SBS288 as spd_288
 from SigProfilerAssignment.DecompositionPlots import PlotDecomposition_SBS1536 as spd_1536
@@ -34,6 +34,7 @@ from SigProfilerAssignment import decompose_subroutines as sub
 import io
 from PIL import Image
 from reportlab.lib.utils import ImageReader
+import pdb
 # Global Variables
 SBS_CONTEXTS = ["6", "24", "96", "288", "384", "1536", "6144"]
 DBS_CONTEXTS = ["78", "186", "1248", "2976"]
@@ -125,32 +126,32 @@ def genSBS_pngs(denovo_mtx, basis_mtx, output_path, project, mtype):
 	denovo_plots = dict()
 	basis_plots = dict()
 	if mtype == "1536" or mtype == "288":
-		denovo_plots = sigPlt.plotSBS(denovo_mtx, output_path, project, mtype, True)
-		basis_plots = sigPlt.plotSBS(basis_mtx, output_path, project, "96", True)
+		denovo_plots = mPlt.plotSBS(denovo_mtx, output_path, project, mtype, True)
+		basis_plots = mPlt.plotSBS(basis_mtx, output_path, project, "96", True)
 	elif mtype == "96":
-		denovo_plots = sigPlt.plotSBS(denovo_mtx, output_path, project, mtype, True)
-		basis_plots = sigPlt.plotSBS(basis_mtx, output_path, project, mtype, True)
+		denovo_plots = sigPlt.plotSBS(denovo_mtx, output_path, project, mtype, percentage=True, savefig_format="buffer_stream")
+		basis_plots = sigPlt.plotSBS(basis_mtx, output_path, project, mtype, percentage=True, savefig_format="buffer_stream")
 	return denovo_plots,basis_plots
 
 def genDBS_pngs(denovo_mtx, basis_mtx, output_path, project, mtype):
 	denovo_plots = dict()
 	basis_plots = dict()
-	denovo_plots = sigPlt.plotDBS(denovo_mtx, output_path, project, mtype, True)
-	basis_plots = sigPlt.plotDBS(basis_mtx, output_path, project, mtype, True)
+	denovo_plots = mPlt.plotDBS(denovo_mtx, output_path, project, mtype, True)
+	basis_plots = mPlt.plotDBS(basis_mtx, output_path, project, mtype, True)
 	return denovo_plots,basis_plots
 
 def genID_pngs(denovo_mtx, basis_mtx, output_path, project, mtype):
 	denovo_plots = dict()
 	basis_plots = dict()
-	denovo_plots = sigPlt.plotID(denovo_mtx, output_path, project, mtype, True)
-	basis_plots = sigPlt.plotID(basis_mtx, output_path, project, mtype, True)
+	denovo_plots = mPlt.plotID(denovo_mtx, output_path, project, mtype, True)
+	basis_plots = mPlt.plotID(basis_mtx, output_path, project, mtype, True)
 	return denovo_plots,basis_plots
 	
 def genCNV_pngs(denovo_mtx, basis_mtx, output_path, project, mtype):
 	denovo_plots = dict()
 	basis_plots = dict()
-	denovo_plots = pltCNV.plotCNV(denovo_mtx, output_path, project, plot_type="pdf", percentage=True, aggregate=False, read_from_file=False, write_to_file=False)
-	basis_plots = pltCNV.plotCNV(basis_mtx, output_path, project, plot_type="pdf", percentage=True, aggregate=False, read_from_file=False, write_to_file=False)
+	denovo_plots = sigPlt.plotCNV(denovo_mtx, output_path, project, plot_type="pdf", percentage=True, aggregate=False, read_from_file=False, write_to_file=False)
+	basis_plots = sigPlt.plotCNV(basis_mtx, output_path, project, plot_type="pdf", percentage=True, aggregate=False, read_from_file=False, write_to_file=False)
 	return denovo_plots,basis_plots
 
 # signames, weights
@@ -194,15 +195,15 @@ def gen_reconstructed_png(denovo_name, basis_mtx, basis_names, weights, output_p
 	reconstruction_mtx = pd.concat([mut_col, recon_plot], axis=1)
 	if mtype in SBS_CONTEXTS:
 		if mtype == "1536" or mtype == "288":
-			reconstruction_plot=sigPlt.plotSBS(reconstruction_mtx, output_path, "reconstruction_" + project, "96", True)
+			reconstruction_plot=mPlt.plotSBS(reconstruction_mtx, output_path, "reconstruction_" + project, "96", True)
 		else:
-			reconstruction_plot=sigPlt.plotSBS(reconstruction_mtx, output_path, "reconstruction_" + project, mtype, True)
+			reconstruction_plot=mPlt.plotSBS(reconstruction_mtx, output_path, "reconstruction_" + project, mtype, True)
 	elif mtype in DBS_CONTEXTS:
-		reconstruction_plot=sigPlt.plotDBS(reconstruction_mtx, output_path, "reconstruction_" + project, mtype, True)
+		reconstruction_plot=mPlt.plotDBS(reconstruction_mtx, output_path, "reconstruction_" + project, mtype, True)
 	elif mtype in ID_CONTEXTS:
-		reconstruction_plot=sigPlt.plotID(reconstruction_mtx, output_path, "reconstruction_" + project, mtype, True)
+		reconstruction_plot=mPlt.plotID(reconstruction_mtx, output_path, "reconstruction_" + project, mtype, True)
 	elif mtype in CNV_CONTEXTS:
-		reconstruction_plot = pltCNV.plotCNV(reconstruction_mtx, output_path, "reconstruction_"+project, plot_type="pdf", \
+		reconstruction_plot = sigPlt.plotCNV(reconstruction_mtx, output_path, "reconstruction_"+project, plot_type="pdf", \
 			percentage=True, aggregate=False, read_from_file=False, write_to_file=False)
 	else:
 		print("ERROR: mtype is " + mtype + " and is not yet supported.")

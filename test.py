@@ -101,9 +101,9 @@ def gen_SBS96():
     denovo_name="SBS96A"
     basis_names=["SBS1", "SBS3", "SBS5", "SBS13", "SBS50", "SBS2"]
     weights=["0.94%", "48.72%", "28.44%", "8.42%", "13.48%", "0%"]
-    denovo_cols = ["MutationsType", "SBS96A"]
+    denovo_cols = ["MutationType", "SBS96A"]
     basis_cols=basis_names.copy()
-    basis_cols.insert(0, "MutationsType")
+    basis_cols.insert(0, "MutationType")
     nonzero_exposures=np.random.uniform(size=len(basis_names))
     result = sp.run_PlotDecomposition(denovo_mtx[denovo_cols], denovo_name, basis_mtx[basis_cols], basis_names, weights, nonzero_exposures, output_path, project, mtype)
     merger.append(result)
@@ -111,9 +111,9 @@ def gen_SBS96():
     for ind in range(5, 0, -1):
         basis_names=basis_names[:ind]
         weights=weights[:ind]
-        denovo_cols = ["MutationsType", "SBS96A"]
+        denovo_cols = ["MutationType", "SBS96A"]
         basis_cols=basis_names.copy()
-        basis_cols.insert(0, "MutationsType")
+        basis_cols.insert(0, "MutationType")
         nonzero_exposures=np.random.uniform(size=len(basis_names))
         result = sp.run_PlotDecomposition(denovo_mtx[denovo_cols], denovo_name, basis_mtx[basis_cols], basis_names, weights, nonzero_exposures, output_path, project, mtype)
         merger.append(result)
@@ -136,11 +136,10 @@ def gen_SBS1536():
     denovo_name="SBS1536A"
     basis_names=["SBS1", "SBS2", "SBS5", "SBS13", "SBS15", "SBS18"]
     weights=["0.94%", "48.72%", "28.44%", "8.42%", "13.48%", "0%"]
-    denovo_cols = ["MutationsType", "SBS1536A"]
+    denovo_cols = ["MutationType", "SBS1536A"]
     basis_cols=basis_names.copy()
-    basis_cols.insert(0, "MutationsType")
+    basis_cols.insert(0, "MutationType")
     nonzero_exposures=np.random.uniform(size=len(basis_names))
-    # breakpoint()
     result = sp.run_PlotDecomposition(denovo_mtx[denovo_cols], denovo_name, basis_mtx[basis_cols], basis_names, weights, nonzero_exposures, output_path, project, mtype)
     #sp.run_PlotDecomposition(denovo_mtx, basis_names, weights, output_path, project, mtype, True, statistics, "COSMICv3-GRCh37", "This is where a custom message would go.")
     merger.append(result)
@@ -148,9 +147,9 @@ def gen_SBS1536():
     for ind in range(5, 0, -1):
         basis_names=basis_names[:ind]
         weights=weights[:ind]
-        denovo_cols = ["MutationsType", "SBS1536A"]
+        denovo_cols = ["MutationType", "SBS1536A"]
         basis_cols=basis_names.copy()
-        basis_cols.insert(0, "MutationsType")
+        basis_cols.insert(0, "MutationType")
         nonzero_exposures=np.random.uniform(size=len(basis_names))
         result = sp.run_PlotDecomposition(denovo_mtx[denovo_cols], denovo_name, basis_mtx[basis_cols], basis_names, weights, nonzero_exposures, output_path, project, mtype)
         merger.append(result)
@@ -173,9 +172,9 @@ def gen_SBS288():
     denovo_name="SBS288A"
     basis_names=["SBS1", "SBS2", "SBS4", "SBS5", "SBS8", "SBS90"]
     weights=["0.94%", "48.72%", "28.44%", "8.42%", "13.48%", "0%"]
-    denovo_cols = ["MutationsType", "SBS288A"]
+    denovo_cols = ["MutationType", "SBS288A"]
     basis_cols=basis_names.copy()
-    basis_cols.insert(0, "MutationsType")
+    basis_cols.insert(0, "MutationType")
     nonzero_exposures=np.random.uniform(size=len(basis_names))
     result = sp.run_PlotDecomposition(denovo_mtx[denovo_cols], denovo_name, basis_mtx[basis_cols], basis_names, weights, nonzero_exposures, output_path, project, mtype)
     merger.append(result)
@@ -183,9 +182,9 @@ def gen_SBS288():
     for ind in range(5, 0, -1):
         basis_names=basis_names[:ind]
         weights=weights[:ind]
-        denovo_cols = ["MutationsType", "SBS288A"]
+        denovo_cols = ["MutationType", "SBS288A"]
         basis_cols=basis_names.copy()
-        basis_cols.insert(0, "MutationsType")
+        basis_cols.insert(0, "MutationType")
         nonzero_exposures=np.random.uniform(size=len(basis_names))
         result = sp.run_PlotDecomposition(denovo_mtx[denovo_cols], denovo_name, \
             basis_mtx[basis_cols], basis_names, weights, nonzero_exposures, output_path, project, mtype)
@@ -208,9 +207,9 @@ def gen_ID83():
     denovo_name="ID83A"
     basis_names=["ID1", "ID2", "ID4", "ID5", "ID8", "ID9"]
     weights=["0.94%", "48.72%", "28.44%", "8.42%", "13.48%", "0%"]
-    denovo_cols = ["MutationsType", "ID83A"]
+    denovo_cols = ["MutationType", "ID83A"]
     basis_cols=basis_names.copy()
-    basis_cols.insert(0, "MutationsType")
+    basis_cols.insert(0, "MutationType")
     nonzero_exposures=np.random.uniform(size=len(basis_names))
     result = sp.run_PlotDecomposition(denovo_mtx[denovo_cols], denovo_name, \
         basis_mtx[basis_cols], basis_names, weights, nonzero_exposures, output_path, project, mtype)
@@ -219,9 +218,9 @@ def gen_ID83():
     for ind in range(5, 0, -1):
         basis_names=basis_names[:ind]
         weights=weights[:ind]
-        denovo_cols = ["MutationsType", "ID83A"]
+        denovo_cols = ["MutationType", "ID83A"]
         basis_cols=basis_names.copy()
-        basis_cols.insert(0, "MutationsType")
+        basis_cols.insert(0, "MutationType")
         nonzero_exposures=np.random.uniform(size=len(basis_names))
         result = sp.run_PlotDecomposition(denovo_mtx[denovo_cols], denovo_name, \
             basis_mtx[basis_cols], basis_names, weights, nonzero_exposures, output_path, project, mtype)
@@ -244,9 +243,9 @@ def gen_DBS78():
     denovo_name="DBS78A"
     basis_names=["DBS1", "DBS2", "DBS4", "DBS5", "DBS8", "DBS9"]
     weights=["0.94%", "48.72%", "28.44%", "8.42%", "13.48%", "0%"]
-    denovo_cols = ["MutationsType", "DBS78A"]
+    denovo_cols = ["MutationType", "DBS78A"]
     basis_cols=basis_names.copy()
-    basis_cols.insert(0, "MutationsType")
+    basis_cols.insert(0, "MutationType")
     nonzero_exposures=np.random.uniform(size=len(basis_names))
     result = sp.run_PlotDecomposition(denovo_mtx[denovo_cols], denovo_name, \
         basis_mtx[basis_cols], basis_names, weights, nonzero_exposures, output_path, project, mtype)
@@ -255,9 +254,9 @@ def gen_DBS78():
     for ind in range(5, 0, -1):
         basis_names=basis_names[:ind]
         weights=weights[:ind]
-        denovo_cols = ["MutationsType", "DBS78A"]
+        denovo_cols = ["MutationType", "DBS78A"]
         basis_cols=basis_names.copy()
-        basis_cols.insert(0, "MutationsType")
+        basis_cols.insert(0, "MutationType")
         nonzero_exposures=np.random.uniform(size=len(basis_names))
         result = sp.run_PlotDecomposition(denovo_mtx[denovo_cols], denovo_name, \
             basis_mtx[basis_cols], basis_names, weights, nonzero_exposures, output_path, project, mtype)
@@ -284,7 +283,6 @@ def gen_CNV48():
     basis_cols=basis_names.copy()
     basis_cols.insert(0, "MutationType")
     nonzero_exposures=np.random.uniform(size=len(basis_names))
-    # breakpoint()
     result = sp.run_PlotDecomposition(denovo_mtx[denovo_cols], denovo_name, basis_mtx[basis_cols], basis_names, weights, nonzero_exposures, output_path, project, mtype)
     #sp.run_PlotDecomposition(denovo_mtx, basis_names, weights, output_path, project, mtype, True, statistics, "COSMICv3-GRCh37", "This is where a custom message would go.")
     merger.append(result)

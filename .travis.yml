@@ -1,6 +1,9 @@
 dist: xenial
 language: python
 
+vm:
+  size: large
+
 python:
   - '3.8'
 
