@@ -8,6 +8,19 @@ if os.path.exists("dist"):
 
 VERSION = '0.0.18'
 
+def write_version_py(filename='SigProfilerAssignment/version.py'):
+    # Copied from numpy setup.py
+    cnt = """
+# THIS FILE IS GENERATED FROM SigProfilerAssignment SETUP.PY
+short_version = '%(version)s'
+version = '%(version)s'
+Update = '(1) Import decomposition plots from SPA (2) Resolve issue with m_for_subgroups (3) Expand tests'
+    
+    """
+    fh = open(filename, 'w')
+    fh.write(cnt % {'version': VERSION,})
+    fh.close()
+
 with open('README.md') as f:
 	long_description = f.read()
 
@@ -27,7 +40,8 @@ requirements=[
           'PyPDf2>=1.28.4',
           'pdf2image>=1.16.0',
            ]
-    
+
+write_version_py() 
 setup(name='SigProfilerAssignment',
       version=VERSION,
       description='Mutational signatures attribution and decomposition tool',
