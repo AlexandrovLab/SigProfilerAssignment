@@ -54,8 +54,8 @@ cover/
 SigProfilerAssignment/data/tests/vcf_input/input/
 SigProfilerAssignment/data/tests/vcf_input/logs/
 SigProfilerAssignment/data/tests/vcf_input/output/
-output_vcf_example/
-output_txt_example/
+SigProfilerAssignment/DecompositionPlots/CosmicTemplates/
+TestOutput/
 
 
 

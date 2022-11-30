@@ -6,10 +6,8 @@ import os
 if os.path.exists("dist"):
     shutil.rmtree("dist")
 
-VERSION = '0.0.19'
+VERSION = '0.0.20'
 
-with open('README.md') as f:
-	long_description = f.read()
 
 def write_version_py(filename='SigProfilerAssignment/version.py'):
     # Copied from numpy setup.py
@@ -17,28 +15,36 @@ def write_version_py(filename='SigProfilerAssignment/version.py'):
 # THIS FILE IS GENERATED FROM SigProfilerAssignment SETUP.PY
 short_version = '%(version)s'
 version = '%(version)s'
-Update = '(1) Add probabilities per mutation'
+Update = 'Implement sample reconstruction plot'
+
     
     """
     fh = open(filename, 'w')
     fh.write(cnt % {'version': VERSION,})
     fh.close()
+
+with open('README.md') as f:
+	long_description = f.read()
+
 requirements=[
           'scipy>=1.6.3',
           'numpy>=1.21.2',
           'pandas>=1.2.4',
           'SigProfilerMatrixGenerator>=1.2.13', 
-          'sigProfilerPlotting>=1.3.2', 
-          'pillow',
+          'sigProfilerPlotting>=1.3.6', 
+          'pillow>=9.1.1',
           'statsmodels>=0.9.0',
           'scikit-learn>=0.24.2',
           'psutil>=5.6.1',
           'reportlab>=3.5.42',
           'PyPDF2>=1.26.0',
-          'alive_progress'
+          'alive_progress>=2.4.1',
+          'PyPDf2>=1.28.4',
+          'pdf2image>=1.16.0',
+          'PyMuPDF>=1.21.0'
            ]
-    
-write_version_py()
+
+write_version_py() 
 setup(name='SigProfilerAssignment',
       version=VERSION,
       description='Mutational signatures attribution and decomposition tool',

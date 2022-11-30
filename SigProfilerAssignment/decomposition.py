@@ -9,23 +9,109 @@ Created on Sun May 19 12:21:06 2019
 #from SigProfilerExtractor import subroutines as sub
 
 from cmath import cos
+import datetime
+import platform
 
 # from torch import sign
 from SigProfilerAssignment import decompose_subroutines as sub
+from SigProfilerAssignment.DecompositionPlots import PlotDecomposition as plot_decomp
+import SigProfilerAssignment
+
 import numpy as np
 import pandas as pd
 import SigProfilerMatrixGenerator
 from SigProfilerMatrixGenerator.scripts import SigProfilerMatrixGeneratorFunc as datadump 
 from SigProfilerMatrixGenerator.scripts import CNVMatrixGenerator as scna
-
-#import SigProfilerExtractor as cosmic
+import sigProfilerPlotting
 import os,sys
+from PyPDF2 import PdfFileMerger
+import fitz
+import time
 
+def convert_PDF_to_PNG(input_file_name, output_directory, page_names):
+    pdf_doc = fitz.open(input_file_name)
+    zoom = 3
+    magnify = fitz.Matrix(zoom, zoom)
+    
+    if pdf_doc.page_count != len(page_names):
+        raise ValueError("Error: The number of samples and number of plots do not match.")
+    if not os.path.exists(output_directory):
+        os.makedirs(output_directory)
+    
+    for sample_name, page in zip(page_names, pdf_doc):
+        pix = page.get_pixmap(matrix=magnify)
+        out_file_name = os.path.join(output_directory, sample_name+  ".png")
+        pix.save(out_file_name)
+
+# Create sample reconstruction plots
+def generate_sample_reconstruction(cosmic_sigs, samples_input, activities, output_dir):
+    project = "test_run"
+    mtype="96"
+
+    final_pdf = PdfFileMerger()
+    samples = samples_input.copy(deep=True)
+    samples.reset_index(inplace=True)
+    for sample_name in samples.columns[1:]:
+        # basis names and their corresponding weights
+        subset = activities[activities["Samples"].str.contains(sample_name)]
+        subset = subset.loc[:, (subset != 0).any(axis=0)]
+        basis_names = subset[subset["Samples"].str.contains(sample_name)].columns[1:].tolist()
+        recon_tmb = subset.sum(axis=1)
+        weights = []
+        for i in range(len(basis_names)):
+            weights.append(str(float("{0:.6f}".format(100*int(subset[basis_names[i]])/int(recon_tmb))))+"%")
+
+        names_copy = basis_names.copy()
+        names_copy.insert(0, cosmic_sigs.columns[0])
+        result = plot_decomp.run_PlotSSDecomposition(
+                    samples[[samples.columns[0],sample_name]],
+                    sample_name,
+                    cosmic_sigs[names_copy],
+                    basis_names,
+                    weights,
+                    output_dir,
+                    project,
+                    mtype)
+        final_pdf.append(result)
+    
+    pdf_output_path = os.path.join(output_dir,
+            "Reconstructed_Sample_Plots_" + str(mtype) + ".pdf")
+    web_png_path = os.path.join(output_dir,"WebPNGs")
+
+    final_pdf.write(pdf_output_path)
+
+    convert_PDF_to_PNG(pdf_output_path, web_png_path, samples.columns[1:])
+    
+    return pdf_output_path
+
+def record_parameters(sysdata,execution_parameters,start_time):
+    sysdata.write("\n--------------EXECUTION PARAMETERS--------------\n")
+    sysdata.write("INPUT DATA\n")
+    sysdata.write("\tinput_type: {}\n".format(execution_parameters["input_type"]))
+    sysdata.write("\toutput: {}\n".format(execution_parameters["output"]))
+    sysdata.write("\tsamples: {}\n".format(execution_parameters["samples"]))
+    sysdata.write("\treference_genome: {}\n".format(execution_parameters["reference_genome"]))
+    sysdata.write("\tcontext_types: {}\n".format(execution_parameters["context_type"]))
+    sysdata.write("\texome: {}\n".format(execution_parameters["exome"]))
+
+    sysdata.write("COSMIC MATCH\n")
+    sysdata.write("\tcosmic_version: {}\n".format(execution_parameters["cosmic_version"]))
+    sysdata.write("\tnnls_add_penalty: {}\n".format(execution_parameters["nnls_add_penalty"]))
+    sysdata.write("\tnnls_remove_penalty: {}\n".format(execution_parameters["nnls_remove_penalty"]))
+    sysdata.write("\tinitial_remove_penalty: {}\n".format(execution_parameters["initial_remove_penalty"]))
+    sysdata.write("\tde_novo_fit_penalty: {}\n".format(execution_parameters["de_novo_fit_penalty"]))
+    sysdata.write("\texport_probabilities: {}\n".format(execution_parameters["export_probabilities"]))
+    sysdata.write("\tcollapse_to_SBS96: {}\n".format(execution_parameters["collapse_to_SBS96"]))
+    sysdata.write("\tdenovo_refit_option: {}\n".format(execution_parameters["denovo_refit_option"]))
+    sysdata.write("\tdecompose_fit_option: {}\n".format(execution_parameters["decompose_fit_option"]))
+    sysdata.write("\tcosmic_fit_option: {}\n".format(execution_parameters["cosmic_fit_option"]))
+    sysdata.write("\n-------Analysis Progress------- \n")
+    sysdata.write("[{}] Analysis started: \n".format(str(start_time).split(".")[0]))
 
 def spa_analyze(samples, output, input_type='matrix', context_type="96", signatures=None, signature_database=None,decompose_fit_option= True,denovo_refit_option=True,cosmic_fit_option=True, nnls_add_penalty=0.05, 
               nnls_remove_penalty=0.01, initial_remove_penalty=0.05, de_novo_fit_penalty=0.02, 
               genome_build="GRCh37", cosmic_version=3.3, make_plots=True, collapse_to_SBS96=True,connected_sigs=True, verbose=False,devopts=None,new_signature_thresh_hold=0.8,
-              exclude_signature_subgroups=None, exome=False, export_probabilities=True, export_probabilities_per_mutation=False):
+              exclude_signature_subgroups=None, exome=False, export_probabilities=True, export_probabilities_per_mutation=False, sample_reconstruction_plots=False):
 
     
     """
@@ -169,11 +255,49 @@ def spa_analyze(samples, output, input_type='matrix', context_type="96", signatu
     except:
         print ("The {} folder could not be created".format("output"))
 
+    start_time = datetime.datetime.now() # start time
+
+    # create JOB_METADATA
+    sysdata = open(output+"/JOB_METADATA.txt", "w")
+    sysdata.write("THIS FILE CONTAINS THE METADATA ABOUT SYSTEM AND RUNTIME\n\n\n")
+    sysdata.write("-------System Info-------\n")
+    sysdata.write("Operating System Name: "+ platform.uname()[0]+"\n"+"Nodename: "+platform.uname()[1]+"\n"+"Release: "+platform.uname()[2]+"\n"+"Version: "+platform.uname()[3]+"\n")
+    sysdata.write("\n-------Python and Package Versions------- \n")
+    sysdata.write("Python Version: "+str(platform.sys.version_info.major)+"."+str(platform.sys.version_info.minor)+"."+str(platform.sys.version_info.micro)+"\n")
+    sysdata.write("SigProfilerPlotting Version: "+sigProfilerPlotting.__version__+"\n")
+    sysdata.write("SigProfilerMatrixGenerator Version: "+SigProfilerMatrixGenerator.__version__+"\n")
+    sysdata.write("SigProfilerAssignment Version: "+SigProfilerAssignment.__version__+"\n")
+    sysdata.write("Pandas version: "+pd.__version__+"\n")
+    sysdata.write("Numpy version: "+np.__version__+"\n")
+    execution_parameters = {"input_type":input_type,
+                        "context_type":context_type,
+                        "signatures":signatures, 
+                        "signature_database":signature_database,
+                        "denovo_refit_option":denovo_refit_option,
+                        "decompose_fit_option":decompose_fit_option,
+                        "cosmic_fit_option":cosmic_fit_option, 
+                        "output":output, 
+                        "samples":samples, 
+                        "reference_genome":genome_build, 
+                        "cosmic_version":cosmic_version,
+                        "context_type":context_type,
+                        "exome":exome, 
+                        "nnls_add_penalty":nnls_add_penalty,
+                        "nnls_remove_penalty":nnls_remove_penalty,
+                        "initial_remove_penalty":initial_remove_penalty,
+                        "de_novo_fit_penalty":de_novo_fit_penalty,
+                        "collapse_to_SBS96":collapse_to_SBS96,
+                        "export_probabilities":export_probabilities,
+                        "make_plots":make_plots
+                        }
+    record_parameters(sysdata,execution_parameters,start_time)
+    sysdata.close()
     # Add sequence parameter to control the tmbplot y-axis scale
     if exome == True:
         sequence = 'exome'
     else:
         sequence = 'genome'
+    
 
                                                                 #################
                                                                 # Denovo refiting #
@@ -237,7 +361,12 @@ def spa_analyze(samples, output, input_type='matrix', context_type="96", signatu
         listOfSignatures = sub.make_letter_ids(idlenth = processAvg.shape[1], mtype=mutation_context)
         genomes = pd.DataFrame(genomes)
         denovo_exposureAvg = np.array(exposureAvg.T)
-        print("\n Denovo Fitting .....")
+        print("\n De Novo Fitting .....")
+        current_time_start = datetime.datetime.now()
+        with open(output+"JOB_METADATA.txt","a") as sysdata:
+            sysdata.write("\n De Novo Fitting .....")
+
+
         #exposureAvg = sub.make_final_solution(processAvg, genomes, listOfSignatures, layer_directory1, mutation_type, index,\
                    # colnames,denovo_exposureAvg  = denovo_exposureAvg, add_penalty=nnls_add_penalty, remove_penalty=nnls_remove_penalty, initial_remove_penalty=initial_remove_penalty, de_novo_fit_penalty=de_novo_fit_penalty, connected_sigs=connected_sigs, refit_denovo_signatures=refit_denovo_signatures)    
                    # 
@@ -277,7 +406,12 @@ def spa_analyze(samples, output, input_type='matrix', context_type="96", signatu
                                     add_penalty=nnls_add_penalty, remove_penalty=nnls_remove_penalty, process_std_error = processSTE, signature_stabilities = signature_stabilities,
                                     initial_remove_penalty=init_rem_denovo,connected_sigs=connected_sigs,refit_denovo_signatures=True,export_probabilities=export_probabilities,
                                     export_probabilities_per_mutation=export_probabilities_per_mutation, samples=samples, input_type=input_type, denovo_refit_option=denovo_refit_option)
+        
+        with open(output+"JOB_METADATA.txt","a") as sysdata:
+            current_time_end = datetime.datetime.now()
 
+            sysdata.write(f"\n Finished Denovo fitting! \nExecution time:{str(current_time_end-current_time_start)}\n")
+        
 
                                                                 #################
                                                                 # Decomposition       
@@ -295,12 +429,14 @@ def spa_analyze(samples, output, input_type='matrix', context_type="96", signatu
             listOfSignatures = processAvg.columns
             index = genomes.index
             colnames = genomes.columns
+            make_decomposition_plots=make_plots
         else:
             listOfSignatures=devopts['listOfSignatures']
             index=devopts['index']
             colnames=devopts['colnames']
             genomes = genomes.set_index(index)
             genomes.columns = colnames
+            make_decomposition_plots = devopts['make_decomposition_plots']
             #genomes = genomes.rename_axis("Mutation Types", axis="columns")
 
         #creating list of mutational type to sync with the vcf type input
@@ -352,7 +488,10 @@ def spa_analyze(samples, output, input_type='matrix', context_type="96", signatu
             processAvg = np.array(processAvg)
                 
         print("\n Decomposing De Novo Signatures  .....")
-        final_signatures = sub.signature_decomposition(processAvg, mutation_type, layer_directory2, genome_build=genome_build,cosmic_version=cosmic_version,signature_database=signature_database, mutation_context=mutation_context, add_penalty=0.05, connected_sigs=connected_sigs,remove_penalty=0.01, make_decomposition_plots=make_plots, originalProcessAvg=originalProcessAvg,new_signature_thresh_hold=new_signature_thresh_hold,sig_exclusion_list=sig_exclusion_list,exome=exome, m_for_subgroups=m_for_subgroups)    
+        current_time_start = datetime.datetime.now()
+        with open(output+"JOB_METADATA.txt","a") as sysdata:
+            sysdata.write("\n Decomposing De Novo Signatures  .....")
+        final_signatures = sub.signature_decomposition(processAvg, mutation_type, layer_directory2, genome_build=genome_build,cosmic_version=cosmic_version,signature_database=signature_database, mutation_context=mutation_context, add_penalty=0.05, connected_sigs=connected_sigs,remove_penalty=0.01, make_decomposition_plots=make_decomposition_plots, originalProcessAvg=originalProcessAvg,new_signature_thresh_hold=new_signature_thresh_hold,sig_exclusion_list=sig_exclusion_list,exome=exome, m_for_subgroups=m_for_subgroups)    
         #final_signatures = sub.signature_decomposition(processAvg, m, layer_directory2, genome_build=genome_build)
         # extract the global signatures and new signatures from the final_signatures dictionary
         globalsigs = final_signatures["globalsigs"]
@@ -366,6 +505,9 @@ def spa_analyze(samples, output, input_type='matrix', context_type="96", signatu
         colnames = genomes.columns
 
         print("\n Assigning decomposed signature")
+        with open(output+"JOB_METADATA.txt","a") as sysdata:
+            sysdata.write("\n [{}] Assigning decomposed signature \n".format(str(start_time).split(".")[0]))
+            
         result = sub.make_final_solution(processAvg, genomes, allsigids, layer_directory2, mutation_type, index, colnames, 
                                 cosmic_sigs=True, attribution = attribution, denovo_exposureAvg  = exposureAvg, sequence=sequence,  
                                 background_sigs=background_sigs, verbose=verbose, genome_build=genome_build, 
@@ -378,7 +520,10 @@ def spa_analyze(samples, output, input_type='matrix', context_type="96", signatu
                                 export_probabilities_per_mutation=export_probabilities_per_mutation,
                                 samples=samples, input_type=input_type, denovo_refit_option=denovo_refit_option)
 
+        with open(output+"JOB_METADATA.txt","a") as sysdata:
+            current_time_end = datetime.datetime.now()
 
+            sysdata.write(f"\n Finished Decompose fitting! \nExecution time:{str(current_time_end-current_time_start)}\n")
                                                                 #################
                                                                 # Cosmic Fitting       
                                                                 #################
@@ -422,22 +567,22 @@ def spa_analyze(samples, output, input_type='matrix', context_type="96", signatu
 
         if signature_database==None:
             processAvg = sub.getProcessAvg(genomes, genome_build=genome_build, cosmic_version=cosmic_version, exome=exome)[0]
-            #processAvg = processAvg.set_index('Type').rename_axis('MutationType')
+            # for sample reconstruction plots
+            cosmic_sig_ref = processAvg.copy(deep=True)
+            cosmic_sig_ref.reset_index(inplace=True)
         else:
             try:
                 processAvg = pd.read_csv(signature_database,sep='\t', index_col=0)
             except:
                 sys.exit("Something is wrong with the format of signature database, Pass a text file of signatures in the format of COSMIC sig database")
         
-
-
-        if processAvg.shape[0]==1536 and collapse_to_SBS96==True: #collapse the 1596 context into 96 only for the deocmposition 
+        # collapse the 1596 context into 96 only for the decomposition
+        if processAvg.shape[0]==1536 and collapse_to_SBS96==True:
             processAvg = pd.DataFrame(processAvg, index=index)
             processAvg = processAvg.groupby(processAvg.index.str[1:8]).sum()
             genomes = pd.DataFrame(genomes, index=index)
             genomes = genomes.groupby(genomes.index.str[1:8]).sum()
             index = genomes.index
-            #processAvg = np.array(processAvg)
         
         if processAvg.shape[0]==288 and collapse_to_SBS96==True: #collapse the 288 context into 96 only for the deocmposition 
             processAvg = pd.DataFrame(processAvg, index=index)
@@ -445,10 +590,7 @@ def spa_analyze(samples, output, input_type='matrix', context_type="96", signatu
             genomes = pd.DataFrame(genomes, index=index)
             genomes = genomes.groupby(genomes.index.str[2:9]).sum()
             index = genomes.index
-            #processAvg = np.array(processAvg)
-
-        
-        
+   
 
         #processAvg is sigdatabase: remove sigs corresponding to exclusion rules.
         sig_exclusion_list= [m_for_subgroups+items for items in sig_exclusion_list]
@@ -475,7 +617,9 @@ def spa_analyze(samples, output, input_type='matrix', context_type="96", signatu
             background_sigs = []
         exposureAvg_dummy = pd.DataFrame(np.random.rand(processAvg.shape[1],genomes.shape[1]),index=allsigids,columns=colnames.to_list()).transpose().rename_axis('Samples')
         print("Assigning COSMIC sigs or Signature Database ...... ")
-       
+        current_time_start = datetime.datetime.now()
+        with open(output+"JOB_METADATA.txt","a") as sysdata:
+            sysdata.write("\n Assigning COSMIC sigs or Signature Database ...... ")
         if processAvg.shape[0] != 96:
             if genomes.shape[0] == processAvg.shape[0] and collapse_to_SBS96 ==True:
                 sys.exit("Signatures Database and Samples are of same context type and is not equal to 96. please rerun by setting the flag \"collapse_to_SBS96 = False \"")
@@ -492,7 +636,40 @@ def spa_analyze(samples, output, input_type='matrix', context_type="96", signatu
                             export_probabilities=export_probabilities,
                             export_probabilities_per_mutation=export_probabilities_per_mutation,
                             samples=samples, input_type=input_type, denovo_refit_option=denovo_refit_option)
-   
+        
+        with open(output+"JOB_METADATA.txt","a") as sysdata:
+            current_time_end = datetime.datetime.now()
+
+            sysdata.write(f"\n Finished Cosmic fitting! \nExecution time:{str(current_time_end-current_time_start)}\n")
+    
+    # Generate sample reconstruction plots
+    if sample_reconstruction_plots and context_type == "96":
+        ss_recon_odir = os.path.join(
+                    layer_directory3,
+                    "Activities",
+                    "SampleReconstruction")
+        if not os.path.exists(ss_recon_odir):
+            os.makedirs(ss_recon_odir)
+        acts_path = os.path.join(
+                layer_directory3,
+                "Activities",
+                "Assignment_Solution_Activities.txt")
+        cosmic_activities = pd.read_csv(acts_path, sep="\t")
+        # Create sample reconstruction plots
+        generate_sample_reconstruction(cosmic_sig_ref,
+                                        genomes,
+                                        cosmic_activities,
+                                        ss_recon_odir)
+
+    # Complete JOB_METADATA
+    sysdata = open(output+"/JOB_METADATA.txt", "a")
+    end_time = datetime.datetime.now()
+    sysdata.write("\n[{}] Analysis ended: \n".format(str(end_time).split(".")[0]))
+    sysdata.write("\n-------Job Status------- \n")
+    sysdata.write("Assignment of mutational signatures completed successfully! \nTotal execution time: "+str(end_time-start_time).split(".")[0]+" \nResults can be found in: "+" "+output+ " " +" folder")
+    sysdata.close()
+
+    print("\n\n \nYour Job Is Successfully Completed! Thank You For Using SigProfilerAssignment.\n ")
   
 
 
