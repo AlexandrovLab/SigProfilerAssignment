@@ -45,7 +45,6 @@ def convert_PDF_to_PNG(input_file_name, output_directory, page_names):
 
 # Create sample reconstruction plots
 def generate_sample_reconstruction(cosmic_sigs, samples_input, activities, output_dir):
-    s1 = time.time()
     project = "test_run"
     mtype="96"
 
@@ -80,11 +79,8 @@ def generate_sample_reconstruction(cosmic_sigs, samples_input, activities, outpu
     web_png_path = os.path.join(output_dir,"WebPNGs")
 
     final_pdf.write(pdf_output_path)
-    print("time to generate the pdf: ", time.time() - s1)
 
-    s2 = time.time()
     convert_PDF_to_PNG(pdf_output_path, web_png_path, samples.columns[1:])
-    print("time to convert PDF to PNG: ", time.time() - s2)
     
     return pdf_output_path
 
@@ -660,12 +656,10 @@ def spa_analyze(samples, output, input_type='matrix', context_type="96", signatu
                 "Assignment_Solution_Activities.txt")
         cosmic_activities = pd.read_csv(acts_path, sep="\t")
         # Create sample reconstruction plots
-        s=time.time()
         generate_sample_reconstruction(cosmic_sig_ref,
                                         genomes,
                                         cosmic_activities,
                                         ss_recon_odir)
-        print("generate_sample_reconstruction total time: ", time.time() - s)
 
     # Complete JOB_METADATA
     sysdata = open(output+"/JOB_METADATA.txt", "a")
