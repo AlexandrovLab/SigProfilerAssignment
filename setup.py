@@ -8,6 +8,7 @@ if os.path.exists("dist"):
 
 VERSION = '0.0.20'
 
+
 def write_version_py(filename='SigProfilerAssignment/version.py'):
     # Copied from numpy setup.py
     cnt = """
@@ -15,6 +16,7 @@ def write_version_py(filename='SigProfilerAssignment/version.py'):
 short_version = '%(version)s'
 version = '%(version)s'
 Update = 'Implement sample reconstruction plot'
+
     
     """
     fh = open(filename, 'w')
