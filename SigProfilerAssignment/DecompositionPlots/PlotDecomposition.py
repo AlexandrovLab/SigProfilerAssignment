@@ -22,6 +22,7 @@ import pandas as pd
 import numpy as np
 import scipy.stats
 import sigProfilerPlotting as sigPlt
+import shutil
 import SigProfilerAssignment
 import SigProfilerAssignment.DecompositionPlots
 from SigProfilerAssignment.DecompositionPlots import SigProfilerPlottingMatrix as mPlt
@@ -36,8 +37,8 @@ from SigProfilerAssignment import decompose_subroutines as sub
 import io
 from PIL import Image
 from reportlab.lib.utils import ImageReader
-import pickle
-import pdb
+import json
+import base64
 # Global Variables
 SBS_CONTEXTS = ["6", "24", "96", "288", "384", "1536", "6144"]
 DBS_CONTEXTS = ["78", "186", "1248", "2976"]
@@ -48,8 +49,18 @@ DECOMPOSITION_PATH = SigProfilerAssignment.DecompositionPlots.__path__[0]
 REFSIG_PATH = os.path.join(SigProfilerAssignment.__path__[0], "data/Reference_Signatures")
 TEMPLATE_PATH = os.path.join(DECOMPOSITION_PATH,'CosmicTemplates')
 
-# Create a pickle of a given set of reference signatures and return it
+# Remove templates so that they can be rebuilt
+def remove_cosmic_templates():
+	if not os.path.exists(TEMPLATE_PATH):
+		print("No files are installed at: ", TEMPLATE_PATH)
+	try:
+		shutil.rmtree(TEMPLATE_PATH)
+	except OSError as e:
+		print("Error: %s : %s" % (TEMPLATE_PATH, e.strerror))
+
+# Create a set of serialized JSON reference signature plots for fast loading
 def install_cosmic_plots(context_type="96", genome_build="GRCh37", cosmic_version="3.3", exome=False):
+
 	if not os.path.exists(TEMPLATE_PATH):
 		os.mkdir(TEMPLATE_PATH)
 
@@ -74,46 +85,59 @@ def install_cosmic_plots(context_type="96", genome_build="GRCh37", cosmic_versio
 	cosmic_file_name = "COSMIC_v" + str(cosmic_version) + "_" + \
 						context_type_str + "_" + genome_build + \
 						exome_str + ".txt"
-	pickle_file_name = "COSMIC_v" + str(cosmic_version) + "_" + \
+	json_file_name = "COSMIC_v" + str(cosmic_version) + "_" + \
 						context_type_str + "_" + genome_build + \
-						exome_str + ".pkl"
+						exome_str + ".json"
 
-	# check if the cosmic plots have been installed, generate them if not
-	filename= os.path.join(TEMPLATE_PATH, pickle_file_name)
+	# Load cosmic plots if they exist
+	filename= os.path.join(TEMPLATE_PATH, json_file_name)
 	if os.path.exists(filename):
-		return pickle.load(open(filename, "rb"))
+		cosmic_buff_bytes = json.load(open(filename))
+		cosmic_buff_plots = {}
+		# Read from JSON, decode, and convert to bytesIO
+		for tmp_plots in cosmic_buff_bytes.keys():
+			cosmic_buff_plots[tmp_plots] = io.BytesIO(base64.b64decode(cosmic_buff_bytes[tmp_plots]))
+		return cosmic_buff_plots
 
-	cosmic_file_path = os.path.join(REFSIG_PATH, genome_build, cosmic_file_name)
-	pickle_file_path = os.path.join(TEMPLATE_PATH, pickle_file_name)
-	print("Generating plots for",  "COSMIC_v" + str(cosmic_version) + "_" + \
+	# Generate cosmic plots if they were not found
+	else:
+		cosmic_file_path = os.path.join(REFSIG_PATH, genome_build, cosmic_file_name)
+		json_file_path = os.path.join(TEMPLATE_PATH, json_file_name)
+		print("Generating plots for",  "COSMIC_v" + str(cosmic_version) + "_" + \
 						context_type_str + "_" + genome_build + \
 						exome_str,"now...")
 
-	# Generate the plots and save return in memory
-	if context_type in SBS_CONTEXTS:
-		cosmic_buff_plots = sigPlt.plotSBS(cosmic_file_path, "buffer_outName",
-						"buffer_projectName", context_type, percentage=True,
+		# Create the respective plots
+		if context_type_str == "SBS":
+			cosmic_buff_plots = sigPlt.plotSBS(cosmic_file_path, "buffer",
+							"buffer", context_type, percentage=True,
+							savefig_format="buffer_stream")
+		elif context_type_str == "DBS":
+			cosmic_mtx = pd.read_csv(cosmic_file_path, sep="\t")
+			cosmic_buff_plots = mPlt.plotDBS(cosmic_mtx, "buffer",
+						"buffer", context_type, percentage=True)
+		elif context_type_str == "ID":
+			cosmic_buff_plots = sigPlt.plotID(cosmic_file_path, "buffer",
+						"buffer", context_type, percentage=True,
 						savefig_format="buffer_stream")
-	elif context_type in DBS_CONTEXTS:
-		cosmic_file_path = pd.read_csv(cosmic_file_path, sep="\t")
-		cosmic_buff_plots = mPlt.plotDBS(cosmic_file_path, "buffer_outName",
-						"buffer_projectName", context_type, percentage=True)
-	elif context_type in ID_CONTEXTS:
-		cosmic_buff_plots = sigPlt.plotID(cosmic_file_path, "buffer_outName",
-						"buffer_projectName", context_type, percentage=True,
-						savefig_format="buffer_stream")
-	elif context_type in CNV_CONTEXTS:
-		cosmic_buff_plots = sigPlt.plotCNV(cosmic_file_path, "buffer_outName",
-				"buffer_projectName", plot_type="pdf", percentage=True,
-				aggregate=False, read_from_file=True, write_to_file=False)
 
-	# Save the plots to disk
-	pickle.dump(cosmic_buff_plots, open(pickle_file_path, 'wb'))
+		# Process the plots to be stored in JSON file
+		cosmic_img_dict = {}
+		for tmp_plot in cosmic_buff_plots.keys():
+			# start at beggining of binary file
+			seek_start = cosmic_buff_plots[tmp_plot].seek(0)
+			encoded = base64.b64encode(cosmic_buff_plots[tmp_plot].getvalue())
+			cosmic_img_dict[tmp_plot] = encoded.decode('ascii')
 
-	print("Plots for", "COSMIC_v" + str(cosmic_version) + "_" + \
+		# JSON output processing
+		json_object = json.dumps(cosmic_img_dict)
+		with open(json_file_path, "w") as outfile:
+			outfile.write(json_object)
+
+		print("Plots for", "COSMIC_v" + str(cosmic_version) + "_" + \
 						context_type_str + "_" + genome_build + \
 						exome_str, "have been successfully installed.")
-	return cosmic_buff_plots
+		return cosmic_buff_plots
 
 
 # Helper function for converting BytesIO to image so it can be plotted by reportlab
@@ -536,10 +560,6 @@ def run_PlotSSDecomposition(denovo_mtx, denovo_name, basis_mtx, basis_names, \
 	-------
 	None.
 	"""
-
-	# Create the plots for the sample, reconstruction, and COSMIC signatures
-	# y-xais : sample is counts, reconstruction is counts, cosmic signatues
-	# is percentages
 
 	# Create the denovo plots
 	denovo_plots_dict=gen_sub_plots(denovo_mtx, None, output_path,

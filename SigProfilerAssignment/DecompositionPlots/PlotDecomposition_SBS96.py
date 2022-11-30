@@ -124,44 +124,44 @@ def plot_1(bases, project, c_draw, denovo_plots_dict, basis_plots_dict):
 	for i in range(0,1):
 		image=basis_plots_dict[bases[i][0]]
 		c_draw.drawImage(image, LAYOUT_1_GRAPH[i][X_COORD], LAYOUT_1_GRAPH[i][Y_COORD], width=WIDTH_GRAPH, height=HEIGHT_GRAPH)
-		c_draw.drawString(LAYOUT_1_TEXT[i][X_COORD], LAYOUT_1_TEXT[i][Y_COORD], str(bases[i][1]) + "%")
+		c_draw.drawString(LAYOUT_1_TEXT[i][X_COORD], LAYOUT_1_TEXT[i][Y_COORD], str(float("{0:.2f}".format(bases[i][1]))) + "%")
 
 def plot_2(bases, project, c_draw, denovo_plots_dict, basis_plots_dict):
 	for i in range(0,2):
 		image=basis_plots_dict[bases[i][0]]
 		c_draw.drawImage(image, LAYOUT_2_GRAPH[i][X_COORD], LAYOUT_2_GRAPH[i][Y_COORD], width=WIDTH_GRAPH, height=HEIGHT_GRAPH)
-		c_draw.drawString(LAYOUT_2_TEXT[i][X_COORD], LAYOUT_2_TEXT[i][Y_COORD], str(bases[i][1]) + "%")
+		c_draw.drawString(LAYOUT_2_TEXT[i][X_COORD], LAYOUT_2_TEXT[i][Y_COORD], str(float("{0:.2f}".format(bases[i][1]))) + "%")
 
 def plot_3(bases, project, c_draw, denovo_plots_dict, basis_plots_dict):
 
 	for i in range(0,3):
 		image=basis_plots_dict[bases[i][0]]
 		c_draw.drawImage(image, LAYOUT_3_GRAPH[i][X_COORD], LAYOUT_3_GRAPH[i][Y_COORD], width=WIDTH_GRAPH, height=HEIGHT_GRAPH)
-		c_draw.drawString(LAYOUT_3_TEXT[i][X_COORD], LAYOUT_3_TEXT[i][Y_COORD], str(bases[i][1]) + "%")
+		c_draw.drawString(LAYOUT_3_TEXT[i][X_COORD], LAYOUT_3_TEXT[i][Y_COORD], str(float("{0:.2f}".format(bases[i][1]))) + "%")
 
 def plot_4(bases, project, c_draw, denovo_plots_dict, basis_plots_dict):
 	for i in range(0,4):
 		image=basis_plots_dict[bases[i][0]]
 		c_draw.drawImage(image, LAYOUT_4_GRAPH[i][X_COORD], LAYOUT_4_GRAPH[i][Y_COORD], width=WIDTH_GRAPH, height=HEIGHT_GRAPH)
-		c_draw.drawString(LAYOUT_4_TEXT[i][X_COORD], LAYOUT_4_TEXT[i][Y_COORD], str(bases[i][1]) + "%")
+		c_draw.drawString(LAYOUT_4_TEXT[i][X_COORD], LAYOUT_4_TEXT[i][Y_COORD], str(float("{0:.2f}".format(bases[i][1]))) + "%")
 
 def plot_5(bases, project, c_draw, denovo_plots_dict, basis_plots_dict):
 	for i in range(0,5):
 		image=basis_plots_dict[bases[i][0]]
 		c_draw.drawImage(image, LAYOUT_5_GRAPH[i][X_COORD], LAYOUT_5_GRAPH[i][Y_COORD], width=WIDTH_GRAPH, height=HEIGHT_GRAPH)
-		c_draw.drawString(LAYOUT_5_TEXT[i][X_COORD], LAYOUT_5_TEXT[i][Y_COORD], str(bases[i][1]) + "%")
+		c_draw.drawString(LAYOUT_5_TEXT[i][X_COORD], LAYOUT_5_TEXT[i][Y_COORD], str(float("{0:.2f}".format(bases[i][1]))) + "%")
 
 def plot_6_plus(bases, project, c_draw, denovo_plots_dict, basis_plots_dict):
 	for i in range(0,5):
 		image=basis_plots_dict[bases[i][0]]
 		c_draw.drawImage(image, LAYOUT_5_GRAPH[i][X_COORD], LAYOUT_5_GRAPH[i][Y_COORD], width=WIDTH_GRAPH, height=HEIGHT_GRAPH)
-		c_draw.drawString(LAYOUT_5_TEXT[i][X_COORD], LAYOUT_5_TEXT[i][Y_COORD], str(bases[i][1]) + "%")
+		c_draw.drawString(LAYOUT_5_TEXT[i][X_COORD], LAYOUT_5_TEXT[i][Y_COORD], str(float("{0:.2f}".format(bases[i][1]))) + "%")
 
 	extra_sigs = "* "
 	for i in range(5, len(bases)-1):
-		extra_sigs += str(bases[i][0]) + " (" + str(bases[i][1]) + "%), "
+		extra_sigs += str(bases[i][0]) + " (" + str(float("{0:.2f}".format(bases[i][1]))) + "%), "
 
-	extra_sigs += bases[len(bases)-1][0] + " (" + str(bases[len(bases)-1][1]) + "%)"
+	extra_sigs += bases[len(bases)-1][0] + " (" + str(float("{0:.2f}".format(bases[len(bases)-1][1]))) + "%)"
 	c_draw.drawString(GRAPH_X_COORD, (TEXT_Y_COORD - HEIGHT_GRAPH * 6) - 10, extra_sigs)
 
 # Helper function to add calculations to layout
@@ -176,22 +176,22 @@ def draw_statistics(c_draw, statistics, sig_version, custom_text):
 	kl_divergence = statistics["KL Divergence"][0]
 
 
-	c_draw.drawString(WIDTH_GAP+15, LAYOUT_2_TEXT[1][Y_COORD]-90, \
-		"Cosine Similarity: " + str(cos_sim))
-	c_draw.drawString(WIDTH_GAP+15, LAYOUT_2_TEXT[1][Y_COORD]-100, \
-		"Correlation: " + str(cor_coeff))
-	c_draw.drawString(WIDTH_GAP+105, LAYOUT_2_TEXT[1][Y_COORD]-90, \
-		"L1 Error %: " + str(l1_norm_percent) + "%")
-	c_draw.drawString(WIDTH_GAP+105, LAYOUT_2_TEXT[1][Y_COORD]-100, \
-		"L2 Error %: " + str(l2_norm_percent) + "%")
-	c_draw.drawString(WIDTH_GAP+195, LAYOUT_2_TEXT[1][Y_COORD]-90, \
-		"KL Divergence: " + str(kl_divergence))
+	c_draw.drawString(WIDTH_GAP+15, LAYOUT_2_TEXT[1][Y_COORD]-90,
+		"Cosine Similarity: " + str(float("{0:.3f}".format(cos_sim))))
+	c_draw.drawString(WIDTH_GAP+15, LAYOUT_2_TEXT[1][Y_COORD]-100,
+		"Correlation: " + str(float("{0:.3f}".format(cor_coeff))))
+	c_draw.drawString(WIDTH_GAP+105, LAYOUT_2_TEXT[1][Y_COORD]-90,
+		"L1 Error %: " + str(float("{0:.2f}".format(l1_norm_percent))) + "%")
+	c_draw.drawString(WIDTH_GAP+105, LAYOUT_2_TEXT[1][Y_COORD]-100,
+		"L2 Error %: " + str(float("{0:.2f}".format(l2_norm_percent))) + "%")
+	c_draw.drawString(WIDTH_GAP+195, LAYOUT_2_TEXT[1][Y_COORD]-90,
+		"KL Divergence: " + str(float("{0:.3f}".format(kl_divergence))))
 
 	if sig_version is not None:
-		c_draw.drawString(WIDTH_GAP+195, LAYOUT_2_TEXT[1][Y_COORD]-100, \
+		c_draw.drawString(WIDTH_GAP+195, LAYOUT_2_TEXT[1][Y_COORD]-100,
 			"Signature Version: " + str(sig_version))
 	if custom_text is not None:
-		c_draw.drawString(WIDTH_GAP+15, LAYOUT_2_TEXT[1][Y_COORD]-120, \
+		c_draw.drawString(WIDTH_GAP+15, LAYOUT_2_TEXT[1][Y_COORD]-120,
 			str(custom_text))
 
 # Helper function to resize bracket depending on number of bases plotted

@@ -39,6 +39,7 @@ requirements=[
           'alive_progress>=2.4.1',
           'PyPDf2>=1.28.4',
           'pdf2image>=1.16.0',
+          'PyMuPDF>=1.21.0'
            ]
 
 write_version_py() 

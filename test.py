@@ -30,7 +30,8 @@ def cosmic_fit_txt_test():
         genome_build="GRCh37",
         verbose=False,
         collapse_to_SBS96=True,
-        exclude_signature_subgroups=exclude_signature_subgroups)
+        exclude_signature_subgroups=exclude_signature_subgroups,
+        sample_reconstruction_plots=True)
 
 def denovo_fit_txt_test():
     Analyze.denovo_fit(SAMPLES_TXT,
@@ -88,6 +89,7 @@ def denovo_fit_vcf_test():
 #           Decomposition Plot Tests           #
 ################################################
 def gen_SBS96():
+    np.random.seed(1234567)
     s = time.time()
     merger = PdfFileMerger()
     file1="SigProfilerAssignment/DecompositionPlots/ExampleSample/De_Novo_Solution_Signatures_SBS96.txt"
@@ -123,6 +125,7 @@ def gen_SBS96():
 
 
 def gen_SBS1536():
+    np.random.seed(1234567)
     s = time.time()
     merger = PdfFileMerger()
     file1="SigProfilerAssignment/DecompositionPlots/ExampleSample/De_Novo_Solution_Signatures_SBS1536.txt"
@@ -159,6 +162,7 @@ def gen_SBS1536():
 
 
 def gen_SBS288():
+    np.random.seed(1234567)
     s=time.time()
     merger = PdfFileMerger()
     file1="SigProfilerAssignment/DecompositionPlots/ExampleSample/De_Novo_Solution_Signatures_SBS288.txt"
@@ -194,6 +198,7 @@ def gen_SBS288():
     return(time.time() - s)
 
 def gen_ID83():
+    np.random.seed(1234567)
     s = time.time()
     merger = PdfFileMerger()
     file1="SigProfilerAssignment/DecompositionPlots/ExampleSample/De_Novo_Solution_Signatures_INDEL.txt"
@@ -230,6 +235,7 @@ def gen_ID83():
     return(time.time() - s)
 
 def gen_DBS78():
+    np.random.seed(1234567)
     s = time.time()
     merger = PdfFileMerger()
     file1="SigProfilerAssignment/DecompositionPlots/ExampleSample/De_Novo_Solution_Signatures_DINUC.txt"
@@ -266,6 +272,7 @@ def gen_DBS78():
     return(time.time() - s)
 
 def gen_CNV48():
+    np.random.seed(1234567)
     s = time.time()
     merger = PdfFileMerger()
     file1="SigProfilerAssignment/DecompositionPlots/ExampleSample/CNV48_De-Novo_Signatures.txt"

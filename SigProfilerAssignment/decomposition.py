@@ -14,6 +14,7 @@ import platform
 
 # from torch import sign
 from SigProfilerAssignment import decompose_subroutines as sub
+from SigProfilerAssignment.DecompositionPlots import PlotDecomposition as plot_decomp
 import SigProfilerAssignment
 
 import numpy as np
@@ -22,8 +23,70 @@ import SigProfilerMatrixGenerator
 from SigProfilerMatrixGenerator.scripts import SigProfilerMatrixGeneratorFunc as datadump 
 from SigProfilerMatrixGenerator.scripts import CNVMatrixGenerator as scna
 import sigProfilerPlotting
-#import SigProfilerExtractor as cosmic
 import os,sys
+from PyPDF2 import PdfFileMerger
+import fitz
+import time
+
+def convert_PDF_to_PNG(input_file_name, output_directory, page_names):
+    pdf_doc = fitz.open(input_file_name)
+    zoom = 3
+    magnify = fitz.Matrix(zoom, zoom)
+    
+    if pdf_doc.page_count != len(page_names):
+        raise ValueError("Error: The number of samples and number of plots do not match.")
+    if not os.path.exists(output_directory):
+        os.makedirs(output_directory)
+    
+    for sample_name, page in zip(page_names, pdf_doc):
+        pix = page.get_pixmap(matrix=magnify)
+        out_file_name = os.path.join(output_directory, sample_name+  ".png")
+        pix.save(out_file_name)
+
+# Create sample reconstruction plots
+def generate_sample_reconstruction(cosmic_sigs, samples_input, activities, output_dir):
+    s1 = time.time()
+    project = "test_run"
+    mtype="96"
+
+    final_pdf = PdfFileMerger()
+    samples = samples_input.copy(deep=True)
+    samples.reset_index(inplace=True)
+    for sample_name in samples.columns[1:]:
+        # basis names and their corresponding weights
+        subset = activities[activities["Samples"].str.contains(sample_name)]
+        subset = subset.loc[:, (subset != 0).any(axis=0)]
+        basis_names = subset[subset["Samples"].str.contains(sample_name)].columns[1:].tolist()
+        recon_tmb = subset.sum(axis=1)
+        weights = []
+        for i in range(len(basis_names)):
+            weights.append(str(float("{0:.6f}".format(100*int(subset[basis_names[i]])/int(recon_tmb))))+"%")
+
+        names_copy = basis_names.copy()
+        names_copy.insert(0, cosmic_sigs.columns[0])
+        result = plot_decomp.run_PlotSSDecomposition(
+                    samples[[samples.columns[0],sample_name]],
+                    sample_name,
+                    cosmic_sigs[names_copy],
+                    basis_names,
+                    weights,
+                    output_dir,
+                    project,
+                    mtype)
+        final_pdf.append(result)
+    
+    pdf_output_path = os.path.join(output_dir,
+            "Reconstructed_Sample_Plots_" + str(mtype) + ".pdf")
+    web_png_path = os.path.join(output_dir,"WebPNGs")
+
+    final_pdf.write(pdf_output_path)
+    print("time to generate the pdf: ", time.time() - s1)
+
+    s2 = time.time()
+    convert_PDF_to_PNG(pdf_output_path, web_png_path, samples.columns[1:])
+    print("time to convert PDF to PNG: ", time.time() - s2)
+    
+    return pdf_output_path
 
 def record_parameters(sysdata,execution_parameters,start_time):
     sysdata.write("\n--------------EXECUTION PARAMETERS--------------\n")
@@ -52,7 +115,7 @@ def record_parameters(sysdata,execution_parameters,start_time):
 def spa_analyze(samples, output, input_type='matrix', context_type="96", signatures=None, signature_database=None,decompose_fit_option= True,denovo_refit_option=True,cosmic_fit_option=True, nnls_add_penalty=0.05, 
               nnls_remove_penalty=0.01, initial_remove_penalty=0.05, de_novo_fit_penalty=0.02, 
               genome_build="GRCh37", cosmic_version=3.3, make_plots=True, collapse_to_SBS96=True,connected_sigs=True, verbose=False,devopts=None,new_signature_thresh_hold=0.8,
-              exclude_signature_subgroups=None, exome=False, export_probabilities=True):
+              exclude_signature_subgroups=None, exome=False, export_probabilities=True, sample_reconstruction_plots=False):
 
     
     """
@@ -502,22 +565,22 @@ def spa_analyze(samples, output, input_type='matrix', context_type="96", signatu
 
         if signature_database==None:
             processAvg = sub.getProcessAvg(genomes, genome_build=genome_build, cosmic_version=cosmic_version, exome=exome)[0]
-            #processAvg = processAvg.set_index('Type').rename_axis('MutationType')
+            # for sample reconstruction plots
+            cosmic_sig_ref = processAvg.copy(deep=True)
+            cosmic_sig_ref.reset_index(inplace=True)
         else:
             try:
                 processAvg = pd.read_csv(signature_database,sep='\t', index_col=0)
             except:
                 sys.exit("Something is wrong with the format of signature database, Pass a text file of signatures in the format of COSMIC sig database")
         
-
-
-        if processAvg.shape[0]==1536 and collapse_to_SBS96==True: #collapse the 1596 context into 96 only for the deocmposition 
+        # collapse the 1596 context into 96 only for the decomposition
+        if processAvg.shape[0]==1536 and collapse_to_SBS96==True:
             processAvg = pd.DataFrame(processAvg, index=index)
             processAvg = processAvg.groupby(processAvg.index.str[1:8]).sum()
             genomes = pd.DataFrame(genomes, index=index)
             genomes = genomes.groupby(genomes.index.str[1:8]).sum()
             index = genomes.index
-            #processAvg = np.array(processAvg)
         
         if processAvg.shape[0]==288 and collapse_to_SBS96==True: #collapse the 288 context into 96 only for the deocmposition 
             processAvg = pd.DataFrame(processAvg, index=index)
@@ -525,10 +588,7 @@ def spa_analyze(samples, output, input_type='matrix', context_type="96", signatu
             genomes = pd.DataFrame(genomes, index=index)
             genomes = genomes.groupby(genomes.index.str[2:9]).sum()
             index = genomes.index
-            #processAvg = np.array(processAvg)
-
-        
-        
+   
 
         #processAvg is sigdatabase: remove sigs corresponding to exclusion rules.
         sig_exclusion_list= [m_for_subgroups+items for items in sig_exclusion_list]
@@ -575,6 +635,29 @@ def spa_analyze(samples, output, input_type='matrix', context_type="96", signatu
             current_time_end = datetime.datetime.now()
 
             sysdata.write(f"\n Finished Cosmic fitting! \nExecution time:{str(current_time_end-current_time_start)}\n")
+    
+    # Generate sample reconstruction plots
+    if sample_reconstruction_plots and context_type == "96":
+        ss_recon_odir = os.path.join(
+                    layer_directory3,
+                    "Activities",
+                    "SampleReconstruction")
+        if not os.path.exists(ss_recon_odir):
+            os.makedirs(ss_recon_odir)
+        acts_path = os.path.join(
+                layer_directory3,
+                "Activities",
+                "Assignment_Solution_Activities.txt")
+        cosmic_activities = pd.read_csv(acts_path, sep="\t")
+        # Create sample reconstruction plots
+        s=time.time()
+        generate_sample_reconstruction(cosmic_sig_ref,
+                                        genomes,
+                                        cosmic_activities,
+                                        ss_recon_odir)
+        print("generate_sample_reconstruction total time: ", time.time() - s)
+
+    # Complete JOB_METADATA
     sysdata = open(output+"/JOB_METADATA.txt", "a")
     end_time = datetime.datetime.now()
     sysdata.write("\n[{}] Analysis ended: \n".format(str(end_time).split(".")[0]))
