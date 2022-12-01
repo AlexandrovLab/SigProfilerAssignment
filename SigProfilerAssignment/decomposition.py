@@ -44,7 +44,7 @@ def convert_PDF_to_PNG(input_file_name, output_directory, page_names):
         pix.save(out_file_name)
 
 # Create sample reconstruction plots
-def generate_sample_reconstruction(cosmic_sigs, samples_input, activities, output_dir):
+def generate_sample_reconstruction(cosmic_sigs, samples_input, activities, output_dir, execution_parameters):
     project = "test_run"
     mtype="96"
 
@@ -71,7 +71,10 @@ def generate_sample_reconstruction(cosmic_sigs, samples_input, activities, outpu
                     weights,
                     output_dir,
                     project,
-                    mtype)
+                    mtype,
+                    genome_build = execution_parameters["reference_genome"],
+                    cosmic_version = str(execution_parameters["cosmic_version"]),
+                    exome = execution_parameters["exome"])
         final_pdf.append(result)
     
     pdf_output_path = os.path.join(output_dir,
@@ -659,7 +662,8 @@ def spa_analyze(samples, output, input_type='matrix', context_type="96", signatu
         generate_sample_reconstruction(cosmic_sig_ref,
                                         genomes,
                                         cosmic_activities,
-                                        ss_recon_odir)
+                                        ss_recon_odir,
+                                        execution_parameters)
 
     # Complete JOB_METADATA
     sysdata = open(output+"/JOB_METADATA.txt", "a")
