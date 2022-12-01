@@ -444,7 +444,9 @@ def gen_decomposition(denovo_name, basis_names, weights, output_path, project, \
 
 
 def run_PlotDecomposition(denovo_mtx, denovo_name, basis_mtx, basis_names,
-		weights, nonzero_exposures, output_path, project, mtype, cosmic_version=None, custom_text=None):
+		weights, nonzero_exposures, output_path, project, mtype,
+		cosmic_version="3.3", genome_build="GRCh37", exome=False,
+		custom_text=None):
 	"""
 	Generates a decomposition plot of the denovo_mtx using the basis_mtx.
 
@@ -499,8 +501,8 @@ def run_PlotDecomposition(denovo_mtx, denovo_name, basis_mtx, basis_names,
 	# Load in the COSMIC plots
 	if mtype != "48":
 		basis_plots_dict = install_cosmic_plots(context_type=mtype,
-				genome_build="GRCh37", cosmic_version="3.3",
-				exome=False)
+				genome_build=genome_build, cosmic_version=cosmic_version,
+				exome=exome)
 		basis_plots_dict = {key: basis_plots_dict[key] for key in basis_names}
 	basis_plots_dict = open_byte_to_img_dict(basis_plots_dict)
 	# Generate the reconstruction plot
@@ -568,7 +570,7 @@ def run_PlotSSDecomposition(denovo_mtx, denovo_name, basis_mtx, basis_names, \
 	# Load in the COSMIC plots
 	basis_plots_dict = install_cosmic_plots(context_type=context_type,
 			genome_build=genome_build, cosmic_version=cosmic_version,
-			exome=False)
+			exome=exome)
 
 	# Create reconstructed matrix and plot
 	reconstructed_mtx,reconstruction_plot_dict = gen_reconstructed_png_numerical(

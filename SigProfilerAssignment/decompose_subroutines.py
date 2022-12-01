@@ -399,7 +399,11 @@ def signature_decomposition(signatures, mtype, directory, genome_build="GRCh37",
             basis_cols = basis_names.copy()
             basis_cols.insert(0,cosmic_mut_types_col)
             denovo_cols=[denovo_mut_types_col, denovo_name]
-            byte_plot = sp.run_PlotDecomposition(originalProcessAvg[denovo_cols], denovo_name, cosmic_sigs_DF[basis_cols], basis_names, weights, nonzero_exposures/5000, directory, "test", mtype_par)
+            byte_plot = sp.run_PlotDecomposition(originalProcessAvg[denovo_cols],
+                        denovo_name, cosmic_sigs_DF[basis_cols], basis_names, weights,
+                        nonzero_exposures/5000, directory, "test", mtype_par,
+                        cosmic_version=cosmic_version, genome_build=genome_build,
+                        exome=exome)
             merger.append(byte_plot)
             with alive_bar(1, ctrl_c=False,bar='blocks', title=f'Decompositon Plot:{denovo_name}') as bar:
                 bar()
