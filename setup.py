@@ -6,7 +6,7 @@ import os
 if os.path.exists("dist"):
     shutil.rmtree("dist")
 
-VERSION = '0.0.20'
+VERSION = '0.0.21'
 
 
 def write_version_py(filename='SigProfilerAssignment/version.py'):
@@ -15,7 +15,7 @@ def write_version_py(filename='SigProfilerAssignment/version.py'):
 # THIS FILE IS GENERATED FROM SigProfilerAssignment SETUP.PY
 short_version = '%(version)s'
 version = '%(version)s'
-Update = 'Implement sample reconstruction plot'
+Update = 'Resolve reference signature default value issue for decomposition plots.'
 
     
     """
