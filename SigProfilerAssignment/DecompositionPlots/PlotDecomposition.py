@@ -68,12 +68,17 @@ def install_cosmic_plots(context_type="96", genome_build="GRCh37", cosmic_versio
 	context_type_str = ""
 	if context_type in SBS_CONTEXTS:
 		context_type_str="SBS"
+		# the mtype of the cosmic reference signatures to be plotted
+		cosmic_mtype = "96"
 	elif context_type in DBS_CONTEXTS:
 		context_type_str="DBS"
+		cosmic_mtype = "78"
 	elif context_type in ID_CONTEXTS:
 		context_type_str="ID"
+		cosmic_mtype="83"
 	elif context_type in CNV_CONTEXTS:
 		context_type_str="CNV"
+		cosmic_mtype="48"
 	else:
 		raise ValueError("ERROR: context", context_type, "not in context lists.")
 
@@ -110,15 +115,15 @@ def install_cosmic_plots(context_type="96", genome_build="GRCh37", cosmic_versio
 		# Create the respective plots
 		if context_type_str == "SBS":
 			cosmic_buff_plots = sigPlt.plotSBS(cosmic_file_path, "buffer",
-							"buffer", context_type, percentage=True,
+							"buffer", cosmic_mtype, percentage=True,
 							savefig_format="buffer_stream")
 		elif context_type_str == "DBS":
 			cosmic_mtx = pd.read_csv(cosmic_file_path, sep="\t")
 			cosmic_buff_plots = mPlt.plotDBS(cosmic_mtx, "buffer",
-						"buffer", context_type, percentage=True)
+						"buffer", cosmic_mtype, percentage=True)
 		elif context_type_str == "ID":
 			cosmic_buff_plots = sigPlt.plotID(cosmic_file_path, "buffer",
-						"buffer", context_type, percentage=True,
+						"buffer", cosmic_mtype, percentage=True,
 						savefig_format="buffer_stream")
 
 		# Process the plots to be stored in JSON file
