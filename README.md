@@ -246,4 +246,4 @@ Analyze.cosmic_fit( samples,
 This software and its documentation are copyright 2022 as a part of the SigProfiler project. The SigProfilerAssignment framework is free software and is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
 
 ## <a name="contact"></a> Contact Information
-Please address any queries or bug reports to Raviteja Vangara at rvangara@health.ucsd.edu
+Please address any queries or bug reports to Raviteja Vangara at rvangara@health.ucsd.edu or Marcos Díaz-Gay at mdiazgay@health.ucsd.edu.
