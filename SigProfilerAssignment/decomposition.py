@@ -287,8 +287,8 @@ def spa_analyze(samples, output, input_type='matrix', context_type="96", signatu
                         }
 
     if make_metadata:
-        # create JOB_METADATA
-        sysdata = open(output+"JOB_METADATA.txt", "w")
+        # create JOB_METADATA_SPA
+        sysdata = open(os.path.join(output,"JOB_METADATA_SPA.txt"), "w")
         sysdata.write("THIS FILE CONTAINS THE METADATA ABOUT SYSTEM AND RUNTIME\n\n\n")
         sysdata.write("-------System Info-------\n")
         sysdata.write("Operating System Name: "+ platform.uname()[0]+"\n"+"Nodename: "+platform.uname()[1]+"\n"+"Release: "+platform.uname()[2]+"\n"+"Version: "+platform.uname()[3]+"\n")
@@ -373,7 +373,7 @@ def spa_analyze(samples, output, input_type='matrix', context_type="96", signatu
         print("\n De Novo Fitting .....")
         current_time_start = datetime.datetime.now()
         if make_metadata:
-            with open(output+"JOB_METADATA.txt","a") as sysdata:
+            with open(os.path.join(output,"JOB_METADATA_SPA.txt"),"a") as sysdata:
                 sysdata.write("\n De Novo Fitting .....")
 
 
@@ -418,7 +418,7 @@ def spa_analyze(samples, output, input_type='matrix', context_type="96", signatu
                                     export_probabilities_per_mutation=export_probabilities_per_mutation, samples=samples, input_type=input_type, denovo_refit_option=denovo_refit_option)
         
         if make_metadata:
-            with open(output+"JOB_METADATA.txt","a") as sysdata:
+            with open(os.path.join(output,"JOB_METADATA_SPA.txt"),"a") as sysdata:
                 current_time_end = datetime.datetime.now()
                 sysdata.write(f"\n Finished Denovo fitting! \nExecution time:{str(current_time_end-current_time_start)}\n")
         
@@ -500,7 +500,7 @@ def spa_analyze(samples, output, input_type='matrix', context_type="96", signatu
         print("\n Decomposing De Novo Signatures  .....")
         current_time_start = datetime.datetime.now()
         if make_metadata:
-            with open(output+"JOB_METADATA.txt","a") as sysdata:
+            with open(os.path.join(output,"JOB_METADATA_SPA.txt"),"a") as sysdata:
                 sysdata.write("\n Decomposing De Novo Signatures  .....")
         final_signatures = sub.signature_decomposition(processAvg, mutation_type, layer_directory2, genome_build=genome_build,cosmic_version=cosmic_version,signature_database=signature_database, mutation_context=mutation_context, add_penalty=0.05, connected_sigs=connected_sigs,remove_penalty=0.01, make_decomposition_plots=make_decomposition_plots, originalProcessAvg=originalProcessAvg,new_signature_thresh_hold=new_signature_thresh_hold,sig_exclusion_list=sig_exclusion_list,exome=exome, m_for_subgroups=m_for_subgroups)    
         #final_signatures = sub.signature_decomposition(processAvg, m, layer_directory2, genome_build=genome_build)
@@ -517,7 +517,7 @@ def spa_analyze(samples, output, input_type='matrix', context_type="96", signatu
 
         print("\n Assigning decomposed signature")
         if make_metadata:
-            with open(output+"JOB_METADATA.txt","a") as sysdata:
+            with open(os.path.join(output,"JOB_METADATA_SPA.txt"),"a") as sysdata:
                 sysdata.write("\n [{}] Assigning decomposed signature \n".format(str(start_time).split(".")[0]))
             
         result = sub.make_final_solution(processAvg, genomes, allsigids, layer_directory2, mutation_type, index, colnames, 
@@ -533,7 +533,7 @@ def spa_analyze(samples, output, input_type='matrix', context_type="96", signatu
                                 samples=samples, input_type=input_type, denovo_refit_option=denovo_refit_option)
 
         if make_metadata:
-            with open(output+"JOB_METADATA.txt","a") as sysdata:
+            with open(os.path.join(output,"JOB_METADATA_SPA.txt"),"a") as sysdata:
                 current_time_end = datetime.datetime.now()
                 sysdata.write(f"\n Finished Decompose fitting! \nExecution time:{str(current_time_end-current_time_start)}\n")
                                                                 #################
@@ -631,7 +631,7 @@ def spa_analyze(samples, output, input_type='matrix', context_type="96", signatu
         print("Assigning COSMIC sigs or Signature Database ...... ")
         current_time_start = datetime.datetime.now()
         if make_metadata:
-            with open(output+"JOB_METADATA.txt","a") as sysdata:
+            with open(os.path.join(output,"JOB_METADATA_SPA.txt"),"a") as sysdata:
                 sysdata.write("\n Assigning COSMIC sigs or Signature Database ...... ")
         if processAvg.shape[0] != 96:
             if genomes.shape[0] == processAvg.shape[0] and collapse_to_SBS96 ==True:
@@ -650,7 +650,7 @@ def spa_analyze(samples, output, input_type='matrix', context_type="96", signatu
                             export_probabilities_per_mutation=export_probabilities_per_mutation,
                             samples=samples, input_type=input_type, denovo_refit_option=denovo_refit_option)
         if make_metadata:
-            with open(output+"JOB_METADATA.txt","a") as sysdata:
+            with open(os.path.join(output,"JOB_METADATA_SPA.txt"),"a") as sysdata:
                 current_time_end = datetime.datetime.now()
                 sysdata.write(f"\n Finished Cosmic fitting! \nExecution time:{str(current_time_end-current_time_start)}\n")
     
@@ -674,9 +674,9 @@ def spa_analyze(samples, output, input_type='matrix', context_type="96", signatu
                                         ss_recon_odir,
                                         execution_parameters)
 
-    # Complete JOB_METADATA
+    # Complete JOB_METADATA_SPA
     if make_metadata:
-        sysdata = open(output+"JOB_METADATA.txt", "a")
+        sysdata = open(os.path.join(output,"JOB_METADATA_SPA.txt"), "a")
         end_time = datetime.datetime.now()
         sysdata.write("\n[{}] Analysis ended: \n".format(str(end_time).split(".")[0]))
         sysdata.write("\n-------Job Status------- \n")
