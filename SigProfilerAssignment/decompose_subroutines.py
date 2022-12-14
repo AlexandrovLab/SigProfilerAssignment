@@ -69,6 +69,8 @@ def getProcessAvg(samples, genome_build="GRCh37", cosmic_version=3.3, signature_
         sigDatabase = pd.read_csv(paths+"/data/Reference_Signatures/GRCh37/COSMIC_v"+str(cosmic_version)+"_ID_GRCh37.txt", sep="\t", index_col=0)
         signames = sigDatabase.columns
         connected_sigs=False
+        # indel signatures have no re-normalization so "GRCh37" is used
+        genome_build="GRCh37"
         
     elif samples.shape[0]==48:
         if cosmic_version < 3.3:
@@ -83,7 +85,7 @@ def getProcessAvg(samples, genome_build="GRCh37", cosmic_version=3.3, signature_
         sigDatabase.index=sigDatabase.index.astype(str)
         signames=sigDatabase.columns
         connected_sigs=False
-    return sigDatabase,signames,connected_sigs
+    return sigDatabase,signames,connected_sigs,genome_build
     
     if signature_database != None:#pd.core.frame.DataFrame:
         print("################## USING CUSTOM SIGNATURE DATBASE ##################")
@@ -217,7 +219,7 @@ def signature_decomposition(signatures, mtype, directory, genome_build="GRCh37",
 
 
     if signature_database==None:
-        sigDatabase,signames,connected_sigs = getProcessAvg(signatures, genome_build=genome_build, cosmic_version=cosmic_version, exome=exome)
+        sigDatabase,signames,connected_sigs,genome_build = getProcessAvg(signatures, genome_build=genome_build, cosmic_version=cosmic_version, exome=exome)
         #processAvg = processAvg.set_index('Type').rename_axis('MutationType')
     else:
         try:
