@@ -15,16 +15,18 @@ import time
 import os
 
 DIR_INPUT = spa.__path__[0]+'/data/tests/'
-OUTPUT_TXT = "TestOutput/output_txt_example/"
+OUTPUT_MATRIX = "TestOutput/output_matrix_example/"
 OUTPUT_VCF = "TestOutput/output_vcf_example/"
-SIGNATURES_TXT = os.path.join(DIR_INPUT, "txt_input/SBS96_S3_Signatures.txt")
-SAMPLES_TXT = os.path.join(DIR_INPUT, "txt_input/sample_matrix.txt")
+SIGNATURES_MATRIX_SBS = os.path.join(DIR_INPUT, "txt_input/SBS96_S3_Signatures.txt")
+SIGNATURES_MATRIX_DBS = os.path.join(DIR_INPUT, "txt_input/DBS78_S3_Signatures.txt")
+SAMPLE_MATRIX_SBS = os.path.join(DIR_INPUT, "txt_input/sample_matrix_SBS.txt")
+SAMPLE_MATRIX_DBS = os.path.join(DIR_INPUT, "txt_input/sample_matrix_DBS.txt")
 SAMPLES_VCF = os.path.join(DIR_INPUT, "vcf_input/")
 exclude_signature_subgroups = None
 
-def cosmic_fit_txt_test():
-    Analyze.cosmic_fit(SAMPLES_TXT,
-        OUTPUT_TXT,
+def cosmic_fit_SBS_matrix_test():
+    Analyze.cosmic_fit(SAMPLE_MATRIX_SBS,
+        OUTPUT_MATRIX,
         signatures=None,
         signature_database=None,
         genome_build="GRCh37",
@@ -33,23 +35,53 @@ def cosmic_fit_txt_test():
         exclude_signature_subgroups=exclude_signature_subgroups,
         sample_reconstruction_plots=True)
 
-def denovo_fit_txt_test():
-    Analyze.denovo_fit(SAMPLES_TXT,
-        OUTPUT_TXT,
-        signatures=SIGNATURES_TXT,
+def denovo_fit_SBS_matrix_test():
+    Analyze.denovo_fit(SAMPLE_MATRIX_SBS,
+        OUTPUT_MATRIX,
+        signatures=SIGNATURES_MATRIX_SBS,
         signature_database=None,
         genome_build="GRCh37",
         verbose=False)
 
-def decompose_fit_txt_test():
-    Analyze.decompose_fit(SAMPLES_TXT,
-        OUTPUT_TXT,
-        signatures=SIGNATURES_TXT,
+def decompose_fit_SBS_matrix_test():
+    Analyze.decompose_fit(SAMPLE_MATRIX_SBS,
+        OUTPUT_MATRIX,
+        signatures=SIGNATURES_MATRIX_SBS,
         signature_database=None,
         genome_build="GRCh37",
         verbose=False,
         new_signature_thresh_hold=0.8,
         exclude_signature_subgroups=exclude_signature_subgroups)
+
+def decompose_fit_DBS_matrix_test():
+    Analyze.decompose_fit(SAMPLE_MATRIX_DBS,
+        OUTPUT_MATRIX,
+        signatures=SIGNATURES_MATRIX_DBS,
+        signature_database=None,
+        genome_build="GRCh37",
+        verbose=False,
+        new_signature_thresh_hold=0.8,
+        exclude_signature_subgroups=exclude_signature_subgroups)
+
+def cosmic_fit_DBS_matrix_test():
+    Analyze.cosmic_fit(SAMPLE_MATRIX_DBS,
+        OUTPUT_MATRIX,
+        signatures=None,
+        signature_database=None,
+        genome_build="GRCh37",
+        verbose=False,
+        collapse_to_SBS96=False,
+        exclude_signature_subgroups=exclude_signature_subgroups,
+        sample_reconstruction_plots=True)
+
+def denovo_fit_DBS_matrix_test():
+    print(OUTPUT_MATRIX)
+    Analyze.denovo_fit(SAMPLE_MATRIX_DBS,
+        OUTPUT_MATRIX,
+        signatures=SIGNATURES_MATRIX_DBS,
+        signature_database=None,
+        genome_build="GRCh37",
+        verbose=False)
 
 def cosmic_fit_vcf_test():
     Analyze.cosmic_fit(SAMPLES_VCF,
@@ -67,7 +99,7 @@ def decompose_fit_vcf_test():
     Analyze.decompose_fit(SAMPLES_VCF,
         OUTPUT_VCF,
         input_type="vcf",
-        signatures=SIGNATURES_TXT,
+        signatures=SIGNATURES_MATRIX_SBS,
         signature_database=None,
         genome_build="GRCh37",
         verbose=False,
@@ -78,7 +110,7 @@ def decompose_fit_vcf_test():
 def denovo_fit_vcf_test():
     Analyze.denovo_fit(SAMPLES_VCF,
         OUTPUT_VCF,
-        signatures=SIGNATURES_TXT,
+        signatures=SIGNATURES_MATRIX_SBS,
         signature_database=None,
         genome_build="GRCh37",
         verbose=False,
@@ -309,25 +341,29 @@ def gen_CNV48():
 
 
 if __name__ == '__main__':
-    print("Text input tests...")
-    cosmic_fit_txt_test()
-    denovo_fit_txt_test()
-    decompose_fit_txt_test()
-    print("VCF input tests...")
+    print("Running SBS matrix input tests...")
+    cosmic_fit_SBS_matrix_test()
+    decompose_fit_SBS_matrix_test()
+    denovo_fit_SBS_matrix_test()
+    print("Running DBS matrix input tests...")
+    cosmic_fit_DBS_matrix_test()
+    decompose_fit_DBS_matrix_test()
+    denovo_fit_DBS_matrix_test()
+    print("Running VCF input tests...")
     cosmic_fit_vcf_test()
     decompose_fit_vcf_test()
     denovo_fit_vcf_test()
 
-    print("Decomposition Plot tests...")
-    time_96 = gen_SBS96()
-    print("Completed SBS96 plots in", time_96, "seconds.")
-    time_288 = gen_SBS288()
-    print("Completed SBS288 plots in", time_288, "seconds.")
-    time_1536 = gen_SBS1536()
-    print("Completed SBS1536 plots in", time_1536, "seconds.")
-    time_78 = gen_DBS78()
-    print("Completed DBS78 plots in", time_78, "seconds.")
-    time_83 = gen_ID83()
-    print("Completed ID83 plots in", time_83, "seconds.")
-    time_48 = gen_CNV48()
-    print("Completed CNV48 plots in", time_48, "seconds.")
+    # print("Decomposition Plot tests...")
+    # time_96 = gen_SBS96()
+    # print("Completed SBS96 plots in", time_96, "seconds.")
+    # time_288 = gen_SBS288()
+    # print("Completed SBS288 plots in", time_288, "seconds.")
+    # time_1536 = gen_SBS1536()
+    # print("Completed SBS1536 plots in", time_1536, "seconds.")
+    # time_78 = gen_DBS78()
+    # print("Completed DBS78 plots in", time_78, "seconds.")
+    # time_83 = gen_ID83()
+    # print("Completed ID83 plots in", time_83, "seconds.")
+    # time_48 = gen_CNV48()
+    # print("Completed CNV48 plots in", time_48, "seconds.")
