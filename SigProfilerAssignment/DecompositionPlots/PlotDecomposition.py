@@ -94,6 +94,13 @@ def install_cosmic_plots(context_type="96", genome_build="GRCh37", cosmic_versio
 						context_type_str + "_" + genome_build + \
 						exome_str + ".json"
 
+	# ID signatures exome=False, genome_build=GRCh37
+	if context_type in ID_CONTEXTS:
+		cosmic_file_name = "COSMIC_v" + str(cosmic_version) + "_ID_GRCh37.txt"
+		json_file_name = "COSMIC_v" + str(cosmic_version) + "_ID_GRCh37.json"
+		genome_build = "GRCh37"
+		exome_str = ""
+
 	# Load cosmic plots if they exist
 	filename= os.path.join(TEMPLATE_PATH, json_file_name)
 	if os.path.exists(filename):

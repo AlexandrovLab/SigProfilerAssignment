@@ -6,7 +6,7 @@ import os
 if os.path.exists("dist"):
     shutil.rmtree("dist")
 
-VERSION = '0.0.22'
+VERSION = '0.0.23'
 
 
 def write_version_py(filename='SigProfilerAssignment/version.py'):
@@ -15,7 +15,7 @@ def write_version_py(filename='SigProfilerAssignment/version.py'):
 # THIS FILE IS GENERATED FROM SigProfilerAssignment SETUP.PY
 short_version = '%(version)s'
 version = '%(version)s'
-Update = 'Resolve issue with ID decomposition plots, JOBMETADATA upgrade, add DBS tests.'
+Update = 'v0.0.23: ID Decomposition Plots exome fix and ID tests'
 
     
     """
