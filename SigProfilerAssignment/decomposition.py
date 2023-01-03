@@ -203,35 +203,35 @@ def spa_analyze(samples, output, input_type='matrix', context_type="96", signatu
         m_for_subgroups = 'ID'
 
 
-    default_subgroups_dict= {'remove_MMR_deficiency_signatures' :False,
-                      'remove_POL_deficiency_signatures' :False,
-                      'remove_HR_deficiency_signatures' :False,
-                      'remove_BER_deficiency_signatures' :False,
-                      'remove_Chemotherapy_signatures' :False,
-                      'remove_Immunosuppressants_signatures' :False,
-                      'remove_Treatment_signatures' :False,
-                      'remove_APOBEC_signatures' :False,
-                      'remove_Tobacco_signatures' :False,
-                      'remove_UV_signatures' :False,
-                      'remove_AA_signatures' :False,
-                      'remove_Colibactin_signatures' :False,
-                      'remove_Artifact_signatures' :False,
-                      'remove_Lymphoid_signatures' :False}
+    default_subgroups_dict= {'MMR_deficiency_signatures' :False,
+                      'POL_deficiency_signatures' :False,
+                      'HR_deficiency_signatures' :False,
+                      'BER_deficiency_signatures' :False,
+                      'Chemotherapy_signatures' :False,
+                      'Immunosuppressants_signatures' :False,
+                      'Treatment_signatures' :False,
+                      'APOBEC_signatures' :False,
+                      'Tobacco_signatures' :False,
+                      'UV_signatures' :False,
+                      'AA_signatures' :False,
+                      'Colibactin_signatures' :False,
+                      'Artifact_signatures' :False,
+                      'Lymphoid_signatures' :False}
                       
-    default_subgroups_siglists= {'remove_MMR_deficiency_signatures' :{'SBS':['6', '14', '15', '20', '21', '26', '44'], 'DBS':['7', '10'], 'ID':['7']},
-                      'remove_POL_deficiency_signatures' :{'SBS':['10a', '10b', '10c', '10d', '28'], 'DBS':['3'], 'ID':[]},
-                      'remove_HR_deficiency_signatures' :{'SBS':['3'], 'DBS':[], 'ID':['6']},
-                      'remove_BER_deficiency_signatures' :{'SBS':['30','36'], 'DBS':[], 'ID':[]},
-                      'remove_Chemotherapy_signatures' :{'SBS':['11','25','31','35','86','87','90'], 'DBS':['5'], 'ID':[]},
-                      'remove_Immunosuppressants_signatures' :{'SBS':['32'], 'DBS':[], 'ID':[]},
-                      'remove_Treatment_signatures' :{'SBS':['11','25','31','32','35','86','87','90'], 'DBS':['5'], 'ID':[]},
-                      'remove_APOBEC_signatures' :{'SBS':['2','13'], 'DBS':[], 'ID':[]},
-                      'remove_Tobacco_signatures' :{'SBS':['4','29','92'], 'DBS':['2'], 'ID':['3']},
-                      'remove_UV_signatures' :{'SBS':['7a','7b','7c','7d','38'], 'DBS':['1'], 'ID':['13']},
-                      'remove_AA_signatures' :{'SBS':['22'], 'DBS':[], 'ID':[]},
-                      'remove_Colibactin_signatures' :{'SBS':['88'], 'DBS':[], 'ID':['18']},
-                      'remove_Artifact_signatures' :{'SBS':['27','43','45','46','47','48','49','50','51','52','53','54','55','56','57','58','59','60','95'], 'DBS':[], 'ID':[]},
-                      'remove_Lymphoid_signatures' :{'SBS':['9','84','85'], 'DBS':[], 'ID':[]}}
+    default_subgroups_siglists= {'MMR_deficiency_signatures' :{'SBS':['6', '14', '15', '20', '21', '26', '44'], 'DBS':['7', '10'], 'ID':['7']},
+                      'POL_deficiency_signatures' :{'SBS':['10a', '10b', '10c', '10d', '28'], 'DBS':['3'], 'ID':[]},
+                      'HR_deficiency_signatures' :{'SBS':['3'], 'DBS':[], 'ID':['6']},
+                      'BER_deficiency_signatures' :{'SBS':['30','36'], 'DBS':[], 'ID':[]},
+                      'Chemotherapy_signatures' :{'SBS':['11','25','31','35','86','87','90'], 'DBS':['5'], 'ID':[]},
+                      'Immunosuppressants_signatures' :{'SBS':['32'], 'DBS':[], 'ID':[]},
+                      'Treatment_signatures' :{'SBS':['11','25','31','32','35','86','87','90'], 'DBS':['5'], 'ID':[]},
+                      'APOBEC_signatures' :{'SBS':['2','13'], 'DBS':[], 'ID':[]},
+                      'Tobacco_signatures' :{'SBS':['4','29','92'], 'DBS':['2'], 'ID':['3']},
+                      'UV_signatures' :{'SBS':['7a','7b','7c','7d','38'], 'DBS':['1'], 'ID':['13']},
+                      'AA_signatures' :{'SBS':['22'], 'DBS':[], 'ID':[]},
+                      'Colibactin_signatures' :{'SBS':['88'], 'DBS':[], 'ID':['18']},
+                      'Artifact_signatures' :{'SBS':['27','43','45','46','47','48','49','50','51','52','53','54','55','56','57','58','59','60','95'], 'DBS':[], 'ID':[]},
+                      'Lymphoid_signatures' :{'SBS':['9','84','85'], 'DBS':[], 'ID':[]}}
     
     
     signature_subgroups_dict = default_subgroups_dict.copy()
