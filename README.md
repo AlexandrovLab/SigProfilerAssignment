@@ -27,7 +27,7 @@ genInstall.install('GRCh37')
 ```
 ## Running
 
-To assign known mutational signatures to individual samples, please run the following:
+Assigning of known mutational signatures to individual samples can be performed using the `cosmic_fit` function. Input samples can be provided using mutation calling files (VCFs, MAFs, or simple text files), segmentation files or mutational matrices. COSMIC mutational signatures v3.3 are used as the default reference signatures, although previous COSMIC versions and custom signature databases are also supported using the `cosmic_version` and `signature_database` parameters.
 
 ```python
 from SigProfilerAssignment import Analyzer as Analyze
