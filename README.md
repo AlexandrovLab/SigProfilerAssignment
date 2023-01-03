@@ -40,7 +40,7 @@ Analyze.cosmic_fit(samples, output, input_type='matrix', context_type="96",
 
 <!-- (nnls_add_penalty=0.05, nnls_remove_penalty=0.01, initial_remove_penalty=0.05, connected_sigs=True) -->
 
-## Main Parameters
+### Main Parameters
 
 | Parameter | Variable Type | Parameter Description |
 | ------ | ----------- | ----------- |
@@ -61,7 +61,9 @@ Analyze.cosmic_fit(samples, output, input_type='matrix', context_type="96",
 
 
 
-## Signature Subgroups
+### Signature Subgroups
+
+When using COSMIC reference signatures, some subgroups of signatures can be removed to improve the refitting analysis. To use this feature, the `exclude_signature_subgroups` parameter should be added, following the sintax below:
 
 ```python
 exclude_signature_subgroups = ['remove_MMR_deficiency_signatures',
@@ -80,6 +82,7 @@ exclude_signature_subgroups = ['remove_MMR_deficiency_signatures',
                                'remove_Lymphoid_signatures']
 ```
 
+The full list of signature subgroups is included in the following table:
 
 |Signature subgroup |           SBS signatures excluded | DBS signatures excluded | ID signatures excluded |
 | ----------- | ----------- | ----------- | ----------- |
