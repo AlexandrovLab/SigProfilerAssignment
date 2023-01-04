@@ -27,7 +27,7 @@ import string
 import PyPDF2
 import scipy
 #import SigProfilerAssignment as sspro
-from PyPDF2 import PdfFileMerger
+from PyPDF2 import PdfMerger
 import SigProfilerAssignment as spa
 from SigProfilerAssignment import single_sample as ss
 from scipy.spatial.distance import correlation as cor
@@ -282,7 +282,7 @@ def signature_decomposition(signatures, mtype, directory, genome_build="GRCh37",
     denovo_signature_names = make_letter_ids(signatures.shape[1], mtype=mutation_context)
     #lognote.write("\n********** Starting Signature Decomposition **********\n\n")
     activity_percentages=[]
-    merger = PdfFileMerger()
+    merger = PdfMerger()
 
     
     for i, j in zip(range(signatures.shape[1]), denovo_signature_names):

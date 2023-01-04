@@ -8,7 +8,7 @@
 import SigProfilerAssignment as spa
 from SigProfilerAssignment import Analyzer as Analyze
 from SigProfilerAssignment.DecompositionPlots import PlotDecomposition as sp
-from PyPDF2 import PdfFileMerger
+from PyPDF2 import PdfMerger
 import numpy as np
 import pandas as pd
 import time
@@ -159,7 +159,7 @@ def denovo_fit_vcf_test():
 def gen_SBS96():
     np.random.seed(1234567)
     s = time.time()
-    merger = PdfFileMerger()
+    merger = PdfMerger()
     file1="SigProfilerAssignment/DecompositionPlots/ExampleSample/De_Novo_Solution_Signatures_SBS96.txt"
     file2="SigProfilerAssignment/DecompositionPlots/ExampleSample/Decomposed_Solution_Signatures_SBS96.txt"
     denovo_mtx = pd.read_csv(file1, sep="\t")
@@ -195,7 +195,7 @@ def gen_SBS96():
 def gen_SBS1536():
     np.random.seed(1234567)
     s = time.time()
-    merger = PdfFileMerger()
+    merger = PdfMerger()
     file1="SigProfilerAssignment/DecompositionPlots/ExampleSample/De_Novo_Solution_Signatures_SBS1536.txt"
     file2="SigProfilerAssignment/DecompositionPlots/ExampleSample/Decomposed_Solution_Signatures_SBS1536.txt"
     denovo_mtx = pd.read_csv(file1, sep="\t")
@@ -232,7 +232,7 @@ def gen_SBS1536():
 def gen_SBS288():
     np.random.seed(1234567)
     s=time.time()
-    merger = PdfFileMerger()
+    merger = PdfMerger()
     file1="SigProfilerAssignment/DecompositionPlots/ExampleSample/De_Novo_Solution_Signatures_SBS288.txt"
     file2="SigProfilerAssignment/DecompositionPlots/ExampleSample/COSMIC_SBS288_Signatures.txt"
     denovo_mtx = pd.read_csv(file1, sep="\t")
@@ -268,7 +268,7 @@ def gen_SBS288():
 def gen_ID83():
     np.random.seed(1234567)
     s = time.time()
-    merger = PdfFileMerger()
+    merger = PdfMerger()
     file1="SigProfilerAssignment/DecompositionPlots/ExampleSample/De_Novo_Solution_Signatures_INDEL.txt"
     file2="SigProfilerAssignment/DecompositionPlots/ExampleSample/COSMIC_ID83_Signatures.txt"
     denovo_mtx = pd.read_csv(file1, sep="\t")
@@ -305,7 +305,7 @@ def gen_ID83():
 def gen_DBS78():
     np.random.seed(1234567)
     s = time.time()
-    merger = PdfFileMerger()
+    merger = PdfMerger()
     file1="SigProfilerAssignment/DecompositionPlots/ExampleSample/De_Novo_Solution_Signatures_DINUC.txt"
     file2="SigProfilerAssignment/DecompositionPlots/ExampleSample/COSMIC_DBS78_Signatures.txt"
     denovo_mtx = pd.read_csv(file1, sep="\t")
@@ -342,7 +342,7 @@ def gen_DBS78():
 def gen_CNV48():
     np.random.seed(1234567)
     s = time.time()
-    merger = PdfFileMerger()
+    merger = PdfMerger()
     file1="SigProfilerAssignment/DecompositionPlots/ExampleSample/CNV48_De-Novo_Signatures.txt"
     file2="SigProfilerAssignment/DecompositionPlots/ExampleSample/COSMIC_CNV48_Signatures.txt"
     denovo_mtx = pd.read_csv(file1, sep="\t")

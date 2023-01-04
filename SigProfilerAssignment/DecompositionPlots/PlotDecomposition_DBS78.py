@@ -11,7 +11,7 @@ from reportlab.lib import utils
 from reportlab.pdfbase.ttfonts import TTFont
 from reportlab.pdfbase import pdfmetrics
 import SigProfilerAssignment as spa_path
-from PyPDF2 import PdfFileWriter, PdfFileReader, PdfFileMerger
+from PyPDF2 import PdfWriter, PdfReader
 # imports for saving plots to memory
 import io
 from PIL import Image
@@ -203,52 +203,52 @@ def draw_bracket(num_bases, c_draw):
 
 def crop_margins(pdf_to_edit, num_bases):
 	pdf_to_edit.seek(0)
-	pdf_file = PdfFileReader(pdf_to_edit, "rb")
-	page = pdf_file.getPage(0)
-	writer = PdfFileWriter()
+	pdf_file = PdfReader(pdf_to_edit, "rb")
+	page = pdf_file.pages[0]
+	writer = PdfWriter()
 	output_plot_buff = io.BytesIO()
 	
 	if (num_bases == 1):
-		page.mediaBox.lowerRight = (792,155)
-		page.mediaBox.lowerLeft = (0,155)
-		page.mediaBox.upperRight = (792,402)
-		page.mediaBox.upperLeft = (0,402)
-		writer.addPage(page)
+		page.mediabox.lower_right = (792,155)
+		page.mediabox.lower_left = (0,155)
+		page.mediabox.upper_right = (792,402)
+		page.mediabox.upper_left = (0,402)
+		writer.add_page(page)
 		writer.write(output_plot_buff)
 	elif (num_bases == 2):
-		page.mediaBox.lowerRight = (792,155)
-		page.mediaBox.lowerLeft = (0,155)
-		page.mediaBox.upperRight = (792,422)
-		page.mediaBox.upperLeft = (0,422)
-		writer.addPage(page)
+		page.mediabox.lower_right = (792,155)
+		page.mediabox.lower_left = (0,155)
+		page.mediabox.upper_right = (792,422)
+		page.mediabox.upper_left = (0,422)
+		writer.add_page(page)
 		writer.write(output_plot_buff)
 	elif (num_bases == 3):
-		page.mediaBox.lowerRight = (792,150)
-		page.mediaBox.lowerLeft = (0,150)
-		page.mediaBox.upperRight = (792,462)
-		page.mediaBox.upperLeft = (0,462)
-		writer.addPage(page)
+		page.mediabox.lower_right = (792,150)
+		page.mediabox.lower_left = (0,150)
+		page.mediabox.upper_right = (792,462)
+		page.mediabox.upper_left = (0,462)
+		writer.add_page(page)
 		writer.write(output_plot_buff)
 	elif (num_bases == 4):
-		page.mediaBox.lowerRight = (792,112)
-		page.mediaBox.lowerLeft = (0,112)
-		page.mediaBox.upperRight = (792,498)
-		page.mediaBox.upperLeft = (0,498)
-		writer.addPage(page)
+		page.mediabox.lower_right = (792,112)
+		page.mediabox.lower_left = (0,112)
+		page.mediabox.upper_right = (792,498)
+		page.mediabox.upper_left = (0,498)
+		writer.add_page(page)
 		writer.write(output_plot_buff)
 	elif (num_bases == 5):
-		page.mediaBox.lowerRight = (792,75)
-		page.mediaBox.lowerLeft = (0,75)
-		page.mediaBox.upperRight = (792,537)
-		page.mediaBox.upperLeft = (0,537)
-		writer.addPage(page)
+		page.mediabox.lower_right = (792,75)
+		page.mediabox.lower_left = (0,75)
+		page.mediabox.upper_right = (792,537)
+		page.mediabox.upper_left = (0,537)
+		writer.add_page(page)
 		writer.write(output_plot_buff)
 	elif (num_bases > 5):
-		page.mediaBox.lowerRight = (792,50)
-		page.mediaBox.lowerLeft = (0,50)
-		page.mediaBox.upperRight = (792,537)
-		page.mediaBox.upperLeft = (0,537)
-		writer.addPage(page)
+		page.mediabox.lower_right = (792,50)
+		page.mediabox.lower_left = (0,50)
+		page.mediabox.upper_right = (792,537)
+		page.mediabox.upper_left = (0,537)
+		writer.add_page(page)
 		writer.write(output_plot_buff)
 	return output_plot_buff
 
