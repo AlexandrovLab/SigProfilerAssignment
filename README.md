@@ -30,20 +30,20 @@ $ pip install .
 ```
 ## Signature Subgroups
 ```python
-exclude_signature_subgroups = ['remove_MMR_deficiency_signatures',
-                               'remove_POL_deficiency_signatures',
-                               'remove_HR_deficiency_signatures' ,
-                               'remove_BER_deficiency_signatures',
-                               'remove_Chemotherapy_signatures',
-                               'remove_Immunosuppressants_signatures'
-                               'remove_Treatment_signatures'
-                               'remove_APOBEC_signatures',
-                               'remove_Tobacco_signatures',
-                               'remove_UV_signatures',
-                               'remove_AA_signatures',
-                               'remove_Colibactin_signatures',
-                               'remove_Artifact_signatures',
-                               'remove_Lymphoid_signatures']
+exclude_signature_subgroups = ['MMR_deficiency_signatures',
+                               'POL_deficiency_signatures',
+                               'HR_deficiency_signatures' ,
+                               'BER_deficiency_signatures',
+                               'Chemotherapy_signatures',
+                               'Immunosuppressants_signatures'
+                               'Treatment_signatures'
+                               'APOBEC_signatures',
+                               'Tobacco_signatures',
+                               'UV_signatures',
+                               'AA_signatures',
+                               'Colibactin_signatures',
+                               'Artifact_signatures',
+                               'Lymphoid_signatures']
 ```
 
 
