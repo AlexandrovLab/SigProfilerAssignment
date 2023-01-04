@@ -11,7 +11,7 @@ from reportlab.lib import utils
 from reportlab.pdfbase.ttfonts import TTFont
 from reportlab.pdfbase import pdfmetrics
 import SigProfilerAssignment as spa_path
-from PyPDF2 import PdfFileWriter, PdfFileReader
+from PyPDF2 import PdfWriter, PdfReader
 # imports for saving plots to memory
 import io
 from PIL import Image
@@ -210,9 +210,9 @@ def draw_bracket(num_bases, c_draw):
 #	num_bases		- (Integer)	The number of signatures the sample is composed of
 def crop_margins(pdf_to_edit, num_bases):
 	pdf_to_edit.seek(0)
-	pdf_file = PdfFileReader(pdf_to_edit, "rb")
+	pdf_file = PdfReader(pdf_to_edit, "rb")
 	page = pdf_file.getPage(0)
-	writer = PdfFileWriter()
+	writer = PdfWriter()
 	output_plot_buff = io.BytesIO()
 	
 	if (num_bases == 1):
