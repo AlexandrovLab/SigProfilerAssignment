@@ -24,7 +24,7 @@ from SigProfilerMatrixGenerator.scripts import SigProfilerMatrixGeneratorFunc as
 from SigProfilerMatrixGenerator.scripts import CNVMatrixGenerator as scna
 import sigProfilerPlotting
 import os,sys
-from PyPDF2 import PdfFileMerger
+from PyPDF2 import PdfMerger
 import fitz
 import time
 
@@ -48,7 +48,7 @@ def generate_sample_reconstruction(cosmic_sigs, samples_input, activities, outpu
     project = "test_run"
     mtype="96"
 
-    final_pdf = PdfFileMerger()
+    final_pdf = PdfMerger()
     samples = samples_input.copy(deep=True)
     samples.reset_index(inplace=True)
     for sample_name in samples.columns[1:]:
