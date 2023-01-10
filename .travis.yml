@@ -21,5 +21,6 @@ cache:
 
 before_script:
   - python3 install_genome.py $TRAVIS_BUILD_DIR/src/
+  - conda install -c conda-forge -y mscorefonts
 
 script: python3 test.py
