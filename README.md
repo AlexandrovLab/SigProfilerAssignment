@@ -2,8 +2,6 @@
 [![License](https://img.shields.io/badge/License-BSD\%202--Clause-orange.svg)](https://opensource.org/licenses/BSD-2-Clause)
 [![Build Status](https://api.travis-ci.com/AlexandrovLab/SigProfilerAssignment.svg)](https://app.travis-ci.com/AlexandrovLab/SigProfilerAssignment)
 
-
-
 <img src="SigProfilerAssignment/figures/SigProfilerAssignment.png" alt="drawing" width="1000"/>
 
 # SigProfilerAssignment
@@ -12,7 +10,17 @@ SigProfilerAssignment enables assignment of previously known mutational signatur
 For users that prefer working in an R environment, a wrapper package is provided and can be found and installed from: https://github.com/AlexandrovLab/SigProfilerAssignmentR. Detailed documentation can be found at: https://osf.io/mz79v/wiki/home/.
 
 
-## Installation
+## Table of contents
+- [Installation](#installation)
+- [Running](#running)
+  - [Main Parameters](#parameters)
+  - [Signature Subgroups](#subgroups)
+- [Examples](#examples)
+- [_De novo_ extraction of mutational signatures downstream analysis](#denovo)
+- [Copyright](#copyright)
+- [Contact Information](#contact)
+
+## <a name="installation"></a> Installation
 
 Install the current stable PyPi version of SigProfilerAssignment:
 ```
@@ -25,7 +33,7 @@ $ python
 from SigProfilerMatrixGenerator import install as genInstall
 genInstall.install('GRCh37')
 ```
-## Running
+## <a name="running"></a> Running
 
 Assignment of known mutational signatures to individual samples is performed using the `cosmic_fit` function. Input samples are provided using the `samples` parameter in the form of mutation calling files (VCFs, MAFs, or simple text files), segmentation files or mutational matrices. COSMIC mutational signatures v3.3 are used as the default reference signatures, although previous COSMIC versions and custom signature databases are also supported using the `cosmic_version` and `signature_database` parameters. Results will be found in the folder specified in the `output` parameter.
 
@@ -41,7 +49,7 @@ Analyze.cosmic_fit(samples, output, input_type="matrix", context_type="96",
 
 <!-- (nnls_add_penalty=0.05, nnls_remove_penalty=0.01, initial_remove_penalty=0.05, connected_sigs=True) -->
 
-### Main Parameters
+### <a name="parameters"></a> Main Parameters
 
 | Parameter | Variable Type | Parameter Description |
 | ------ | ----------- | ----------- |
@@ -62,7 +70,7 @@ Analyze.cosmic_fit(samples, output, input_type="matrix", context_type="96",
 
 
 
-### Signature Subgroups
+### <a name="subgroups"></a> Signature Subgroups
 
 When using COSMIC reference signatures, some subgroups of signatures can be removed to improve the refitting analysis. To use this feature, the `exclude_signature_subgroups` parameter should be added, following the sintax below:
 
@@ -104,7 +112,7 @@ The full list of signature subgroups is included in the following table:
 
         
 
-## Examples
+## <a name="examples"></a> Examples
 
 ### Using mutation calling files (VCFs) as input
 
@@ -147,7 +155,7 @@ Analyze.cosmic_fit(samples=spa.__path__[0]+"/data/tests/txt_input/sample_matrix_
                    cosmic_version=3.3)
 ```
 
-## _De novo_ extraction of mutational signatures downstream analysis
+## <a name="denovo"></a> _De novo_ extraction of mutational signatures downstream analysis
 Additional functionalities for downstream analysis of _de novo_ extraction of mutational signatures are also available as part of SigProfilerAssignment, including assignment of _de novo_ extracted mutational signatures and decomposition of _de novo_ signatures using a known set of signatures. More information can be found on the wiki page at https://osf.io/mz79v/wiki/5.%20Advanced%20mode/.
 
 ## <a name="copyright"></a> Copyright
