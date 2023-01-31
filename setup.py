@@ -6,7 +6,7 @@ import os
 if os.path.exists("dist"):
     shutil.rmtree("dist")
 
-VERSION = '0.0.24'
+VERSION = '0.0.25'
 
 
 def write_version_py(filename='SigProfilerAssignment/version.py'):
@@ -15,7 +15,7 @@ def write_version_py(filename='SigProfilerAssignment/version.py'):
 # THIS FILE IS GENERATED FROM SigProfilerAssignment SETUP.PY
 short_version = '%(version)s'
 version = '%(version)s'
-Update = 'v0.0.24: Upgrade decomposition plot dependencies, rename signature subgroups'
+Update = 'v0.0.25: DBS Decomposition Plots Plotting'
 
     
     """
@@ -31,7 +31,7 @@ requirements=[
           'numpy>=1.21.2',
           'pandas>=1.2.4',
           'SigProfilerMatrixGenerator>=1.2.13', 
-          'sigProfilerPlotting>=1.3.8',
+          'sigProfilerPlotting>=1.3.10',
           'pillow>=9.1.1',
           'statsmodels>=0.9.0',
           'scikit-learn>=0.24.2',

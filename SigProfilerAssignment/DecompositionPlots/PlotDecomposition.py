@@ -126,8 +126,9 @@ def install_cosmic_plots(context_type="96", genome_build="GRCh37", cosmic_versio
 							savefig_format="buffer_stream")
 		elif context_type_str == "DBS":
 			cosmic_mtx = pd.read_csv(cosmic_file_path, sep="\t")
-			cosmic_buff_plots = mPlt.plotDBS(cosmic_mtx, "buffer",
-						"buffer", cosmic_mtype, percentage=True)
+			cosmic_buff_plots = sigPlt.plotDBS(cosmic_mtx, "buffer",
+						"buffer", cosmic_mtype, percentage=True,
+						savefig_format="buffer_stream")
 		elif context_type_str == "ID":
 			cosmic_buff_plots = sigPlt.plotID(cosmic_file_path, "buffer",
 						"buffer", cosmic_mtype, percentage=True,
@@ -251,11 +252,11 @@ def genSBS_pngs(denovo_mtx, basis_mtx, output_path, project, mtype, ss_decomp=Fa
 def genDBS_pngs(denovo_mtx, basis_mtx, output_path, project, mtype):
 	denovo_plots = dict()
 	basis_plots = dict()
-	denovo_plots = mPlt.plotDBS(denovo_mtx, output_path, project, mtype,
-			percentage=True)
+	denovo_plots = sigPlt.plotDBS(denovo_mtx, output_path, project, mtype,
+			percentage=True, savefig_format="buffer_stream")
 	if basis_mtx is not None:
-		basis_plots = mPlt.plotDBS(basis_mtx, output_path, project, mtype,
-				percentage=True)
+		basis_plots = sigPlt.plotDBS(basis_mtx, output_path, project, mtype,
+				percentage=True, savefig_format="buffer_stream")
 	return denovo_plots,basis_plots
 
 def genID_pngs(denovo_mtx, basis_mtx, output_path, project, mtype):
@@ -332,8 +333,8 @@ def gen_reconstructed_png_percent(denovo_name, basis_mtx, basis_names, weights, 
 			reconstruction_plot=sigPlt.plotSBS(reconstruction_mtx, output_path, \
 				"reconstruction_" + project, mtype, percentage=True, savefig_format='buffer_stream')
 	elif mtype in DBS_CONTEXTS:
-		reconstruction_plot=mPlt.plotDBS(reconstruction_mtx, output_path,
-				"reconstruction_" + project, mtype, percentage=True)
+		reconstruction_plot=sigPlt.plotDBS(reconstruction_mtx, output_path,
+				"reconstruction_" + project, mtype, percentage=True, savefig_format='buffer_stream')
 	elif mtype in ID_CONTEXTS:
 		reconstruction_plot=sigPlt.plotID(reconstruction_mtx, output_path,
 				"reconstruction_" + project, mtype, percentage=True, savefig_format='buffer_stream')
@@ -367,11 +368,11 @@ def gen_reconstructed_png_numerical(denovo_mtx, denovo_name, basis_mtx, basis_na
 						"reconstruction_" + project, mtype, percentage=False,
 						savefig_format="buffer_stream")
 	elif mtype in DBS_CONTEXTS:
-		reconstruction_plot=mPlt.plotDBS(reconstruction_mtx, output_path,
-				"reconstruction_" + project, mtype, percentage=False)
+		reconstruction_plot=sigPlt.plotDBS(reconstruction_mtx, output_path,
+				"reconstruction_" + project, mtype, percentage=False, savefig_format="buffer_stream")
 	elif mtype in ID_CONTEXTS:
 		reconstruction_plot=sigPlt.plotID(reconstruction_mtx, output_path,
-				"reconstruction_" + project, mtype, percentage=False)
+				"reconstruction_" + project, mtype, percentage=False, savefig_format="buffer_stream")
 	elif mtype in CNV_CONTEXTS:
 		reconstruction_plot = sigPlt.plotCNV(reconstruction_mtx, output_path,
 				"reconstruction_"+project, plot_type="pdf", percentage=True,
@@ -493,15 +494,15 @@ def run_PlotDecomposition(denovo_mtx, denovo_name, basis_mtx, basis_names,
 	-------
 	None.
 	"""
-
 	# Create the denovo plots and load basis plots
-	if mtype == "48":
-		denovo_plots_dict, basis_plots_dict = gen_sub_plots(denovo_mtx, basis_mtx,
-				output_path, project, mtype, ss_decomp=False)
-	else:
+	if mtype != "48":
 		denovo_plots_dict = gen_sub_plots(denovo_mtx, None,
 				output_path, project, mtype, ss_decomp=False)
 		denovo_plots_dict = denovo_plots_dict[0]
+	else:
+		# cnv basis plots need to be generated and not loaded
+		denovo_plots_dict, basis_plots_dict = gen_sub_plots(denovo_mtx, basis_mtx,
+				output_path, project, mtype, ss_decomp=False)
 	# Create the matrix and plot for the reconstructed matrix
 	reconstructed_mtx,reconstruction_plot_dict = gen_reconstructed_png_percent(
 		denovo_name, basis_mtx, basis_names, weights, output_path, project, mtype)
