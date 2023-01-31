@@ -2,7 +2,7 @@ dist: xenial
 language: python
 
 vm:
-  size: large
+  size: xlarge
 
 python:
   - '3.8'
