@@ -32,7 +32,6 @@ requirements=[
           'pandas>=1.2.4',
           'SigProfilerMatrixGenerator>=1.2.13', 
           'sigProfilerPlotting>=1.3.11',
-          'pillow>=9.1.1',
           'statsmodels>=0.9.0',
           'scikit-learn>=0.24.2',
           'psutil>=5.6.1',
