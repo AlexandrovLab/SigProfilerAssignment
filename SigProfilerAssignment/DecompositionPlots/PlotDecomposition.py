@@ -527,7 +527,9 @@ def run_PlotDecomposition(denovo_mtx, denovo_name, basis_mtx, basis_names,
 		mtype, denovo_plots_dict, basis_plots_dict, reconstruction_plot_dict,
 		reconstruction=True, statistics=statistics, cosmic_version=cosmic_version,
 		custom_text=custom_text)
-	
+	# Clear the plotting memory
+	sigPlt.clear_plotting_memory()
+
 	return byte_plot
 
 # context="96", genome_build="GRCh37", cosmic_version="3.3", exome=False
@@ -602,6 +604,7 @@ def run_PlotSSDecomposition(denovo_mtx, denovo_name, basis_mtx, basis_names, \
 			context_type, denovo_plots_dict, basis_plots_dict, reconstruction_plot_dict,
 			reconstruction=True, statistics=statistics, cosmic_version=cosmic_version,
 			custom_text=custom_text)
-
+	# Clear the plotting memory
+	sigPlt.clear_plotting_memory()
 
 	return byte_plot
