@@ -137,10 +137,13 @@ def install_cosmic_plots(context_type="96", genome_build="GRCh37", cosmic_versio
 		# Process the plots to be stored in JSON file
 		cosmic_img_dict = {}
 		for tmp_plot in cosmic_buff_plots.keys():
-			# start at beggining of binary file
+			# Convert to bytesIO and encode to base64
+			plot_bytes = io.BytesIO()
 			seek_start = cosmic_buff_plots[tmp_plot].seek(0)
-			encoded = base64.b64encode(cosmic_buff_plots[tmp_plot].getvalue())
+			cosmic_buff_plots[tmp_plot].save(plot_bytes, "png")
+			encoded = base64.b64encode(plot_bytes.getvalue())
 			cosmic_img_dict[tmp_plot] = encoded.decode('ascii')
+			plot_bytes.close()
 
 		# JSON output processing
 		json_object = json.dumps(cosmic_img_dict)
