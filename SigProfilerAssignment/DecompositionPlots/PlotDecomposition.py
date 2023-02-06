@@ -123,24 +123,27 @@ def install_cosmic_plots(context_type="96", genome_build="GRCh37", cosmic_versio
 		if context_type_str == "SBS":
 			cosmic_buff_plots = sigPlt.plotSBS(cosmic_file_path, "buffer",
 							"buffer", cosmic_mtype, percentage=True,
-							savefig_format="buffer_stream")
+							savefig_format="PIL_Image")
 		elif context_type_str == "DBS":
 			cosmic_mtx = pd.read_csv(cosmic_file_path, sep="\t")
 			cosmic_buff_plots = sigPlt.plotDBS(cosmic_mtx, "buffer",
 						"buffer", cosmic_mtype, percentage=True,
-						savefig_format="buffer_stream")
+						savefig_format="PIL_Image")
 		elif context_type_str == "ID":
 			cosmic_buff_plots = sigPlt.plotID(cosmic_file_path, "buffer",
 						"buffer", cosmic_mtype, percentage=True,
-						savefig_format="buffer_stream")
+						savefig_format="PIL_Image")
 
 		# Process the plots to be stored in JSON file
 		cosmic_img_dict = {}
 		for tmp_plot in cosmic_buff_plots.keys():
-			# start at beggining of binary file
+			# Convert to bytesIO and encode to base64
+			plot_bytes = io.BytesIO()
 			seek_start = cosmic_buff_plots[tmp_plot].seek(0)
-			encoded = base64.b64encode(cosmic_buff_plots[tmp_plot].getvalue())
+			cosmic_buff_plots[tmp_plot].save(plot_bytes, "png")
+			encoded = base64.b64encode(plot_bytes.getvalue())
 			cosmic_img_dict[tmp_plot] = encoded.decode('ascii')
+			plot_bytes.close()
 
 		# JSON output processing
 		json_object = json.dumps(cosmic_img_dict)
@@ -152,22 +155,13 @@ def install_cosmic_plots(context_type="96", genome_build="GRCh37", cosmic_versio
 						exome_str, "have been successfully installed.")
 		return cosmic_buff_plots
 
-
-# Helper function for converting BytesIO to image so it can be plotted by reportlab
-def bytes_to_img(byte_png):
-	byte_png.seek(0)
-	tmp_im=Image.open(byte_png)
-	image = ImageReader(tmp_im)
-	return image
 	
-# Helper function to convert byte array to image array
-def open_byte_to_img_dict(byte_dict):
-
-	img_dict = dict()
-	for name in byte_dict.keys():
-		tmp_img = bytes_to_img(byte_dict[name])
-		img_dict[name] = tmp_img
-	return img_dict
+# Convert array of Images to ImageReader array for ReportLab
+def convert_to_imgReaderDict(image_dict):
+	imgReader_dict = dict()
+	for name in image_dict.keys():
+		imgReader_dict[name] = ImageReader(image_dict[name])
+	return imgReader_dict
 
 def calculate_similarities(denovo, denovo_name, est_denovo):
 	from numpy import inf
@@ -240,33 +234,33 @@ def genSBS_pngs(denovo_mtx, basis_mtx, output_path, project, mtype, ss_decomp=Fa
 					percentage=True)
 		if basis_mtx is not None:
 			basis_plots = sigPlt.plotSBS(basis_mtx, output_path, project, "96",
-					percentage=True, savefig_format="buffer_stream")
+					percentage=True, savefig_format="PIL_Image")
 	elif mtype == "96":
 		denovo_plots = sigPlt.plotSBS(denovo_mtx, output_path, project, mtype,
-			percentage=(not ss_decomp), savefig_format="buffer_stream")
+			percentage=(not ss_decomp), savefig_format="PIL_Image")
 		if basis_mtx is not None:
 			basis_plots = sigPlt.plotSBS(basis_mtx, output_path, project, mtype,
-					percentage=True, savefig_format="buffer_stream")
+					percentage=True, savefig_format="PIL_Image")
 	return denovo_plots,basis_plots
 
 def genDBS_pngs(denovo_mtx, basis_mtx, output_path, project, mtype):
 	denovo_plots = dict()
 	basis_plots = dict()
 	denovo_plots = sigPlt.plotDBS(denovo_mtx, output_path, project, mtype,
-			percentage=True, savefig_format="buffer_stream")
+			percentage=True, savefig_format="PIL_Image")
 	if basis_mtx is not None:
 		basis_plots = sigPlt.plotDBS(basis_mtx, output_path, project, mtype,
-				percentage=True, savefig_format="buffer_stream")
+				percentage=True, savefig_format="PIL_Image")
 	return denovo_plots,basis_plots
 
 def genID_pngs(denovo_mtx, basis_mtx, output_path, project, mtype):
 	denovo_plots = dict()
 	basis_plots = dict()
 	denovo_plots = sigPlt.plotID(denovo_mtx, output_path, project, mtype,
-			percentage=True, savefig_format="buffer_stream")
+			percentage=True, savefig_format="PIL_Image")
 	if basis_mtx is not None:
 		basis_plots = sigPlt.plotID(basis_mtx, output_path, project, mtype,
-				percentage=True, savefig_format="buffer_stream")
+				percentage=True, savefig_format="PIL_Image")
 	return denovo_plots,basis_plots
 	
 def genCNV_pngs(denovo_mtx, basis_mtx, output_path, project, mtype):
@@ -314,33 +308,39 @@ def gen_sub_plots(denovo_mtx, basis_mtx, output_path, project, mtype, ss_decomp)
 
 
 # generate the plot for the reconstruction
-def gen_reconstructed_png_percent(denovo_name, basis_mtx, basis_names, weights, output_path, project, mtype):
+def gen_reconstructed_png_percent(denovo_name, basis_mtx, basis_names,
+			weights, output_path, project, mtype):
 	reconstruction_plot=dict()
 	mut_col = basis_mtx.iloc[:,0]
 
 	recon_plot = basis_mtx[basis_names[0]]*float(weights[0].strip("%"))/100
 
 	for i in range(1,len(weights)):
-		recon_plot = recon_plot + basis_mtx[basis_names[i]]*(float(weights[i].strip("%"))/100)
+		recon_plot = recon_plot +basis_mtx[basis_names[i]]*(float(weights[i].strip("%"))/100)
 
 	recon_plot = pd.Series(recon_plot, name=denovo_name)
 	reconstruction_mtx = pd.concat([mut_col, recon_plot], axis=1)
 	if mtype in SBS_CONTEXTS:
 		if mtype == "1536" or mtype == "288":
-			reconstruction_plot=sigPlt.plotSBS(reconstruction_mtx, output_path, \
-				"reconstruction_" + project, "96", percentage=True, savefig_format='buffer_stream')
+			reconstruction_plot=sigPlt.plotSBS(reconstruction_mtx,
+					output_path, "reconstruction_" + project, "96",
+					percentage=True, savefig_format='PIL_Image')
 		else:
-			reconstruction_plot=sigPlt.plotSBS(reconstruction_mtx, output_path, \
-				"reconstruction_" + project, mtype, percentage=True, savefig_format='buffer_stream')
+			reconstruction_plot=sigPlt.plotSBS(reconstruction_mtx, output_path,
+					"reconstruction_" + project, mtype, percentage=True,
+					savefig_format='PIL_Image')
 	elif mtype in DBS_CONTEXTS:
 		reconstruction_plot=sigPlt.plotDBS(reconstruction_mtx, output_path,
-				"reconstruction_" + project, mtype, percentage=True, savefig_format='buffer_stream')
+				"reconstruction_" + project, mtype, percentage=True,
+				savefig_format='PIL_Image')
 	elif mtype in ID_CONTEXTS:
 		reconstruction_plot=sigPlt.plotID(reconstruction_mtx, output_path,
-				"reconstruction_" + project, mtype, percentage=True, savefig_format='buffer_stream')
+				"reconstruction_" + project, mtype, percentage=True,
+				savefig_format='PIL_Image')
 	elif mtype in CNV_CONTEXTS:
-		reconstruction_plot = sigPlt.plotCNV(reconstruction_mtx, output_path, "reconstruction_"+project, plot_type="pdf", \
-										percentage=True, aggregate=False, read_from_file=False, write_to_file=False)
+		reconstruction_plot = sigPlt.plotCNV(reconstruction_mtx, output_path,
+				"reconstruction_"+project, plot_type="pdf", percentage=True,
+				aggregate=False, read_from_file=False, write_to_file=False)
 	else:
 		print("ERROR: mtype is " + mtype + " and is not yet supported.")
 
@@ -366,13 +366,13 @@ def gen_reconstructed_png_numerical(denovo_mtx, denovo_name, basis_mtx, basis_na
 		else:
 			reconstruction_plot=sigPlt.plotSBS(reconstruction_mtx, output_path,
 						"reconstruction_" + project, mtype, percentage=False,
-						savefig_format="buffer_stream")
+						savefig_format="PIL_Image")
 	elif mtype in DBS_CONTEXTS:
 		reconstruction_plot=sigPlt.plotDBS(reconstruction_mtx, output_path,
-				"reconstruction_" + project, mtype, percentage=False, savefig_format="buffer_stream")
+				"reconstruction_" + project, mtype, percentage=False, savefig_format="PIL_Image")
 	elif mtype in ID_CONTEXTS:
 		reconstruction_plot=sigPlt.plotID(reconstruction_mtx, output_path,
-				"reconstruction_" + project, mtype, percentage=False, savefig_format="buffer_stream")
+				"reconstruction_" + project, mtype, percentage=False, savefig_format="PIL_Image")
 	elif mtype in CNV_CONTEXTS:
 		reconstruction_plot = sigPlt.plotCNV(reconstruction_mtx, output_path,
 				"reconstruction_"+project, plot_type="pdf", percentage=True,
@@ -510,16 +510,16 @@ def run_PlotDecomposition(denovo_mtx, denovo_name, basis_mtx, basis_names,
 	present_sigs=np.array(basis_mtx[basis_names])
 	reconstructed_mtx = np.dot(present_sigs,nonzero_exposures)
 	# Convert dictionary of bytes to dictionary of images
-	denovo_plots_dict = open_byte_to_img_dict(denovo_plots_dict)
+	denovo_plots_dict = convert_to_imgReaderDict(denovo_plots_dict)
 	# Load in the COSMIC plots
 	if mtype != "48":
 		basis_plots_dict = install_cosmic_plots(context_type=mtype,
 				genome_build=genome_build, cosmic_version=cosmic_version,
 				exome=exome)
 		basis_plots_dict = {key: basis_plots_dict[key] for key in basis_names}
-	basis_plots_dict = open_byte_to_img_dict(basis_plots_dict)
+	basis_plots_dict = convert_to_imgReaderDict(basis_plots_dict)
 	# Generate the reconstruction plot
-	reconstruction_plot_dict = open_byte_to_img_dict(reconstruction_plot_dict)
+	reconstruction_plot_dict = convert_to_imgReaderDict(reconstruction_plot_dict)
 	# Get the reconstruction statistics
 	statistics=calculate_similarities(denovo_mtx, denovo_name, reconstructed_mtx)
 	# Return the decomposition plot as a byte array
@@ -527,7 +527,9 @@ def run_PlotDecomposition(denovo_mtx, denovo_name, basis_mtx, basis_names,
 		mtype, denovo_plots_dict, basis_plots_dict, reconstruction_plot_dict,
 		reconstruction=True, statistics=statistics, cosmic_version=cosmic_version,
 		custom_text=custom_text)
-	
+	# Clear the plotting memory
+	sigPlt.clear_plotting_memory()
+
 	return byte_plot
 
 # context="96", genome_build="GRCh37", cosmic_version="3.3", exome=False
@@ -590,18 +592,19 @@ def run_PlotSSDecomposition(denovo_mtx, denovo_name, basis_mtx, basis_names, \
 		denovo_mtx, denovo_name, basis_mtx,
 		basis_names, weights, output_path, project, context_type)
 
-	denovo_plots_dict = open_byte_to_img_dict(denovo_plots_dict)
+	denovo_plots_dict = convert_to_imgReaderDict(denovo_plots_dict)
 	# subset basis_plots_dict to only the plots used
 	basis_plots_dict = {key: basis_plots_dict[key] for key in basis_names}
-	basis_plots_dict = open_byte_to_img_dict(basis_plots_dict)
+	basis_plots_dict = convert_to_imgReaderDict(basis_plots_dict)
 
-	reconstruction_plot_dict = open_byte_to_img_dict(reconstruction_plot_dict)
+	reconstruction_plot_dict = convert_to_imgReaderDict(reconstruction_plot_dict)
 
 	statistics=calculate_similarities(denovo_mtx, denovo_name, reconstructed_mtx[denovo_name])
 	byte_plot = gen_decomposition(denovo_name, basis_names, weights, output_path, project,
 			context_type, denovo_plots_dict, basis_plots_dict, reconstruction_plot_dict,
 			reconstruction=True, statistics=statistics, cosmic_version=cosmic_version,
 			custom_text=custom_text)
-
+	# Clear the plotting memory
+	sigPlt.clear_plotting_memory()
 
 	return byte_plot
