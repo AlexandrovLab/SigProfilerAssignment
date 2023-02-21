@@ -1,6 +1,6 @@
 [![Docs](https://img.shields.io/badge/docs-latest-blue.svg)](https://osf.io/mz79v/wiki/home/) 
 [![License](https://img.shields.io/badge/License-BSD\%202--Clause-orange.svg)](https://opensource.org/licenses/BSD-2-Clause)
-[![Build Status](https://api.travis-ci.com/AlexandrovLab/SigProfilerAssignment.svg?branch=main)](https://api.travis-ci.com/AlexandrovLab/SigProfilerAssignment.svg?branch=main)
+[![Build Status](https://api.travis-ci.com/AlexandrovLab/SigProfilerAssignment.svg?branch=main)](https://app.travis-ci.com/AlexandrovLab/SigProfilerAssignment)
 
 <img src="SigProfilerAssignment/figures/SigProfilerAssignment.png" alt="drawing" width="1000"/>
 
