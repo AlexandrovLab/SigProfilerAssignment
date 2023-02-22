@@ -6,7 +6,7 @@ import os
 if os.path.exists("dist"):
     shutil.rmtree("dist")
 
-VERSION = '0.0.26'
+VERSION = '0.0.27'
 
 
 def write_version_py(filename='SigProfilerAssignment/version.py'):
@@ -15,7 +15,7 @@ def write_version_py(filename='SigProfilerAssignment/version.py'):
 # THIS FILE IS GENERATED FROM SigProfilerAssignment SETUP.PY
 short_version = '%(version)s'
 version = '%(version)s'
-Update = 'v0.0.26: Clear decomposition plots from memory'
+Update = 'v0.0.27: Update README'
 
     
     """
