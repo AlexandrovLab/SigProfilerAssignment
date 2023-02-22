@@ -6,7 +6,7 @@ import os
 if os.path.exists("dist"):
     shutil.rmtree("dist")
 
-VERSION = '0.0.23'
+VERSION = '0.0.26'
 
 
 def write_version_py(filename='SigProfilerAssignment/version.py'):
@@ -15,7 +15,7 @@ def write_version_py(filename='SigProfilerAssignment/version.py'):
 # THIS FILE IS GENERATED FROM SigProfilerAssignment SETUP.PY
 short_version = '%(version)s'
 version = '%(version)s'
-Update = 'v0.0.23: ID Decomposition Plots exome fix and ID tests'
+Update = 'v0.0.26: Clear decomposition plots from memory'
 
     
     """
@@ -31,15 +31,13 @@ requirements=[
           'numpy>=1.21.2',
           'pandas>=1.2.4',
           'SigProfilerMatrixGenerator>=1.2.13', 
-          'sigProfilerPlotting>=1.3.8',
-          'pillow>=9.1.1',
+          'sigProfilerPlotting>=1.3.11',
           'statsmodels>=0.9.0',
           'scikit-learn>=0.24.2',
           'psutil>=5.6.1',
           'reportlab>=3.5.42',
-          'PyPDF2>=1.26.0',
+          'PyPDF2>=3.0.0',
           'alive_progress>=2.4.1',
-          'PyPDf2>=1.28.4',
           'pdf2image>=1.16.0',
           'PyMuPDF>=1.21.0'
            ]
