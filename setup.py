@@ -6,7 +6,7 @@ import os
 if os.path.exists("dist"):
     shutil.rmtree("dist")
 
-VERSION = '0.0.27'
+VERSION = '0.0.28'
 
 
 def write_version_py(filename='SigProfilerAssignment/version.py'):
@@ -15,7 +15,7 @@ def write_version_py(filename='SigProfilerAssignment/version.py'):
 # THIS FILE IS GENERATED FROM SigProfilerAssignment SETUP.PY
 short_version = '%(version)s'
 version = '%(version)s'
-Update = 'v0.0.27: Update README'
+Update = 'v0.0.28: Update dependencies and parameters'
 
     
     """
@@ -30,7 +30,7 @@ requirements=[
           'scipy>=1.6.3',
           'numpy>=1.21.2',
           'pandas>=1.2.4',
-          'SigProfilerMatrixGenerator>=1.2.13', 
+          'SigProfilerMatrixGenerator>=1.2.14', 
           'sigProfilerPlotting>=1.3.11',
           'statsmodels>=0.9.0',
           'scikit-learn>=0.24.2',
