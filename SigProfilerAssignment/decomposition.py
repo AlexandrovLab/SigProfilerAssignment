@@ -667,7 +667,7 @@ def spa_analyze(samples, output, input_type='matrix', context_type="96", signatu
     
     recon_output_types = ['png', 'pdf', 'both']
     # Generate sample reconstruction plots
-    if sample_reconstruction_plots in recon_output_types and mutation_type == "96":
+    if sample_reconstruction_plots.lower() in recon_output_types and mutation_type == "96":
         ss_recon_odir = os.path.join(
                     layer_directory3,
                     "Activities",
