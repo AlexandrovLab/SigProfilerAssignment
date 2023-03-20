@@ -44,7 +44,12 @@ def convert_PDF_to_PNG(input_file_name, output_directory, page_names):
         pix.save(out_file_name)
 
 # Create sample reconstruction plots
-def generate_sample_reconstruction(cosmic_sigs, samples_input, activities, output_dir, execution_parameters):
+def generate_sample_reconstruction(cosmic_sigs, samples_input, activities, output_dir,
+                                   recon_output_types, execution_parameters):
+    # recon_output_types does the following:
+    #       pdf     = pdf generation
+    #       both    = pdf generation + png conversion
+    #       png     = pdf generation + png conversion + pdf removal
     project = "test_run"
     mtype="96"
 
@@ -81,9 +86,15 @@ def generate_sample_reconstruction(cosmic_sigs, samples_input, activities, outpu
             "Reconstructed_Sample_Plots_" + str(mtype) + ".pdf")
     web_png_path = os.path.join(output_dir,"WebPNGs")
 
+    # write out pdf
     final_pdf.write(pdf_output_path)
 
-    convert_PDF_to_PNG(pdf_output_path, web_png_path, samples.columns[1:])
+    # write out pngs if png (then remove the pdf), or keep both
+    if recon_output_types.lower() == "png" or recon_output_types.lower() == "both":
+        convert_PDF_to_PNG(pdf_output_path, web_png_path, samples.columns[1:])
+        if recon_output_types.lower() == "png":
+            # remove the PDF
+            os.remove(pdf_output_path)
     
     return pdf_output_path
 
@@ -654,8 +665,9 @@ def spa_analyze(samples, output, input_type='matrix', context_type="96", signatu
                 current_time_end = datetime.datetime.now()
                 sysdata.write(f"\n Finished Cosmic fitting! \nExecution time:{str(current_time_end-current_time_start)}\n")
     
+    recon_output_types = ['png', 'pdf', 'both']
     # Generate sample reconstruction plots
-    if sample_reconstruction_plots and mutation_type == "96":
+    if sample_reconstruction_plots in recon_output_types and mutation_type == "96":
         ss_recon_odir = os.path.join(
                     layer_directory3,
                     "Activities",
@@ -672,6 +684,7 @@ def spa_analyze(samples, output, input_type='matrix', context_type="96", signatu
                                         genomes,
                                         cosmic_activities,
                                         ss_recon_odir,
+                                        sample_reconstruction_plots,
                                         execution_parameters)
 
     # Complete JOB_METADATA_SPA
