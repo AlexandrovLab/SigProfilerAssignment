@@ -386,8 +386,9 @@ def signature_decomposition(signatures, mtype, directory, genome_build="GRCh37",
             mtype_par="48"
         else:
             mtype_par="none"
-        # try:
-        if mtype_par!="none" and make_decomposition_plots==True:
+        # only create decomposition plots for COSMIC signatures
+        if mtype_par!="none" and make_decomposition_plots==True and signature_database is None:
+
             # reformat the first column of cosmic signature dataframe
             cosmic_sigs_DF = sigDatabases_DF.copy(deep=True)
             cosmic_sigs_DF.columns = ["MutationType"] + cosmic_sigs_DF.columns[1:].to_list()
@@ -409,8 +410,6 @@ def signature_decomposition(signatures, mtype, directory, genome_build="GRCh37",
             merger.append(byte_plot)
             with alive_bar(1, ctrl_c=False,bar='blocks', title=f'Decompositon Plot:{denovo_name}') as bar:
                 bar()
-        # except:
-        #     print("The context-" + str(mtype_par) + " decomposition plots pages were not able to be generated.")
         
         strings ="Signature %s-%s,"+" Signature %s (%0.2f%s) &"*(len(np.nonzero(exposures)[0])-1)+" Signature %s (%0.2f%s), %0.2f,  %0.2f, %0.3f, %0.2f, %0.2f\n" 
         #new_signature_thresh_hold = 0.8
