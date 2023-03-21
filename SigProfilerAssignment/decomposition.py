@@ -654,8 +654,8 @@ def spa_analyze(samples, output, input_type='matrix', context_type="96", signatu
                 current_time_end = datetime.datetime.now()
                 sysdata.write(f"\n Finished Cosmic fitting! \nExecution time:{str(current_time_end-current_time_start)}\n")
     
-    # Generate sample reconstruction plots
-    if sample_reconstruction_plots and mutation_type == "96":
+    # Generate sample reconstruction plots, for 96 context and cosmic sigs only
+    if sample_reconstruction_plots and mutation_type == "96" and signature_database is None:
         ss_recon_odir = os.path.join(
                     layer_directory3,
                     "Activities",
