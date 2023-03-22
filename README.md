@@ -62,10 +62,10 @@ Analyze.cosmic_fit(samples, output, input_type="matrix", context_type="96",
 | genome_build | String | The reference genome build, used for select the appropriate version of the COSMIC reference signatures, as well as processing the mutation calling file/s. Supported genomes include "GRCh37", "GRCh38", "mm9", "mm10" and "rn6". The default value is "GRCh37". If the selected genome is not in the supported list, the default genome will be used. |
 | signature_database | String | Path to the input set of known mutational signatures (only in case that COSMIC reference signatures are not used), a tab delimited file that contains the signature matrix where the rows are mutation types and columns are signature IDs. |
 | exclude_signature_subgroups | List | Removes the signatures corresponding to specific subtypes to improve refitting (only available when using default COSMIC reference signatures). The usage is explained below. The default value is None, which corresponds to use all COSMIC signatures. |
-| export_probabilities | Boolean | Defines if the probability matrix per mutational context for all samples is created. The default value is False. |
+| export_probabilities | Boolean | Defines if the probability matrix per mutational context for all samples is created. The default value is True. |
 | export_probabilities_per_mutation | Boolean | Defines if the probability matrices per mutation for all samples are created. Only available when `input_type` is "vcf". The default value is False. |
-| make_plots | Boolean | Toggle on and off for making and saving plots. The default value is False. |
-| sample_reconstruction_plots | Boolean | Toggle on and off for making and saving sample reconstruction plots. The default value is False. |
+| make_plots | Boolean | Toggle on and off for making and saving plots. The default value is True. |
+| sample_reconstruction_plots | String | Select the output format for sample reconstruction plots. Valid inputs are {'pdf', 'png', 'both', None}. The default value is None. |
 | verbose | Boolean | Prints detailed statements. The default value is False. |
 
 

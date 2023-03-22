@@ -6,7 +6,7 @@ import os
 if os.path.exists("dist"):
     shutil.rmtree("dist")
 
-VERSION = '0.0.28'
+VERSION = '0.0.29'
 
 
 def write_version_py(filename='SigProfilerAssignment/version.py'):
@@ -15,7 +15,7 @@ def write_version_py(filename='SigProfilerAssignment/version.py'):
 # THIS FILE IS GENERATED FROM SigProfilerAssignment SETUP.PY
 short_version = '%(version)s'
 version = '%(version)s'
-Update = 'v0.0.28: Update dependencies and parameters'
+Update = 'v0.0.29: Stop decomposition plotting with custom signature database and update parameters for sample reconstruction plots'
 
     
     """

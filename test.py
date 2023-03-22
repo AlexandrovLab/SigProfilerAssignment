@@ -37,7 +37,7 @@ def cosmic_fit_SBS_matrix_test():
         verbose=False,
         collapse_to_SBS96=True,
         exclude_signature_subgroups=exclude_signature_subgroups,
-        sample_reconstruction_plots=True)
+        sample_reconstruction_plots='both')
 
 def denovo_fit_SBS_matrix_test():
     Analyze.denovo_fit(SAMPLE_MATRIX_SBS,
