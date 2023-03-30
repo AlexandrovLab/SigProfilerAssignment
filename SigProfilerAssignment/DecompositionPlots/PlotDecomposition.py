@@ -47,22 +47,25 @@ CNV_CONTEXTS = ["48"]
 MTYPE_OPTIONS = ["6", "24", "96", "384", "1536", "6144", "28", "83", "415", "78", "186", "1248", "2976"]
 DECOMPOSITION_PATH = SigProfilerAssignment.DecompositionPlots.__path__[0]
 REFSIG_PATH = os.path.join(SigProfilerAssignment.__path__[0], "data/Reference_Signatures")
-TEMPLATE_PATH = os.path.join(DECOMPOSITION_PATH,'CosmicTemplates')
+template_path = os.path.join(DECOMPOSITION_PATH,'CosmicTemplates')
 
 # Remove templates so that they can be rebuilt
 def remove_cosmic_templates():
-	if not os.path.exists(TEMPLATE_PATH):
-		print("No files are installed at: ", TEMPLATE_PATH)
+	if not os.path.exists(template_path):
+		print("No files are installed at: ", template_path)
 	try:
-		shutil.rmtree(TEMPLATE_PATH)
+		shutil.rmtree(template_path)
 	except OSError as e:
-		print("Error: %s : %s" % (TEMPLATE_PATH, e.strerror))
+		print("Error: %s : %s" % (template_path, e.strerror))
 
 # Create a set of serialized JSON reference signature plots for fast loading
-def install_cosmic_plots(context_type="96", genome_build="GRCh37", cosmic_version="3.3", exome=False):
+def install_cosmic_plots(context_type="96", genome_build="GRCh37", cosmic_version="3.3", exome=False, output_path=None):
 
-	if not os.path.exists(TEMPLATE_PATH):
-		os.mkdir(TEMPLATE_PATH)
+	if output_path is not None:
+		template_path = output_path
+
+	if not os.path.exists(template_path):
+		os.mkdir(template_path)
 
 	# determine if context is from SBS, ID, DBS, or CNV
 	context_type_str = ""
@@ -102,7 +105,7 @@ def install_cosmic_plots(context_type="96", genome_build="GRCh37", cosmic_versio
 		exome_str = ""
 
 	# Load cosmic plots if they exist
-	filename= os.path.join(TEMPLATE_PATH, json_file_name)
+	filename= os.path.join(template_path, json_file_name)
 	if os.path.exists(filename):
 		cosmic_buff_bytes = json.load(open(filename))
 		cosmic_buff_plots = {}
@@ -114,7 +117,7 @@ def install_cosmic_plots(context_type="96", genome_build="GRCh37", cosmic_versio
 	# Generate cosmic plots if they were not found
 	else:
 		cosmic_file_path = os.path.join(REFSIG_PATH, genome_build, cosmic_file_name)
-		json_file_path = os.path.join(TEMPLATE_PATH, json_file_name)
+		json_file_path = os.path.join(template_path, json_file_name)
 		print("Generating plots for",  "COSMIC_v" + str(cosmic_version) + "_" + \
 						context_type_str + "_" + genome_build + \
 						exome_str,"now...")
@@ -459,7 +462,7 @@ def gen_decomposition(denovo_name, basis_names, weights, output_path, project, \
 def run_PlotDecomposition(denovo_mtx, denovo_name, basis_mtx, basis_names,
 		weights, nonzero_exposures, output_path, project, mtype,
 		cosmic_version="3.3", genome_build="GRCh37", exome=False,
-		custom_text=None):
+		custom_text=None, volume=None):
 	"""
 	Generates a decomposition plot of the denovo_mtx using the basis_mtx.
 
@@ -494,6 +497,11 @@ def run_PlotDecomposition(denovo_mtx, denovo_name, basis_mtx, basis_names,
 	-------
 	None.
 	"""
+
+	# If a volume is being used, then load the templates from the volume
+	if volume is not None:
+		template_path = volume
+
 	# Create the denovo plots and load basis plots
 	if mtype != "48":
 		denovo_plots_dict = gen_sub_plots(denovo_mtx, None,
@@ -535,7 +543,7 @@ def run_PlotDecomposition(denovo_mtx, denovo_name, basis_mtx, basis_names,
 # context="96", genome_build="GRCh37", cosmic_version="3.3", exome=False
 def run_PlotSSDecomposition(denovo_mtx, denovo_name, basis_mtx, basis_names, \
 		weights, output_path, project, context_type, genome_build="GRCh37", \
-		cosmic_version="3.3", custom_text=None, exome=False):
+		cosmic_version="3.3", custom_text=None, exome=False, volume=None):
 	"""
 	Generates a reconstruction of a sample given a set of signatures.
 
@@ -577,6 +585,11 @@ def run_PlotSSDecomposition(denovo_mtx, denovo_name, basis_mtx, basis_names, \
 	-------
 	None.
 	"""
+
+	# If a volume is being used, then load the templates from the volume
+	if volume is not None:
+		global template_path
+		template_path = volume
 
 	# Create the denovo plots
 	denovo_plots_dict=gen_sub_plots(denovo_mtx, None, output_path,

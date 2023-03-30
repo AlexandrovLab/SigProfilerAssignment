@@ -66,6 +66,7 @@ Analyze.cosmic_fit(samples, output, input_type="matrix", context_type="96",
 | export_probabilities_per_mutation | Boolean | Defines if the probability matrices per mutation for all samples are created. Only available when `input_type` is "vcf". The default value is False. |
 | make_plots | Boolean | Toggle on and off for making and saving plots. The default value is True. |
 | sample_reconstruction_plots | String | Select the output format for sample reconstruction plots. Valid inputs are {'pdf', 'png', 'both', None}. The default value is None. |
+| volume | String | Path to SigProfilerAssignment volumes. Useful for docker installations. Default value is None. |
 | verbose | Boolean | Prints detailed statements. The default value is False. |
 
 

@@ -20,7 +20,7 @@ from matplotlib.backends.backend_pdf import PdfPages
 # from functools import partial
 # from numpy import linalg as LA
 import sigProfilerPlotting as plot
-from SigProfilerAssignment.DecompositionPlots import PlotDecomposition as sp
+from SigProfilerAssignment.DecompositionPlots import PlotDecomposition as plot_decomp
 from sigProfilerPlotting import plotActivity as plot_ac
 from sigProfilerPlotting import tmbplot as tmb
 import string 
@@ -86,19 +86,6 @@ def getProcessAvg(samples, genome_build="GRCh37", cosmic_version=3.3, signature_
         signames=sigDatabase.columns
         connected_sigs=False
     return sigDatabase,signames,connected_sigs,genome_build
-    
-    if signature_database != None:#pd.core.frame.DataFrame:
-        print("################## USING CUSTOM SIGNATURE DATBASE ##################")
-        signature_database= pd.read_csv(signature_database,sep="\t",index_col=0)
-        if samples.shape[0]==signature_database.shape[0]:
-            sigDatabase=signature_database
-            signames = sigDatabase.columns 
-            #make_decomposition_plots=False
-            del signature_database
-        else:
-            sys.exit("The Signatures and the custom signature database have different context types.")
-    sigDatabases = sigDatabase.reset_index()
-    return sigDatabases
 
 
 def signature_plotting_text(value, text, Type):
@@ -171,7 +158,7 @@ def get_items_from_index(x,y):
             pass
     return z
 
-def signature_decomposition(signatures, mtype, directory, genome_build="GRCh37", cosmic_version=3.3,signature_database=None, add_penalty=0.05, remove_penalty=0.01, mutation_context=None, connected_sigs=True, make_decomposition_plots=True, originalProcessAvg=None,new_signature_thresh_hold=0.8,sig_exclusion_list=[],exome=False, m_for_subgroups='SBS'):
+def signature_decomposition(signatures, mtype, directory, genome_build="GRCh37", cosmic_version=3.3,signature_database=None, add_penalty=0.05, remove_penalty=0.01, mutation_context=None, connected_sigs=True, make_decomposition_plots=True, originalProcessAvg=None,new_signature_thresh_hold=0.8,sig_exclusion_list=[],exome=False, m_for_subgroups='SBS', volume=None):
 
     originalProcessAvg = originalProcessAvg.reset_index()
     if not os.path.exists(directory+"/Solution_Stats"):
@@ -402,11 +389,11 @@ def signature_decomposition(signatures, mtype, directory, genome_build="GRCh37",
             basis_cols = basis_names.copy()
             basis_cols.insert(0,cosmic_mut_types_col)
             denovo_cols=[denovo_mut_types_col, denovo_name]
-            byte_plot = sp.run_PlotDecomposition(originalProcessAvg[denovo_cols],
+            byte_plot = plot_decomp.run_PlotDecomposition(originalProcessAvg[denovo_cols],
                         denovo_name, cosmic_sigs_DF[basis_cols], basis_names, weights,
                         nonzero_exposures/5000, directory, "test", mtype_par,
                         cosmic_version=cosmic_version, genome_build=genome_build,
-                        exome=exome)
+                        exome=exome, volume=volume)
             merger.append(byte_plot)
             with alive_bar(1, ctrl_c=False,bar='blocks', title=f'Decompositon Plot:{denovo_name}') as bar:
                 bar()

@@ -79,7 +79,8 @@ def generate_sample_reconstruction(cosmic_sigs, samples_input, activities, outpu
                     mtype,
                     genome_build = execution_parameters["reference_genome"],
                     cosmic_version = str(execution_parameters["cosmic_version"]),
-                    exome = execution_parameters["exome"])
+                    exome = execution_parameters["exome"],
+                    volume = execution_parameters["volume"])
         final_pdf.append(result)
     
     pdf_output_path = os.path.join(output_dir,
@@ -107,6 +108,8 @@ def record_parameters(sysdata,execution_parameters,start_time):
         sysdata.write("\tsamples: {}\n".format(execution_parameters["samples"]))
     else:
         sysdata.write("\tsamples: {}\n".format(type(execution_parameters["samples"])))
+    if execution_parameters['volume'] is not None:
+        sysdata.write("\tvolume: {}\n".format(execution_parameters["volume"]))
     sysdata.write("\treference_genome: {}\n".format(execution_parameters["reference_genome"]))
     sysdata.write("\tcontext_types: {}\n".format(execution_parameters["context_type"]))
     sysdata.write("\texome: {}\n".format(execution_parameters["exome"]))
@@ -129,7 +132,7 @@ def spa_analyze(samples, output, input_type='matrix', context_type="96", signatu
               nnls_remove_penalty=0.01, initial_remove_penalty=0.05, de_novo_fit_penalty=0.02, 
               genome_build="GRCh37", cosmic_version=3.3, make_plots=True, collapse_to_SBS96=True,connected_sigs=True, verbose=False,devopts=None,new_signature_thresh_hold=0.8,
               exclude_signature_subgroups=None, exome=False, export_probabilities=True, export_probabilities_per_mutation=False, sample_reconstruction_plots=None,
-              make_metadata=True):
+              make_metadata=True, volume=None):
 
     
     """
@@ -294,7 +297,8 @@ def spa_analyze(samples, output, input_type='matrix', context_type="96", signatu
                         "de_novo_fit_penalty":de_novo_fit_penalty,
                         "collapse_to_SBS96":collapse_to_SBS96,
                         "export_probabilities":export_probabilities,
-                        "make_plots":make_plots
+                        "make_plots":make_plots,
+                        "volume":volume
                         }
 
     if make_metadata:
@@ -513,8 +517,7 @@ def spa_analyze(samples, output, input_type='matrix', context_type="96", signatu
         if make_metadata:
             with open(os.path.join(output,"JOB_METADATA_SPA.txt"),"a") as sysdata:
                 sysdata.write("\n Decomposing De Novo Signatures  .....")
-        final_signatures = sub.signature_decomposition(processAvg, mutation_type, layer_directory2, genome_build=genome_build,cosmic_version=cosmic_version,signature_database=signature_database, mutation_context=mutation_context, add_penalty=0.05, connected_sigs=connected_sigs,remove_penalty=0.01, make_decomposition_plots=make_decomposition_plots, originalProcessAvg=originalProcessAvg,new_signature_thresh_hold=new_signature_thresh_hold,sig_exclusion_list=sig_exclusion_list,exome=exome, m_for_subgroups=m_for_subgroups)    
-        #final_signatures = sub.signature_decomposition(processAvg, m, layer_directory2, genome_build=genome_build)
+        final_signatures = sub.signature_decomposition(processAvg, mutation_type, layer_directory2, genome_build=genome_build,cosmic_version=cosmic_version,signature_database=signature_database, mutation_context=mutation_context, add_penalty=0.05, connected_sigs=connected_sigs,remove_penalty=0.01, make_decomposition_plots=make_decomposition_plots, originalProcessAvg=originalProcessAvg,new_signature_thresh_hold=new_signature_thresh_hold,sig_exclusion_list=sig_exclusion_list,exome=exome, m_for_subgroups=m_for_subgroups, volume=volume)
         # extract the global signatures and new signatures from the final_signatures dictionary
         globalsigs = final_signatures["globalsigs"]
         globalsigs = np.array(globalsigs)
