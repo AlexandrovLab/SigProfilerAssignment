@@ -60,12 +60,29 @@ def remove_cosmic_templates():
 
 # Create a set of serialized JSON reference signature plots for fast loading
 def install_cosmic_plots(context_type="96", genome_build="GRCh37", cosmic_version="3.3", exome=False, output_path=None):
+	'''
+	Install the COSMIC reference signature plots for the given context type.
+	These plots are serialized and stored in JSON format for fast loading.
+	PARAMETERS:
+		context_type: The context type of the reference signatures to be
+			installed. Options are 96, 78, 83, 48.
+		genome_build: The genome build of the reference signatures to be
+			installed. Options are GRCh37, GRCh38, mm9, mm10, and rn6.
+		cosmic_version: The version of COSMIC to be used. Options are 3.1, 3.2,
+			and 3.3.
+		exome: If True, the exome version of the reference signatures will be
+			installed. If False, the genome version will be installed.
+		output_path: The path to the directory where the reference signature
+			plots will be installed. If None, the reference signature plots will
+			be installed in the SigProfilerAssignment/DecompositionPlots/
+			CosmicTemplates directory.
+	'''
 
-	if output_path is not None:
-		template_path = output_path
+	if output_path is None:
+		output_path = template_path
 
-	if not os.path.exists(template_path):
-		os.mkdir(template_path)
+	if not os.path.exists(output_path):
+		os.mkdir(output_path)
 
 	# determine if context is from SBS, ID, DBS, or CNV
 	context_type_str = ""
@@ -105,19 +122,17 @@ def install_cosmic_plots(context_type="96", genome_build="GRCh37", cosmic_versio
 		exome_str = ""
 
 	# Load cosmic plots if they exist
-	filename= os.path.join(template_path, json_file_name)
+	filename= os.path.join(output_path, json_file_name)
 	if os.path.exists(filename):
 		cosmic_buff_bytes = json.load(open(filename))
 		cosmic_buff_plots = {}
 		# Read from JSON, decode, and convert to bytesIO
 		for tmp_plots in cosmic_buff_bytes.keys():
 			cosmic_buff_plots[tmp_plots] = io.BytesIO(base64.b64decode(cosmic_buff_bytes[tmp_plots]))
-		return cosmic_buff_plots
-
 	# Generate cosmic plots if they were not found
 	else:
 		cosmic_file_path = os.path.join(REFSIG_PATH, genome_build, cosmic_file_name)
-		json_file_path = os.path.join(template_path, json_file_name)
+		json_file_path = os.path.join(output_path, json_file_name)
 		print("Generating plots for",  "COSMIC_v" + str(cosmic_version) + "_" + \
 						context_type_str + "_" + genome_build + \
 						exome_str,"now...")
@@ -156,7 +171,7 @@ def install_cosmic_plots(context_type="96", genome_build="GRCh37", cosmic_versio
 		print("Plots for", "COSMIC_v" + str(cosmic_version) + "_" + \
 						context_type_str + "_" + genome_build + \
 						exome_str, "have been successfully installed.")
-		return cosmic_buff_plots
+	return cosmic_buff_plots
 
 	
 # Convert array of Images to ImageReader array for ReportLab
