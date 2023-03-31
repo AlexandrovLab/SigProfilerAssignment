@@ -369,11 +369,9 @@ def spa_analyze(samples, output, input_type='matrix', context_type="96", signatu
         exposureAvg = exposureAvg_dummy
         exposureAvg.columns=signature_names   
 
-        
-
         refit_denovo_signatures= True
         init_rem_denovo = 0.0
-        
+
         # make the texts for signature plotting
         #layer_directory1 = output+"/De_Novo_Solution"
         try:
@@ -515,7 +513,15 @@ def spa_analyze(samples, output, input_type='matrix', context_type="96", signatu
         if make_metadata:
             with open(os.path.join(output,"JOB_METADATA_SPA.txt"),"a") as sysdata:
                 sysdata.write("\n Decomposing De Novo Signatures  .....")
-        final_signatures = sub.signature_decomposition(processAvg, mutation_type, layer_directory2, genome_build=genome_build,cosmic_version=cosmic_version,signature_database=signature_database, mutation_context=mutation_context, add_penalty=0.05, connected_sigs=connected_sigs,remove_penalty=0.01, make_decomposition_plots=make_decomposition_plots, originalProcessAvg=originalProcessAvg,new_signature_thresh_hold=new_signature_thresh_hold,sig_exclusion_list=sig_exclusion_list,exome=exome, m_for_subgroups=m_for_subgroups, volume=volume)
+        final_signatures = sub.signature_decomposition(processAvg, mutation_type, layer_directory2, genome_build=genome_build,
+                                                       cosmic_version=cosmic_version,signature_database=signature_database,
+                                                       mutation_context=mutation_context, add_penalty=0.05,
+                                                       connected_sigs=connected_sigs, remove_penalty=0.01,
+                                                       make_decomposition_plots=make_decomposition_plots,
+                                                       originalProcessAvg=originalProcessAvg,
+                                                       new_signature_thresh_hold=new_signature_thresh_hold,
+                                                       sig_exclusion_list=sig_exclusion_list, exome=exome,
+                                                       m_for_subgroups=m_for_subgroups, volume=volume)
         # extract the global signatures and new signatures from the final_signatures dictionary
         globalsigs = final_signatures["globalsigs"]
         globalsigs = np.array(globalsigs)
@@ -526,7 +532,6 @@ def spa_analyze(samples, output, input_type='matrix', context_type="96", signatu
         background_sigs= final_signatures["background_sigs"]
         index = genomes.index
         colnames = genomes.columns
-
         print("\n Assigning decomposed signature")
         if make_metadata:
             with open(os.path.join(output,"JOB_METADATA_SPA.txt"),"a") as sysdata:
@@ -600,7 +605,7 @@ def spa_analyze(samples, output, input_type='matrix', context_type="96", signatu
                 processAvg = pd.read_csv(signature_database,sep='\t', index_col=0)
             except:
                 sys.exit("Something is wrong with the format of signature database, Pass a text file of signatures in the format of COSMIC sig database")
-        
+
         # collapse the 1596 context into 96 only for the decomposition
         if processAvg.shape[0]==1536 and collapse_to_SBS96==True:
             processAvg = pd.DataFrame(processAvg, index=index)
@@ -623,10 +628,6 @@ def spa_analyze(samples, output, input_type='matrix', context_type="96", signatu
             print("The following signatures are excluded: "+" ".join(str(item) for item in sig_exclusion_list))
         # # 
         processAvg.drop(sig_exclusion_list, axis=1, inplace=True,errors='ignore')
-
-        #processAvg= originalProcessAvg
-        #index = genomes.index
-        #colnames = genomes.columns
         allsigids = processAvg.columns.to_list()
         processAvg = processAvg.values
         attribution={}
@@ -650,7 +651,6 @@ def spa_analyze(samples, output, input_type='matrix', context_type="96", signatu
             if genomes.shape[0] == processAvg.shape[0] and collapse_to_SBS96 ==True:
                 sys.exit("Signatures Database and Samples are of same context type and is not equal to 96. please rerun by setting the flag \"collapse_to_SBS96 = False \"")
         
-
 
         sub.make_final_solution(processAvg, genomes, allsigids, layer_directory3, mutation_type, index, colnames, 
                             cosmic_sigs=True, attribution = attribution, denovo_exposureAvg  = exposureAvg_dummy, sequence=sequence, 

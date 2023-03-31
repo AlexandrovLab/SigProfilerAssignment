@@ -168,41 +168,6 @@ def signature_decomposition(signatures, mtype, directory, genome_build="GRCh37",
     lognote.write("############################ Signature Decomposition Details ################################\n\n\n")
     lognote.write("Context Type: {}\n".format(mtype))
     lognote.write("Genome Build: {}\n".format(genome_build))
-    
-    # paths = spa.__path__[0]
-    
-    # if signatures.shape[0]==96:
-    #     sigDatabase = pd.read_csv(paths+"/data/Reference_Signatures/"+genome_build+"/COSMIC_v"+str(cosmic_version)+"_SBS_"+genome_build+".txt", sep="\t", index_col=0)
-    #     signames = sigDatabase.columns   
-        
-    # elif signatures.shape[0]==288:
-    #     sigDatabase = pd.read_csv(paths+"/data/Reference_Signatures/GRCh37/COSMIC_v"+str(3.2)+"_SBS"+str(signatures.shape[0])+"_GRCh37.txt", sep="\t", index_col=0)
-    #     signames = sigDatabase.columns
-        
-    # elif signatures.shape[0]==1536:
-    #     sigDatabase = pd.read_csv(paths+"/data/Reference_Signatures/"+"GRCh37"+"/COSMIC_v"+str(3.2)+"_SBS"+str(signatures.shape[0])+"_GRCh37.txt", sep="\t", index_col=0)
-    #     signames = sigDatabase.columns
-    
-    # elif signatures.shape[0]==78:
-    #     sigDatabase = pd.read_csv(paths+"/data/Reference_Signatures/"+"GRCh37"+"/COSMIC_v"+str(cosmic_version)+"_DBS_"+"GRCh37"+".txt", sep="\t", index_col=0)
-    #     signames = sigDatabase.columns
-    #     connected_sigs=False
-        
-    # elif signatures.shape[0]==83:
-    #     sigDatabase = pd.read_csv(paths+"/data/Reference_Signatures/GRCh37/COSMIC_v"+str(cosmic_version)+"_ID_GRCh37.txt", sep="\t", index_col=0)
-    #     signames = sigDatabase.columns
-    #     connected_sigs=False
-        
-    # elif signatures.shape[0]==48:
-    #     sigDatabase = pd.read_csv(paths+"/data/CNV_signatures.txt", sep="\t",index_col=0)
-    #     signames = sigDatabase.columns
-    #     connected_sigs=False
-    # else:
-    #     sigDatabase = pd.DataFrame(signatures)
-    #     sigDatabase.columns=sigDatabase.columns.astype(str)
-    #     sigDatabase.index=sigDatabase.index.astype(str)
-    #     signames=sigDatabase.columns
-    #     connected_sigs=False
 
 
     if signature_database==None:
@@ -271,7 +236,6 @@ def signature_decomposition(signatures, mtype, directory, genome_build="GRCh37",
     activity_percentages=[]
     merger = PdfMerger()
 
-    
     for i, j in zip(range(signatures.shape[1]), denovo_signature_names):
         
         # Only for context SBS96

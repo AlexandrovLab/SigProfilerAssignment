@@ -25,6 +25,7 @@ SAMPLE_MATRIX_DBS = os.path.join(DIR_INPUT, "txt_input/sample_matrix_DBS.txt")
 SAMPLE_MATRIX_ID = os.path.join(DIR_INPUT, "txt_input/sample_matrix_ID.txt")
 SAMPLES_VCF = os.path.join(DIR_INPUT, "vcf_input/")
 exclude_signature_subgroups = None
+VOLUME = "volume_example/"
 
 
 ########### SBS Tests ###########
@@ -37,7 +38,8 @@ def cosmic_fit_SBS_matrix_test():
         verbose=False,
         collapse_to_SBS96=True,
         exclude_signature_subgroups=exclude_signature_subgroups,
-        sample_reconstruction_plots='both')
+        sample_reconstruction_plots='both',
+        volume=VOLUME)
 
 def denovo_fit_SBS_matrix_test():
     Analyze.denovo_fit(SAMPLE_MATRIX_SBS,
@@ -45,7 +47,8 @@ def denovo_fit_SBS_matrix_test():
         signatures=SIGNATURES_MATRIX_SBS,
         signature_database=None,
         genome_build="GRCh37",
-        verbose=False)
+        verbose=False,
+        volume=VOLUME)
 
 def decompose_fit_SBS_matrix_test():
     Analyze.decompose_fit(SAMPLE_MATRIX_SBS,
@@ -55,7 +58,8 @@ def decompose_fit_SBS_matrix_test():
         genome_build="GRCh37",
         verbose=False,
         new_signature_thresh_hold=0.8,
-        exclude_signature_subgroups=exclude_signature_subgroups)
+        exclude_signature_subgroups=exclude_signature_subgroups,
+        volume=VOLUME)
 
 ########### DBS Tests ###########
 def cosmic_fit_DBS_matrix_test():
@@ -67,7 +71,8 @@ def cosmic_fit_DBS_matrix_test():
         verbose=False,
         collapse_to_SBS96=False,
         exclude_signature_subgroups=exclude_signature_subgroups,
-        sample_reconstruction_plots=True)
+        sample_reconstruction_plots=True,
+        volume=VOLUME)
 
 def denovo_fit_DBS_matrix_test():
     Analyze.denovo_fit(SAMPLE_MATRIX_DBS,
@@ -75,7 +80,8 @@ def denovo_fit_DBS_matrix_test():
         signatures=SIGNATURES_MATRIX_DBS,
         signature_database=None,
         genome_build="GRCh37",
-        verbose=False)
+        verbose=False,
+        volume=VOLUME)
 
 def decompose_fit_DBS_matrix_test():
     Analyze.decompose_fit(SAMPLE_MATRIX_DBS,
@@ -85,7 +91,8 @@ def decompose_fit_DBS_matrix_test():
         genome_build="GRCh37",
         verbose=False,
         new_signature_thresh_hold=0.8,
-        exclude_signature_subgroups=exclude_signature_subgroups)
+        exclude_signature_subgroups=exclude_signature_subgroups,
+        volume=VOLUME)
 
 ########### ID Tests ###########
 def decompose_fit_ID_matrix_test():
@@ -96,7 +103,8 @@ def decompose_fit_ID_matrix_test():
         genome_build="GRCh37",
         verbose=False,
         new_signature_thresh_hold=0.8,
-        exclude_signature_subgroups=exclude_signature_subgroups)
+        exclude_signature_subgroups=exclude_signature_subgroups,
+        volume=VOLUME)
 
 
 def cosmic_fit_ID_matrix_test():
@@ -108,7 +116,8 @@ def cosmic_fit_ID_matrix_test():
         verbose=False,
         collapse_to_SBS96=False,
         exclude_signature_subgroups=exclude_signature_subgroups,
-        sample_reconstruction_plots=True)
+        sample_reconstruction_plots=True,
+        volume=VOLUME)
 
 def denovo_fit_ID_matrix_test():
     Analyze.denovo_fit(SAMPLE_MATRIX_ID,
@@ -116,7 +125,8 @@ def denovo_fit_ID_matrix_test():
         signatures=SIGNATURES_MATRIX_ID,
         signature_database=None,
         genome_build="GRCh37",
-        verbose=False)
+        verbose=False,
+        volume=VOLUME)
 
 ########### VCF Tests ###########
 def cosmic_fit_vcf_test():
@@ -129,7 +139,8 @@ def cosmic_fit_vcf_test():
         verbose=False,
         collapse_to_SBS96=True,
         exclude_signature_subgroups=exclude_signature_subgroups,
-        make_plots=True)
+        make_plots=True,
+        volume=VOLUME)
 
 def decompose_fit_vcf_test():
     Analyze.decompose_fit(SAMPLES_VCF,
@@ -141,7 +152,8 @@ def decompose_fit_vcf_test():
         verbose=False,
         new_signature_thresh_hold=0.8,
         exclude_signature_subgroups=exclude_signature_subgroups,
-        make_plots=True)
+        make_plots=True,
+        volume=VOLUME)
 
 def denovo_fit_vcf_test():
     Analyze.denovo_fit(SAMPLES_VCF,
@@ -151,7 +163,8 @@ def denovo_fit_vcf_test():
         genome_build="GRCh37",
         verbose=False,
         make_plots=True,
-        input_type="vcf")
+        input_type="vcf",
+        volume=VOLUME)
 
 ################################################
 #           Decomposition Plot Tests           #
@@ -175,7 +188,7 @@ def gen_SBS96():
     basis_cols=basis_names.copy()
     basis_cols.insert(0, "MutationType")
     nonzero_exposures=np.random.uniform(size=len(basis_names))
-    result = sp.run_PlotDecomposition(denovo_mtx[denovo_cols], denovo_name, basis_mtx[basis_cols], basis_names, weights, nonzero_exposures, output_path, project, mtype)
+    result = sp.run_PlotDecomposition(denovo_mtx[denovo_cols], denovo_name, basis_mtx[basis_cols], basis_names, weights, nonzero_exposures, output_path, project, mtype, volume=VOLUME)
     merger.append(result)
 
     for ind in range(5, 0, -1):
@@ -185,7 +198,7 @@ def gen_SBS96():
         basis_cols=basis_names.copy()
         basis_cols.insert(0, "MutationType")
         nonzero_exposures=np.random.uniform(size=len(basis_names))
-        result = sp.run_PlotDecomposition(denovo_mtx[denovo_cols], denovo_name, basis_mtx[basis_cols], basis_names, weights, nonzero_exposures, output_path, project, mtype)
+        result = sp.run_PlotDecomposition(denovo_mtx[denovo_cols], denovo_name, basis_mtx[basis_cols], basis_names, weights, nonzero_exposures, output_path, project, mtype, volume=VOLUME)
         merger.append(result)
 
     merger.write(os.path.join(output_path,"Result_Decomposition_Plots_SBS96.pdf"))
@@ -248,7 +261,7 @@ def gen_SBS288():
     basis_cols=basis_names.copy()
     basis_cols.insert(0, "MutationType")
     nonzero_exposures=np.random.uniform(size=len(basis_names))
-    result = sp.run_PlotDecomposition(denovo_mtx[denovo_cols], denovo_name, basis_mtx[basis_cols], basis_names, weights, nonzero_exposures, output_path, project, mtype)
+    result = sp.run_PlotDecomposition(denovo_mtx[denovo_cols], denovo_name, basis_mtx[basis_cols], basis_names, weights, nonzero_exposures, output_path, project, mtype, volume=VOLUME)
     merger.append(result)
 
     for ind in range(5, 0, -1):
@@ -259,7 +272,7 @@ def gen_SBS288():
         basis_cols.insert(0, "MutationType")
         nonzero_exposures=np.random.uniform(size=len(basis_names))
         result = sp.run_PlotDecomposition(denovo_mtx[denovo_cols], denovo_name, \
-            basis_mtx[basis_cols], basis_names, weights, nonzero_exposures, output_path, project, mtype)
+            basis_mtx[basis_cols], basis_names, weights, nonzero_exposures, output_path, project, mtype, volume=VOLUME)
         merger.append(result)
 
     merger.write(os.path.join(output_path,"Result_Decomposition_Plots_SBS288.pdf"))
@@ -285,7 +298,7 @@ def gen_ID83():
     basis_cols.insert(0, "MutationType")
     nonzero_exposures=np.random.uniform(size=len(basis_names))
     result = sp.run_PlotDecomposition(denovo_mtx[denovo_cols], denovo_name, \
-        basis_mtx[basis_cols], basis_names, weights, nonzero_exposures, output_path, project, mtype)
+        basis_mtx[basis_cols], basis_names, weights, nonzero_exposures, output_path, project, mtype, volume=VOLUME)
     merger.append(result)
 
     for ind in range(5, 0, -1):
@@ -296,7 +309,7 @@ def gen_ID83():
         basis_cols.insert(0, "MutationType")
         nonzero_exposures=np.random.uniform(size=len(basis_names))
         result = sp.run_PlotDecomposition(denovo_mtx[denovo_cols], denovo_name, \
-            basis_mtx[basis_cols], basis_names, weights, nonzero_exposures, output_path, project, mtype)
+            basis_mtx[basis_cols], basis_names, weights, nonzero_exposures, output_path, project, mtype, volume=VOLUME)
         merger.append(result)
 
     merger.write(os.path.join(output_path,"Result_Decomposition_Plots_ID83.pdf"))
@@ -322,7 +335,8 @@ def gen_DBS78():
     basis_cols.insert(0, "MutationType")
     nonzero_exposures=np.random.uniform(size=len(basis_names))
     result = sp.run_PlotDecomposition(denovo_mtx[denovo_cols], denovo_name, \
-        basis_mtx[basis_cols], basis_names, weights, nonzero_exposures, output_path, project, mtype)
+        basis_mtx[basis_cols], basis_names, weights, nonzero_exposures, output_path, project, mtype,
+        volume=VOLUME)
     merger.append(result)
 
     for ind in range(5, 0, -1):
@@ -333,7 +347,8 @@ def gen_DBS78():
         basis_cols.insert(0, "MutationType")
         nonzero_exposures=np.random.uniform(size=len(basis_names))
         result = sp.run_PlotDecomposition(denovo_mtx[denovo_cols], denovo_name, \
-            basis_mtx[basis_cols], basis_names, weights, nonzero_exposures, output_path, project, mtype)
+            basis_mtx[basis_cols], basis_names, weights, nonzero_exposures, output_path, project, mtype,
+            volume=VOLUME)
         merger.append(result)
 
     merger.write(os.path.join(output_path,"Result_Decomposition_Plots_DBS78.pdf"))
@@ -358,7 +373,7 @@ def gen_CNV48():
     basis_cols=basis_names.copy()
     basis_cols.insert(0, "MutationType")
     nonzero_exposures=np.random.uniform(size=len(basis_names))
-    result = sp.run_PlotDecomposition(denovo_mtx[denovo_cols], denovo_name, basis_mtx[basis_cols], basis_names, weights, nonzero_exposures, output_path, project, mtype)
+    result = sp.run_PlotDecomposition(denovo_mtx[denovo_cols], denovo_name, basis_mtx[basis_cols], basis_names, weights, nonzero_exposures, output_path, project, mtype, volume=VOLUME)
     #sp.run_PlotDecomposition(denovo_mtx, basis_names, weights, output_path, project, mtype, True, statistics, "COSMICv3-GRCh37", "This is where a custom message would go.")
     merger.append(result)
 
@@ -369,7 +384,7 @@ def gen_CNV48():
         basis_cols=basis_names.copy()
         basis_cols.insert(0, "MutationType")
         nonzero_exposures=np.random.uniform(size=len(basis_names))
-        result = sp.run_PlotDecomposition(denovo_mtx[denovo_cols], denovo_name, basis_mtx[basis_cols], basis_names, weights, nonzero_exposures, output_path, project, mtype)
+        result = sp.run_PlotDecomposition(denovo_mtx[denovo_cols], denovo_name, basis_mtx[basis_cols], basis_names, weights, nonzero_exposures, output_path, project, mtype, volume=VOLUME)
         merger.append(result)
 
     merger.write(os.path.join(output_path,"Result_Decomposition_Plots_CNV48.pdf"))
