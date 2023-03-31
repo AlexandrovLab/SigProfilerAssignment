@@ -391,10 +391,6 @@ def spa_analyze(samples, output, input_type='matrix', context_type="96", signatu
             with open(os.path.join(output,"JOB_METADATA_SPA.txt"),"a") as sysdata:
                 sysdata.write("\n De Novo Fitting .....")
 
-
-        #exposureAvg = sub.make_final_solution(processAvg, genomes, listOfSignatures, layer_directory1, mutation_type, index,\
-                   # colnames,denovo_exposureAvg  = denovo_exposureAvg, add_penalty=nnls_add_penalty, remove_penalty=nnls_remove_penalty, initial_remove_penalty=initial_remove_penalty, de_novo_fit_penalty=de_novo_fit_penalty, connected_sigs=connected_sigs, refit_denovo_signatures=refit_denovo_signatures)    
-                   # 
         #######
         attribution={}
         for i in allsigids:
@@ -416,7 +412,8 @@ def spa_analyze(samples, output, input_type='matrix', context_type="96", signatu
                                     add_penalty=nnls_add_penalty, remove_penalty=nnls_remove_penalty,
                                     initial_remove_penalty=init_rem_denovo,connected_sigs=connected_sigs,refit_denovo_signatures=False,
                                     make_plots=make_plots,export_probabilities=export_probabilities, export_probabilities_per_mutation=export_probabilities_per_mutation,
-                                    samples=samples, input_type=input_type, denovo_refit_option=denovo_refit_option)
+                                    samples=samples, input_type=input_type, denovo_refit_option=denovo_refit_option,
+                                    volume=volume)
 
         else:
             signature_stabilities=devopts['signature_stabilities']
@@ -430,7 +427,8 @@ def spa_analyze(samples, output, input_type='matrix', context_type="96", signatu
                                     background_sigs=background_sigs, verbose=verbose, genome_build=genome_build, signature_total_mutations = signature_total_mutations,
                                     add_penalty=nnls_add_penalty, remove_penalty=nnls_remove_penalty, process_std_error = processSTE, signature_stabilities = signature_stabilities,
                                     initial_remove_penalty=init_rem_denovo,connected_sigs=connected_sigs,refit_denovo_signatures=True,export_probabilities=export_probabilities,
-                                    export_probabilities_per_mutation=export_probabilities_per_mutation, samples=samples, input_type=input_type, denovo_refit_option=denovo_refit_option)
+                                    export_probabilities_per_mutation=export_probabilities_per_mutation, samples=samples, input_type=input_type, denovo_refit_option=denovo_refit_option,
+                                    volume=volume)
         
         if make_metadata:
             with open(os.path.join(output,"JOB_METADATA_SPA.txt"),"a") as sysdata:
@@ -544,7 +542,8 @@ def spa_analyze(samples, output, input_type='matrix', context_type="96", signatu
                                 make_plots=make_plots,
                                 export_probabilities=export_probabilities,
                                 export_probabilities_per_mutation=export_probabilities_per_mutation,
-                                samples=samples, input_type=input_type, denovo_refit_option=denovo_refit_option)
+                                samples=samples, input_type=input_type, denovo_refit_option=denovo_refit_option,
+                                volume=volume)
 
         if make_metadata:
             with open(os.path.join(output,"JOB_METADATA_SPA.txt"),"a") as sysdata:
@@ -662,7 +661,8 @@ def spa_analyze(samples, output, input_type='matrix', context_type="96", signatu
                             make_plots =make_plots,
                             export_probabilities=export_probabilities,
                             export_probabilities_per_mutation=export_probabilities_per_mutation,
-                            samples=samples, input_type=input_type, denovo_refit_option=denovo_refit_option)
+                            samples=samples, input_type=input_type, denovo_refit_option=denovo_refit_option,
+                            volume=volume)
         if make_metadata:
             with open(os.path.join(output,"JOB_METADATA_SPA.txt"),"a") as sysdata:
                 current_time_end = datetime.datetime.now()
