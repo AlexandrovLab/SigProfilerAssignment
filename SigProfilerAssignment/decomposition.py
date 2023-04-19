@@ -58,7 +58,7 @@ def generate_sample_reconstruction(cosmic_sigs, samples_input, activities, outpu
     samples.reset_index(inplace=True)
     for sample_name in samples.columns[1:]:
         # basis names and their corresponding weights
-        subset = activities[activities["Samples"].str.contains(sample_name)]
+        subset = activities[activities["Samples"] == sample_name]
         subset = subset.loc[:, (subset != 0).any(axis=0)]
         basis_names = subset[subset["Samples"].str.contains(sample_name)].columns[1:].tolist()
         recon_tmb = subset.sum(axis=1)
