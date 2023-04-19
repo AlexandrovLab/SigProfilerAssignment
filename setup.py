@@ -6,7 +6,7 @@ import os
 if os.path.exists("dist"):
     shutil.rmtree("dist")
 
-VERSION = '0.0.29'
+VERSION = '0.0.30'
 
 
 def write_version_py(filename='SigProfilerAssignment/version.py'):
@@ -15,7 +15,7 @@ def write_version_py(filename='SigProfilerAssignment/version.py'):
 # THIS FILE IS GENERATED FROM SigProfilerAssignment SETUP.PY
 short_version = '%(version)s'
 version = '%(version)s'
-Update = 'v0.0.29: Stop decomposition plotting with custom signature database and update parameters for sample reconstruction plots'
+Update = 'v0.0.30: Sample reconstruction plot fix and pandas version fix.'
 
     
     """
@@ -29,7 +29,7 @@ with open('README.md') as f:
 requirements=[
           'scipy>=1.6.3',
           'numpy>=1.21.2',
-          'pandas>=1.2.4',
+          'pandas>=1.2.4,<2.0.0',
           'SigProfilerMatrixGenerator>=1.2.14', 
           'sigProfilerPlotting>=1.3.11',
           'statsmodels>=0.9.0',
