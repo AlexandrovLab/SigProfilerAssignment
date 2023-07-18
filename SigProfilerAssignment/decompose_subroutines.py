@@ -963,11 +963,12 @@ def probabilities_per_mutation(probability_matrix, samples_path, m):
 #
     all_mutations = pd.DataFrame()
     for file in seqinfo_files:
-        try:
-            new = pd.read_csv(seqinfo_path + file, sep='\t',header=None)
-            all_mutations = pd.concat([all_mutations, new])
-        except (pd.errors.EmptyDataError):
-            pass
+        if 'exome' not in file:
+            try:
+                new = pd.read_csv(seqinfo_path + file, sep='\t',header=None)
+                all_mutations = pd.concat([all_mutations, new])
+            except (pd.errors.EmptyDataError):
+                pass
     all_mutations[3] = all_mutations[3].str[interval_low:interval_high]
     if m=='96' or m=='78':
         del all_mutations[4]
