@@ -274,9 +274,6 @@ def signature_decomposition(signatures, mtype, directory, genome_build="GRCh37",
         bgsigs = get_indeces(list(signames), ['SBS1', 'SBS5'])
     else:
         bgsigs = []
-    
-    # import pdb
-    # pdb.set_trace()
 
     # get the names of denovo signatures
     denovo_signature_names = make_letter_ids(signatures.shape[1], mtype=mutation_context)
@@ -299,8 +296,6 @@ def signature_decomposition(signatures, mtype, directory, genome_build="GRCh37",
                 check_rule_negatives = []
                 check_rule_penalty=1.0
             
-            # import pdb
-            # pdb.set_trace()
             
             _, exposures,L2dist,similarity, kldiv, correlation, cosine_similarity_with_four_signatures = ss.add_remove_signatures(sigDatabase, 
                                                                                                          signatures[:,i], 
@@ -467,9 +462,6 @@ def signature_decomposition(signatures, mtype, directory, genome_build="GRCh37",
     # close the lognote
     lognote.close()
 
-    # import pdb
-    # pdb.set_trace()    
-    #return values
     return {"globalsigids": list(detected_signatures), "newsigids": newsig, "globalsigs":globalsigmats, "newsigs":newsigsmats/5000, "dictionary": dictionary, 
             "background_sigs": background_sigs, "activity_percentages": activity_percentages} 
 
@@ -759,21 +751,23 @@ def make_final_solution(processAvg, allgenomes, allsigids, layer_directory, m, i
     if make_plots == True:
     ########################################### PLOT THE SIGNATURES ################################################
         if m=="DINUC" or m=="78":
-            plot.plotDBS(layer_directory+"/Signatures/"+solution_prefix+"_"+"Signatures.txt", layer_directory+"/Signatures"+"/" , solution_prefix, "78", True, custom_text_upper= signature_stabilities, custom_text_middle = signature_total_mutations )        
+            plot.plotDBS(layer_directory+"/Signatures/"+solution_prefix+"_"+"Signatures.txt", layer_directory+"/Signatures/" , solution_prefix, "78", True, custom_text_upper= signature_stabilities, custom_text_middle = signature_total_mutations )
         elif m=="INDEL" or m=="83":
-            plot.plotID(layer_directory+"/Signatures/"+solution_prefix+"_"+"Signatures.txt", layer_directory+"/Signatures"+"/" , solution_prefix, "94", True, custom_text_upper= signature_stabilities, custom_text_middle = signature_total_mutations )
+            plot.plotID(layer_directory+"/Signatures/"+solution_prefix+"_"+"Signatures.txt", layer_directory+"/Signatures/" , solution_prefix, "94", True, custom_text_upper= signature_stabilities, custom_text_middle = signature_total_mutations )
         elif m=="CNV" or m=="48":
-            plot.plotCNV(layer_directory+"/Signatures/"+solution_prefix+"_"+"Signatures.txt", layer_directory+"/Signatures"+"/" , solution_prefix, "pdf", percentage=True, aggregate=False)
+            plot.plotCNV(layer_directory+"/Signatures/"+solution_prefix+"_"+"Signatures.txt", layer_directory+"/Signatures/" , solution_prefix, "pdf", percentage=True, aggregate=False)
         elif m=="SV" or m=="32":
-            plot.plotSV(layer_directory+"/Signatures/"+solution_prefix+"_"+"Signatures.txt", layer_directory+"/Signatures"+"/" , solution_prefix, "pdf", percentage=True, aggregate=False)
-        elif (m=="96" or m=="288" or m=="384" or m=="1536") and collapse_to_SBS96==True:
-            plot.plotSBS(layer_directory+"/Signatures/"+solution_prefix+"_"+"Signatures.txt", layer_directory+"/Signatures"+"/", solution_prefix, m, True, custom_text_upper= signature_stabilities, custom_text_middle = signature_total_mutations )
+            plot.plotSV(layer_directory+"/Signatures/"+solution_prefix+"_"+"Signatures.txt", layer_directory+"/Signatures/" , solution_prefix, "pdf", percentage=True, aggregate=False)
+        elif (m=="96" or m=="288" or m=="384" or m=="1536" or m=="4608") and collapse_to_SBS96==True:
+            plot.plotSBS(layer_directory+"/Signatures/"+solution_prefix+"_"+"Signatures.txt", layer_directory+"/Signatures/", solution_prefix, m, True, custom_text_upper= signature_stabilities, custom_text_middle = signature_total_mutations )
         elif m=="96":
-            plot.plotSBS(layer_directory+"/Signatures/"+solution_prefix+"_"+"Signatures.txt", layer_directory+"/Signatures"+"/", solution_prefix, m, True, custom_text_upper= signature_stabilities, custom_text_middle = signature_total_mutations )
+            plot.plotSBS(layer_directory+"/Signatures/"+solution_prefix+"_"+"Signatures.txt", layer_directory+"/Signatures/", solution_prefix, m, True, custom_text_upper= signature_stabilities, custom_text_middle = signature_total_mutations )
         elif m=="288":
-            plot.plotSBS(layer_directory+"/Signatures/"+solution_prefix+"_"+"Signatures.txt", layer_directory+"/Signatures"+"/", solution_prefix, m, True, custom_text_upper= signature_stabilities, custom_text_middle = signature_total_mutations )
+            plot.plotSBS(layer_directory+"/Signatures/"+solution_prefix+"_"+"Signatures.txt", layer_directory+"/Signatures/", solution_prefix, m, True, custom_text_upper= signature_stabilities, custom_text_middle = signature_total_mutations )
         elif m=="1536":
-            plot.plotSBS(layer_directory+"/Signatures/"+solution_prefix+"_"+"Signatures.txt", layer_directory+"/Signatures"+"/", solution_prefix, m, True, custom_text_upper= signature_stabilities, custom_text_middle = signature_total_mutations )
+            plot.plotSBS(layer_directory+"/Signatures/"+solution_prefix+"_"+"Signatures.txt", layer_directory+"/Signatures/", solution_prefix, m, True, custom_text_upper= signature_stabilities, custom_text_middle = signature_total_mutations )
+        elif m=="4608":
+            plot.plotSBS(layer_directory+"/Signatures/"+solution_prefix+"_"+"Signatures.txt", layer_directory+"/Signatures/", solution_prefix, m, True)
         else:
             custom_signatures_plot(processes, layer_directory+"/Signatures")
     
@@ -820,7 +814,6 @@ def make_final_solution(processAvg, allgenomes, allsigids, layer_directory, m, i
         else:
             print('Probabilities per mutation require to calculate probabilities per context type. Please re-run your analysis setting export_probabilites=True.')
     
-    # import pdb; pdb.set_trace()
     
     return exposures
 ################################################################### FUNCTION ONE ###################################################################
