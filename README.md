@@ -17,6 +17,7 @@ For users that prefer working in an R environment, a wrapper package is provided
   - [Signature Subgroups](#subgroups)
 - [Examples](#examples)
 - [_De novo_ extraction of mutational signatures downstream analysis](#denovo)
+- [Citation](#citation)
 - [Copyright](#copyright)
 - [Contact Information](#contact)
 
@@ -157,6 +158,10 @@ Analyze.cosmic_fit(samples=spa.__path__[0]+"/data/tests/txt_input/sample_matrix_
 
 ## <a name="denovo"></a> _De novo_ extraction of mutational signatures downstream analysis
 Additional functionalities for downstream analysis of _de novo_ extraction of mutational signatures are also available as part of SigProfilerAssignment, including assignment of _de novo_ extracted mutational signatures and decomposition of _de novo_ signatures using a known set of signatures. More information can be found on the wiki page at https://osf.io/mz79v/wiki/5.%20Advanced%20mode/.
+
+## <a name="citation"></a> Citation
+
+Diaz-Gay, M., Vangara, R., Barnes, M., ... & Alexandrov, L. B. (2023). Assigning mutational signatures to individual samples and individual somatic mutations with SigProfilerAssignment, bioRxiv, 2023-07. doi: https://doi.org/10.1101/2023.07.10.548264
 
 ## <a name="copyright"></a> Copyright
 This software and its documentation are copyright 2022 as a part of the SigProfiler project. The SigProfilerAssignment framework is free software and is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
