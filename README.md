@@ -161,7 +161,7 @@ Additional functionalities for downstream analysis of _de novo_ extraction of mu
 
 ## <a name="citation"></a> Citation
 
-Diaz-Gay, M., Vangara, R., Barnes, M., ... & Alexandrov, L. B. (2023). Assigning mutational signatures to individual samples and individual somatic mutations with SigProfilerAssignment, bioRxiv, 2023-07. doi: https://doi.org/10.1101/2023.07.10.548264
+Díaz-Gay, M., Vangara, R., Barnes, M., ... & Alexandrov, L. B. (2023). Assigning mutational signatures to individual samples and individual somatic mutations with SigProfilerAssignment, bioRxiv, 2023-07. doi: https://doi.org/10.1101/2023.07.10.548264
 
 ## <a name="copyright"></a> Copyright
 This software and its documentation are copyright 2022 as a part of the SigProfiler project. The SigProfilerAssignment framework is free software and is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
