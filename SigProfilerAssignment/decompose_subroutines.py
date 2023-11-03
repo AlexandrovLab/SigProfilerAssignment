@@ -33,7 +33,7 @@ from SigProfilerAssignment import single_sample as ss
 from scipy.spatial.distance import correlation as cor
 from alive_progress import alive_bar
 
-def getProcessAvg(samples, genome_build="GRCh37", cosmic_version=3.3, signature_database=None, connected_sigs = True, exome=False):
+def getProcessAvg(samples, genome_build="GRCh37", cosmic_version=3.4, signature_database=None, connected_sigs = True, exome=False):
     paths = spa.__path__[0]
     
     if genome_build == "GRCh37" or genome_build == "GRCh38" or genome_build == "mm9" or genome_build == "mm10" or genome_build == "rn6":
@@ -74,8 +74,12 @@ def getProcessAvg(samples, genome_build="GRCh37", cosmic_version=3.3, signature_
         
     elif samples.shape[0]==48:
         if cosmic_version < 3.3:
-            print("The selected cosmic version is "+str(cosmic_version)+". CN signatures are available only for version 3.3. So, the cosmic version is reset to v3.3.")
-            cosmic_version=3.3
+            print(
+                f"The selected cosmic version is {cosmic_version}. However, CN signatures are "
+                "available only for version 3.3 and newer. Therefore, the cosmic version has "
+                "been reset to 3.4."
+            )
+            cosmic_version=3.4
         sigDatabase = pd.read_csv(paths+"/data/Reference_Signatures/GRCh37/COSMIC_v"+str(cosmic_version)+"_CN_GRCh37.txt", sep="\t",index_col=0)
         signames = sigDatabase.columns
         connected_sigs=False
@@ -171,7 +175,7 @@ def get_items_from_index(x,y):
             pass
     return z
 
-def signature_decomposition(signatures, mtype, directory, genome_build="GRCh37", cosmic_version=3.3,signature_database=None, add_penalty=0.05, remove_penalty=0.01, mutation_context=None, connected_sigs=True, make_decomposition_plots=True, originalProcessAvg=None,new_signature_thresh_hold=0.8,sig_exclusion_list=[],exome=False, m_for_subgroups='SBS'):
+def signature_decomposition(signatures, mtype, directory, genome_build="GRCh37", cosmic_version=3.4,signature_database=None, add_penalty=0.05, remove_penalty=0.01, mutation_context=None, connected_sigs=True, make_decomposition_plots=True, originalProcessAvg=None,new_signature_thresh_hold=0.8,sig_exclusion_list=[],exome=False, m_for_subgroups='SBS'):
 
     originalProcessAvg = originalProcessAvg.reset_index()
     if not os.path.exists(directory+"/Solution_Stats"):
@@ -181,41 +185,6 @@ def signature_decomposition(signatures, mtype, directory, genome_build="GRCh37",
     lognote.write("############################ Signature Decomposition Details ################################\n\n\n")
     lognote.write("Context Type: {}\n".format(mtype))
     lognote.write("Genome Build: {}\n".format(genome_build))
-    
-    # paths = spa.__path__[0]
-    
-    # if signatures.shape[0]==96:
-    #     sigDatabase = pd.read_csv(paths+"/data/Reference_Signatures/"+genome_build+"/COSMIC_v"+str(cosmic_version)+"_SBS_"+genome_build+".txt", sep="\t", index_col=0)
-    #     signames = sigDatabase.columns   
-        
-    # elif signatures.shape[0]==288:
-    #     sigDatabase = pd.read_csv(paths+"/data/Reference_Signatures/GRCh37/COSMIC_v"+str(3.2)+"_SBS"+str(signatures.shape[0])+"_GRCh37.txt", sep="\t", index_col=0)
-    #     signames = sigDatabase.columns
-        
-    # elif signatures.shape[0]==1536:
-    #     sigDatabase = pd.read_csv(paths+"/data/Reference_Signatures/"+"GRCh37"+"/COSMIC_v"+str(3.2)+"_SBS"+str(signatures.shape[0])+"_GRCh37.txt", sep="\t", index_col=0)
-    #     signames = sigDatabase.columns
-    
-    # elif signatures.shape[0]==78:
-    #     sigDatabase = pd.read_csv(paths+"/data/Reference_Signatures/"+"GRCh37"+"/COSMIC_v"+str(cosmic_version)+"_DBS_"+"GRCh37"+".txt", sep="\t", index_col=0)
-    #     signames = sigDatabase.columns
-    #     connected_sigs=False
-        
-    # elif signatures.shape[0]==83:
-    #     sigDatabase = pd.read_csv(paths+"/data/Reference_Signatures/GRCh37/COSMIC_v"+str(cosmic_version)+"_ID_GRCh37.txt", sep="\t", index_col=0)
-    #     signames = sigDatabase.columns
-    #     connected_sigs=False
-        
-    # elif signatures.shape[0]==48:
-    #     sigDatabase = pd.read_csv(paths+"/data/CNV_signatures.txt", sep="\t",index_col=0)
-    #     signames = sigDatabase.columns
-    #     connected_sigs=False
-    # else:
-    #     sigDatabase = pd.DataFrame(signatures)
-    #     sigDatabase.columns=sigDatabase.columns.astype(str)
-    #     sigDatabase.index=sigDatabase.index.astype(str)
-    #     signames=sigDatabase.columns
-    #     connected_sigs=False
 
 
     if signature_database==None:
@@ -755,9 +724,9 @@ def make_final_solution(processAvg, allgenomes, allsigids, layer_directory, m, i
         elif m=="INDEL" or m=="83":
             plot.plotID(layer_directory+"/Signatures/"+solution_prefix+"_"+"Signatures.txt", layer_directory+"/Signatures/" , solution_prefix, "94", True, custom_text_upper= signature_stabilities, custom_text_middle = signature_total_mutations )
         elif m=="CNV" or m=="48":
-            plot.plotCNV(layer_directory+"/Signatures/"+solution_prefix+"_"+"Signatures.txt", layer_directory+"/Signatures/" , solution_prefix, "pdf", percentage=True, aggregate=False)
+            plot.plotCNV(layer_directory+"/Signatures/"+solution_prefix+"_"+"Signatures.txt", layer_directory+"/Signatures/" , solution_prefix, percentage=True, aggregate=False)
         elif m=="SV" or m=="32":
-            plot.plotSV(layer_directory+"/Signatures/"+solution_prefix+"_"+"Signatures.txt", layer_directory+"/Signatures/" , solution_prefix, "pdf", percentage=True, aggregate=False)
+            plot.plotSV(layer_directory+"/Signatures/"+solution_prefix+"_"+"Signatures.txt", layer_directory+"/Signatures/" , solution_prefix, percentage=True, aggregate=False)
         elif (m=="96" or m=="288" or m=="384" or m=="1536" or m=="4608") and collapse_to_SBS96==True:
             plot.plotSBS(layer_directory+"/Signatures/"+solution_prefix+"_"+"Signatures.txt", layer_directory+"/Signatures/", solution_prefix, m, True, custom_text_upper= signature_stabilities, custom_text_middle = signature_total_mutations )
         elif m=="96":

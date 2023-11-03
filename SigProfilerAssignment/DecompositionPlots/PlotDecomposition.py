@@ -59,7 +59,7 @@ def remove_cosmic_templates():
 		print("Error: %s : %s" % (TEMPLATE_PATH, e.strerror))
 
 # Create a set of serialized JSON reference signature plots for fast loading
-def install_cosmic_plots(context_type="96", genome_build="GRCh37", cosmic_version="3.3", exome=False):
+def install_cosmic_plots(context_type="96", genome_build="GRCh37", cosmic_version="3.4", exome=False):
 
 	if not os.path.exists(TEMPLATE_PATH):
 		os.mkdir(TEMPLATE_PATH)
@@ -267,13 +267,13 @@ def genCNV_pngs(denovo_mtx, basis_mtx, output_path, project, mtype):
 	denovo_plots = dict()
 	basis_plots = dict()
 	denovo_plots = sigPlt.plotCNV(denovo_mtx, output_path, project,
-				plot_type="pdf", percentage=True, aggregate=False,
-				read_from_file=False, write_to_file=False)
+				percentage=True, aggregate=False,
+				read_from_file=False, savefig_format="PIL_Image")
 
 	if basis_mtx is not None:
 		basis_plots = sigPlt.plotCNV(basis_mtx, output_path, project,
-				plot_type="pdf", percentage=True, aggregate=False,
-				read_from_file=False, write_to_file=False)
+				percentage=True, aggregate=False,
+				read_from_file=False, savefig_format="PIL_Image")
 	return denovo_plots,basis_plots
 
 # signames, weights
@@ -339,8 +339,8 @@ def gen_reconstructed_png_percent(denovo_name, basis_mtx, basis_names,
 				savefig_format='PIL_Image')
 	elif mtype in CNV_CONTEXTS:
 		reconstruction_plot = sigPlt.plotCNV(reconstruction_mtx, output_path,
-				"reconstruction_"+project, plot_type="pdf", percentage=True,
-				aggregate=False, read_from_file=False, write_to_file=False)
+				"reconstruction_"+project, percentage=True,
+				aggregate=False, read_from_file=False, savefig_format='PIL_Image')
 	else:
 		print("ERROR: mtype is " + mtype + " and is not yet supported.")
 
@@ -375,8 +375,8 @@ def gen_reconstructed_png_numerical(denovo_mtx, denovo_name, basis_mtx, basis_na
 				"reconstruction_" + project, mtype, percentage=False, savefig_format="PIL_Image")
 	elif mtype in CNV_CONTEXTS:
 		reconstruction_plot = sigPlt.plotCNV(reconstruction_mtx, output_path,
-				"reconstruction_"+project, plot_type="pdf", percentage=True,
-				aggregate=False, read_from_file=False, write_to_file=False)
+				"reconstruction_"+project, percentage=True,
+				aggregate=False, read_from_file=False, savefig_format="PIL_Image")
 	else:
 		print("ERROR: mtype is " + mtype + " and is not yet supported.")
 
@@ -458,7 +458,7 @@ def gen_decomposition(denovo_name, basis_names, weights, output_path, project, \
 
 def run_PlotDecomposition(denovo_mtx, denovo_name, basis_mtx, basis_names,
 		weights, nonzero_exposures, output_path, project, mtype,
-		cosmic_version="3.3", genome_build="GRCh37", exome=False,
+		cosmic_version="3.4", genome_build="GRCh37", exome=False,
 		custom_text=None):
 	"""
 	Generates a decomposition plot of the denovo_mtx using the basis_mtx.
@@ -532,10 +532,10 @@ def run_PlotDecomposition(denovo_mtx, denovo_name, basis_mtx, basis_names,
 
 	return byte_plot
 
-# context="96", genome_build="GRCh37", cosmic_version="3.3", exome=False
+# context="96", genome_build="GRCh37", cosmic_version="3.4", exome=False
 def run_PlotSSDecomposition(denovo_mtx, denovo_name, basis_mtx, basis_names, \
 		weights, output_path, project, context_type, genome_build="GRCh37", \
-		cosmic_version="3.3", custom_text=None, exome=False):
+		cosmic_version="3.4", custom_text=None, exome=False):
 	"""
 	Generates a reconstruction of a sample given a set of signatures.
 

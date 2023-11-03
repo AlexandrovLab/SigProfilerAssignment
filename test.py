@@ -20,28 +20,34 @@ OUTPUT_VCF = "TestOutput/output_vcf_example/"
 SIGNATURES_MATRIX_SBS = os.path.join(DIR_INPUT, "txt_input/SBS96_S3_Signatures.txt")
 SIGNATURES_MATRIX_DBS = os.path.join(DIR_INPUT, "txt_input/DBS78_S3_Signatures.txt")
 SIGNATURES_MATRIX_ID = os.path.join(DIR_INPUT, "txt_input/ID83_S3_Signatures.txt")
+SIGNATURES_MATRIX_CNV = os.path.join(DIR_INPUT, "txt_input/CNV48_S3_Signatures.txt")
+SIGNATURES_MATRIX_SV = os.path.join(DIR_INPUT, "txt_input/SV32_S3_Signatures.txt")
 SAMPLE_MATRIX_SBS = os.path.join(DIR_INPUT, "txt_input/sample_matrix_SBS.txt")
 SAMPLE_MATRIX_DBS = os.path.join(DIR_INPUT, "txt_input/sample_matrix_DBS.txt")
 SAMPLE_MATRIX_ID = os.path.join(DIR_INPUT, "txt_input/sample_matrix_ID.txt")
+SAMPLE_MATRIX_CNV = os.path.join(DIR_INPUT, "txt_input/sample_matrix_CNV48.txt")
+SAMPLE_MATRIX_SV = os.path.join(DIR_INPUT, "txt_input/sample_matrix_SV32.txt")
 SAMPLES_VCF = os.path.join(DIR_INPUT, "vcf_input/")
+
 exclude_signature_subgroups = None
 
 
 ########### SBS Tests ###########
 def cosmic_fit_SBS_matrix_test():
     Analyze.cosmic_fit(SAMPLE_MATRIX_SBS,
-        OUTPUT_MATRIX,
+        os.path.join(OUTPUT_MATRIX, "cosmic_fit_SBS_matrix_test"),
         signatures=None,
         signature_database=None,
         genome_build="GRCh37",
         verbose=False,
         collapse_to_SBS96=True,
         exclude_signature_subgroups=exclude_signature_subgroups,
-        sample_reconstruction_plots='both')
+        sample_reconstruction_plots='both',
+        cosmic_version=3.4)
 
 def denovo_fit_SBS_matrix_test():
     Analyze.denovo_fit(SAMPLE_MATRIX_SBS,
-        OUTPUT_MATRIX,
+        os.path.join(OUTPUT_MATRIX, "denovo_fit_SBS_matrix_test"),
         signatures=SIGNATURES_MATRIX_SBS,
         signature_database=None,
         genome_build="GRCh37",
@@ -49,7 +55,7 @@ def denovo_fit_SBS_matrix_test():
 
 def decompose_fit_SBS_matrix_test():
     Analyze.decompose_fit(SAMPLE_MATRIX_SBS,
-        OUTPUT_MATRIX,
+        os.path.join(OUTPUT_MATRIX, "decompose_fit_SBS_matrix_test"),
         signatures=SIGNATURES_MATRIX_SBS,
         signature_database=None,
         genome_build="GRCh37",
@@ -60,18 +66,19 @@ def decompose_fit_SBS_matrix_test():
 ########### DBS Tests ###########
 def cosmic_fit_DBS_matrix_test():
     Analyze.cosmic_fit(SAMPLE_MATRIX_DBS,
-        OUTPUT_MATRIX,
+        os.path.join(OUTPUT_MATRIX, "cosmic_fit_DBS_matrix_test"),
         signatures=None,
         signature_database=None,
         genome_build="GRCh37",
         verbose=False,
         collapse_to_SBS96=False,
         exclude_signature_subgroups=exclude_signature_subgroups,
-        sample_reconstruction_plots=True)
+        sample_reconstruction_plots=True,
+        cosmic_version=3.4)
 
 def denovo_fit_DBS_matrix_test():
     Analyze.denovo_fit(SAMPLE_MATRIX_DBS,
-        OUTPUT_MATRIX,
+        os.path.join(OUTPUT_MATRIX, "denovo_fit_DBS_matrix_test"),
         signatures=SIGNATURES_MATRIX_DBS,
         signature_database=None,
         genome_build="GRCh37",
@@ -79,7 +86,7 @@ def denovo_fit_DBS_matrix_test():
 
 def decompose_fit_DBS_matrix_test():
     Analyze.decompose_fit(SAMPLE_MATRIX_DBS,
-        OUTPUT_MATRIX,
+        os.path.join(OUTPUT_MATRIX, "decompose_fit_DBS_matrix_test"),
         signatures=SIGNATURES_MATRIX_DBS,
         signature_database=None,
         genome_build="GRCh37",
@@ -90,7 +97,7 @@ def decompose_fit_DBS_matrix_test():
 ########### ID Tests ###########
 def decompose_fit_ID_matrix_test():
     Analyze.decompose_fit(SAMPLE_MATRIX_ID,
-        OUTPUT_MATRIX,
+        os.path.join(OUTPUT_MATRIX, "decompose_fit_ID_matrix_test"),
         signatures=SIGNATURES_MATRIX_ID,
         signature_database=None,
         genome_build="GRCh37",
@@ -101,19 +108,84 @@ def decompose_fit_ID_matrix_test():
 
 def cosmic_fit_ID_matrix_test():
     Analyze.cosmic_fit(SAMPLE_MATRIX_ID,
-        OUTPUT_MATRIX,
+        os.path.join(OUTPUT_MATRIX, "cosmic_fit_ID_matrix_test"),
         signatures=None,
         signature_database=None,
         genome_build="GRCh37",
         verbose=False,
         collapse_to_SBS96=False,
         exclude_signature_subgroups=exclude_signature_subgroups,
-        sample_reconstruction_plots=True)
+        sample_reconstruction_plots=True,
+        cosmic_version=3.4)
 
 def denovo_fit_ID_matrix_test():
     Analyze.denovo_fit(SAMPLE_MATRIX_ID,
-        OUTPUT_MATRIX,
+        os.path.join(OUTPUT_MATRIX, "denovo_fit_ID_matrix_test"),
         signatures=SIGNATURES_MATRIX_ID,
+        signature_database=None,
+        genome_build="GRCh37",
+        verbose=False)
+    
+########### SV Tests ###########
+def decompose_fit_SV_matrix_test():
+    Analyze.decompose_fit(SAMPLE_MATRIX_SV,
+        os.path.join(OUTPUT_MATRIX, "decompose_fit_SV_matrix_test"),
+        signatures=SIGNATURES_MATRIX_SV,
+        signature_database=None,
+        genome_build="GRCh37",
+        verbose=False,
+        new_signature_thresh_hold=0.8,
+        exclude_signature_subgroups=exclude_signature_subgroups)
+
+
+def cosmic_fit_SV_matrix_test():
+    Analyze.cosmic_fit(SAMPLE_MATRIX_SV,
+        os.path.join(OUTPUT_MATRIX,"cosmic_fit_SV_matrix_test"),
+        signatures=None,
+        signature_database=None,
+        genome_build="GRCh37",
+        verbose=False,
+        collapse_to_SBS96=False,
+        exclude_signature_subgroups=exclude_signature_subgroups,
+        sample_reconstruction_plots=True,
+        cosmic_version=3.4)
+
+def denovo_fit_SV_matrix_test():
+    Analyze.denovo_fit(SAMPLE_MATRIX_SV,
+        os.path.join(OUTPUT_MATRIX, "denovo_fit_SV_matrix_test"),
+        signatures=SIGNATURES_MATRIX_SV,
+        signature_database=None,
+        genome_build="GRCh37",
+        verbose=False)
+
+########### CNV Tests ###########
+def decompose_fit_CNV_matrix_test():
+    Analyze.decompose_fit(SAMPLE_MATRIX_CNV,
+        os.path.join(OUTPUT_MATRIX, "decompose_fit_CNV_matrix_test"),
+        signatures=SIGNATURES_MATRIX_CNV,
+        signature_database=None,
+        genome_build="GRCh37",
+        verbose=False,
+        new_signature_thresh_hold=0.8,
+        exclude_signature_subgroups=exclude_signature_subgroups)
+
+
+def cosmic_fit_CNV_matrix_test():
+    Analyze.cosmic_fit(SAMPLE_MATRIX_CNV,
+        os.path.join(OUTPUT_MATRIX, "cosmic_fit_CNV_matrix_test"),
+        signatures=None,
+        signature_database=None,
+        genome_build="GRCh37",
+        verbose=False,
+        collapse_to_SBS96=False,
+        exclude_signature_subgroups=exclude_signature_subgroups,
+        sample_reconstruction_plots=True,
+        cosmic_version=3.4)
+
+def denovo_fit_CNV_matrix_test():
+    Analyze.denovo_fit(SAMPLE_MATRIX_CNV,
+        os.path.join(OUTPUT_MATRIX, "denovo_fit_CNV_matrix_test"),
+        signatures=SIGNATURES_MATRIX_CNV,
         signature_database=None,
         genome_build="GRCh37",
         verbose=False)
@@ -396,7 +468,17 @@ if __name__ == '__main__':
     cosmic_fit_vcf_test()
     decompose_fit_vcf_test()
     denovo_fit_vcf_test()
+    
+    print("Running SV matrix input tests...")
+    cosmic_fit_SV_matrix_test()
+    decompose_fit_SV_matrix_test()
+    denovo_fit_SV_matrix_test()
 
+    print("Running CNV matrix input tests...")
+    cosmic_fit_CNV_matrix_test()
+    decompose_fit_CNV_matrix_test()
+    denovo_fit_CNV_matrix_test()
+    
     print("Decomposition Plot tests...")
     time_96 = gen_SBS96()
     print("Completed SBS96 plots in", time_96, "seconds.")

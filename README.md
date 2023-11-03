@@ -41,7 +41,7 @@ Assignment of known mutational signatures to individual samples is performed usi
 ```python
 from SigProfilerAssignment import Analyzer as Analyze
 Analyze.cosmic_fit(samples, output, input_type="matrix", context_type="96",
-                   collapse_to_SBS96=True, cosmic_version=3.3, exome=False,
+                   collapse_to_SBS96=True, cosmic_version=3.4, exome=False,
                    genome_build="GRCh37", signature_database=None,
                    exclude_signature_subgroups=None, export_probabilities=False,
                    export_probabilities_per_mutation=False, make_plots=False,
@@ -58,7 +58,7 @@ Analyze.cosmic_fit(samples, output, input_type="matrix", context_type="96",
 | output | String | Path to the output folder. |
 | input_type | String | Three accepted input types:<ul><li> "vcf": if using mutation calling file/s (VCF, MAF, simple text file) as input</li><li>"seg:TYPE": if using a segmentation file as input. Please check the required format at https://github.com/AlexandrovLab/SigProfilerMatrixGenerator#copy-number-matrix-generation. The accepted callers for TYPE are the following {"ASCAT", "ASCAT_NGS", "SEQUENZA", "ABSOLUTE", "BATTENBERG", "FACETS", "PURPLE", "TCGA"}. For example:"seg:BATTENBERG"</li><li>"matrix": if using a mutational matrix as input</li></ul>The default value is "matrix". |
 | context_type | String | Required context type if `input_type` is "vcf". `context_type` takes which context type of the input data is considered for assignment. Valid options include "96", "288", "1536", "DINUC", and "ID". The default value is "96". |
-| cosmic_version | Float | Defines the version of the COSMIC reference signatures. Takes a positive float among 1, 2, 3, 3.1, 3.2 and 3.3. The default value is 3.3. |
+| cosmic_version | Float | Defines the version of the COSMIC reference signatures. Takes a positive float among 1, 2, 3, 3.1, 3.2, 3.3, and 3.4. The default value is 3.4. |
 | exome | Boolean | Defines if the exome renormalized COSMIC signatures will be used. The default value is False. |
 | genome_build | String | The reference genome build, used for select the appropriate version of the COSMIC reference signatures, as well as processing the mutation calling file/s. Supported genomes include "GRCh37", "GRCh38", "mm9", "mm10" and "rn6". The default value is "GRCh37". If the selected genome is not in the supported list, the default genome will be used. |
 | signature_database | String | Path to the input set of known mutational signatures (only in case that COSMIC reference signatures are not used), a tab delimited file that contains the signature matrix where the rows are mutation types and columns are signature IDs. |
@@ -100,13 +100,13 @@ The full list of signature subgroups is included in the following table:
 |POL_deficiency_signatures|     10a, 10b, 10c, 10d, 28|         3|      -|
 |HR_deficiency_signatures|      3|                              -|      6|
 |BER_deficiency_signatures|     30, 36|                         -|      -|
-|Chemotherapy_signatures|       11, 25, 31, 35, 86, 87, 90|     5|      -|
+|Chemotherapy_signatures|       11, 25, 31, 35, 86, 87, 90, 99|     5|      -|
 |Immunosuppressants_signatures| 32|                             -|      -|
-|Treatment_signatures|          11, 25, 31, 32, 35, 86, 87, 90| 5|      -|
+|Treatment_signatures|          11, 25, 31, 32, 35, 86, 87, 90, 99| 5|      -|
 |APOBEC_signatures|             2, 13|                          -|      -|
 |Tobacco_signatures |           4, 29, 92|                      2|      3|
 |UV_signatures|                 7a, 7b, 7c, 7d, 38|             1|      13|
-|AA_signatures|                 22|                             -|      -|
+|AA_signatures|                 22a, 22b|                             20|      23|
 |Colibactin_signatures|         88|                             -|      18|
 |Artifact_signatures|           27, 43, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 95|-|-|
 |Lymphoid_signatures|           9, 84, 85|                      -|      -|
@@ -126,7 +126,7 @@ Analyze.cosmic_fit(samples=spa.__path__[0]+"/data/tests/vcf_input",
                    input_type="vcf",
                    context_type="96",
                    genome_build="GRCh37",
-                   cosmic_version=3.3)
+                   cosmic_version=3.4)
 ```
 
 
@@ -139,7 +139,7 @@ from SigProfilerAssignment import Analyzer as Analyze
 Analyze.cosmic_fit(samples=spa.__path__[0]+"/data/tests/cnv_input/all.breast.ascat.summary.sample.tsv", 
                    output="example_sf",
                    input_type="seg:ASCAT_NGS",
-                   cosmic_version=3.3,
+                   cosmic_version=3.4,
                    collapse_to_SBS96=False)
 ```
 
@@ -153,7 +153,7 @@ Analyze.cosmic_fit(samples=spa.__path__[0]+"/data/tests/txt_input/sample_matrix_
                    output="example_mm",
                    input_type="matrix",
                    genome_build="GRCh37",
-                   cosmic_version=3.3)
+                   cosmic_version=3.4)
 ```
 
 ## <a name="denovo"></a> _De novo_ extraction of mutational signatures downstream analysis
