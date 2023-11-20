@@ -231,7 +231,7 @@ def spa_analyze(samples, output, input_type='matrix', context_type="96", signatu
                       
     default_subgroups_siglists= {'MMR_deficiency_signatures' :{'SBS':['6', '14', '15', '20', '21', '26', '44'], 'DBS':['7', '10'], 'ID':['7']},
                       'POL_deficiency_signatures' :{'SBS':['10a', '10b', '10c', '10d', '28'], 'DBS':['3'], 'ID':[]},
-                      'HR_deficiency_signatures' :{'SBS':['3'], 'DBS':[], 'ID':['6']},
+                      'HR_deficiency_signatures' :{'SBS':['3'], 'DBS':['13'], 'ID':['6']},
                       'BER_deficiency_signatures' :{'SBS':['30','36'], 'DBS':[], 'ID':[]},
                       'Chemotherapy_signatures' :{'SBS':['11','25','31','35','86','87','90', '99'], 'DBS':['5'], 'ID':[]},
                       'Immunosuppressants_signatures' :{'SBS':['32'], 'DBS':[], 'ID':[]},
@@ -241,7 +241,7 @@ def spa_analyze(samples, output, input_type='matrix', context_type="96", signatu
                       'UV_signatures' :{'SBS':['7a','7b','7c','7d','38'], 'DBS':['1'], 'ID':['13']},
                       'AA_signatures' :{'SBS':['22', '22a', '22b'], 'DBS':['20'], 'ID':['23']},
                       'Colibactin_signatures' :{'SBS':['88'], 'DBS':[], 'ID':['18']},
-                      'Artifact_signatures' :{'SBS':['27','43','45','46','47','48','49','50','51','52','53','54','55','56','57','58','59','60','95'], 'DBS':[], 'ID':[]},
+                      'Artifact_signatures' :{'SBS':['27','43','45','46','47','48','49','50','51','52','53','54','55','56','57','58','59','60','95'], 'DBS':['14'], 'ID':[]},
                       'Lymphoid_signatures' :{'SBS':['9','84','85'], 'DBS':[], 'ID':[]}}
     
     
