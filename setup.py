@@ -6,7 +6,7 @@ import os
 if os.path.exists("dist"):
     shutil.rmtree("dist")
 
-VERSION = "0.0.33"
+VERSION = "0.1.0"
 
 
 def write_version_py(filename="SigProfilerAssignment/version.py"):
@@ -15,7 +15,7 @@ def write_version_py(filename="SigProfilerAssignment/version.py"):
 # THIS FILE IS GENERATED FROM SigProfilerAssignment SETUP.PY
 short_version = '%(version)s'
 version = '%(version)s'
-Update = 'v0.0.33: Resolve with SBS384 plots showing up as custom plots.'
+Update = 'v0.1.0: Update SigProfilerAssignment with COSMIC v3.4 signatures.'
 
     
     """
