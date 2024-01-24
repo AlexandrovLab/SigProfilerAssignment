@@ -181,6 +181,24 @@ def getProcessAvg(
         )
         signames = sigDatabase.columns
         connected_sigs = False
+    elif samples.shape[0] == 32:
+        if cosmic_version < 3.4:
+            print(
+                f"The selected cosmic version is {cosmic_version}. However, SV signatures are "
+                "available only for version 3.4 and newer. Therefore, the cosmic version has "
+                "been reset to 3.4."
+            )
+            cosmic_version = 3.4
+        sigDatabase = pd.read_csv(
+            paths
+            + "/data/Reference_Signatures/GRCh38/COSMIC_v"
+            + str(cosmic_version)
+            + "_SV_GRCh38.txt",
+            sep="\t",
+            index_col=0,
+        )
+        signames = sigDatabase.columns
+        connected_sigs = False
     else:
         sigDatabase = pd.DataFrame(samples)
         sigDatabase.columns = sigDatabase.columns.astype(str)

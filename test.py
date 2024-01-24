@@ -172,7 +172,7 @@ def cosmic_fit_SV_matrix_test():
         os.path.join(OUTPUT_MATRIX, "cosmic_fit_SV_matrix_test"),
         signatures=None,
         signature_database=None,
-        genome_build="GRCh37",
+        genome_build="GRCh38",
         verbose=False,
         collapse_to_SBS96=False,
         exclude_signature_subgroups=exclude_signature_subgroups,
