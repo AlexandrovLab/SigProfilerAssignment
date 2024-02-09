@@ -24,6 +24,7 @@ from SigProfilerMatrixGenerator.scripts import (
     SigProfilerMatrixGeneratorFunc as datadump,
 )
 from SigProfilerMatrixGenerator.scripts import CNVMatrixGenerator as scna
+from sigProfilerPlotting import sigProfilerPlotting as sigPlot
 import sigProfilerPlotting
 import os, sys
 from PyPDF2 import PdfMerger
@@ -301,6 +302,9 @@ def spa_analyze(
 
     mutation_type = str(genomes.shape[0])
     m = mutation_type
+
+    # Re-indexing the input matrix file by using process_input function from SigProfilePlotting
+    genomes = sigPlot.process_input(genomes, m)
 
     m_for_subgroups = ""
     if m == "96" or m == "288" or m == "1536":
