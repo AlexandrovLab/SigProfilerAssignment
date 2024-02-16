@@ -296,7 +296,6 @@ def spa_analyze(
             genomes = pd.read_csv(samples, sep="\t", index_col=0)
         except:
             genomes = samples
-            genomes = pd.DataFrame(genomes)
     else:
         sys.exit("Invalid input_type specified")
 
