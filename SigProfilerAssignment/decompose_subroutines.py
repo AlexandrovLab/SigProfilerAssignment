@@ -229,7 +229,6 @@ def signature_plotting_text(value, text, Type):
     name_list = []
     total = np.sum(np.array(value))
     for i in value:
-
         if Type == "integer":
             i = int(i)
             p = round(i / total * 100, 1)
@@ -243,7 +242,6 @@ def signature_plotting_text(value, text, Type):
 
 
 def make_letter_ids(idlenth=10, mtype="SBS96"):
-
     listOfSignatures = []
     letters = list(string.ascii_uppercase)
     letters.extend([i + b for i in letters for b in letters])
@@ -422,7 +420,6 @@ def signature_decomposition(
     merger = PdfMerger()
 
     for i, j in zip(range(signatures.shape[1]), denovo_signature_names):
-
         # Only for context SBS96
         if signatures.shape[0] == 96:
             lognote = open(
@@ -566,16 +563,16 @@ def signature_decomposition(
 
         if mtype == "1536":
             mtype_par = "1536"
-        # elif mtype == "288":
-        #     mtype_par = "288"
-        # elif mtype == "96":
-        #     mtype_par = "96"
-        # elif mtype == "DINUC" or mtype == "78":
-        #     mtype_par = "78"
-        # elif mtype == "INDEL" or mtype == "83":
-        #     mtype_par = "83"
-        # elif mtype == "CNV" or mtype == "48":
-        #     mtype_par = "48"
+        elif mtype == "288":
+            mtype_par = "288"
+        elif mtype == "96":
+            mtype_par = "96"
+        elif mtype == "DINUC" or mtype == "78":
+            mtype_par = "78"
+        elif mtype == "INDEL" or mtype == "83":
+            mtype_par = "83"
+        elif mtype == "CNV" or mtype == "48":
+            mtype_par = "48"
         elif mtype == "SV" or mtype == "32":
             mtype_par = "32"
         else:
@@ -586,7 +583,6 @@ def signature_decomposition(
             and make_decomposition_plots == True
             and signature_database is None
         ):
-
             # reformat the first column of cosmic signature dataframe
             cosmic_sigs_DF = sigDatabases_DF.copy(deep=True)
             cosmic_sigs_DF.columns = ["MutationType"] + cosmic_sigs_DF.columns[
@@ -765,7 +761,6 @@ def make_final_solution(
     denovo_refit_option=True,
     exome=False,
 ):
-
     if processAvg.shape[0] == allgenomes.shape[0] and processAvg.shape[0] != 96:
         collapse_to_SBS96 = False
 
@@ -862,7 +857,6 @@ def make_final_solution(
 
                 init_decomposed_sigs = []
                 for de_novo_sig in init_sigs:
-
                     init_decomposed_sigs = union(
                         init_decomposed_sigs, list(attribution[de_novo_sig])
                     )
@@ -1459,7 +1453,6 @@ def make_final_solution(
             custom_signatures_plot(processes, layer_directory + "/Signatures")
 
     if export_probabilities == True:
-
         probability = probabilities(
             processAvg, exposureAvg, index, allsigids, allcolnames
         )
@@ -1645,7 +1638,6 @@ def cor_sim(a, b):
 
 ################################################### Generation of probabilities for each processes given to A mutation type ############################################
 def probabilities(W, H, index, allsigids, allcolnames):
-
     # setting up the indices
     rows = index
     cols = allcolnames
@@ -1658,7 +1650,6 @@ def probabilities(W, H, index, allsigids, allcolnames):
 
     result = 0
     for i in range(H.shape[1]):  # here H.shape is the number of sample
-
         M = genomes[:, i][np.newaxis]
         probs = W * H[:, i] / M.T
         probs = pd.DataFrame(probs)
