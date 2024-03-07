@@ -26,14 +26,15 @@ import shutil
 import SigProfilerAssignment
 import SigProfilerAssignment.DecompositionPlots
 from SigProfilerAssignment.DecompositionPlots import SigProfilerPlottingMatrix as mPlt
-from SigProfilerAssignment.DecompositionPlots import PlotDecomposition_SBS96 as spd_96
-from SigProfilerAssignment.DecompositionPlots import PlotDecomposition_SBS288 as spd_288
 from SigProfilerAssignment.DecompositionPlots import (
+    PlotDecomposition_SBS96 as spd_96,
+    PlotDecomposition_SBS288 as spd_288,
     PlotDecomposition_SBS1536 as spd_1536,
+    PlotDecomposition_DBS78 as spd_78,
+    PlotDecomposition_ID83 as spd_83,
+    PlotDecomposition_CNV48 as cnv_48,
+    PlotDecomposition_SV32 as sv_32,
 )
-from SigProfilerAssignment.DecompositionPlots import PlotDecomposition_DBS78 as spd_78
-from SigProfilerAssignment.DecompositionPlots import PlotDecomposition_ID83 as spd_83
-from SigProfilerAssignment.DecompositionPlots import PlotDecomposition_CNV48 as cnv_48
 from SigProfilerAssignment import decompose_subroutines as sub
 
 # imports for working with plots in memory
@@ -43,11 +44,13 @@ from reportlab.lib.utils import ImageReader
 import json
 import base64
 
+
 # Global Variables
 SBS_CONTEXTS = ["6", "24", "96", "288", "384", "1536", "6144"]
 DBS_CONTEXTS = ["78", "186", "1248", "2976"]
 ID_CONTEXTS = ["28", "83", "415"]
 CNV_CONTEXTS = ["48"]
+SV_CONTEXTS = ["32"]
 MTYPE_OPTIONS = [
     "6",
     "24",
@@ -62,13 +65,13 @@ MTYPE_OPTIONS = [
     "186",
     "1248",
     "2976",
+    "32",
 ]
 DECOMPOSITION_PATH = SigProfilerAssignment.DecompositionPlots.__path__[0]
 REFSIG_PATH = os.path.join(
     SigProfilerAssignment.__path__[0], "data/Reference_Signatures"
 )
 TEMPLATE_PATH = os.path.join(DECOMPOSITION_PATH, "CosmicTemplates")
-
 
 # Remove templates so that they can be rebuilt
 def remove_cosmic_templates():
@@ -84,10 +87,11 @@ def remove_cosmic_templates():
 def install_cosmic_plots(
     context_type="96", genome_build="GRCh37", cosmic_version="3.4", exome=False
 ):
+
     if not os.path.exists(TEMPLATE_PATH):
         os.mkdir(TEMPLATE_PATH)
 
-    # determine if context is from SBS, ID, DBS, or CNV
+    # determine if context is from SBS, ID, DBS, CNV or SV
     context_type_str = ""
     if context_type in SBS_CONTEXTS:
         context_type_str = "SBS"
@@ -102,6 +106,9 @@ def install_cosmic_plots(
     elif context_type in CNV_CONTEXTS:
         context_type_str = "CNV"
         cosmic_mtype = "48"
+    elif context_type in SV_CONTEXTS:
+        context_type_str = "SV"
+        cosmic_mtype = "32"
     else:
         raise ValueError("ERROR: context", context_type, "not in context lists.")
 
@@ -138,6 +145,20 @@ def install_cosmic_plots(
         genome_build = "GRCh37"
         exome_str = ""
 
+    # CNV signatures exome=False, genome_build=GRCh37
+    if context_type in CNV_CONTEXTS:
+        cosmic_file_name = "COSMIC_v" + str(cosmic_version) + "_CN_GRCh37.txt"
+        json_file_name = "COSMIC_v" + str(cosmic_version) + "_CN_GRCh37.json"
+        genome_build = "GRCh37"
+        exome_str = ""
+
+    # SV signatures exome=False, genome_build=GRCh37
+    if context_type in SV_CONTEXTS:
+        cosmic_file_name = "COSMIC_v" + str(cosmic_version) + "_SV_GRCh38.txt"
+        json_file_name = "COSMIC_v" + str(cosmic_version) + "_SV_GRCh38.json"
+        genome_build = "GRCh38"
+        exome_str = ""
+
     # Load cosmic plots if they exist
     filename = os.path.join(TEMPLATE_PATH, json_file_name)
     if os.path.exists(filename):
@@ -165,7 +186,6 @@ def install_cosmic_plots(
             + exome_str,
             "now...",
         )
-
         # Create the respective plots
         if context_type_str == "SBS":
             cosmic_buff_plots = sigPlt.plotSBS(
@@ -193,6 +213,25 @@ def install_cosmic_plots(
                 "buffer",
                 cosmic_mtype,
                 percentage=True,
+                savefig_format="PIL_Image",
+            )
+        elif context_type_str == "CNV":
+            cosmic_buff_plots = sigPlt.plotCNV(
+                cosmic_file_path,
+                "buffer",
+                "buffer",
+                percentage=True,
+                aggregate=False,
+                read_from_file=False,
+                savefig_format="PIL_Image",
+            )
+        elif context_type_str == "SV":
+            cosmic_buff_plots = sigPlt.plotSV(
+                cosmic_file_path,
+                "buffer",
+                "buffer",
+                percentage=True,
+                aggregate=False,
                 savefig_format="PIL_Image",
             )
 
@@ -413,8 +452,33 @@ def genCNV_pngs(denovo_mtx, basis_mtx, output_path, project, mtype):
     return denovo_plots, basis_plots
 
 
+def genSV_pngs(denovo_mtx, basis_mtx, output_path, project, mtype):
+    denovo_plots = dict()
+    basis_plots = dict()
+    denovo_plots = sigPlt.plotSV(
+        denovo_mtx,
+        output_path,
+        project,
+        percentage=True,
+        aggregate=False,
+        savefig_format="PIL_Image",
+    )
+
+    if basis_mtx is not None:
+        basis_plots = sigPlt.plotSV(
+            basis_mtx,
+            output_path,
+            project,
+            percentage=True,
+            aggregate=False,
+            savefig_format="PIL_Image",
+        )
+    return denovo_plots, basis_plots
+
+
 # signames, weights
 def gen_sub_plots(denovo_mtx, basis_mtx, output_path, project, mtype, ss_decomp):
+
     # Make output directory
     if not os.path.exists(output_path):
         os.makedirs(output_path)
@@ -439,6 +503,11 @@ def gen_sub_plots(denovo_mtx, basis_mtx, output_path, project, mtype, ss_decomp)
 
     elif mtype in CNV_CONTEXTS:
         denovo_plots, basis_plots = genCNV_pngs(
+            denovo_mtx, basis_mtx, output_path, project, mtype
+        )
+        return denovo_plots, basis_plots
+    elif mtype in SV_CONTEXTS:
+        denovo_plots, basis_plots = genSV_pngs(
             denovo_mtx, basis_mtx, output_path, project, mtype
         )
         return denovo_plots, basis_plots
@@ -508,6 +577,15 @@ def gen_reconstructed_png_percent(
             percentage=True,
             aggregate=False,
             read_from_file=False,
+            savefig_format="PIL_Image",
+        )
+    elif mtype in SV_CONTEXTS:
+        reconstruction_plot = sigPlt.plotSV(
+            reconstruction_mtx,
+            output_path,
+            "reconstruction_" + project,
+            percentage=True,
+            aggregate=False,
             savefig_format="PIL_Image",
         )
     else:
@@ -591,6 +669,16 @@ def gen_reconstructed_png_numerical(
             read_from_file=False,
             savefig_format="PIL_Image",
         )
+    elif mtype in SV_CONTEXTS:
+        reconstruction_plot = sigPlt.plotSV(
+            reconstruction_mtx,
+            output_path,
+            "reconstruction_" + project,
+            percentage=True,
+            aggregate=False,
+            read_from_file=False,
+            savefig_format="PIL_Image",
+        )
     else:
         print("ERROR: mtype is " + mtype + " and is not yet supported.")
 
@@ -612,6 +700,7 @@ def gen_decomposition(
     cosmic_version=None,
     custom_text=None,
 ):
+
     """
     Generate the correct plot based on mtype.
 
@@ -744,6 +833,22 @@ def gen_decomposition(
             custom_text,
         )
         return byte_plot
+    elif mtype == "32":
+        byte_plot = sv_32.gen_decomposition(
+            denovo_name,
+            basis_names,
+            weights,
+            output_path,
+            project,
+            denovo_plots_dict,
+            basis_plots_dict,
+            reconstruction_plot_dict,
+            reconstruction,
+            statistics,
+            cosmic_version,
+            custom_text,
+        )
+        return byte_plot
 
 
 def run_PlotDecomposition(
@@ -773,8 +878,7 @@ def run_PlotDecomposition(
 
     basis_mtx: Pandas Dataframe. This format represents the catalog of mutations seperated by tab.
 
-    basis_names: List of Strings. The names of the samples in denovo_mtx that
-    the denovo_name sample from denovo_mtx is decomposed into.
+    basis_names: List of Strings. The names of the samples in denovo_mtx that the denovo_name sample from denovo_mtx is decomposed into.
     ie. basis_names=["SBS1", "SBS5", "SBS15", "SBS20"]
 
     weights: List of Strings. The percentile weight corresponding to each basis
@@ -796,17 +900,9 @@ def run_PlotDecomposition(
     None.
     """
     # Create the denovo plots and load basis plots
-    if mtype != "48":
-        denovo_plots_dict = gen_sub_plots(
-            denovo_mtx, None, output_path, project, mtype, ss_decomp=False
-        )
-        denovo_plots_dict = denovo_plots_dict[0]
-    else:
-        # cnv basis plots need to be generated and not loaded
-        denovo_plots_dict, basis_plots_dict = gen_sub_plots(
-            denovo_mtx, basis_mtx, output_path, project, mtype, ss_decomp=False
-        )
-    # Create the matrix and plot for the reconstructed matrix
+    denovo_plots_dict, basis_plots_dict = gen_sub_plots(
+        denovo_mtx, basis_mtx, output_path, project, mtype, ss_decomp=False
+    )
     reconstructed_mtx, reconstruction_plot_dict = gen_reconstructed_png_percent(
         denovo_name, basis_mtx, basis_names, weights, output_path, project, mtype
     )
@@ -816,14 +912,13 @@ def run_PlotDecomposition(
     # Convert dictionary of bytes to dictionary of images
     denovo_plots_dict = convert_to_imgReaderDict(denovo_plots_dict)
     # Load in the COSMIC plots
-    if mtype != "48":
-        basis_plots_dict = install_cosmic_plots(
-            context_type=mtype,
-            genome_build=genome_build,
-            cosmic_version=cosmic_version,
-            exome=exome,
-        )
-        basis_plots_dict = {key: basis_plots_dict[key] for key in basis_names}
+    basis_plots_dict = install_cosmic_plots(
+        context_type=mtype,
+        genome_build=genome_build,
+        cosmic_version=cosmic_version,
+        exome=exome,
+    )
+    basis_plots_dict = {key: basis_plots_dict[key] for key in basis_names}
     basis_plots_dict = convert_to_imgReaderDict(basis_plots_dict)
     # Generate the reconstruction plot
     reconstruction_plot_dict = convert_to_imgReaderDict(reconstruction_plot_dict)

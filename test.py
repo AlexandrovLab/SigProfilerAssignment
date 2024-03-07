@@ -573,7 +573,8 @@ def gen_CNV48():
     mtype = "48"
 
     denovo_name = "CNV48A"
-    basis_names = ["CN1", "CN2", "CN9", "CN20", "CNV48B", "CNV48D"]
+    # basis_names = ["CN1", "CN2", "CN9", "CN20", "CNV48B", "CNV48C"]
+    basis_names = ["CN1", "CN2", "CN9", "CN20", "CN3", "CN4"]
     weights = ["0.94%", "48.72%", "28.44%", "8.42%", "13.48%", "0%"]
     denovo_cols = ["MutationType", "CNV48A"]
     basis_cols = basis_names.copy()
@@ -614,6 +615,63 @@ def gen_CNV48():
         merger.append(result)
 
     merger.write(os.path.join(output_path, "Result_Decomposition_Plots_CNV48.pdf"))
+    return time.time() - s
+
+
+def gen_SV32():
+    np.random.seed(1234567)
+    s = time.time()
+    merger = PdfMerger()
+    file1 = "SigProfilerAssignment/DecompositionPlots/ExampleSample/SV32_De-Novo_Signatures.txt"
+    file2 = "SigProfilerAssignment/DecompositionPlots/ExampleSample/COSMIC_SV32_Signatures.txt"
+    denovo_mtx = pd.read_csv(file1, sep="\t")
+    basis_mtx = pd.read_csv(file2, sep="\t")
+    output_path = "TestOutput/Results/"
+    project = "test_run"
+    mtype = "32"
+
+    denovo_name = "SV32A"
+    basis_names = ["SV1", "SV2", "SV3", "SV4", "SV5", "SV6", "SV7", "SV9"]
+    weights = ["10%", "10%", "10%", "10%", "10%", "10%", "10%", "20%"]
+    denovo_cols = ["MutationType", "SV32A"]
+    basis_cols = basis_names.copy()
+    basis_cols.insert(0, "MutationType")
+    nonzero_exposures = np.random.uniform(size=len(basis_names))
+    result = sp.run_PlotDecomposition(
+        denovo_mtx[denovo_cols],
+        denovo_name,
+        basis_mtx[basis_cols],
+        basis_names,
+        weights,
+        nonzero_exposures,
+        output_path,
+        project,
+        mtype,
+    )
+    # sp.run_PlotDecomposition(denovo_mtx, basis_names, weights, output_path, project, mtype, True, statistics, "COSMICv3-GRCh37", "This is where a custom message would go.")
+    merger.append(result)
+
+    for ind in range(5, 0, -1):
+        basis_names = basis_names[:ind]
+        weights = weights[:ind]
+        denovo_cols = ["MutationType", "SV32A"]
+        basis_cols = basis_names.copy()
+        basis_cols.insert(0, "MutationType")
+        nonzero_exposures = np.random.uniform(size=len(basis_names))
+        result = sp.run_PlotDecomposition(
+            denovo_mtx[denovo_cols],
+            denovo_name,
+            basis_mtx[basis_cols],
+            basis_names,
+            weights,
+            nonzero_exposures,
+            output_path,
+            project,
+            mtype,
+        )
+        merger.append(result)
+
+    merger.write(os.path.join(output_path, "Result_Decomposition_Plots_SV32.pdf"))
     return time.time() - s
 
 
@@ -661,3 +719,5 @@ if __name__ == "__main__":
     print("Completed ID83 plots in", time_83, "seconds.")
     time_48 = gen_CNV48()
     print("Completed CNV48 plots in", time_48, "seconds.")
+    time_32 = gen_SV32()
+    print("Completed SV32 plots in", time_32, "seconds.")

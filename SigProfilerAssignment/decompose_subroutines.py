@@ -63,7 +63,6 @@ def getProcessAvg(
             + ". COSMIC signatures are available only for GRCh37/38, mm9/10 and rn6 genomes. So, the genome build is reset to GRCh37."
         )
         genome_build = "GRCh37"
-
     if samples.shape[0] == 96:
         if exome == False:
             sigDatabase = pd.read_csv(
@@ -181,6 +180,7 @@ def getProcessAvg(
         )
         signames = sigDatabase.columns
         connected_sigs = False
+
     elif samples.shape[0] == 32:
         if cosmic_version < 3.4:
             print(
@@ -205,6 +205,7 @@ def getProcessAvg(
         sigDatabase.index = sigDatabase.index.astype(str)
         signames = sigDatabase.columns
         connected_sigs = False
+
     return sigDatabase, signames, connected_sigs, genome_build
 
     if signature_database != None:  # pd.core.frame.DataFrame:
@@ -572,6 +573,8 @@ def signature_decomposition(
             mtype_par = "83"
         elif mtype == "CNV" or mtype == "48":
             mtype_par = "48"
+        elif mtype == "SV" or mtype == "32":
+            mtype_par = "32"
         else:
             mtype_par = "none"
         # only create decomposition plots for COSMIC signatures
@@ -667,6 +670,7 @@ def signature_decomposition(
                 "78": "DBS78",
                 "83": "ID83",
                 "48": "CNV",
+                "32": "SV",
             }
             merger.write(
                 directory + "/" + contexts[mtype_par] + "_Decomposition_Plots.pdf"
