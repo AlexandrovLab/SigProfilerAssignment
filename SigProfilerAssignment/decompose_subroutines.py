@@ -1448,6 +1448,8 @@ def make_final_solution(
                 solution_prefix,
                 m,
                 True,
+                custom_text_upper=signature_stabilities,
+                custom_text_middle=signature_total_mutations,
             )
         else:
             custom_signatures_plot(processes, layer_directory + "/Signatures")
