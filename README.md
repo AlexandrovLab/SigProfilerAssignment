@@ -68,6 +68,7 @@ Analyze.cosmic_fit(samples, output, input_type="matrix", context_type="96",
 | make_plots | Boolean | Toggle on and off for making and saving plots. The default value is True. |
 | sample_reconstruction_plots | String | Select the output format for sample reconstruction plots. Valid inputs are {'pdf', 'png', 'both', None}. The default value is None. |
 | verbose | Boolean | Prints detailed statements. The default value is False. |
+| volume | String | Path to SigProfilerAssignment volumes. Used for Docker/Singularity. Environmental variable "SIGPROFILERASSIGNMENT_VOLUME" takes precedence. Default value is None. |
 
 
 

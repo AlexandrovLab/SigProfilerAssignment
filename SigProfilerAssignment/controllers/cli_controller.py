@@ -99,6 +99,11 @@ def parse_arguments_common(args: List[str], description: str) -> argparse.Namesp
         default=False,
         help="Export probabilities matrices per mutation (default: False).",
     )
+    parser.add_argument(
+        "--volume",
+        default=None,
+        help="User specified directory for saving/loading template files. Note: The environment variable SIGPROFILERASSIGNMENT_VOLUME takes precedence over this parameter.",
+    )
 
     return parser.parse_args(args)
 
