@@ -62,5 +62,10 @@ setup(
     packages=["SigProfilerAssignment"],
     install_requires=requirements,
     include_package_data=True,
+    entry_points={
+        "console_scripts": [
+            "SigProfilerAssignment=SigProfilerAssignment.SigProfilerAssignment_CLI:main_function",
+        ],
+    },
     zip_safe=False,
 )
