@@ -30,6 +30,36 @@ import os, sys
 from PyPDF2 import PdfMerger
 import fitz
 import time
+from pathlib import Path
+
+
+def get_storage_dir(volume=None):
+    """
+    Get the directory for saving/loading storage files.
+
+    :param volume: Optional; User specified directory for saving/loading storage files. SIGPROFILERASSIGNMENT_VOLUME takes precedence over this parameter.
+    :return: The absolute path to the directory to be used for saving/loading storage files as a string, or None if no directory is specified.
+    """
+    # Environment variable name
+    env_var_name = "SIGPROFILERASSIGNMENT_VOLUME"
+
+    # Check if the environment variable is set
+    env_directory = os.getenv(env_var_name)
+
+    # Determine the directory to use
+    if env_directory:
+        storage_dir = Path(env_directory)
+    elif volume:
+        storage_dir = Path(volume)
+    else:
+        storage_dir = None
+
+    # Create the directory if it is not None and does not exist
+    if storage_dir:
+        storage_dir.mkdir(parents=True, exist_ok=True)
+        return str(storage_dir.resolve())
+
+    return None
 
 
 def convert_PDF_to_PNG(input_file_name, output_directory, page_names):
@@ -104,6 +134,7 @@ def generate_sample_reconstruction(
             genome_build=execution_parameters["reference_genome"],
             cosmic_version=str(execution_parameters["cosmic_version"]),
             exome=execution_parameters["exome"],
+            volume=get_storage_dir(execution_parameters["volume"]),
         )
         final_pdf.append(result)
 
@@ -134,6 +165,8 @@ def record_parameters(sysdata, execution_parameters, start_time):
         sysdata.write("\tsamples: {}\n".format(execution_parameters["samples"]))
     else:
         sysdata.write("\tsamples: {}\n".format(type(execution_parameters["samples"])))
+    if execution_parameters["volume"] is not None:
+        sysdata.write("\tvolume: {}\n".format(execution_parameters["volume"]))
     sysdata.write(
         "\treference_genome: {}\n".format(execution_parameters["reference_genome"])
     )
@@ -215,6 +248,7 @@ def spa_analyze(
     export_probabilities_per_mutation=False,
     sample_reconstruction_plots=None,
     make_metadata=True,
+    volume=None,
 ):
     """
     Decomposes the De Novo Signatures into COSMIC Signatures and assigns COSMIC signatures into samples.
@@ -252,6 +286,9 @@ def spa_analyze(
         decomp.decompose(signatures, activities, samples, output, genome_build="GRCh37", verbose=False)
 
     """
+
+    volume = get_storage_dir(volume)
+
     if devopts == None:
         layer_directory1 = output + "/De_Novo_Solution"
         layer_directory2 = output + "/Decompose_Solution"
@@ -280,6 +317,7 @@ def spa_analyze(
             chrom_based=False,
             plot=False,
             gs=False,
+            volume=volume,
         )
         genomes = data[vcf_context]
 
@@ -445,6 +483,7 @@ def spa_analyze(
         "collapse_to_SBS96": collapse_to_SBS96,
         "export_probabilities": export_probabilities,
         "make_plots": make_plots,
+        "volume": volume,
     }
 
     if make_metadata:
@@ -632,6 +671,7 @@ def spa_analyze(
                 input_type=input_type,
                 denovo_refit_option=denovo_refit_option,
                 exome=exome,
+                volume=volume,
             )
 
         else:
@@ -670,6 +710,7 @@ def spa_analyze(
                 input_type=input_type,
                 denovo_refit_option=denovo_refit_option,
                 exome=exome,
+                volume=volume,
             )
 
         if make_metadata:
@@ -794,6 +835,7 @@ def spa_analyze(
             sig_exclusion_list=sig_exclusion_list,
             exome=exome,
             m_for_subgroups=m_for_subgroups,
+            volume=volume,
         )
         # final_signatures = sub.signature_decomposition(processAvg, m, layer_directory2, genome_build=genome_build)
         # extract the global signatures and new signatures from the final_signatures dictionary
@@ -844,6 +886,7 @@ def spa_analyze(
             input_type=input_type,
             denovo_refit_option=denovo_refit_option,
             exome=exome,
+            volume=volume,
         )
 
         if make_metadata:
@@ -1005,6 +1048,7 @@ def spa_analyze(
             input_type=input_type,
             denovo_refit_option=denovo_refit_option,
             exome=exome,
+            volume=volume,
         )
         if make_metadata:
             with open(os.path.join(output, "JOB_METADATA_SPA.txt"), "a") as sysdata:

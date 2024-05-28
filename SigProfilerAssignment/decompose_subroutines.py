@@ -312,6 +312,7 @@ def signature_decomposition(
     sig_exclusion_list=[],
     exome=False,
     m_for_subgroups="SBS",
+    volume=None,
 ):
     originalProcessAvg = originalProcessAvg.reset_index()
     if not os.path.exists(directory + "/Solution_Stats"):
@@ -611,6 +612,7 @@ def signature_decomposition(
                 cosmic_version=cosmic_version,
                 genome_build=genome_build,
                 exome=exome,
+                volume=volume,
             )
             merger.append(byte_plot)
             with alive_bar(
@@ -760,6 +762,7 @@ def make_final_solution(
     input_type="matrix",
     denovo_refit_option=True,
     exome=False,
+    volume=None,
 ):
     if processAvg.shape[0] == allgenomes.shape[0] and processAvg.shape[0] != 96:
         collapse_to_SBS96 = False
@@ -1326,6 +1329,7 @@ def make_final_solution(
                 True,
                 custom_text_upper=signature_stabilities,
                 custom_text_middle=signature_total_mutations,
+                volume=volume,
             )
         elif m == "INDEL" or m == "83":
             plot.plotID(
@@ -1340,6 +1344,7 @@ def make_final_solution(
                 True,
                 custom_text_upper=signature_stabilities,
                 custom_text_middle=signature_total_mutations,
+                volume=volume,
             )
         elif m == "CNV" or m == "48":
             plot.plotCNV(
@@ -1380,6 +1385,7 @@ def make_final_solution(
                 True,
                 custom_text_upper=signature_stabilities,
                 custom_text_middle=signature_total_mutations,
+                volume=volume,
             )
         elif m == "96":
             plot.plotSBS(
@@ -1394,6 +1400,7 @@ def make_final_solution(
                 True,
                 custom_text_upper=signature_stabilities,
                 custom_text_middle=signature_total_mutations,
+                volume=volume,
             )
         elif m == "288":
             plot.plotSBS(
@@ -1408,6 +1415,7 @@ def make_final_solution(
                 True,
                 custom_text_upper=signature_stabilities,
                 custom_text_middle=signature_total_mutations,
+                volume=volume,
             )
         elif m == "384":
             plot.plotSBS(
@@ -1422,6 +1430,7 @@ def make_final_solution(
                 True,
                 custom_text_upper=signature_stabilities,
                 custom_text_middle=signature_total_mutations,
+                volume=volume,
             )
         elif m == "1536":
             plot.plotSBS(
@@ -1436,6 +1445,7 @@ def make_final_solution(
                 True,
                 custom_text_upper=signature_stabilities,
                 custom_text_middle=signature_total_mutations,
+                volume=volume,
             )
         elif m == "4608":
             plot.plotSBS(
@@ -1450,6 +1460,7 @@ def make_final_solution(
                 True,
                 custom_text_upper=signature_stabilities,
                 custom_text_middle=signature_total_mutations,
+                volume=volume,
             )
         else:
             custom_signatures_plot(processes, layer_directory + "/Signatures")

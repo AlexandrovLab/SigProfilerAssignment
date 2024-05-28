@@ -6,7 +6,7 @@ import os
 if os.path.exists("dist"):
     shutil.rmtree("dist")
 
-VERSION = "0.1.5"
+VERSION = "0.1.6"
 
 
 def write_version_py(filename="SigProfilerAssignment/version.py"):
@@ -15,7 +15,7 @@ def write_version_py(filename="SigProfilerAssignment/version.py"):
 # THIS FILE IS GENERATED FROM SigProfilerAssignment SETUP.PY
 short_version = '%(version)s'
 version = '%(version)s'
-Update = 'v0.1.5: Add text for stability and mutation count to the de novo signature plots.'
+Update = 'v0.1.6: Add CLI and volume parameter for template files.'
 
     
     """
@@ -62,5 +62,10 @@ setup(
     packages=["SigProfilerAssignment"],
     install_requires=requirements,
     include_package_data=True,
+    entry_points={
+        "console_scripts": [
+            "SigProfilerAssignment=SigProfilerAssignment.SigProfilerAssignment_CLI:main_function",
+        ],
+    },
     zip_safe=False,
 )

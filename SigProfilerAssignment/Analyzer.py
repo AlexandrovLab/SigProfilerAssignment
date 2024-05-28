@@ -23,6 +23,7 @@ def decompose_fit(
     context_type="96",
     export_probabilities=True,
     export_probabilities_per_mutation=False,
+    volume=None,
 ):
     decomp.spa_analyze(
         samples=samples,
@@ -49,6 +50,7 @@ def decompose_fit(
         context_type=context_type,
         export_probabilities=export_probabilities,
         export_probabilities_per_mutation=export_probabilities_per_mutation,
+        volume=volume,
     )
 
 
@@ -73,6 +75,7 @@ def denovo_fit(
     context_type="96",
     export_probabilities=True,
     export_probabilities_per_mutation=False,
+    volume=None,
 ):
     decomp.spa_analyze(
         samples=samples,
@@ -98,6 +101,7 @@ def denovo_fit(
         context_type=context_type,
         export_probabilities=export_probabilities,
         export_probabilities_per_mutation=export_probabilities_per_mutation,
+        volume=volume,
     )
 
 
@@ -123,6 +127,7 @@ def cosmic_fit(
     export_probabilities=True,
     export_probabilities_per_mutation=False,
     sample_reconstruction_plots=False,
+    volume=None,
 ):
     decomp.spa_analyze(
         samples=samples,
@@ -149,4 +154,5 @@ def cosmic_fit(
         export_probabilities=export_probabilities,
         export_probabilities_per_mutation=export_probabilities_per_mutation,
         sample_reconstruction_plots=sample_reconstruction_plots,
+        volume=volume,
     )
