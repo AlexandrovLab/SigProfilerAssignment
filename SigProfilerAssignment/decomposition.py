@@ -24,42 +24,11 @@ from SigProfilerMatrixGenerator.scripts import (
     SigProfilerMatrixGeneratorFunc as datadump,
 )
 from SigProfilerMatrixGenerator.scripts import CNVMatrixGenerator as scna
-from sigProfilerPlotting import sigProfilerPlotting as sigPlot
 import sigProfilerPlotting
 import os, sys
 from PyPDF2 import PdfMerger
 import fitz
 import time
-from pathlib import Path
-
-
-def get_storage_dir(volume=None):
-    """
-    Get the directory for saving/loading storage files.
-
-    :param volume: Optional; User specified directory for saving/loading storage files. SIGPROFILERASSIGNMENT_VOLUME takes precedence over this parameter.
-    :return: The absolute path to the directory to be used for saving/loading storage files as a string, or None if no directory is specified.
-    """
-    # Environment variable name
-    env_var_name = "SIGPROFILERASSIGNMENT_VOLUME"
-
-    # Check if the environment variable is set
-    env_directory = os.getenv(env_var_name)
-
-    # Determine the directory to use
-    if env_directory:
-        storage_dir = Path(env_directory)
-    elif volume:
-        storage_dir = Path(volume)
-    else:
-        storage_dir = None
-
-    # Create the directory if it is not None and does not exist
-    if storage_dir:
-        storage_dir.mkdir(parents=True, exist_ok=True)
-        return str(storage_dir.resolve())
-
-    return None
 
 
 def convert_PDF_to_PNG(input_file_name, output_directory, page_names):
@@ -134,7 +103,6 @@ def generate_sample_reconstruction(
             genome_build=execution_parameters["reference_genome"],
             cosmic_version=str(execution_parameters["cosmic_version"]),
             exome=execution_parameters["exome"],
-            volume=get_storage_dir(execution_parameters["volume"]),
         )
         final_pdf.append(result)
 
@@ -165,8 +133,6 @@ def record_parameters(sysdata, execution_parameters, start_time):
         sysdata.write("\tsamples: {}\n".format(execution_parameters["samples"]))
     else:
         sysdata.write("\tsamples: {}\n".format(type(execution_parameters["samples"])))
-    if execution_parameters["volume"] is not None:
-        sysdata.write("\tvolume: {}\n".format(execution_parameters["volume"]))
     sysdata.write(
         "\treference_genome: {}\n".format(execution_parameters["reference_genome"])
     )
@@ -235,7 +201,7 @@ def spa_analyze(
     initial_remove_penalty=0.05,
     de_novo_fit_penalty=0.02,
     genome_build="GRCh37",
-    cosmic_version=3.4,
+    cosmic_version=3.3,
     make_plots=True,
     collapse_to_SBS96=True,
     connected_sigs=True,
@@ -248,24 +214,26 @@ def spa_analyze(
     export_probabilities_per_mutation=False,
     sample_reconstruction_plots=None,
     make_metadata=True,
-    volume=None,
+    threshold=30,
 ):
+    print("threshold in spa_analyze:" + str(threshold))
+
     """
     Decomposes the De Novo Signatures into COSMIC Signatures and assigns COSMIC signatures into samples.
-
-    Parameters:
-
-        signatures: A string. Path to a  tab delimited file that contains the signaure table where the rows are mutation types and colunms are signature IDs.
+    
+    Parameters: 
+        
+        signatures: A string. Path to a  tab delimited file that contains the signaure table where the rows are mutation types and colunms are signature IDs. 
         activities: A string. Path to a tab delimilted file that contains the activity table where the rows are sample IDs and colunms are signature IDs.
         samples: A string. Path to a tab delimilted file that contains the activity table where the rows are mutation types and colunms are sample IDs.
         output: A string. Path to the output folder.
         genome_build = A string. The reference genome build. List of supported genomes: "GRCh37", "GRCh38", "mm9", "mm10" and "rn6". The default value is "GRCh37". If the selected genome is not in the supported list, the default genome will be used.
-        verbose = Boolean. Prints statements. Default value is False.
+        verbose = Boolean. Prints statements. Default value is False. 
         exome = Boolean. Defines if the exome renormalized signatures will be used. The default value is False.
-
+        
     Values:
-        The files below will be generated in the output folder.
-
+        The files below will be generated in the output folder. 
+        
         Cluster_of_Samples.txt
         comparison_with_global_ID_signatures.csv
         Decomposed_Solution_Activities.txt
@@ -276,7 +244,7 @@ def spa_analyze(
         Mutation_Probabilities.txt
         Signature_assaignment_logfile.txt
         Signature_plot[MutatutionContext]_plots_Decomposed_Solution.pdf
-
+        
     Example:
         >>>from SigProfilerExtractor import decomposition as decomp
         >>>signatures = "path/to/dDe_Novo_Solution_Signatures.txt"
@@ -286,9 +254,6 @@ def spa_analyze(
         decomp.decompose(signatures, activities, samples, output, genome_build="GRCh37", verbose=False)
 
     """
-
-    volume = get_storage_dir(volume)
-
     if devopts == None:
         layer_directory1 = output + "/De_Novo_Solution"
         layer_directory2 = output + "/Decompose_Solution"
@@ -317,7 +282,6 @@ def spa_analyze(
             chrom_based=False,
             plot=False,
             gs=False,
-            volume=volume,
         )
         genomes = data[vcf_context]
 
@@ -334,14 +298,12 @@ def spa_analyze(
             genomes = pd.read_csv(samples, sep="\t", index_col=0)
         except:
             genomes = samples
+            genomes = pd.DataFrame(genomes)
     else:
         sys.exit("Invalid input_type specified")
 
     mutation_type = str(genomes.shape[0])
     m = mutation_type
-
-    # Re-indexing the input matrix file by using process_input function from SigProfilePlotting
-    genomes = sigPlot.process_input(genomes, m)
 
     m_for_subgroups = ""
     if m == "96" or m == "288" or m == "1536":
@@ -379,16 +341,16 @@ def spa_analyze(
             "DBS": ["3"],
             "ID": [],
         },
-        "HR_deficiency_signatures": {"SBS": ["3"], "DBS": ["13"], "ID": ["6"]},
+        "HR_deficiency_signatures": {"SBS": ["3"], "DBS": [], "ID": ["6"]},
         "BER_deficiency_signatures": {"SBS": ["30", "36"], "DBS": [], "ID": []},
         "Chemotherapy_signatures": {
-            "SBS": ["11", "25", "31", "35", "86", "87", "90", "99"],
+            "SBS": ["11", "25", "31", "35", "86", "87", "90"],
             "DBS": ["5"],
             "ID": [],
         },
         "Immunosuppressants_signatures": {"SBS": ["32"], "DBS": [], "ID": []},
         "Treatment_signatures": {
-            "SBS": ["11", "25", "31", "32", "35", "86", "87", "90", "99"],
+            "SBS": ["11", "25", "31", "32", "35", "86", "87", "90"],
             "DBS": ["5"],
             "ID": [],
         },
@@ -399,7 +361,7 @@ def spa_analyze(
             "DBS": ["1"],
             "ID": ["13"],
         },
-        "AA_signatures": {"SBS": ["22", "22a", "22b"], "DBS": ["20"], "ID": ["23"]},
+        "AA_signatures": {"SBS": ["22"], "DBS": [], "ID": []},
         "Colibactin_signatures": {"SBS": ["88"], "DBS": [], "ID": ["18"]},
         "Artifact_signatures": {
             "SBS": [
@@ -423,7 +385,7 @@ def spa_analyze(
                 "60",
                 "95",
             ],
-            "DBS": ["14"],
+            "DBS": [],
             "ID": [],
         },
         "Lymphoid_signatures": {"SBS": ["9", "84", "85"], "DBS": [], "ID": []},
@@ -438,6 +400,7 @@ def spa_analyze(
                 "exclude_signature_subgroups input should be a list of appropriate flags, please refer to documentation."
             )
         else:
+
             for key in default_subgroups_dict:
                 if key in exclude_signature_subgroups:
                     signature_subgroups_dict[key] = True
@@ -483,7 +446,6 @@ def spa_analyze(
         "collapse_to_SBS96": collapse_to_SBS96,
         "export_probabilities": export_probabilities,
         "make_plots": make_plots,
-        "volume": volume,
     }
 
     if make_metadata:
@@ -570,8 +532,6 @@ def spa_analyze(
             mutation_context = "ID83"
         elif mutation_type == "48":
             mutation_context = "CNV48"
-        elif mutation_type == "32":
-            mutation_context = "SV32"
         else:
             mutation_context = "SBS" + mutation_type
         try:
@@ -671,7 +631,7 @@ def spa_analyze(
                 input_type=input_type,
                 denovo_refit_option=denovo_refit_option,
                 exome=exome,
-                volume=volume,
+                threshold=threshold,
             )
 
         else:
@@ -710,7 +670,7 @@ def spa_analyze(
                 input_type=input_type,
                 denovo_refit_option=denovo_refit_option,
                 exome=exome,
-                volume=volume,
+                threshold=threshold,
             )
 
         if make_metadata:
@@ -755,8 +715,6 @@ def spa_analyze(
             mutation_context = "ID83"
         elif mutation_type == "48":
             mutation_context = "CNV48"
-        elif mutation_type == "32":
-            mutation_context = "SV32"
         else:
             mutation_context = "SBS" + mutation_type
         try:
@@ -835,7 +793,6 @@ def spa_analyze(
             sig_exclusion_list=sig_exclusion_list,
             exome=exome,
             m_for_subgroups=m_for_subgroups,
-            volume=volume,
         )
         # final_signatures = sub.signature_decomposition(processAvg, m, layer_directory2, genome_build=genome_build)
         # extract the global signatures and new signatures from the final_signatures dictionary
@@ -886,7 +843,7 @@ def spa_analyze(
             input_type=input_type,
             denovo_refit_option=denovo_refit_option,
             exome=exome,
-            volume=volume,
+            threshold=threshold,
         )
 
         if make_metadata:
@@ -949,6 +906,10 @@ def spa_analyze(
             # for sample reconstruction plots
             cosmic_sig_ref = processAvg.copy(deep=True)
             cosmic_sig_ref.reset_index(inplace=True)
+            ###### BE very careful
+            # shuffled_columns = np.random.permutation(cosmic_sig_ref.columns)
+            # cosmic_sig_ref = cosmic_sig_ref[shuffled_columns]
+            # print(shuffled_columns)
         else:
             try:
                 processAvg = pd.read_csv(signature_database, sep="\t", index_col=0)
@@ -1048,7 +1009,7 @@ def spa_analyze(
             input_type=input_type,
             denovo_refit_option=denovo_refit_option,
             exome=exome,
-            volume=volume,
+            threshold=threshold,
         )
         if make_metadata:
             with open(os.path.join(output, "JOB_METADATA_SPA.txt"), "a") as sysdata:
