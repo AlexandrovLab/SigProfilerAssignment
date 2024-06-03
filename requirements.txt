@@ -8,5 +8,5 @@ statsmodels
 scikit-learn
 psutil
 reportlab
-PyPDF2
+pypdf
 alive_progress

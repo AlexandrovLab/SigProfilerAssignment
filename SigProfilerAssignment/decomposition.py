@@ -27,7 +27,7 @@ from SigProfilerMatrixGenerator.scripts import CNVMatrixGenerator as scna
 from sigProfilerPlotting import sigProfilerPlotting as sigPlot
 import sigProfilerPlotting
 import os, sys
-from PyPDF2 import PdfMerger
+from pypdf import PdfMerger
 import fitz
 import time
 from pathlib import Path
