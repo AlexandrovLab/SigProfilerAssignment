@@ -1,0 +1,22 @@
+
+# Changelog
+
+All notable changes to this project will be documented in this file.
+
+The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
+
+## [Unreleased]
+
+## [0.1.7] - 2024-06-21
+
+### Added
+- Added CLI boolean handling to improve command-line interface usability.
+- Implemented additional checks for `input_type` values to enhance input validation.
+- Added new pytests for CLI to ensure correct handling of booleans.
+- Updated the README to reflect the new pytest additions.
+- Updated CI/CD pipelines to accommodate pytest changes.
+
+### Changed
+- Improved input_type value check mechanism to use .lower() before checking against values 'vcf' or 'matrix'.
+
+
