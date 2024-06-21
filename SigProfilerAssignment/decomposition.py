@@ -305,7 +305,7 @@ def spa_analyze(
             "If denovo_refit or decompose_fit is True, signatures cannot be empty"
         )
 
-    if input_type == "vcf":
+    if input_type.lower() == "vcf":
         project_name = "Input_vcffiles"
         vcf_context = context_type
         data = datadump.SigProfilerMatrixGeneratorFunc(
@@ -329,7 +329,7 @@ def spa_analyze(
         )
         genomes = genomes.set_index("MutationType")
 
-    elif input_type == "matrix":
+    elif input_type.lower() == "matrix":
         try:
             genomes = pd.read_csv(samples, sep="\t", index_col=0)
         except:

@@ -61,6 +61,11 @@ setup(
     license="UCSD",
     packages=["SigProfilerAssignment"],
     install_requires=requirements,
+    extras_require={
+        "tests": [
+            "pytest",
+        ],
+    },
     include_package_data=True,
     entry_points={
         "console_scripts": [
