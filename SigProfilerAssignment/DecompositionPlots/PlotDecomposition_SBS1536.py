@@ -11,7 +11,7 @@ from reportlab.platypus import Image
 from reportlab.pdfbase.ttfonts import TTFont
 from reportlab.pdfbase import pdfmetrics
 import SigProfilerAssignment as spa_path
-from PyPDF2 import PdfWriter, PdfReader
+from pypdf import PdfWriter, PdfReader
 
 # imports for saving plots to memory
 import io

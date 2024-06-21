@@ -8,7 +8,7 @@
 import SigProfilerAssignment as spa
 from SigProfilerAssignment import Analyzer as Analyze
 from SigProfilerAssignment.DecompositionPlots import PlotDecomposition as sp
-from PyPDF2 import PdfMerger
+from pypdf import PdfMerger
 import numpy as np
 import pandas as pd
 import time
