@@ -3,6 +3,17 @@ from typing import List
 from SigProfilerAssignment import decomposition as decomp
 
 
+def str2bool(v):
+    if isinstance(v, bool):
+        return v
+    if v.lower() in ("yes", "true", "t", "y", "1"):
+        return True
+    elif v.lower() in ("no", "false", "f", "n", "0"):
+        return False
+    else:
+        raise argparse.ArgumentTypeError("Boolean value expected.")
+
+
 def parse_arguments_common(args: List[str], description: str) -> argparse.Namespace:
     parser = argparse.ArgumentParser(description=description)
 
@@ -43,22 +54,36 @@ def parse_arguments_common(args: List[str], description: str) -> argparse.Namesp
         help="COSMIC version (default: 3.4). Valid options: {1, 2, 3, 3.1, 3.2, 3.3, 3.4}.",
     )
     parser.add_argument(
-        "--make_plots", type=bool, default=True, help="Generate plots (default: True)."
+        "--make_plots",
+        type=str2bool,
+        nargs="?",
+        const=True,
+        default=True,
+        help="Generate plots (default: True).",
     )
     parser.add_argument(
         "--collapse_to_SBS96",
-        type=bool,
+        type=str2bool,
+        nargs="?",
+        const=True,
         default=True,
         help="Collapse to SBS96 (default: True).",
     )
     parser.add_argument(
         "--connected_sigs",
-        type=bool,
+        type=str2bool,
+        nargs="?",
+        const=True,
         default=True,
         help="Connected signatures (default: True).",
     )
     parser.add_argument(
-        "--verbose", type=bool, default=False, help="Verbose output (default: False)."
+        "--verbose",
+        type=str2bool,
+        nargs="?",
+        const=True,
+        default=False,
+        help="Verbose output (default: False).",
     )
     parser.add_argument(
         "--new_signature_thresh_hold",
@@ -73,7 +98,9 @@ def parse_arguments_common(args: List[str], description: str) -> argparse.Namesp
     )
     parser.add_argument(
         "--exome",
-        type=bool,
+        type=str2bool,
+        nargs="?",
+        const=True,
         default=False,
         help="Use exome renormalized COSMIC signatures (default: False).",
     )
@@ -89,13 +116,17 @@ def parse_arguments_common(args: List[str], description: str) -> argparse.Namesp
     )
     parser.add_argument(
         "--export_probabilities",
-        type=bool,
+        type=str2bool,
+        nargs="?",
+        const=True,
         default=True,
         help="Export probabilities matrix per mutational context (default: True).",
     )
     parser.add_argument(
         "--export_probabilities_per_mutation",
-        type=bool,
+        type=str2bool,
+        nargs="?",
+        const=True,
         default=False,
         help="Export probabilities matrices per mutation (default: False).",
     )
