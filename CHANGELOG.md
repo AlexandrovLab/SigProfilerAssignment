@@ -11,12 +11,12 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ### Added
 - Added CLI boolean handling to improve command-line interface usability.
-- Implemented additional checks for `input_type` values to enhance input validation.
 - Added new pytests for CLI to ensure correct handling of booleans.
 - Updated the README to reflect the new pytest additions.
 - Updated CI/CD pipelines to accommodate pytest changes.
 
 ### Changed
 - Improved input_type value check mechanism to use .lower() before checking against values 'vcf' or 'matrix'.
+- Updated dependency from PyPDF2 to pypdf to increase compatibility and resolve installation issues on bioconda.
 
 
