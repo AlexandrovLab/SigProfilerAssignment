@@ -27,11 +27,11 @@ from SigProfilerAssignment.DecompositionPlots import PlotDecomposition as sp
 from sigProfilerPlotting import plotActivity as plot_ac
 from sigProfilerPlotting import tmbplot as tmb
 import string
-import PyPDF2
+import pypdf
 import scipy
 
 # import SigProfilerAssignment as sspro
-from PyPDF2 import PdfMerger
+from pypdf import PdfMerger
 import SigProfilerAssignment as spa
 from SigProfilerAssignment import single_sample as ss
 from scipy.spatial.distance import correlation as cor
@@ -1776,10 +1776,10 @@ def merge_pdf(input_folder, output_file):
             pdf2merge.append(filename)
 
     pdf2merge.sort()
-    pdfWriter = PyPDF2.PdfFileWriter()
+    pdfWriter = pypdf.PdfFileWriter()
     for filename in pdf2merge:
         pdfFileObj = open(input_folder + "/" + filename, "rb")
-        pdfReader = PyPDF2.PdfFileReader(pdfFileObj)
+        pdfReader = pypdf.PdfFileReader(pdfFileObj)
         for pageNum in range(pdfReader.numPages):
             pageObj = pdfReader.getPage(pageNum)
             pdfWriter.addPage(pageObj)

@@ -160,6 +160,15 @@ Analyze.cosmic_fit(samples=spa.__path__[0]+"/data/tests/txt_input/sample_matrix_
 ## <a name="denovo"></a> _De novo_ extraction of mutational signatures downstream analysis
 Additional functionalities for downstream analysis of _de novo_ extraction of mutational signatures are also available as part of SigProfilerAssignment, including assignment of _de novo_ extracted mutational signatures and decomposition of _de novo_ signatures using a known set of signatures. More information can be found on the wiki page at https://osf.io/mz79v/wiki/5.%20Advanced%20mode/.
 
+## <a name="unit_tests"></a> Unit Tests
+Unit tests can be run with the following commands:
+
+```bash
+python setup.py sdist
+pip install .[tests]
+pytest tests
+```
+
 ## <a name="citation"></a> Citation
 
 Díaz-Gay, M., Vangara, R., Barnes, M., ... & Alexandrov, L. B. (2023). Assigning mutational signatures to individual samples and individual somatic mutations with SigProfilerAssignment, Bioinformatics, 2023-07. doi: [https://doi.org/10.1093/bioinformatics/btad756](https://doi.org/10.1093/bioinformatics/btad756)

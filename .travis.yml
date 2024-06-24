@@ -16,9 +16,13 @@ before_install:
   fi
 
 install:
-  - pip install .
+  - pip install .[tests]
 
 before_script:
   - python3 install_genome.py $TRAVIS_BUILD_DIR/src/
 
-script: python3 test.py
+script: 
+  # run unit tests
+  - pytest tests
+  # run integration tests
+  - python3 test.py

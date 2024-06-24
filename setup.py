@@ -6,7 +6,7 @@ import os
 if os.path.exists("dist"):
     shutil.rmtree("dist")
 
-VERSION = "0.1.6"
+VERSION = "0.1.7"
 
 
 def write_version_py(filename="SigProfilerAssignment/version.py"):
@@ -15,7 +15,7 @@ def write_version_py(filename="SigProfilerAssignment/version.py"):
 # THIS FILE IS GENERATED FROM SigProfilerAssignment SETUP.PY
 short_version = '%(version)s'
 version = '%(version)s'
-Update = 'v0.1.6: Add CLI and volume parameter for template files.'
+Update = 'v0.1.7: Update CLI, add pytest, and update pypdf dependency.'
 
     
     """
@@ -42,7 +42,7 @@ requirements = [
     "scikit-learn>=0.24.2",
     "psutil>=5.6.1",
     "reportlab>=3.5.42",
-    "PyPDF2>=3.0.0",
+    "pypdf>=3.1.0",
     "alive_progress>=2.4.1",
     "pdf2image>=1.16.0",
     "PyMuPDF>=1.21.0",
@@ -61,6 +61,11 @@ setup(
     license="UCSD",
     packages=["SigProfilerAssignment"],
     install_requires=requirements,
+    extras_require={
+        "tests": [
+            "pytest",
+        ],
+    },
     include_package_data=True,
     entry_points={
         "console_scripts": [
