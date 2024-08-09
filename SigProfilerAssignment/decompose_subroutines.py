@@ -9,19 +9,12 @@ import string
 import numpy as np
 import os, sys
 
-# from matplot,pdblib.backends.backend_pdf import PdfPages
 import pandas as pd
 import matplotlib.pyplot as plt
 
 plt.switch_backend("agg")
 from matplotlib.backends.backend_pdf import PdfPages
 
-# from sklearn import metrics
-# import time
-# import multiprocessing
-# from multiprocessing import current_process
-# from functools import partial
-# from numpy import linalg as LA
 import sigProfilerPlotting as plot
 from SigProfilerAssignment.DecompositionPlots import PlotDecomposition as sp
 from sigProfilerPlotting import plotActivity as plot_ac
@@ -30,7 +23,6 @@ import string
 import pypdf
 import scipy
 
-# import SigProfilerAssignment as sspro
 from pypdf import PdfMerger
 import SigProfilerAssignment as spa
 from SigProfilerAssignment import single_sample as ss

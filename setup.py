@@ -34,18 +34,14 @@ with open("README.md") as f:
 
 requirements = [
     "scipy>=1.6.3",
-    "numpy>=1.21.2",
+    "numpy>=1.21.2,<2.0.0",
     "pandas>=1.2.4,<2.0.0",
-    "SigProfilerMatrixGenerator>=1.2.17",
-    "sigProfilerPlotting>=1.3.23",
-    "statsmodels>=0.9.0",
-    "scikit-learn>=0.24.2",
-    "psutil>=5.6.1",
+    "SigProfilerMatrixGenerator>=1.2.28",
+    "sigProfilerPlotting>=1.3.24",
     "reportlab>=3.5.42",
     "pypdf>=3.1.0",
     "alive_progress>=2.4.1",
-    "pdf2image>=1.16.0",
-    "PyMuPDF>=1.21.0",
+    "PyMuPDF>=1.21.0",  # required for package "fitz"
 ]
 
 write_version_py()
