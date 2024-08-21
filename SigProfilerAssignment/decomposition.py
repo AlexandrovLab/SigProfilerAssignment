@@ -6,13 +6,10 @@ Created on Sun May 19 12:21:06 2019
 @author: mishugeb
 """
 
-# from SigProfilerExtractor import subroutines as sub
-
 from cmath import cos
 import datetime
 import platform
 
-# from torch import sign
 from SigProfilerAssignment import decompose_subroutines as sub
 from SigProfilerAssignment.DecompositionPlots import PlotDecomposition as plot_decomp
 import SigProfilerAssignment
