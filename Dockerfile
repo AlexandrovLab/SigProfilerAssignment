@@ -13,10 +13,13 @@ RUN apt-get update && apt-get upgrade -y && \
 WORKDIR /usr/src/app
 
 # Clone the specific branch of the repository
-RUN git clone --branch container https://github.com/AlexandrovLab/SigProfilerAssignment.git .
+RUN git clone https://github.com/AlexandrovLab/SigProfilerAssignment.git .
 
 # Install the dependencies from the requirements.txt in the cloned repository
 RUN pip3 install --no-cache-dir -r requirements.txt
+
+# Install the SigProfilerAssignment package from PyPI
+RUN pip3 install SigProfilerAssignment==0.1.8
 
 # Create a non-root user named 'spm_user'
 RUN useradd -m -s /bin/bash spm_user
