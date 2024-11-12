@@ -6,6 +6,14 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ## [Unreleased]
 
+## [0.1.9] - 2024-11-12
+
+### Changed
+- Replaced `PdfMerger` with `PdfWriter` due to deprecation in `pypdf >= 5.0.0`.
+
+### Fixed
+- Addressed deprecation issues with `PdfMerger`, ensuring compatibility with recent `pypdf` versions.
+
 ## [0.1.8] - 2024-08-20
 
 ### Added

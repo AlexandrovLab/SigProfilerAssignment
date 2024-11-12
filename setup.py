@@ -6,7 +6,7 @@ import os
 if os.path.exists("dist"):
     shutil.rmtree("dist")
 
-VERSION = "0.1.8"
+VERSION = "0.1.9"
 
 
 def write_version_py(filename="SigProfilerAssignment/version.py"):
@@ -15,7 +15,7 @@ def write_version_py(filename="SigProfilerAssignment/version.py"):
 # THIS FILE IS GENERATED FROM SigProfilerAssignment SETUP.PY
 short_version = '%(version)s'
 version = '%(version)s'
-Update = 'v0.1.8: Add Dockerfile and remove uncessary dependencies'
+Update = 'v0.1.9: Replace PdfMerger with PdfReader and PdfWriter for pypdf 5.0.0'
 
     
     """
