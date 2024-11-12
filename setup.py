@@ -39,7 +39,7 @@ requirements = [
     "SigProfilerMatrixGenerator>=1.2.28",
     "sigProfilerPlotting>=1.3.24",
     "reportlab>=3.5.42",
-    "pypdf>=3.1.0",
+    "pypdf>=5.0.0",
     "alive_progress>=2.4.1",
     "PyMuPDF>=1.21.0",  # required for package "fitz"
 ]

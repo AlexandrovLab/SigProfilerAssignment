@@ -8,7 +8,7 @@
 import SigProfilerAssignment as spa
 from SigProfilerAssignment import Analyzer as Analyze
 from SigProfilerAssignment.DecompositionPlots import PlotDecomposition as sp
-from pypdf import PdfMerger
+from pypdf import PdfWriter, PdfReader
 import numpy as np
 import pandas as pd
 import time
@@ -282,7 +282,7 @@ def denovo_fit_vcf_test():
 def gen_SBS96():
     np.random.seed(1234567)
     s = time.time()
-    merger = PdfMerger()
+    merger = PdfWriter()
     file1 = "SigProfilerAssignment/DecompositionPlots/ExampleSample/De_Novo_Solution_Signatures_SBS96.txt"
     file2 = "SigProfilerAssignment/DecompositionPlots/ExampleSample/Decomposed_Solution_Signatures_SBS96.txt"
     denovo_mtx = pd.read_csv(file1, sep="\t")
@@ -309,7 +309,10 @@ def gen_SBS96():
         project,
         mtype,
     )
-    merger.append(result)
+    result.seek(0)
+    reader = PdfReader(result)
+    for page in reader.pages:
+        merger.add_page(page)
 
     for ind in range(5, 0, -1):
         basis_names = basis_names[:ind]
@@ -329,7 +332,10 @@ def gen_SBS96():
             project,
             mtype,
         )
-        merger.append(result)
+        result.seek(0)
+        reader = PdfReader(result)
+        for page in reader.pages:
+            merger.add_page(page)
 
     merger.write(os.path.join(output_path, "Result_Decomposition_Plots_SBS96.pdf"))
     return time.time() - s
@@ -338,7 +344,7 @@ def gen_SBS96():
 def gen_SBS1536():
     np.random.seed(1234567)
     s = time.time()
-    merger = PdfMerger()
+    merger = PdfWriter()
     file1 = "SigProfilerAssignment/DecompositionPlots/ExampleSample/De_Novo_Solution_Signatures_SBS1536.txt"
     file2 = "SigProfilerAssignment/DecompositionPlots/ExampleSample/Decomposed_Solution_Signatures_SBS1536.txt"
     denovo_mtx = pd.read_csv(file1, sep="\t")
@@ -366,7 +372,10 @@ def gen_SBS1536():
         mtype,
     )
     # sp.run_PlotDecomposition(denovo_mtx, basis_names, weights, output_path, project, mtype, True, statistics, "COSMICv3-GRCh37", "This is where a custom message would go.")
-    merger.append(result)
+    result.seek(0)
+    reader = PdfReader(result)
+    for page in reader.pages:
+        merger.add_page(page)
 
     for ind in range(5, 0, -1):
         basis_names = basis_names[:ind]
@@ -386,7 +395,10 @@ def gen_SBS1536():
             project,
             mtype,
         )
-        merger.append(result)
+        result.seek(0)
+        reader = PdfReader(result)
+        for page in reader.pages:
+            merger.add_page(page)
 
     merger.write(os.path.join(output_path, "Result_Decomposition_Plots_SBS1536.pdf"))
     return time.time() - s
@@ -395,7 +407,7 @@ def gen_SBS1536():
 def gen_SBS288():
     np.random.seed(1234567)
     s = time.time()
-    merger = PdfMerger()
+    merger = PdfWriter()
     file1 = "SigProfilerAssignment/DecompositionPlots/ExampleSample/De_Novo_Solution_Signatures_SBS288.txt"
     file2 = "SigProfilerAssignment/DecompositionPlots/ExampleSample/COSMIC_SBS288_Signatures.txt"
     denovo_mtx = pd.read_csv(file1, sep="\t")
@@ -422,7 +434,10 @@ def gen_SBS288():
         project,
         mtype,
     )
-    merger.append(result)
+    result.seek(0)
+    reader = PdfReader(result)
+    for page in reader.pages:
+        merger.add_page(page)
 
     for ind in range(5, 0, -1):
         basis_names = basis_names[:ind]
@@ -442,7 +457,10 @@ def gen_SBS288():
             project,
             mtype,
         )
-        merger.append(result)
+        result.seek(0)
+        reader = PdfReader(result)
+        for page in reader.pages:
+            merger.add_page(page)
 
     merger.write(os.path.join(output_path, "Result_Decomposition_Plots_SBS288.pdf"))
     return time.time() - s
@@ -451,7 +469,7 @@ def gen_SBS288():
 def gen_ID83():
     np.random.seed(1234567)
     s = time.time()
-    merger = PdfMerger()
+    merger = PdfWriter()
     file1 = "SigProfilerAssignment/DecompositionPlots/ExampleSample/De_Novo_Solution_Signatures_INDEL.txt"
     file2 = "SigProfilerAssignment/DecompositionPlots/ExampleSample/COSMIC_ID83_Signatures.txt"
     denovo_mtx = pd.read_csv(file1, sep="\t")
@@ -478,7 +496,10 @@ def gen_ID83():
         project,
         mtype,
     )
-    merger.append(result)
+    result.seek(0)
+    reader = PdfReader(result)
+    for page in reader.pages:
+        merger.add_page(page)
 
     for ind in range(5, 0, -1):
         basis_names = basis_names[:ind]
@@ -498,7 +519,10 @@ def gen_ID83():
             project,
             mtype,
         )
-        merger.append(result)
+        result.seek(0)
+        reader = PdfReader(result)
+        for page in reader.pages:
+            merger.add_page(page)
 
     merger.write(os.path.join(output_path, "Result_Decomposition_Plots_ID83.pdf"))
     return time.time() - s
@@ -507,7 +531,7 @@ def gen_ID83():
 def gen_DBS78():
     np.random.seed(1234567)
     s = time.time()
-    merger = PdfMerger()
+    merger = PdfWriter()
     file1 = "SigProfilerAssignment/DecompositionPlots/ExampleSample/De_Novo_Solution_Signatures_DINUC.txt"
     file2 = "SigProfilerAssignment/DecompositionPlots/ExampleSample/COSMIC_DBS78_Signatures.txt"
     denovo_mtx = pd.read_csv(file1, sep="\t")
@@ -534,7 +558,10 @@ def gen_DBS78():
         project,
         mtype,
     )
-    merger.append(result)
+    result.seek(0)
+    reader = PdfReader(result)
+    for page in reader.pages:
+        merger.add_page(page)
 
     for ind in range(5, 0, -1):
         basis_names = basis_names[:ind]
@@ -554,7 +581,10 @@ def gen_DBS78():
             project,
             mtype,
         )
-        merger.append(result)
+        result.seek(0)
+        reader = PdfReader(result)
+        for page in reader.pages:
+            merger.add_page(page)
 
     merger.write(os.path.join(output_path, "Result_Decomposition_Plots_DBS78.pdf"))
     return time.time() - s
@@ -563,7 +593,7 @@ def gen_DBS78():
 def gen_CNV48():
     np.random.seed(1234567)
     s = time.time()
-    merger = PdfMerger()
+    merger = PdfWriter()
     file1 = "SigProfilerAssignment/DecompositionPlots/ExampleSample/CNV48_De-Novo_Signatures.txt"
     file2 = "SigProfilerAssignment/DecompositionPlots/ExampleSample/COSMIC_CNV48_Signatures.txt"
     denovo_mtx = pd.read_csv(file1, sep="\t")
@@ -592,7 +622,10 @@ def gen_CNV48():
         mtype,
     )
     # sp.run_PlotDecomposition(denovo_mtx, basis_names, weights, output_path, project, mtype, True, statistics, "COSMICv3-GRCh37", "This is where a custom message would go.")
-    merger.append(result)
+    result.seek(0)
+    reader = PdfReader(result)
+    for page in reader.pages:
+        merger.add_page(page)
 
     for ind in range(5, 0, -1):
         basis_names = basis_names[:ind]
@@ -612,7 +645,10 @@ def gen_CNV48():
             project,
             mtype,
         )
-        merger.append(result)
+        result.seek(0)
+        reader = PdfReader(result)
+        for page in reader.pages:
+            merger.add_page(page)
 
     merger.write(os.path.join(output_path, "Result_Decomposition_Plots_CNV48.pdf"))
     return time.time() - s
@@ -621,7 +657,7 @@ def gen_CNV48():
 def gen_SV32():
     np.random.seed(1234567)
     s = time.time()
-    merger = PdfMerger()
+    merger = PdfWriter()
     file1 = "SigProfilerAssignment/DecompositionPlots/ExampleSample/SV32_De-Novo_Signatures.txt"
     file2 = "SigProfilerAssignment/DecompositionPlots/ExampleSample/COSMIC_SV32_Signatures.txt"
     denovo_mtx = pd.read_csv(file1, sep="\t")
@@ -649,7 +685,10 @@ def gen_SV32():
         mtype,
     )
     # sp.run_PlotDecomposition(denovo_mtx, basis_names, weights, output_path, project, mtype, True, statistics, "COSMICv3-GRCh37", "This is where a custom message would go.")
-    merger.append(result)
+    result.seek(0)
+    reader = PdfReader(result)
+    for page in reader.pages:
+        merger.add_page(page)
 
     for ind in range(5, 0, -1):
         basis_names = basis_names[:ind]
@@ -669,7 +708,10 @@ def gen_SV32():
             project,
             mtype,
         )
-        merger.append(result)
+        result.seek(0)
+        reader = PdfReader(result)
+        for page in reader.pages:
+            merger.add_page(page)
 
     merger.write(os.path.join(output_path, "Result_Decomposition_Plots_SV32.pdf"))
     return time.time() - s
