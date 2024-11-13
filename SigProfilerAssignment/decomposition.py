@@ -24,7 +24,7 @@ from SigProfilerMatrixGenerator.scripts import CNVMatrixGenerator as scna
 from sigProfilerPlotting import sigProfilerPlotting as sigPlot
 import sigProfilerPlotting
 import os, sys
-from pypdf import PdfMerger
+from pypdf import PdfWriter, PdfReader
 import fitz
 import time
 from pathlib import Path
@@ -93,7 +93,7 @@ def generate_sample_reconstruction(
     project = "test_run"
     mtype = "96"
 
-    final_pdf = PdfMerger()
+    final_pdf = PdfWriter()
     samples = samples_input.copy(deep=True)
     samples.reset_index(inplace=True)
     for sample_name in samples.columns[1:]:
@@ -133,7 +133,11 @@ def generate_sample_reconstruction(
             exome=execution_parameters["exome"],
             volume=get_storage_dir(execution_parameters["volume"]),
         )
-        final_pdf.append(result)
+
+        result.seek(0)
+        reader = PdfReader(result)
+        for page in reader.pages:
+            final_pdf.add_page(page)
 
     pdf_output_path = os.path.join(
         output_dir, "Reconstructed_Sample_Plots_" + str(mtype) + ".pdf"

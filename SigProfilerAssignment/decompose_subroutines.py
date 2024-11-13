@@ -23,7 +23,7 @@ import string
 import pypdf
 import scipy
 
-from pypdf import PdfMerger
+from pypdf import PdfWriter, PdfReader
 import SigProfilerAssignment as spa
 from SigProfilerAssignment import single_sample as ss
 from scipy.spatial.distance import correlation as cor
@@ -410,7 +410,7 @@ def signature_decomposition(
     )
     # lognote.write("\n********** Starting Signature Decomposition **********\n\n")
     activity_percentages = []
-    merger = PdfMerger()
+    merger = PdfWriter()
 
     for i, j in zip(range(signatures.shape[1]), denovo_signature_names):
         # Only for context SBS96
@@ -606,7 +606,12 @@ def signature_decomposition(
                 exome=exome,
                 volume=volume,
             )
-            merger.append(byte_plot)
+
+            byte_plot.seek(0)
+            reader = PdfReader(byte_plot)
+            for page in reader.pages:
+                merger.add_page(page)
+
             with alive_bar(
                 1, ctrl_c=False, bar="blocks", title=f"Decompositon Plot:{denovo_name}"
             ) as bar:
