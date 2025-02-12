@@ -103,7 +103,7 @@ def generate_sample_reconstruction(
         basis_names = (
             subset[subset["Samples"].str.contains(sample_name)].columns[1:].tolist()
         )
-        recon_tmb = subset.sum(axis=1)
+        recon_tmb = subset.select_dtypes(include=['number']).sum(axis=1)
         weights = []
         for i in range(len(basis_names)):
             weights.append(

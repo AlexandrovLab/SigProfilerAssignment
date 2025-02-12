@@ -279,18 +279,18 @@ def calculate_similarities(denovo, denovo_name, est_denovo):
 
     # If matrix is 1536 context, then collapse it to 96 format
     if denovo.shape[0] == 1536:
-        index = denovo.iloc[:, 0]
-        denovo_tmp = pd.DataFrame(denovo, index=index)
-        denovo_tmp = denovo.groupby(denovo_tmp.index.str[1:8]).sum()
-        denovo = pd.DataFrame(denovo_tmp)
-        denovo = denovo.reset_index()
-    elif denovo.shape[0] == 288:
-        index = denovo.iloc[:, 0]
-        denovo_tmp = pd.DataFrame(denovo, index=index)
-        denovo_tmp = denovo.groupby(denovo_tmp.index.str[2:9]).sum()
-        denovo = pd.DataFrame(denovo_tmp)
-        denovo = denovo.reset_index()
+        denovo["IndexKey"] = denovo.iloc[:, 0].astype(str)
+        denovo["GroupKey"] = denovo["IndexKey"].str[1:8]
+        denovo_grouped = denovo.groupby("GroupKey", as_index=False).sum(numeric_only=True)
+        denovo_grouped.rename(columns={"GroupKey": "MutationType"}, inplace=True)
+        denovo = denovo_grouped.reset_index(drop=True)
 
+    elif denovo.shape[0] == 288:
+        denovo["MutationType"] = denovo["MutationType"].astype(str)  # Ensure strings
+        denovo["GroupKey"] = denovo["MutationType"].str[2:9]  # Extract substring for grouping
+        denovo_grouped = denovo.groupby("GroupKey", as_index=False).sum(numeric_only=True)
+        denovo_grouped.rename(columns={"GroupKey": "MutationType"}, inplace=True)
+        denovo = denovo_grouped.reset_index(drop=True) # updated pandas 2.0.0
     sample_names = [denovo_name]
 
     if sample_names is False:
