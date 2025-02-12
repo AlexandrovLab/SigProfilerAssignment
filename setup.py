@@ -6,7 +6,7 @@ import os
 if os.path.exists("dist"):
     shutil.rmtree("dist")
 
-VERSION = "0.1.9"
+VERSION = "0.2.0"
 
 
 def write_version_py(filename="SigProfilerAssignment/version.py"):
@@ -15,7 +15,7 @@ def write_version_py(filename="SigProfilerAssignment/version.py"):
 # THIS FILE IS GENERATED FROM SigProfilerAssignment SETUP.PY
 short_version = '%(version)s'
 version = '%(version)s'
-Update = 'v0.1.9: Replace PdfMerger with PdfReader and PdfWriter for pypdf 5.0.0'
+Update = 'v0.2.0: Require Pandas and Numpy >= 2.0.0 and Python >= 3.9'
 
     
     """
@@ -33,11 +33,11 @@ with open("README.md") as f:
     long_description = f.read()
 
 requirements = [
-    "scipy>=1.6.3",
-    "numpy>=1.21.2,<2.0.0",
-    "pandas>=1.2.4,<2.0.0",
-    "SigProfilerMatrixGenerator>=1.2.28",
-    "sigProfilerPlotting>=1.3.24",
+    "scipy>=1.13",
+    "numpy>=2.0.0",
+    "pandas>=2.0.0",
+    "SigProfilerMatrixGenerator>=1.3.0",
+    "sigProfilerPlotting>=1.4.0",
     "reportlab>=3.5.42",
     "pypdf>=5.0.0",
     "alive_progress>=2.4.1",
@@ -57,6 +57,7 @@ setup(
     license="UCSD",
     packages=["SigProfilerAssignment"],
     install_requires=requirements,
+    python_requires=">=3.9",
     extras_require={
         "tests": [
             "pytest",
