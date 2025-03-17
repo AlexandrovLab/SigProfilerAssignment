@@ -29,6 +29,10 @@ from SigProfilerAssignment import single_sample as ss
 from scipy.spatial.distance import correlation as cor
 from alive_progress import alive_bar
 
+from joblib import Parallel, delayed, cpu_count
+from tqdm import tqdm
+import threading
+
 
 def getProcessAvg(
     samples,
@@ -760,6 +764,7 @@ def make_final_solution(
     denovo_refit_option=True,
     exome=False,
     volume=None,
+    num_cores = -1
 ):
     if processAvg.shape[0] == allgenomes.shape[0] and processAvg.shape[0] != 96:
         collapse_to_SBS96 = False
@@ -824,243 +829,259 @@ def make_final_solution(
     exposureAvg = np.zeros([processAvg.shape[1], allgenomes.shape[1]])
     if cosmic_sigs == True:
         denovo_exposureAvg = denovo_exposureAvg.T
-        with alive_bar(allgenomes.shape[1]) as bar:
-            # print("\n")
-            for r in range(allgenomes.shape[1]):
-                # print("Analyzing Sample => " , str(r+1))
-                bar()
-                if verbose == True:
-                    print(
-                        "\n\n\n\n\n                                        ################ Sample "
-                        + str(r + 1)
-                        + " #################"
-                    )
 
-                # Record information to lognote
-                lognote = open(
-                    layer_directory
-                    + "/Solution_Stats/"
-                    + solution_prefix
-                    + "_Signature_Assignment_log.txt",
-                    "a",
-                )
-                lognote.write(
-                    "\n\n\n\n\n                    ################ Sample "
-                    + str(r + 1)
-                    + " #################\n"
-                )
+        # num_cores = num_cores  # Use all available CPU cores
+        num_cores_display = cpu_count() if num_cores == -1 else num_cores
+        results = Parallel(n_jobs=num_cores)(
+            delayed(_process_sample_cosmic)(
+                r, denovo_exposureAvg, exposureAvg.copy(), processAvg, allgenomes, allsigids,
+                attribution, background_sigs, add_penalty, remove_penalty, initial_remove_penalty,
+                check_rule_negatives, check_rule_penalty, connected_sigs, pcawg_rule,
+                layer_directory, solution_prefix, verbose
+            )
+            for r in tqdm(range(allgenomes.shape[1]), desc=f"Processing Samples in Parallel ({num_cores_display} cores)")
+        )
 
-                sample_exposure = np.array(denovo_exposureAvg.iloc[:, r])
+        # Aggregate results while preserving order
+        exposureAvg = np.array(results).T
+        # denovo_exposureAvg = denovo_exposureAvg.T
+        # with alive_bar(allgenomes.shape[1]) as bar:
+        #     # print("\n")
+        #     for r in range(allgenomes.shape[1]):
+        #         # print("Analyzing Sample => " , str(r+1))
+        #         bar()
+        #         if verbose == True:
+        #             print(
+        #                 "\n\n\n\n\n                                        ################ Sample "
+        #                 + str(r + 1)
+        #                 + " #################"
+        #             )
 
-                init_sig_idx = np.nonzero(sample_exposure)[0]
-                init_sigs = denovo_exposureAvg.index[init_sig_idx]
+        #         # Record information to lognote
+        #         lognote = open(
+        #             layer_directory
+        #             + "/Solution_Stats/"
+        #             + solution_prefix
+        #             + "_Signature_Assignment_log.txt",
+        #             "a",
+        #         )
+        #         lognote.write(
+        #             "\n\n\n\n\n                    ################ Sample "
+        #             + str(r + 1)
+        #             + " #################\n"
+        #         )
 
-                init_decomposed_sigs = []
-                for de_novo_sig in init_sigs:
-                    init_decomposed_sigs = union(
-                        init_decomposed_sigs, list(attribution[de_novo_sig])
-                    )
+        #         sample_exposure = np.array(denovo_exposureAvg.iloc[:, r])
 
-                # print(init_decomposed_sigs)
-                init_decomposed_sigs_idx = get_indeces(allsigids, init_decomposed_sigs)
-                init_decomposed_sigs_idx.sort()
-                init_decomposed_sigs_idx = list(
-                    set().union(init_decomposed_sigs_idx, background_sigs)
-                )
-                # print(init_decomposed_sigs_idx)
+        #         init_sig_idx = np.nonzero(sample_exposure)[0]
+        #         init_sigs = denovo_exposureAvg.index[init_sig_idx]
 
-                # get the indices of the background sigs in the initial signatures
-                background_sig_idx = get_indeces(
-                    init_decomposed_sigs_idx, background_sigs
-                )
+        #         init_decomposed_sigs = []
+        #         for de_novo_sig in init_sigs:
+        #             init_decomposed_sigs = union(
+        #                 init_decomposed_sigs, list(attribution[de_novo_sig])
+        #             )
 
-                fit_signatures = processAvg[:, init_decomposed_sigs_idx]
-                # fit signatures
-                newExposure, newSimilarity = ss.fit_signatures(
-                    fit_signatures, allgenomes[:, r]
-                )
+        #         # print(init_decomposed_sigs)
+        #         init_decomposed_sigs_idx = get_indeces(allsigids, init_decomposed_sigs)
+        #         init_decomposed_sigs_idx.sort()
+        #         init_decomposed_sigs_idx = list(
+        #             set().union(init_decomposed_sigs_idx, background_sigs)
+        #         )
+        #         # print(init_decomposed_sigs_idx)
 
-                # create the exposureAvg vector
-                # print(init_decomposed_sigs_idx)
-                # print(newExposure)
-                for nonzero_idx, nozero_exp in zip(
-                    init_decomposed_sigs_idx, newExposure
-                ):
-                    exposureAvg[nonzero_idx, r] = nozero_exp
+        #         # get the indices of the background sigs in the initial signatures
+        #         background_sig_idx = get_indeces(
+        #             init_decomposed_sigs_idx, background_sigs
+        #         )
 
-                if pcawg_rule == True:
-                    maxmutation = np.sum(allgenomes[:, r])
-                    (
-                        exposureAvg[:, r],
-                        remove_distance,
-                        _,
-                    ) = ss.remove_all_single_signatures(
-                        processAvg,
-                        exposureAvg[:, r],
-                        allgenomes[:, r],
-                        metric="l2",
-                        verbose=False,
-                        cutoff=0.02,
-                    )
-                    # get the maximum value of the new Exposure
-                    maxcoef = max(list(exposureAvg[:, r]))
-                    idxmaxcoef = list(exposureAvg[:, r]).index(maxcoef)
+        #         fit_signatures = processAvg[:, init_decomposed_sigs_idx]
+        #         # fit signatures
+        #         newExposure, newSimilarity = ss.fit_signatures(
+        #             fit_signatures, allgenomes[:, r]
+        #         )
 
-                    exposureAvg[:, r] = np.round(exposureAvg[:, r])
+        #         # create the exposureAvg vector
+        #         # print(init_decomposed_sigs_idx)
+        #         # print(newExposure)
+        #         for nonzero_idx, nozero_exp in zip(
+        #             init_decomposed_sigs_idx, newExposure
+        #         ):
+        #             exposureAvg[nonzero_idx, r] = nozero_exp
 
-                    # We may need to tweak the maximum value of the new exposure to keep the total number of mutation equal to the original mutations in a genome
-                    if np.sum(exposureAvg[:, r]) != maxmutation:
-                        exposureAvg[:, r][idxmaxcoef] = (
-                            round(exposureAvg[:, r][idxmaxcoef])
-                            + maxmutation
-                            - sum(exposureAvg[:, r])
-                        )
-                    # print(exposureAvg[:, r])
-                    # print("\n")
+        #         if pcawg_rule == True:
+        #             maxmutation = np.sum(allgenomes[:, r])
+        #             (
+        #                 exposureAvg[:, r],
+        #                 remove_distance,
+        #                 _,
+        #             ) = ss.remove_all_single_signatures(
+        #                 processAvg,
+        #                 exposureAvg[:, r],
+        #                 allgenomes[:, r],
+        #                 metric="l2",
+        #                 verbose=False,
+        #                 cutoff=0.02,
+        #             )
+        #             # get the maximum value of the new Exposure
+        #             maxcoef = max(list(exposureAvg[:, r]))
+        #             idxmaxcoef = list(exposureAvg[:, r]).index(maxcoef)
 
-                else:
-                    if verbose == True:
-                        print(
-                            "############################# Initial Composition #################################### "
-                        )
-                        print(pd.DataFrame(exposureAvg[:, r], index=allsigids).T)
-                        print("L2%: ", newSimilarity)
+        #             exposureAvg[:, r] = np.round(exposureAvg[:, r])
 
-                    lognote.write(
-                        "############################# Initial Composition ####################################\n"
-                    )
-                    exposures = pd.DataFrame(exposureAvg[:, r], index=allsigids).T
-                    lognote.write(
-                        "{}\n".format(
-                            exposures.iloc[:, exposures.to_numpy().nonzero()[1]]
-                        )
-                    )
-                    lognote.write(
-                        "L2 Error %: {}\nCosine Similarity: {}\n".format(
-                            round(newSimilarity, 2),
-                            round(
-                                cos_sim(
-                                    allgenomes[:, r],
-                                    np.dot(processAvg, exposureAvg[:, r]),
-                                ),
-                                2,
-                            ),
-                        )
-                    )
-                    # remove signatures
-                    (
-                        exposureAvg[:, r],
-                        L2dist,
-                        cosine_sim,
-                    ) = ss.remove_all_single_signatures(
-                        processAvg,
-                        exposureAvg[:, r],
-                        allgenomes[:, r],
-                        metric="l2",
-                        solver="nnls",
-                        cutoff=initial_remove_penalty,
-                        background_sigs=[],
-                        verbose=False,
-                    )
-                    if verbose == True:
-                        print(
-                            "############################## Composition After Initial Remove ############################### "
-                        )
-                        print(pd.DataFrame(exposureAvg[:, r], index=allsigids).T)
-                        print("L2%: ", L2dist)
-                    lognote.write(
-                        "############################## Composition After Initial Remove ###############################\n"
-                    )
-                    exposures = pd.DataFrame(exposureAvg[:, r], index=allsigids).T
-                    lognote.write(
-                        "{}\n".format(
-                            exposures.iloc[:, exposures.to_numpy().nonzero()[1]]
-                        )
-                    )
-                    lognote.write(
-                        "L2 Error %: {}\nCosine Similarity: {}\n".format(
-                            round(L2dist, 2), round(cosine_sim, 2)
-                        )
-                    )
-                    lognote.write(
-                        "\n############################## Performing Add-Remove Step ##############################\n"
-                    )
-                    # Close the Lognote file
-                    lognote.close()
+        #             # We may need to tweak the maximum value of the new exposure to keep the total number of mutation equal to the original mutations in a genome
+        #             if np.sum(exposureAvg[:, r]) != maxmutation:
+        #                 exposureAvg[:, r][idxmaxcoef] = (
+        #                     round(exposureAvg[:, r][idxmaxcoef])
+        #                     + maxmutation
+        #                     - sum(exposureAvg[:, r])
+        #                 )
+        #             # print(exposureAvg[:, r])
+        #             # print("\n")
 
-                    init_add_sig_idx = list(
-                        set().union(
-                            list(np.nonzero(exposureAvg[:, r])[0]), background_sigs
-                        )
-                    )
-                    # print(init_add_sig_idx)
+        #         else:
+        #             if verbose == True:
+        #                 print(
+        #                     "############################# Initial Composition #################################### "
+        #                 )
+        #                 print(pd.DataFrame(exposureAvg[:, r], index=allsigids).T)
+        #                 print("L2%: ", newSimilarity)
 
-                    # get the background_sig_idx for the add_remove function only for the decomposed solution:
-                    if background_sigs != 0:  # in the decomposed solution only
-                        background_sig_idx = get_indeces(allsigids, ["SBS1", "SBS5"])
+        #             lognote.write(
+        #                 "############################# Initial Composition ####################################\n"
+        #             )
+        #             exposures = pd.DataFrame(exposureAvg[:, r], index=allsigids).T
+        #             lognote.write(
+        #                 "{}\n".format(
+        #                     exposures.iloc[:, exposures.to_numpy().nonzero()[1]]
+        #                 )
+        #             )
+        #             lognote.write(
+        #                 "L2 Error %: {}\nCosine Similarity: {}\n".format(
+        #                     round(newSimilarity, 2),
+        #                     round(
+        #                         cos_sim(
+        #                             allgenomes[:, r],
+        #                             np.dot(processAvg, exposureAvg[:, r]),
+        #                         ),
+        #                         2,
+        #                     ),
+        #                 )
+        #             )
+        #             # remove signatures
+        #             (
+        #                 exposureAvg[:, r],
+        #                 L2dist,
+        #                 cosine_sim,
+        #             ) = ss.remove_all_single_signatures(
+        #                 processAvg,
+        #                 exposureAvg[:, r],
+        #                 allgenomes[:, r],
+        #                 metric="l2",
+        #                 solver="nnls",
+        #                 cutoff=initial_remove_penalty,
+        #                 background_sigs=[],
+        #                 verbose=False,
+        #             )
+        #             if verbose == True:
+        #                 print(
+        #                     "############################## Composition After Initial Remove ############################### "
+        #                 )
+        #                 print(pd.DataFrame(exposureAvg[:, r], index=allsigids).T)
+        #                 print("L2%: ", L2dist)
+        #             lognote.write(
+        #                 "############################## Composition After Initial Remove ###############################\n"
+        #             )
+        #             exposures = pd.DataFrame(exposureAvg[:, r], index=allsigids).T
+        #             lognote.write(
+        #                 "{}\n".format(
+        #                     exposures.iloc[:, exposures.to_numpy().nonzero()[1]]
+        #                 )
+        #             )
+        #             lognote.write(
+        #                 "L2 Error %: {}\nCosine Similarity: {}\n".format(
+        #                     round(L2dist, 2), round(cosine_sim, 2)
+        #                 )
+        #             )
+        #             lognote.write(
+        #                 "\n############################## Performing Add-Remove Step ##############################\n"
+        #             )
+        #             # Close the Lognote file
+        #             lognote.close()
 
-                    # if the there is no other signatures to be added on top the existing signatures
-                    try:
-                        (
-                            _,
-                            exposureAvg[:, r],
-                            L2dist,
-                            similarity,
-                            kldiv,
-                            correlation,
-                            cosine_similarity_with_four_signatures,
-                        ) = ss.add_remove_signatures(
-                            processAvg,
-                            allgenomes[:, r],
-                            metric="l2",
-                            solver="nnls",
-                            background_sigs=init_add_sig_idx,
-                            permanent_sigs=background_sig_idx,
-                            candidate_sigs="all",
-                            allsigids=allsigids,
-                            add_penalty=add_penalty,
-                            remove_penalty=remove_penalty,
-                            check_rule_negatives=check_rule_negatives,
-                            checkrule_penalty=check_rule_penalty,
-                            connected_sigs=connected_sigs,
-                            directory=layer_directory
-                            + "/Solution_Stats/"
-                            + solution_prefix
-                            + "_Signature_Assignment_log.txt",
-                            verbose=False,
-                        )
+        #             init_add_sig_idx = list(
+        #                 set().union(
+        #                     list(np.nonzero(exposureAvg[:, r])[0]), background_sigs
+        #                 )
+        #             )
+        #             # print(init_add_sig_idx)
 
-                        if verbose == True:
-                            print(
-                                "####################################### Composition After Add-Remove #######################################\n"
-                            )
-                            print(exposureAvg[:, r])
-                            print("L2%: ", L2dist)
-                        # Recond the information in the log file
-                        lognote = open(
-                            layer_directory
-                            + "/Solution_Stats/"
-                            + solution_prefix
-                            + "_Signature_Assignment_log.txt",
-                            "a",
-                        )
-                        lognote.write(
-                            "####################################### Composition After Add-Remove #######################################\n"
-                        )
-                        exposures = pd.DataFrame(exposureAvg[:, r], index=allsigids).T
-                        lognote.write(
-                            "{}\n".format(
-                                exposures.iloc[:, exposures.to_numpy().nonzero()[1]]
-                            )
-                        )
-                        lognote.write(
-                            "L2 Error %: {}\nCosine Similarity: {}\n".format(
-                                round(L2dist, 2), round(similarity, 2)
-                            )
-                        )
-                        lognote.close()
-                    except:
-                        pass
+        #             # get the background_sig_idx for the add_remove function only for the decomposed solution:
+        #             if background_sigs != 0:  # in the decomposed solution only
+        #                 background_sig_idx = get_indeces(allsigids, ["SBS1", "SBS5"])
+
+        #             # if the there is no other signatures to be added on top the existing signatures
+        #             try:
+        #                 (
+        #                     _,
+        #                     exposureAvg[:, r],
+        #                     L2dist,
+        #                     similarity,
+        #                     kldiv,
+        #                     correlation,
+        #                     cosine_similarity_with_four_signatures,
+        #                 ) = ss.add_remove_signatures(
+        #                     processAvg,
+        #                     allgenomes[:, r],
+        #                     metric="l2",
+        #                     solver="nnls",
+        #                     background_sigs=init_add_sig_idx,
+        #                     permanent_sigs=background_sig_idx,
+        #                     candidate_sigs="all",
+        #                     allsigids=allsigids,
+        #                     add_penalty=add_penalty,
+        #                     remove_penalty=remove_penalty,
+        #                     check_rule_negatives=check_rule_negatives,
+        #                     checkrule_penalty=check_rule_penalty,
+        #                     connected_sigs=connected_sigs,
+        #                     directory=layer_directory
+        #                     + "/Solution_Stats/"
+        #                     + solution_prefix
+        #                     + "_Signature_Assignment_log.txt",
+        #                     verbose=False,
+        #                 )
+
+        #                 if verbose == True:
+        #                     print(
+        #                         "####################################### Composition After Add-Remove #######################################\n"
+        #                     )
+        #                     print(exposureAvg[:, r])
+        #                     print("L2%: ", L2dist)
+        #                 # Recond the information in the log file
+        #                 lognote = open(
+        #                     layer_directory
+        #                     + "/Solution_Stats/"
+        #                     + solution_prefix
+        #                     + "_Signature_Assignment_log.txt",
+        #                     "a",
+        #                 )
+        #                 lognote.write(
+        #                     "####################################### Composition After Add-Remove #######################################\n"
+        #                 )
+        #                 exposures = pd.DataFrame(exposureAvg[:, r], index=allsigids).T
+        #                 lognote.write(
+        #                     "{}\n".format(
+        #                         exposures.iloc[:, exposures.to_numpy().nonzero()[1]]
+        #                     )
+        #                 )
+        #                 lognote.write(
+        #                     "L2 Error %: {}\nCosine Similarity: {}\n".format(
+        #                         round(L2dist, 2), round(similarity, 2)
+        #                     )
+        #                 )
+        #                 lognote.close()
+        #             except:
+        #                 pass
 
     else:
         # when refilt de_novo_signatures
@@ -1785,3 +1806,138 @@ def merge_pdf(input_folder, output_file):
     pdfWriter.write(pdfOutput)
     # Outputting the PDF
     pdfOutput.close()
+
+
+
+
+def _process_sample_cosmic(
+    r, denovo_exposureAvg, exposureAvg, processAvg, allgenomes, allsigids,
+    attribution, background_sigs, add_penalty, remove_penalty, initial_remove_penalty,
+    check_rule_negatives, check_rule_penalty, connected_sigs, pcawg_rule,
+    layer_directory, solution_prefix, verbose
+):
+    """Helper function to process a single sample in parallel."""
+
+    log_file = (
+        layer_directory
+        + "/Solution_Stats/"
+        + solution_prefix
+        + "_Signature_Assignment_log.txt"
+    )
+    
+    log_content = []
+    log_content.append(
+        f"\n\n\n\n\n################ Sample {r + 1} #################\n"
+    )
+
+    sample_exposure = np.array(denovo_exposureAvg.iloc[:, r])
+
+    init_sig_idx = np.nonzero(sample_exposure)[0]
+    init_sigs = denovo_exposureAvg.index[init_sig_idx]
+
+    init_decomposed_sigs = []
+    for de_novo_sig in init_sigs:
+        init_decomposed_sigs = union(init_decomposed_sigs, list(attribution[de_novo_sig]))
+
+    init_decomposed_sigs_idx = get_indeces(allsigids, init_decomposed_sigs)
+    init_decomposed_sigs_idx.sort()
+    init_decomposed_sigs_idx = list(set().union(init_decomposed_sigs_idx, background_sigs))
+
+    # Get background sig indices
+    background_sig_idx = get_indeces(init_decomposed_sigs_idx, background_sigs)
+
+    # Fit signatures
+    fit_signatures = processAvg[:, init_decomposed_sigs_idx]
+    newExposure, newSimilarity = ss.fit_signatures(fit_signatures, allgenomes[:, r])
+
+    # Update exposureAvg
+    for nonzero_idx, nozero_exp in zip(init_decomposed_sigs_idx, newExposure):
+        exposureAvg[nonzero_idx, r] = nozero_exp
+
+    # PCAWG Rule Handling
+    if pcawg_rule:
+        maxmutation = np.sum(allgenomes[:, r])
+        exposureAvg[:, r], remove_distance, _ = ss.remove_all_single_signatures(
+            processAvg,
+            exposureAvg[:, r],
+            allgenomes[:, r],
+            metric="l2",
+            verbose=False,
+            cutoff=0.02,
+        )
+
+        maxcoef = max(list(exposureAvg[:, r]))
+        idxmaxcoef = list(exposureAvg[:, r]).index(maxcoef)
+        exposureAvg[:, r] = np.round(exposureAvg[:, r])
+
+        if np.sum(exposureAvg[:, r]) != maxmutation:
+            exposureAvg[:, r][idxmaxcoef] = (
+                round(exposureAvg[:, r][idxmaxcoef]) + maxmutation - sum(exposureAvg[:, r])
+            )
+
+    else:
+        log_content.append("############################# Initial Composition ####################################\n")
+        exposures_df = pd.DataFrame(exposureAvg[:, r], index=allsigids).T
+        log_content.append("{}\n".format(exposures_df.iloc[:, exposures_df.to_numpy().nonzero()[1]]))
+        log_content.append(f"L2 Error %: {round(newSimilarity, 2)}\n")
+        
+        # Remove signatures
+        exposureAvg[:, r], L2dist, cosine_sim = ss.remove_all_single_signatures(
+            processAvg,
+            exposureAvg[:, r],
+            allgenomes[:, r],
+            metric="l2",
+            solver="nnls",
+            cutoff=initial_remove_penalty,
+            background_sigs=[],
+            verbose=False,
+        )
+
+        log_content.append("############################## Composition After Initial Remove ###############################\n")
+        log_content.append("{}\n".format(exposures_df.iloc[:, exposures_df.to_numpy().nonzero()[1]]))
+        log_content.append(f"L2 Error %: {round(L2dist, 2)}, Cosine Similarity: {round(cosine_sim, 2)}\n")
+
+        # Add-Remove Step
+        log_content.append("\n############################## Performing Add-Remove Step ##############################\n")
+
+        init_add_sig_idx = list(set().union(list(np.nonzero(exposureAvg[:, r])[0]), background_sigs))
+
+        if background_sigs != 0:
+            background_sig_idx = get_indeces(allsigids, ["SBS1", "SBS5"])
+
+        try:
+            _, exposureAvg[:, r], L2dist, similarity, kldiv, correlation, cosine_similarity_with_four_signatures = (
+                ss.add_remove_signatures(
+                    processAvg,
+                    allgenomes[:, r],
+                    metric="l2",
+                    solver="nnls",
+                    background_sigs=init_add_sig_idx,
+                    permanent_sigs=background_sig_idx,
+                    candidate_sigs="all",
+                    allsigids=allsigids,
+                    add_penalty=add_penalty,
+                    remove_penalty=remove_penalty,
+                    check_rule_negatives=check_rule_negatives,
+                    checkrule_penalty=check_rule_penalty,
+                    connected_sigs=connected_sigs,
+                    directory=log_file,
+                    verbose=False,
+                )
+            )
+
+            log_content.append("####################################### Composition After Add-Remove #######################################\n")
+            log_content.append("{}\n".format(exposures_df.iloc[:, exposures_df.to_numpy().nonzero()[1]]))
+            log_content.append(f"L2 Error %: {round(L2dist, 2)}, Cosine Similarity: {round(similarity, 2)}\n")
+
+        except Exception as e:
+            log_content.append(f"Error in Add-Remove Step: {str(e)}\n")
+
+    # Write log safely
+    log_lock = threading.Lock()
+    with log_lock:
+        with open(log_file, "a") as lognote:
+            lognote.writelines(log_content)
+
+    return exposureAvg[:, r]  # Return the updated column for this sample
+
