@@ -42,6 +42,7 @@ requirements = [
     "pypdf>=5.0.0",
     "alive_progress>=2.4.1",
     "PyMuPDF>=1.21.0",  # required for package "fitz"
+    "tqdm>=4.0.0",
 ]
 
 write_version_py()
