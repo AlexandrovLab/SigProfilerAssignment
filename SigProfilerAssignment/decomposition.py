@@ -951,8 +951,10 @@ def spa_analyze(
             cosmic_sig_ref = processAvg.copy(deep=True)
             cosmic_sig_ref.reset_index(inplace=True)
         else:
+            import pdb;pdb.set_trace()
             try:
                 processAvg = pd.read_csv(signature_database, sep="\t", index_col=0)
+                
             except:
                 sys.exit(
                     "Something is wrong with the format of signature database, Pass a text file of signatures in the format of COSMIC sig database"

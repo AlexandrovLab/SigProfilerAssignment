@@ -102,6 +102,21 @@ def get_changed_background_sig_idx(exposures, background_sigs):
 
     return background_sigs
 
+def roundConserveSum(x):
+
+    # Total to be conserved
+    total = np.round(np.sum(x))
+
+    # Round to nearest integer above
+    x_out = np.ceil(x)
+
+    # Order integer residuals
+    order = np.argsort(x-x_out)
+
+    # Take one off first n residuals to correct total
+    x_out[order[:int(np.sum(x_out)-total+1e-10)]] -= 1
+
+    return x_out
 
 # Fit signatures
 def fit_signatures(W, genome, metric="l2"):
@@ -132,16 +147,21 @@ def fit_signatures(W, genome, metric="l2"):
     newExposure = list(solution)
 
     # get the maximum value of the new Exposure
-    maxcoef = max(newExposure)
-    idxmaxcoef = newExposure.index(maxcoef)
+    # maxcoef = max(newExposure)
+    # idxmaxcoef = newExposure.index(maxcoef)
 
-    newExposure = np.round(newExposure)
+    # newExposure = np.round(newExposure)
 
     # We may need to tweak the maximum value of the new exposure to keep the total number of mutation equal to the original mutations in a genome
-    if np.sum(newExposure) != maxmutation:
-        newExposure[idxmaxcoef] = (
-            round(newExposure[idxmaxcoef]) + maxmutation - sum(newExposure)
-        )
+    # import pdb; pdb.set_trace()
+    newExposure = roundConserveSum(newExposure)
+    # # if np.sum(newExposure) <= maxmutation:
+    # newExposure[idxmaxcoef] = (
+    #     round(newExposure[idxmaxcoef]) + maxmutation - sum(newExposure)
+    #     )
+    # # else:
+    # #     newExposure = np.round()
+    if np.sum(newExposure)!=maxmutation: raise ValueError("Mutation count not conserved")
 
     if metric == "cosine":
         newSimilarity = cos_sim(genome, est_genome)
@@ -492,8 +512,9 @@ def remove_all_single_signatures(
         if verbose == True:
             print("originalSimilarity", originalSimilarity)
     # make the original exposures of specific sample round
-    oldExposures = np.round(H)
-
+    # oldExposures = np.round(H)
+    oldExposures = roundConserveSum(H)
+    # import pdb; pdb.set_trace()
     # set the flag for the while loop
     if len(oldExposures[np.nonzero(oldExposures)]) > 1:
         Flag = True
@@ -606,6 +627,8 @@ def remove_all_single_signatures(
             # newExposure[idxmaxcoef] = round(newExposure[idxmaxcoef])+maxmutation-sum(newExposure)
 
             newExposure = np.array(newExposure)
+            
+
 
             if verbose == True:
                 # print(newExposure)
@@ -667,6 +690,7 @@ def remove_all_single_signatures(
 
     # print ("The final selection is {}".format(successList))
 
+
     if len(successList[1]) == 0:
         successList = [0.0, oldExposures, originalSimilarity]
 
@@ -696,7 +720,7 @@ def remove_all_single_signatures_pool(indices, W, exposures, totoalgenomes):
     originalSimilarity = cos_sim(genomes, np.dot(W, H))
     # make the original exposures of specific sample round
     oldExposures = np.round(H)
-
+    oldExposures = roundConserveSum(H)
     # set the flag for the while loop
     if len(oldExposures[np.nonzero(oldExposures)]) > 1:
         Flag = True
@@ -774,11 +798,13 @@ def remove_all_single_signatures_pool(indices, W, exposures, totoalgenomes):
             idxmaxcoef = newExposure.index(maxcoef)
 
             newExposure = np.round(newExposure)
+            newExposure = roundConserveSum(newExposure)
+            if np.sum(newExposure)!=maxmutation: raise ValueError("Mutation count not conserved")
 
-            if np.sum(newExposure) != maxmutation:
-                newExposure[idxmaxcoef] = (
-                    round(newExposure[idxmaxcoef]) + maxmutation - sum(newExposure)
-                )
+            # if np.sum(newExposure) != maxmutation:
+            #     newExposure[idxmaxcoef] = (
+            #         round(newExposure[idxmaxcoef]) + maxmutation - sum(newExposure)
+            #     )
 
             newSample = np.dot(W, newExposure)
             newSimilarity = cos_sim(genomes, newSample)
@@ -970,17 +996,19 @@ def add_remove_signatures(
             break
 
     # get the maximum value of the new Exposure
-    maxcoef = np.max(finalactivities)
-    idxmaxcoef = list(finalactivities).index(maxcoef)
+    # maxcoef = np.max(finalactivities)
+    # idxmaxcoef = list(finalactivities).index(maxcoef)
 
-    finalactivities = np.round(finalactivities)
+    # finalactivities = np.round(finalactivities)
+    finalactivities = roundConserveSum(finalactivities)
 
     # We may need to tweak the maximum value of the new exposure to keep the total number of mutation equal to the original mutations in a genome
-    if np.sum(finalactivities) != maxmutation:
-        finalactivities[idxmaxcoef] = (
-            round(finalactivities[idxmaxcoef]) + maxmutation - np.sum(finalactivities)
-        )
-
+    # if np.sum(finalactivities) != maxmutation:
+    #     finalactivities[idxmaxcoef] = (
+    #         round(finalactivities[idxmaxcoef]) + maxmutation - np.sum(finalactivities)
+    #     )
+    if np.sum(finalactivities)!=round(maxmutation): raise ValueError("Mutation count not conserved")
+    
     if verbose:
         print("\n########################## Final ###########################")
         print(background_sigs)
