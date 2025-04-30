@@ -822,7 +822,7 @@ def make_final_solution(
         check_rule_negatives = []
         check_rule_penalty = 1.0
     exposureAvg = np.zeros([processAvg.shape[1], allgenomes.shape[1]])
-    import pdb; pdb.set_trace()
+    
     if cosmic_sigs == True:
         denovo_exposureAvg = denovo_exposureAvg.T
         # with alive_bar(allgenomes.shape[1]) as bar:
@@ -888,7 +888,7 @@ def make_final_solution(
                 init_decomposed_sigs_idx, newExposure
             ):
                 exposureAvg[nonzero_idx, r] = nozero_exp
-            import pdb; pdb.set_trace()
+            
             if pcawg_rule == True:
                 maxmutation = np.sum(allgenomes[:, r])
                 (
@@ -951,7 +951,7 @@ def make_final_solution(
                     )
                 )
                 # remove signatures
-                import pdb; pdb.set_trace()
+                
                 (
                     exposureAvg[:, r],
                     L2dist,

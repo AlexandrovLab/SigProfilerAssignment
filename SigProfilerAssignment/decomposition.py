@@ -951,7 +951,7 @@ def spa_analyze(
             cosmic_sig_ref = processAvg.copy(deep=True)
             cosmic_sig_ref.reset_index(inplace=True)
         else:
-            import pdb;pdb.set_trace()
+            
             try:
                 processAvg = pd.read_csv(signature_database, sep="\t", index_col=0)
                 
