@@ -34,6 +34,12 @@ $ python
 from SigProfilerMatrixGenerator import install as genInstall
 genInstall.install('GRCh37')
 ```
+
+If you plan to use `sample_reconstruction_plots='png'` or `'both'`, the external `poppler` binary is required. You can install it using one of the following commands:
+
+- For Conda-based environments:
+  `conda install -c conda-forge poppler`
+
 ## <a name="running"></a> Running
 
 Assignment of known mutational signatures to individual samples is performed using the `cosmic_fit` function. Input samples are provided using the `samples` parameter in the form of mutation calling files (VCFs, MAFs, or simple text files), segmentation files or mutational matrices. COSMIC mutational signatures v3.4 are used as the default reference signatures, although previous COSMIC versions and custom signature databases are also supported using the `cosmic_version` and `signature_database` parameters. Results will be found in the folder specified in the `output` parameter.
@@ -66,7 +72,7 @@ Analyze.cosmic_fit(samples, output, input_type="matrix", context_type="96",
 | export_probabilities | Boolean | Defines if the probability matrix per mutational context for all samples is created. The default value is True. |
 | export_probabilities_per_mutation | Boolean | Defines if the probability matrices per mutation for all samples are created. Only available when `input_type` is "vcf". The default value is False. |
 | make_plots | Boolean | Toggle on and off for making and saving plots. The default value is True. |
-| sample_reconstruction_plots | String | Select the output format for sample reconstruction plots. Valid inputs are {'pdf', 'png', 'both', None}. The default value is None. |
+| sample_reconstruction_plots | String | Select the output format for sample reconstruction plots. Valid inputs are {'pdf', 'png', 'both', 'none'}. The default value is 'none'. If set to 'png' or 'both', the external binary `poppler` must be installed. Install via `conda install -c conda-forge poppler` or `brew install poppler` on macOS. |
 | verbose | Boolean | Prints detailed statements. The default value is False. |
 | volume | String | Path to SigProfilerAssignment volumes. Used for Docker/Singularity. Environmental variable "SIGPROFILERASSIGNMENT_VOLUME" takes precedence. Default value is None. |
 
