@@ -6,7 +6,7 @@ import os
 if os.path.exists("dist"):
     shutil.rmtree("dist")
 
-VERSION = "0.2.2"
+VERSION = "0.2.3"
 
 
 def write_version_py(filename="SigProfilerAssignment/version.py"):
