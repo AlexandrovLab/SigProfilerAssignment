@@ -10,9 +10,14 @@ cache:
   branch:
     - master
 
+addons:
+  apt:
+    packages:
+      - poppler-utils
+
 before_install:
   - pip install --upgrade pip setuptools packaging
-  - if ! [ -f ./src/GRCh37.tar.gz ]; then wget ftp://alexandrovlab-ftp.ucsd.edu/pub/tools/SigProfilerMatrixGenerator/GRCh37.tar.gz -P ./src/; fi
+  - if ! [ -f ./src/GRCh37.tar.gz ]; then wget --connect-timeout=10 --tries=20 ftp://alexandrovlab-ftp.ucsd.edu/pub/tools/SigProfilerMatrixGenerator/GRCh37.tar.gz -P ./src/; fi
 
 install:
   - pip install .[tests]
@@ -21,7 +26,5 @@ before_script:
   - python3 install_genome.py $TRAVIS_BUILD_DIR/src/
 
 script: 
-  # run unit tests
   - pytest tests
-  # run integration tests
   - python3 test.py

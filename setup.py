@@ -15,9 +15,8 @@ def write_version_py(filename="SigProfilerAssignment/version.py"):
 # THIS FILE IS GENERATED FROM SigProfilerAssignment SETUP.PY
 short_version = '%(version)s'
 version = '%(version)s'
-Update = 'v0.2.2:  Improved rounding strategy for handling low mutation counts'
+Update = 'v0.2.3:  Improved rounding strategy for handling low mutation counts'
 
-    
     """
     fh = open(filename, "w")
     fh.write(
@@ -41,7 +40,8 @@ requirements = [
     "reportlab>=3.5.42",
     "pypdf>=5.0.0",
     "alive_progress>=2.4.1",
-    "PyMuPDF>=1.21.0",  # required for package "fitz"
+    "pdf2image>=1.16.0",  # replacing PyMuPDF
+    # Note: 'poppler' is required as a system dependency for pdf2image
 ]
 
 write_version_py()

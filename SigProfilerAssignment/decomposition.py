@@ -25,7 +25,7 @@ from sigProfilerPlotting import sigProfilerPlotting as sigPlot
 import sigProfilerPlotting
 import os, sys
 from pypdf import PdfWriter, PdfReader
-import fitz
+from pdf2image import convert_from_path
 import time
 from pathlib import Path
 
@@ -60,21 +60,32 @@ def get_storage_dir(volume=None):
 
 
 def convert_PDF_to_PNG(input_file_name, output_directory, page_names):
-    pdf_doc = fitz.open(input_file_name)
-    zoom = 3
-    magnify = fitz.Matrix(zoom, zoom)
+    """
+    Converts each page of the PDF to a PNG image with names from page_names.
+    Requires the 'pdf2image' Python package and the 'poppler' binary.
 
-    if pdf_doc.page_count != len(page_names):
-        raise ValueError(
-            "Error: The number of samples and number of plots do not match."
-        )
+    Parameters:
+    - input_file_name (str): Path to the input PDF file.
+    - output_directory (str): Directory where PNGs will be saved.
+    - page_names (List[str]): List of names (without extensions) to name PNGs.
+    """
     if not os.path.exists(output_directory):
         os.makedirs(output_directory)
 
-    for sample_name, page in zip(page_names, pdf_doc):
-        pix = page.get_pixmap(matrix=magnify)
-        out_file_name = os.path.join(output_directory, sample_name + ".png")
-        pix.save(out_file_name)
+    # Convert PDF pages to PIL images
+    try:
+        images = convert_from_path(input_file_name, dpi=300)
+    except Exception as e:
+        raise RuntimeError(f"Error converting PDF to images: {e}")
+
+    if len(images) != len(page_names):
+        raise ValueError(
+            "Error: The number of samples and number of plots do not match."
+        )
+
+    for image, sample_name in zip(images, page_names):
+        output_path = os.path.join(output_directory, sample_name + ".png")
+        image.save(output_path, "PNG")
 
 
 # Create sample reconstruction plots
@@ -263,6 +274,7 @@ def spa_analyze(
         genome_build = A string. The reference genome build. List of supported genomes: "GRCh37", "GRCh38", "mm9", "mm10" and "rn6". The default value is "GRCh37". If the selected genome is not in the supported list, the default genome will be used.
         verbose = Boolean. Prints statements. Default value is False.
         exome = Boolean. Defines if the exome renormalized signatures will be used. The default value is False.
+        sample_reconstruction_plots (str): Select output format for sample reconstruction plots. Valid options are {'pdf', 'png', 'both', 'none'}. Default is 'none'.
 
     Values:
         The files below will be generated in the output folder.
@@ -1063,7 +1075,8 @@ def spa_analyze(
     recon_output_types = ["png", "pdf", "both"]
     # Generate sample reconstruction plots
     if (
-        sample_reconstruction_plots in recon_output_types
+        isinstance(sample_reconstruction_plots, str)
+        and sample_reconstruction_plots.lower() in recon_output_types
         and mutation_type == "96"
         and signature_database is None
     ):

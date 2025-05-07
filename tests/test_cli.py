@@ -42,6 +42,8 @@ def test_argument_parsing():
             "True",
             "--exome",
             "True",
+            "--sample_reconstruction_plots",
+            "png",
         ],
         "Test argument parsing",
     )
@@ -56,6 +58,7 @@ def test_argument_parsing():
     assert args.export_probabilities == False
     assert args.export_probabilities_per_mutation == True
     assert args.exome == True
+    assert args.sample_reconstruction_plots == "png"
 
 
 def test_boolean_conversion():

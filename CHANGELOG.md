@@ -6,6 +6,26 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ## [Unreleased]
 
+## [0.2.2] - 2025-05-02
+
+### Changed
+- Replaced PDF-to-PNG conversion backend from `PyMuPDF` to `pdf2image` for compatibility with Conda and improved portability.
+- Added new CLI parameter: `--sample_reconstruction_plots` with options `'none'` (default), `'pdf'`, `'png'`, and `'both'`.
+- Updated `spa_analyze` and CLI dispatch logic to support format-based sample reconstruction plot output.
+- Default behavior now skips sample reconstruction plots unless explicitly requested.
+- Removed `fitz` dependency; added system requirement note for `poppler` in `setup.py` and README.
+
+### Added
+- Added a pyproject.toml file to the repository for better project management and configuration.
+
+## [0.2.1] - 2025-04-29
+
+### Fixed
+- CLI from returning non-zero exit code when --help flag is passed.
+
+### Changed
+- Update CI/CD pipelines installation of reference genome to include timeout to prevent long waits during installation.
+
 ## [0.2.0] - 2025-02-11
 
 ### Changed
