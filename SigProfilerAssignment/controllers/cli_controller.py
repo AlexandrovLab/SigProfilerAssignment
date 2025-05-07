@@ -135,6 +135,19 @@ def parse_arguments_common(args: List[str], description: str) -> argparse.Namesp
         default=None,
         help="User specified directory for saving/loading template files. Note: The environment variable SIGPROFILERASSIGNMENT_VOLUME takes precedence over this parameter.",
     )
+    parser.add_argument(
+        "--sample_reconstruction_plots",
+        type=str.lower,
+        choices=["none", "pdf", "both", "png"],
+        default="none",
+        help=(
+            "Output format for sample reconstruction plots. "
+            "Options: 'none' (default, disables plotting), "
+            "'pdf' (generate only PDF), "
+            "'both' (PDF + PNG), or "
+            "'png' (PNG only, PDF removed)."
+        )
+    )
 
     return parser.parse_args(args)
 
@@ -226,5 +239,5 @@ class CliController:
             context_type=parsed_args.context_type,
             export_probabilities=parsed_args.export_probabilities,
             export_probabilities_per_mutation=parsed_args.export_probabilities_per_mutation,
-            sample_reconstruction_plots=False,
+            sample_reconstruction_plots=parsed_args.sample_reconstruction_plots,
         )
