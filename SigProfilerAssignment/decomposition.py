@@ -261,6 +261,7 @@ def spa_analyze(
     sample_reconstruction_plots=None,
     make_metadata=True,
     volume=None,
+    stop_after_decomposition=False,
 ):
     """
     Decomposes the De Novo Signatures into COSMIC Signatures and assigns COSMIC signatures into samples.
@@ -911,6 +912,11 @@ def spa_analyze(
                 #################
                 # Cosmic Fitting
                 #################
+
+    
+    if stop_after_decomposition:
+        print("Skipping COSMIC fitting step after decomposition as requested.")
+        cosmic_fit_option = False
 
     if cosmic_fit_option == True:
         try:
