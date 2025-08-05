@@ -372,7 +372,7 @@ def gen_SBS1536():
         project,
         mtype,
     )
-    # sp.run_PlotDecomposition(denovo_mtx, basis_names, weights, output_path, project, mtype, True, statistics, "COSMICv3-GRCh37", "This is where a custom message would go.")
+
     result.seek(0)
     reader = PdfReader(result)
     for page in reader.pages:
@@ -604,7 +604,6 @@ def gen_CNV48():
     mtype = "48"
 
     denovo_name = "CNV48A"
-    # basis_names = ["CN1", "CN2", "CN9", "CN20", "CNV48B", "CNV48C"]
     basis_names = ["CN1", "CN2", "CN9", "CN20", "CN3", "CN4"]
     weights = ["0.94%", "48.72%", "28.44%", "8.42%", "13.48%", "0%"]
     denovo_cols = ["MutationType", "CNV48A"]
@@ -622,7 +621,7 @@ def gen_CNV48():
         project,
         mtype,
     )
-    # sp.run_PlotDecomposition(denovo_mtx, basis_names, weights, output_path, project, mtype, True, statistics, "COSMICv3-GRCh37", "This is where a custom message would go.")
+
     result.seek(0)
     reader = PdfReader(result)
     for page in reader.pages:
@@ -685,7 +684,7 @@ def gen_SV32():
         project,
         mtype,
     )
-    # sp.run_PlotDecomposition(denovo_mtx, basis_names, weights, output_path, project, mtype, True, statistics, "COSMICv3-GRCh37", "This is where a custom message would go.")
+
     result.seek(0)
     reader = PdfReader(result)
     for page in reader.pages:
@@ -720,47 +719,47 @@ def gen_SV32():
 
 if __name__ == "__main__":
     print("Running SBS matrix input tests...")
-    # cosmic_fit_SBS_matrix_test()
+    cosmic_fit_SBS_matrix_test()
     decompose_fit_SBS_matrix_test()
-    # denovo_fit_SBS_matrix_test()
+    denovo_fit_SBS_matrix_test()
 
-    # print("Running DBS matrix input tests...")
-    # cosmic_fit_DBS_matrix_test()
-    # decompose_fit_DBS_matrix_test()
-    # denovo_fit_DBS_matrix_test()
+    print("Running DBS matrix input tests...")
+    cosmic_fit_DBS_matrix_test()
+    decompose_fit_DBS_matrix_test()
+    denovo_fit_DBS_matrix_test()
 
-    # print("Running ID matrix input tests...")
-    # cosmic_fit_ID_matrix_test()
-    # decompose_fit_ID_matrix_test()
-    # denovo_fit_ID_matrix_test()
+    print("Running ID matrix input tests...")
+    cosmic_fit_ID_matrix_test()
+    decompose_fit_ID_matrix_test()
+    denovo_fit_ID_matrix_test()
 
-    # print("Running VCF input tests...")
-    # cosmic_fit_vcf_test()
-    # decompose_fit_vcf_test()
-    # denovo_fit_vcf_test()
+    print("Running VCF input tests...")
+    cosmic_fit_vcf_test()
+    decompose_fit_vcf_test()
+    denovo_fit_vcf_test()
 
-    # print("Running SV matrix input tests...")
-    # cosmic_fit_SV_matrix_test()
-    # decompose_fit_SV_matrix_test()
-    # denovo_fit_SV_matrix_test()
+    print("Running SV matrix input tests...")
+    cosmic_fit_SV_matrix_test()
+    decompose_fit_SV_matrix_test()
+    denovo_fit_SV_matrix_test()
 
-    # print("Running CNV matrix input tests...")
-    # cosmic_fit_CNV_matrix_test()
-    # decompose_fit_CNV_matrix_test()
-    # denovo_fit_CNV_matrix_test()
+    print("Running CNV matrix input tests...")
+    cosmic_fit_CNV_matrix_test()
+    decompose_fit_CNV_matrix_test()
+    denovo_fit_CNV_matrix_test()
 
-    # print("Decomposition Plot tests...")
-    # time_96 = gen_SBS96()
-    # print("Completed SBS96 plots in", time_96, "seconds.")
-    # time_288 = gen_SBS288()
-    # print("Completed SBS288 plots in", time_288, "seconds.")
-    # time_1536 = gen_SBS1536()
-    # print("Completed SBS1536 plots in", time_1536, "seconds.")
-    # time_78 = gen_DBS78()
-    # print("Completed DBS78 plots in", time_78, "seconds.")
-    # time_83 = gen_ID83()
-    # print("Completed ID83 plots in", time_83, "seconds.")
-    # time_48 = gen_CNV48()
-    # print("Completed CNV48 plots in", time_48, "seconds.")
-    # time_32 = gen_SV32()
-    # print("Completed SV32 plots in", time_32, "seconds.")
+    print("Decomposition Plot tests...")
+    time_96 = gen_SBS96()
+    print("Completed SBS96 plots in", time_96, "seconds.")
+    time_288 = gen_SBS288()
+    print("Completed SBS288 plots in", time_288, "seconds.")
+    time_1536 = gen_SBS1536()
+    print("Completed SBS1536 plots in", time_1536, "seconds.")
+    time_78 = gen_DBS78()
+    print("Completed DBS78 plots in", time_78, "seconds.")
+    time_83 = gen_ID83()
+    print("Completed ID83 plots in", time_83, "seconds.")
+    time_48 = gen_CNV48()
+    print("Completed CNV48 plots in", time_48, "seconds.")
+    time_32 = gen_SV32()
+    print("Completed SV32 plots in", time_32, "seconds.")
