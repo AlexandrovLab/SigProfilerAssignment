@@ -574,7 +574,6 @@ def signature_decomposition(
         if (
             mtype_par != "none"
             and make_decomposition_plots == True
-            and signature_database is None
         ):
             # reformat the first column of cosmic signature dataframe
             cosmic_sigs_DF = sigDatabases_DF.copy(deep=True)
@@ -605,6 +604,7 @@ def signature_decomposition(
                 genome_build=genome_build,
                 exome=exome,
                 volume=volume,
+                use_custom_basis=(signature_database is not None)
             )
 
             byte_plot.seek(0)

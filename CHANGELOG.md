@@ -6,6 +6,17 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ## [Unreleased]
 
+## [0.2.5] - 2025-08-07
+
+### Added
+- Support for generating decomposition plots for custom signature sets.
+
+### Changed
+- Refactored the test script to be more readable and maintainable.
+
+### Fixed
+- Removed redundant plotting of COSMIC signatures in the decomposition plots.
+
 ## [0.2.4] - 2025-08-07
 
 ### Added

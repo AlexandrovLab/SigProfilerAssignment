@@ -897,6 +897,7 @@ def run_PlotDecomposition(
     exome=False,
     custom_text=None,
     volume=None,
+    use_custom_basis=False,
 ):
     """
     Generates a decomposition plot of the denovo_mtx using the basis_mtx.
@@ -936,16 +937,48 @@ def run_PlotDecomposition(
     None.
     """
 
-    # Create the denovo plots and load basis plots
-    denovo_plots_dict, basis_plots_dict = gen_sub_plots(
-        denovo_mtx,
-        basis_mtx,
-        output_path,
-        project,
-        mtype,
-        ss_decomp=False,
-        volume=volume,
-    )
+    # --- Efficiently Generate or Load Plots ---
+    # This logic avoids redundant plot generation for COSMIC signatures.
+    if use_custom_basis:
+        # For custom sets, generate plots for BOTH the de novo and basis matrices.
+        denovo_plots_dict, basis_plots_dict = gen_sub_plots(
+            denovo_mtx,
+            basis_mtx,
+            output_path,
+            project,
+            mtype,
+            ss_decomp=False,
+            volume=volume,
+        )
+    else:  # This is the standard COSMIC case
+        # For COSMIC sets, ONLY generate plots for the de novo matrix to save time.
+        # The basis plots will be loaded from the pre-computed cache.
+        # We assume gen_sub_plots can handle a None value for the second matrix
+        # and we use a placeholder for the second return value.
+        denovo_plots_dict, _ = gen_sub_plots(
+            denovo_mtx,
+            None,  # Pass None to avoid generating plots for the basis_mtx
+            output_path,
+            project,
+            mtype,
+            ss_decomp=False,
+            volume=volume,
+        )
+
+        # Now, load the real basis plots from the cache.
+        basis_plots_dict = install_cosmic_plots(
+            context_type=mtype,
+            genome_build=genome_build,
+            cosmic_version=cosmic_version,
+            exome=exome,
+            volume=volume,
+        )
+        # And filter for only the specific signatures present in this decomposition.
+        basis_plots_dict = {key: basis_plots_dict[key] for key in basis_names}
+
+    # --- Continue with Plot Assembly ---
+
+    # Generate the reconstructed profile plot
     reconstructed_mtx, reconstruction_plot_dict = gen_reconstructed_png_percent(
         denovo_name,
         basis_mtx,
@@ -956,26 +989,20 @@ def run_PlotDecomposition(
         mtype,
         volume=volume,
     )
-    # Create a subset matrix with the present signatures
+
+    # Create a subset matrix with the present signatures for statistics
     present_sigs = np.array(basis_mtx[basis_names])
     reconstructed_mtx = np.dot(present_sigs, nonzero_exposures)
-    # Convert dictionary of bytes to dictionary of images
+
+    # Convert all plot dictionaries from bytes to image objects for assembly
     denovo_plots_dict = convert_to_imgReaderDict(denovo_plots_dict)
-    # Load in the COSMIC plots
-    basis_plots_dict = install_cosmic_plots(
-        context_type=mtype,
-        genome_build=genome_build,
-        cosmic_version=cosmic_version,
-        exome=exome,
-        volume=volume,
-    )
-    basis_plots_dict = {key: basis_plots_dict[key] for key in basis_names}
     basis_plots_dict = convert_to_imgReaderDict(basis_plots_dict)
-    # Generate the reconstruction plot
     reconstruction_plot_dict = convert_to_imgReaderDict(reconstruction_plot_dict)
+
     # Get the reconstruction statistics
     statistics = calculate_similarities(denovo_mtx, denovo_name, reconstructed_mtx)
-    # Return the decomposition plot as a byte array
+
+    # Generate the final decomposition plot as a byte array
     byte_plot = gen_decomposition(
         denovo_name,
         basis_names,
@@ -991,6 +1018,7 @@ def run_PlotDecomposition(
         cosmic_version=cosmic_version,
         custom_text=custom_text,
     )
+
     # Clear the plotting memory
     sigPlt.clear_plotting_memory()
 
