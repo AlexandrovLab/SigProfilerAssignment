@@ -305,6 +305,7 @@ def signature_decomposition(
     exome=False,
     m_for_subgroups="SBS",
     volume=None,
+    collapse_to_SBS96=True,
 ):
     originalProcessAvg = originalProcessAvg.reset_index()
     if not os.path.exists(directory + "/Solution_Stats"):
@@ -336,12 +337,12 @@ def signature_decomposition(
             sigDatabase = pd.read_csv(signature_database, sep="\t", index_col=0)
             # indx = sigDatabase.index()
             if (
-                sigDatabase.shape[0] == 1536
+                sigDatabase.shape[0] == 1536 and collapse_to_SBS96
             ):  # collapse the 1596 context into 96 only for the deocmposition
                 sigDatabase = sigDatabase.groupby(sigDatabase.index.str[1:8]).sum()
 
             elif (
-                sigDatabase.shape[0] == 288
+                sigDatabase.shape[0] == 288 and collapse_to_SBS96
             ):  # collapse the 288 context into 96 only for the deocmposition
                 # sigDatabase = pd.DataFrame(processAvg, index=index)
                 sigDatabase = sigDatabase.groupby(sigDatabase.index.str[2:9]).sum()

@@ -376,6 +376,7 @@ def add_signatures(
                 # compute the estimated genome
                 est_genome = np.dot(W1, np.array(newExposure))
             if solver == "nnls":
+                # import pdb; breakpoint();
                 reg = nnls(W1, genome[:, 0])
                 weights = reg[0]
                 est_genome = np.dot(W1, weights)
