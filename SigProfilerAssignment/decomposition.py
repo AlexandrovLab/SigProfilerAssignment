@@ -860,6 +860,7 @@ def spa_analyze(
             m_for_subgroups=m_for_subgroups,
             volume=volume,
             add_background_signatures=add_background_signatures,
+            collapse_to_SBS96=collapse_to_SBS96,
         )
         # final_signatures = sub.signature_decomposition(processAvg, m, layer_directory2, genome_build=genome_build)
         # extract the global signatures and new signatures from the final_signatures dictionary
