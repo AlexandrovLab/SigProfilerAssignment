@@ -6,7 +6,7 @@ import os
 if os.path.exists("dist"):
     shutil.rmtree("dist")
 
-VERSION = "0.2.5"
+VERSION = "0.2.6"
 
 
 def write_version_py(filename="SigProfilerAssignment/version.py"):
@@ -15,7 +15,7 @@ def write_version_py(filename="SigProfilerAssignment/version.py"):
 # THIS FILE IS GENERATED FROM SigProfilerAssignment SETUP.PY
 short_version = '%(version)s'
 version = '%(version)s'
-Update = 'v0.2.5:  Support for generating decomposition plots for custom signature sets.'
+Update = 'v0.2.6:  Support for assigning signatures for rn7 and mm39 genomes.'
 
     """
     fh = open(filename, "w")
@@ -38,7 +38,7 @@ requirements = [
     "SigProfilerMatrixGenerator>=1.3.0",
     "sigProfilerPlotting>=1.4.0",
     "reportlab>=3.5.42",
-    "pypdf>=5.0.0",
+    "pypdf>=6.0.0",
     "alive_progress>=2.4.1",
     "pdf2image>=1.16.0",  # replacing PyMuPDF
     # Note: 'poppler' is required as a system dependency for pdf2image

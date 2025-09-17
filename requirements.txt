@@ -6,27 +6,27 @@
 #
 about-time==4.2.1
     # via alive-progress
-alive-progress==3.1.5
+alive-progress==3.3.0
     # via SigProfilerAssignment (setup.py)
-chardet==5.2.0
+charset-normalizer==3.4.3
     # via reportlab
-contourpy==1.2.1
+contourpy==1.3.3
     # via matplotlib
 cycler==0.12.1
     # via matplotlib
-fonttools==4.53.1
+fonttools==4.60.0
     # via matplotlib
-grapheme==0.6.0
+graphemeu==0.7.2
     # via alive-progress
-joblib==1.4.2
+joblib==1.5.2
     # via scikit-learn
-kiwisolver==1.4.5
+kiwisolver==1.4.9
     # via matplotlib
-matplotlib==3.9.2
+matplotlib==3.10.6
     # via
     #   sigprofilermatrixgenerator
     #   sigprofilerplotting
-numpy==1.26.4
+numpy==2.3.3
     # via
     #   SigProfilerAssignment (setup.py)
     #   contourpy
@@ -37,58 +37,57 @@ numpy==1.26.4
     #   scipy
     #   sigprofilermatrixgenerator
     #   statsmodels
-packaging==24.1
+packaging==25.0
     # via
     #   matplotlib
     #   statsmodels
-pandas==1.5.3
+pandas==2.3.2
     # via
     #   SigProfilerAssignment (setup.py)
     #   sigprofilermatrixgenerator
     #   sigprofilerplotting
     #   statsmodels
-patsy==0.5.6
+patsy==1.0.1
     # via statsmodels
-pillow==10.4.0
+pdf2image==1.17.0
+    # via SigProfilerAssignment (setup.py)
+pillow==11.3.0
     # via
     #   matplotlib
+    #   pdf2image
     #   reportlab
     #   sigprofilerplotting
-pymupdf==1.24.9
-    # via SigProfilerAssignment (setup.py)
-pymupdfb==1.24.9
-    # via pymupdf
-pyparsing==3.1.2
+pyparsing==3.2.4
     # via matplotlib
-pypdf==4.3.1
+pypdf==6.0.0
     # via SigProfilerAssignment (setup.py)
 python-dateutil==2.9.0.post0
     # via
     #   matplotlib
     #   pandas
-pytz==2024.1
+pytz==2025.2
     # via pandas
-reportlab==4.2.2
+reportlab==4.4.3
     # via SigProfilerAssignment (setup.py)
-scikit-learn==1.5.1
+scikit-learn==1.7.2
     # via sigprofilerplotting
-scipy==1.14.0
+scipy==1.16.2
     # via
     #   SigProfilerAssignment (setup.py)
     #   scikit-learn
     #   sigprofilermatrixgenerator
     #   statsmodels
-sigprofilermatrixgenerator==1.2.28
+sigprofilermatrixgenerator==1.3.5
     # via SigProfilerAssignment (setup.py)
-sigprofilerplotting==1.3.24
+sigprofilerplotting==1.4.1
     # via
     #   SigProfilerAssignment (setup.py)
     #   sigprofilermatrixgenerator
-six==1.16.0
-    # via
-    #   patsy
-    #   python-dateutil
-statsmodels==0.14.2
+six==1.17.0
+    # via python-dateutil
+statsmodels==0.14.5
     # via sigprofilermatrixgenerator
-threadpoolctl==3.5.0
+threadpoolctl==3.6.0
     # via scikit-learn
+tzdata==2025.2
+    # via pandas

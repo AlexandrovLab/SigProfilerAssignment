@@ -40,19 +40,13 @@ def getProcessAvg(
 ):
     paths = spa.__path__[0]
 
-    if (
-        genome_build == "GRCh37"
-        or genome_build == "GRCh38"
-        or genome_build == "mm9"
-        or genome_build == "mm10"
-        or genome_build == "rn6"
-    ):
+    if genome_build in ["GRCh37", "GRCh38", "mm9", "mm10", "mm39", "rn6", "rn7"]:
         genome_build = genome_build
     else:
         print(
             "The selected genome build is "
             + str(genome_build)
-            + ". COSMIC signatures are available only for GRCh37/38, mm9/10 and rn6 genomes. So, the genome build is reset to GRCh37."
+            + ". COSMIC signatures are available only for GRCh37/38, mm9/10/39 and rn6/7 genomes. So, the genome build is reset to GRCh37."
         )
         genome_build = "GRCh37"
     if samples.shape[0] == 96:

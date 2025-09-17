@@ -6,6 +6,14 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ## [Unreleased]
 
+## [0.2.6] - 2025-09-17
+
+### Added
+- Support for assigning mutational signatures using the `rn7` and `mm39` genome builds.
+
+### Security
+- Updated dependency requirement to `pypdf>=6.0.0` (previous versions contained a security vulnerability).
+
 ## [0.2.5] - 2025-08-07
 
 ### Added

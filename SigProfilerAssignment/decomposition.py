@@ -271,7 +271,7 @@ def spa_analyze(
         activities: A string. Path to a tab delimilted file that contains the activity table where the rows are sample IDs and colunms are signature IDs.
         samples: A string. Path to a tab delimilted file that contains the activity table where the rows are mutation types and colunms are sample IDs.
         output: A string. Path to the output folder.
-        genome_build = A string. The reference genome build. List of supported genomes: "GRCh37", "GRCh38", "mm9", "mm10" and "rn6". The default value is "GRCh37". If the selected genome is not in the supported list, the default genome will be used.
+        genome_build = A string. The reference genome build. List of supported genomes: "GRCh37", "GRCh38", "mm9", "mm10", "mm39", "rn6", and "rn7". The default value is "GRCh37". If the selected genome is not in the supported list, the default genome will be used.
         verbose = Boolean. Prints statements. Default value is False.
         exome = Boolean. Defines if the exome renormalized signatures will be used. The default value is False.
         sample_reconstruction_plots (str): Select output format for sample reconstruction plots. Valid options are {'pdf', 'png', 'both', 'none'}. Default is 'none'.
