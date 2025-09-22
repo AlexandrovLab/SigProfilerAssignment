@@ -6,7 +6,7 @@ import os
 if os.path.exists("dist"):
     shutil.rmtree("dist")
 
-VERSION = "0.2.3"
+VERSION = "1.0.0"
 
 
 def write_version_py(filename="SigProfilerAssignment/version.py"):
@@ -15,7 +15,7 @@ def write_version_py(filename="SigProfilerAssignment/version.py"):
 # THIS FILE IS GENERATED FROM SigProfilerAssignment SETUP.PY
 short_version = '%(version)s'
 version = '%(version)s'
-Update = 'v0.2.3:  Improved rounding strategy for handling low mutation counts'
+Update = 'v1.0.0:  Parallel version for SigProfilerAssignment'
 
     """
     fh = open(filename, "w")

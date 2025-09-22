@@ -1931,8 +1931,8 @@ def make_final_solution(
         # with tqdm(total=len(inputs)) as progress_bar:
     n_samples = allgenomes.shape[1]
     njobs=min(cpu_count(), allgenomes.shape[1])
-    njobs=64
-    batchs= n_samples // njobs
+    # njobs=64
+    # batchs= n_samples // njobs
     results = Parallel(n_jobs=njobs,mmap_mode='r',verbose=5,batch_size="auto")(delayed(process_sample)(input) for input in inputs)
     # from tqdm import tqdm
     
