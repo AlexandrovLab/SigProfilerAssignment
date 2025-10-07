@@ -1836,7 +1836,7 @@ def make_final_solution(
     denovo_refit_option=True,
     exome=False,
     volume=None,
-    ncpu = -1
+    cpu = -1
 ):
     if processAvg.shape[0] == allgenomes.shape[0] and processAvg.shape[0] != 96:
         collapse_to_SBS96 = False
@@ -1925,10 +1925,10 @@ def make_final_solution(
     # Passing inputs as a single argument and unpacking in the process_sample function
         # with tqdm(total=len(inputs)) as progress_bar:
     n_samples = allgenomes.shape[1]
-    if ncpu == -1:
+    if cpu == -1:
         njobs=min(cpu_count(), allgenomes.shape[1])
     else:
-        njobs=min(ncpu, allgenomes.shape[1])
+        njobs=min(cpu, allgenomes.shape[1])
     # njobs=64
     # batchs= n_samples // njobs
     results = Parallel(n_jobs=njobs,mmap_mode='r',verbose=5,batch_size="auto")(delayed(process_sample)(input) for input in inputs)

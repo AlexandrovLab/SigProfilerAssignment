@@ -261,7 +261,7 @@ def spa_analyze(
     sample_reconstruction_plots=None,
     make_metadata=True,
     volume=None,
-    ncpu=-1,
+    cpu=-1,
 ):
     """
     Decomposes the De Novo Signatures into COSMIC Signatures and assigns COSMIC signatures into samples.
@@ -686,7 +686,7 @@ def spa_analyze(
                 denovo_refit_option=denovo_refit_option,
                 exome=exome,
                 volume=volume,
-                ncpu =  -1,
+                cpu =  -1,
             )
 
         else:
@@ -695,7 +695,7 @@ def spa_analyze(
             signature_stats = devopts["signature_stats"]
             sequence = devopts["sequence"]
             processSTE = devopts["processSTE"]
-            ncpu_extractor = devopts["ncpu"]
+            cpu_extractor = devopts["cpu"]
 
             exposureAvg = sub.make_final_solution(
                 processAvg,
@@ -727,7 +727,7 @@ def spa_analyze(
                 denovo_refit_option=denovo_refit_option,
                 exome=exome,
                 volume=volume,
-                ncpu =  ncpu_extractor,
+                cpu =  cpu_extractor,
             )
 
         if make_metadata:
@@ -904,7 +904,7 @@ def spa_analyze(
             denovo_refit_option=denovo_refit_option,
             exome=exome,
             volume=volume,
-            ncpu=ncpu
+            cpu=cpu
         )
 
         if make_metadata:
@@ -1069,7 +1069,7 @@ def spa_analyze(
             denovo_refit_option=denovo_refit_option,
             exome=exome,
             volume=volume,
-            ncpu=ncpu,
+            cpu=cpu,
         )
         if make_metadata:
             with open(os.path.join(output, "JOB_METADATA_SPA.txt"), "a") as sysdata:
