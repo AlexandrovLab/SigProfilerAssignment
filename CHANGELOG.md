@@ -6,6 +6,15 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ## [Unreleased]
 
+## [1.0.0] - 2025-10-07
+
+### Added
+- Parallel execution of SPA runs for improved performance on multi-core systems.
+- `cpu` parameter to control the number of processor cores used during assignment. Defaults to `-1` to use all available cores.
+
+### Documentation
+- Updated README to document the new `cpu` parameter.
+
 ## [0.2.6] - 2025-09-17
 
 ### Added

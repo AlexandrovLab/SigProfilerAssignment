@@ -160,5 +160,5 @@ def cosmic_fit(
         export_probabilities_per_mutation=export_probabilities_per_mutation,
         sample_reconstruction_plots=sample_reconstruction_plots,
         volume=volume,
-        cpu=cpu
+        cpu=cpu,
     )

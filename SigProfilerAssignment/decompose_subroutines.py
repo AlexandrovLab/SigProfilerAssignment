@@ -5,30 +5,6 @@ Created on Nov 16 2021
 
 @author: rvangara
 """
-# import string
-# import numpy as np
-# import os, sys
-
-# import pandas as pd
-# import matplotlib.pyplot as plt
-
-# plt.switch_backend("agg")
-# from matplotlib.backends.backend_pdf import PdfPages
-
-# import sigProfilerPlotting as plot
-# from SigProfilerAssignment.DecompositionPlots import PlotDecomposition as sp
-# from sigProfilerPlotting import plotActivity as plot_ac
-# from sigProfilerPlotting import tmbplot as tmb
-# import string
-# import pypdf
-# import scipy
-
-# from pypdf import PdfWriter, PdfReader
-# import SigProfilerAssignment as spa
-# from SigProfilerAssignment import single_sample as ss
-# from scipy.spatial.distance import correlation as cor
-# from alive_progress import alive_bar
-
 
 import os
 import sys
@@ -36,6 +12,7 @@ import string
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
+
 plt.switch_backend("agg")
 from matplotlib.backends.backend_pdf import PdfPages
 
@@ -589,10 +566,7 @@ def signature_decomposition(
         else:
             mtype_par = "none"
         # only create decomposition plots for COSMIC signatures
-        if (
-            mtype_par != "none"
-            and make_decomposition_plots == True
-        ):
+        if mtype_par != "none" and make_decomposition_plots == True:
             # reformat the first column of cosmic signature dataframe
             cosmic_sigs_DF = sigDatabases_DF.copy(deep=True)
             cosmic_sigs_DF.columns = ["MutationType"] + cosmic_sigs_DF.columns[
@@ -622,7 +596,7 @@ def signature_decomposition(
                 genome_build=genome_build,
                 exome=exome,
                 volume=volume,
-                use_custom_basis=(signature_database is not None)
+                use_custom_basis=(signature_database is not None),
             )
 
             byte_plot.seek(0)
@@ -740,850 +714,27 @@ def signature_decomposition(
     }
 
 
-############################################################################################################
-######################################## MAKE THE FINAL FOLDER ##############################################
-#############################################################################################################
-# def make_final_solution(
-#     processAvg,
-#     allgenomes,
-#     allsigids,
-#     layer_directory,
-#     m,
-#     index,
-#     allcolnames,
-#     process_std_error="none",
-#     signature_stabilities=" ",
-#     signature_total_mutations=" ",
-#     signature_stats="none",
-#     cosmic_sigs=False,
-#     attribution=0,
-#     denovo_exposureAvg="none",
-#     add_penalty=0.05,
-#     remove_penalty=0.01,
-#     initial_remove_penalty=0.05,
-#     de_novo_fit_penalty=0.02,
-#     background_sigs=0,
-#     genome_build="GRCh37",
-#     sequence="genome",
-#     export_probabilities=True,
-#     export_probabilities_per_mutation=False,
-#     refit_denovo_signatures=True,
-#     collapse_to_SBS96=True,
-#     connected_sigs=True,
-#     pcawg_rule=False,
-#     verbose=False,
-#     make_plots=True,
-#     samples="./",
-#     input_type="matrix",
-#     denovo_refit_option=True,
-#     exome=False,
-#     volume=None,
-# ):
-#     if processAvg.shape[0] == allgenomes.shape[0] and processAvg.shape[0] != 96:
-#         collapse_to_SBS96 = False
-
-#     # Get the type of solution from the last part of the layer_directory name
-#     solution_type = layer_directory.split("/")[-1]
-#     solution_prefix = solution_type.split("_")
-#     solution_prefix = "_".join(solution_prefix[0:2])
-#     if refit_denovo_signatures == True:
-#         solution_prefix_refit = solution_prefix + "_refit"
-
-#     if not os.path.exists(layer_directory + "/Signatures"):
-#         os.makedirs(layer_directory + "/Signatures")
-#     if not os.path.exists(layer_directory + "/Activities"):
-#         os.makedirs(layer_directory + "/Activities")
-#     if not os.path.exists(layer_directory + "/Solution_Stats"):
-#         os.makedirs(layer_directory + "/Solution_Stats")
-
-#     # Create the lognote file
-#     if refit_denovo_signatures == True:
-#         lognote = open(
-#             layer_directory
-#             + "/Solution_Stats/"
-#             + solution_prefix_refit
-#             + "_Signature_Assignment_log.txt",
-#             "w",
-#         )
-#     else:
-#         lognote = open(
-#             layer_directory
-#             + "/Solution_Stats/"
-#             + solution_prefix
-#             + "_Signature_Assignment_log.txt",
-#             "w",
-#         )
-#     lognote.write(
-#         "************************ Stepwise Description of Signature Assignment to Samples ************************"
-#     )
-#     lognote.close()
-
-#     # Get the type of Signatures
-#     if m == 83 or m == "83":
-#         signature_type = "INDEL83"
-#         connected_sigs = False
-#     elif m == 78 or m == "78":
-#         signature_type = "DINUC78"
-#         connected_sigs = False
-#     else:
-#         signature_type = "SBS" + str(m)
-
-#     allgenomes = np.array(allgenomes)
-#     if (
-#         (m == "96" or m == "1536" or m == "288")
-#         and (genome_build == "mm9" or genome_build == "mm10")
-#         and (collapse_to_SBS96 == True)
-#     ):
-#         check_rule_negatives = [1, 16]
-#         check_rule_penalty = 1.50
-#     else:
-#         check_rule_negatives = []
-#         check_rule_penalty = 1.0
-#     exposureAvg = np.zeros([processAvg.shape[1], allgenomes.shape[1]])
-    
-#     if cosmic_sigs == True:
-#         denovo_exposureAvg = denovo_exposureAvg.T
-#         # with alive_bar(allgenomes.shape[1]) as bar:
-#             # print("\n")
-#         for r in range(allgenomes.shape[1]):
-#             print("Analyzing Sample => " , str(r+1))
-#             # bar()
-#             if verbose == True:
-#                 print(
-#                     "\n\n\n\n\n                                        ################ Sample "
-#                     + str(r + 1)
-#                     + " #################"
-#                 )
-
-#             # Record information to lognote
-#             lognote = open(
-#                 layer_directory
-#                 + "/Solution_Stats/"
-#                 + solution_prefix
-#                 + "_Signature_Assignment_log.txt",
-#                 "a",
-#             )
-#             lognote.write(
-#                 "\n\n\n\n\n                    ################ Sample "
-#                 + str(r + 1)
-#                 + " #################\n"
-#             )
-
-#             sample_exposure = np.array(denovo_exposureAvg.iloc[:, r])
-
-#             init_sig_idx = np.nonzero(sample_exposure)[0]
-#             init_sigs = denovo_exposureAvg.index[init_sig_idx]
-
-#             init_decomposed_sigs = []
-#             for de_novo_sig in init_sigs:
-#                 init_decomposed_sigs = union(
-#                     init_decomposed_sigs, list(attribution[de_novo_sig])
-#                 )
-
-#             # print(init_decomposed_sigs)
-#             init_decomposed_sigs_idx = get_indeces(allsigids, init_decomposed_sigs)
-#             init_decomposed_sigs_idx.sort()
-#             init_decomposed_sigs_idx = list(
-#                 set().union(init_decomposed_sigs_idx, background_sigs)
-#             )
-#             # print(init_decomposed_sigs_idx)
-
-#             # get the indices of the background sigs in the initial signatures
-#             background_sig_idx = get_indeces(
-#                 init_decomposed_sigs_idx, background_sigs
-#             )
-
-#             fit_signatures = processAvg[:, init_decomposed_sigs_idx]
-#             # fit signatures
-#             newExposure, newSimilarity = ss.fit_signatures(
-#                 fit_signatures, allgenomes[:, r]
-#             )
-
-#             # create the exposureAvg vector
-#             # print(init_decomposed_sigs_idx)
-#             # print(newExposure)
-#             for nonzero_idx, nozero_exp in zip(
-#                 init_decomposed_sigs_idx, newExposure
-#             ):
-#                 exposureAvg[nonzero_idx, r] = nozero_exp
-            
-#             if pcawg_rule == True:
-#                 maxmutation = np.sum(allgenomes[:, r])
-#                 (
-#                     exposureAvg[:, r],
-#                     remove_distance,
-#                     _,
-#                 ) = ss.remove_all_single_signatures(
-#                     processAvg,
-#                     exposureAvg[:, r],
-#                     allgenomes[:, r],
-#                     metric="l2",
-#                     verbose=False,
-#                     cutoff=0.02,
-#                 )
-#                 # get the maximum value of the new Exposure
-#                 # maxcoef = max(list(exposureAvg[:, r]))
-#                 # idxmaxcoef = list(exposureAvg[:, r]).index(maxcoef)
-
-#                 # exposureAvg[:, r] = np.round(exposureAvg[:, r])
-#                 exposureAvg[:, r] = ss.roundConserveSum(exposureAvg[:, r])
-
-#                 # We may need to tweak the maximum value of the new exposure to keep the total number of mutation equal to the original mutations in a genome
-#                 # if np.sum(exposureAvg[:, r]) != maxmutation:
-#                 #     exposureAvg[:, r][idxmaxcoef] = (
-#                 #         round(exposureAvg[:, r][idxmaxcoef])
-#                 #         + maxmutation
-#                 #         - sum(exposureAvg[:, r])
-#                 #     )
-#                 # print(exposureAvg[:, r])
-#                 # print("\n")
-#                 if np.sum(exposureAvg[:, r])!=round(maxmutation): raise ValueError("Mutation count not conserved")
-
-#             else:
-#                 if verbose == True:
-#                     print(
-#                         "############################# Initial Composition #################################### "
-#                     )
-#                     print(pd.DataFrame(exposureAvg[:, r], index=allsigids).T)
-#                     print("L2%: ", newSimilarity)
-
-#                 lognote.write(
-#                     "############################# Initial Composition ####################################\n"
-#                 )
-#                 exposures = pd.DataFrame(exposureAvg[:, r], index=allsigids).T
-#                 lognote.write(
-#                     "{}\n".format(
-#                         exposures.iloc[:, exposures.to_numpy().nonzero()[1]]
-#                     )
-#                 )
-#                 lognote.write(
-#                     "L2 Error %: {}\nCosine Similarity: {}\n".format(
-#                         round(newSimilarity, 2),
-#                         round(
-#                             cos_sim(
-#                                 allgenomes[:, r],
-#                                 np.dot(processAvg, exposureAvg[:, r]),
-#                             ),
-#                             2,
-#                         ),
-#                     )
-#                 )
-#                 # remove signatures
-                
-#                 (
-#                     exposureAvg[:, r],
-#                     L2dist,
-#                     cosine_sim,
-#                 ) = ss.remove_all_single_signatures(
-#                     processAvg,
-#                     exposureAvg[:, r],
-#                     allgenomes[:, r],
-#                     metric="l2",
-#                     solver="nnls",
-#                     cutoff=initial_remove_penalty,
-#                     background_sigs=[],
-#                     verbose=False,
-#                 )
-#                 if verbose == True:
-#                     print(
-#                         "############################## Composition After Initial Remove ############################### "
-#                     )
-#                     print(pd.DataFrame(exposureAvg[:, r], index=allsigids).T)
-#                     print("L2%: ", L2dist)
-#                 lognote.write(
-#                     "############################## Composition After Initial Remove ###############################\n"
-#                 )
-#                 exposures = pd.DataFrame(exposureAvg[:, r], index=allsigids).T
-#                 lognote.write(
-#                     "{}\n".format(
-#                         exposures.iloc[:, exposures.to_numpy().nonzero()[1]]
-#                     )
-#                 )
-#                 lognote.write(
-#                     "L2 Error %: {}\nCosine Similarity: {}\n".format(
-#                         round(L2dist, 2), round(cosine_sim, 2)
-#                     )
-#                 )
-#                 lognote.write(
-#                     "\n############################## Performing Add-Remove Step ##############################\n"
-#                 )
-#                 # Close the Lognote file
-#                 lognote.close()
-
-#                 init_add_sig_idx = list(
-#                     set().union(
-#                         list(np.nonzero(exposureAvg[:, r])[0]), background_sigs
-#                     )
-#                 )
-#                 # print(init_add_sig_idx)
-
-#                 # get the background_sig_idx for the add_remove function only for the decomposed solution:
-#                 if background_sigs != 0:  # in the decomposed solution only
-#                     background_sig_idx = get_indeces(allsigids, ["SBS1", "SBS5"])
-
-#                 # if the there is no other signatures to be added on top the existing signatures
-#                 try:
-#                     (
-#                         _,
-#                         exposureAvg[:, r],
-#                         L2dist,
-#                         similarity,
-#                         kldiv,
-#                         correlation,
-#                         cosine_similarity_with_four_signatures,
-#                     ) = ss.add_remove_signatures(
-#                         processAvg,
-#                         allgenomes[:, r],
-#                         metric="l2",
-#                         solver="nnls",
-#                         background_sigs=init_add_sig_idx,
-#                         permanent_sigs=background_sig_idx,
-#                         candidate_sigs="all",
-#                         allsigids=allsigids,
-#                         add_penalty=add_penalty,
-#                         remove_penalty=remove_penalty,
-#                         check_rule_negatives=check_rule_negatives,
-#                         checkrule_penalty=check_rule_penalty,
-#                         connected_sigs=connected_sigs,
-#                         directory=layer_directory
-#                         + "/Solution_Stats/"
-#                         + solution_prefix
-#                         + "_Signature_Assignment_log.txt",
-#                         verbose=False,
-#                     )
-
-#                     if verbose == True:
-#                         print(
-#                             "####################################### Composition After Add-Remove #######################################\n"
-#                         )
-#                         print(exposureAvg[:, r])
-#                         print("L2%: ", L2dist)
-#                     # Recond the information in the log file
-#                     lognote = open(
-#                         layer_directory
-#                         + "/Solution_Stats/"
-#                         + solution_prefix
-#                         + "_Signature_Assignment_log.txt",
-#                         "a",
-#                     )
-#                     lognote.write(
-#                         "####################################### Composition After Add-Remove #######################################\n"
-#                     )
-#                     exposures = pd.DataFrame(exposureAvg[:, r], index=allsigids).T
-#                     lognote.write(
-#                         "{}\n".format(
-#                             exposures.iloc[:, exposures.to_numpy().nonzero()[1]]
-#                         )
-#                     )
-#                     lognote.write(
-#                         "L2 Error %: {}\nCosine Similarity: {}\n".format(
-#                             round(L2dist, 2), round(similarity, 2)
-#                         )
-#                     )
-#                     lognote.close()
-#                 except:
-#                     pass
-
-#     else:
-#         # when refilt de_novo_signatures
-#         refit_denovo_signatures_old = False
-#         if refit_denovo_signatures_old == True:
-#             exposureAvg = denovo_exposureAvg
-#             for g in range(allgenomes.shape[1]):
-#                 print("Analyzing Sample => ", str(g + 1))
-
-#                 # Record information to lognote
-#                 lognote = open(
-#                     layer_directory
-#                     + "/Solution_Stats/"
-#                     + solution_prefix_refit
-#                     + "_Signature_Assignment_log.txt",
-#                     "a",
-#                 )
-#                 lognote.write(
-#                     "\n\n\n\n\n                    ################ Sample "
-#                     + str(g + 1)
-#                     + " #################\n"
-#                 )
-
-#                 lognote.write(
-#                     "############################# Initial Composition ####################################\n"
-#                 )
-#                 exposures = pd.DataFrame(exposureAvg[:, g], index=allsigids).T
-#                 lognote.write(
-#                     "{}\n".format(exposures.iloc[:, exposures.to_numpy().nonzero()[1]])
-#                 )
-
-#                 # remove signatures
-#                 exposureAvg[:, g], L2dist, cosine_sim = ss.remove_all_single_signatures(
-#                     processAvg,
-#                     exposureAvg[:, g],
-#                     allgenomes[:, g],
-#                     metric="l2",
-#                     solver="nnls",
-#                     cutoff=de_novo_fit_penalty,
-#                     background_sigs=[],
-#                     verbose=False,
-#                 )
-#                 if verbose == True:
-#                     print(
-#                         "############################## Composition After Remove ############################### "
-#                     )
-#                     print(pd.DataFrame(exposureAvg[:, g], index=allsigids).T)
-#                     print("L2%: ", L2dist)
-#                 lognote.write(
-#                     "############################## Composition After  Remove ###############################\n"
-#                 )
-#                 exposures = pd.DataFrame(exposureAvg[:, g], index=allsigids).T
-#                 lognote.write(
-#                     "{}\n".format(exposures.iloc[:, exposures.to_numpy().nonzero()[1]])
-#                 )
-#                 lognote.write(
-#                     "L2 Error %: {}\nCosine Similarity: {}\n".format(
-#                         round(L2dist, 2), round(cosine_sim, 2)
-#                     )
-#                 )
-#                 lognote.close()
-
-#         # when use the exposures from the initial NMF
-#         else:
-#             exposureAvg = denovo_exposureAvg
-
-#     processAvg = pd.DataFrame(processAvg.astype(float))
-#     processes = processAvg.set_index(index)
-#     processes.columns = allsigids
-#     processes = processes.rename_axis("MutationType", axis="columns")
-#     processes.to_csv(
-#         layer_directory
-#         + "/Signatures"
-#         + "/"
-#         + solution_prefix
-#         + "_"
-#         + "Signatures.txt",
-#         "\t",
-#         float_format="%.8f",
-#         index_label=[processes.columns.name],
-#     )
-#     exposureAvg = pd.DataFrame(exposureAvg.astype(int))
-#     allsigids = np.array(allsigids)
-#     exposures = exposureAvg.set_index(allsigids)
-#     exposures.columns = allcolnames
-#     exposures = exposures.T
-#     exposures = exposures.rename_axis("Samples", axis="columns")
-#     if refit_denovo_signatures == True:
-#         exposures.to_csv(
-#             layer_directory
-#             + "/Activities"
-#             + "/"
-#             + solution_prefix
-#             + "_"
-#             + "Activities_refit.txt",
-#             "\t",
-#             index_label=[exposures.columns.name],
-#         )
-#     else:
-#         exposures.to_csv(
-#             layer_directory
-#             + "/Activities"
-#             + "/"
-#             + solution_prefix
-#             + "_"
-#             + "Activities.txt",
-#             "\t",
-#             index_label=[exposures.columns.name],
-#         )
-
-#     # plt tmb
-#     tmb_exposures = pd.melt(exposures)
-#     if make_plots == True:
-#         if refit_denovo_signatures == True:
-#             tmb.plotTMB(
-#                 tmb_exposures,
-#                 scale=sequence,
-#                 Yrange="adapt",
-#                 output=layer_directory
-#                 + "/Activities"
-#                 + "/"
-#                 + solution_prefix
-#                 + "_"
-#                 + "TMB_plot_refit.pdf",
-#             )
-#         else:
-#             tmb.plotTMB(
-#                 tmb_exposures,
-#                 scale=sequence,
-#                 Yrange="adapt",
-#                 output=layer_directory
-#                 + "/Activities"
-#                 + "/"
-#                 + solution_prefix
-#                 + "_"
-#                 + "TMB_plot.pdf",
-#             )
-#         del tmb_exposures
-
-#     # plot activities
-#     if make_plots == True:
-#         if refit_denovo_signatures == True:
-#             plot_ac.plotActivity(
-#                 layer_directory
-#                 + "/Activities"
-#                 + "/"
-#                 + solution_prefix
-#                 + "_"
-#                 + "Activities_refit.txt",
-#                 output_file=layer_directory
-#                 + "/Activities/"
-#                 + solution_prefix
-#                 + "_"
-#                 + "Activity_Plots_refit.pdf",
-#                 bin_size=50,
-#                 log=False,
-#             )
-#         else:
-#             plot_ac.plotActivity(
-#                 layer_directory
-#                 + "/Activities"
-#                 + "/"
-#                 + solution_prefix
-#                 + "_"
-#                 + "Activities.txt",
-#                 output_file=layer_directory
-#                 + "/Activities/"
-#                 + solution_prefix
-#                 + "_"
-#                 + "Activity_Plots.pdf",
-#                 bin_size=50,
-#                 log=False,
-#             )
-
-#     # Calcutlate the similarity matrices
-#     est_genomes = np.dot(processAvg, exposureAvg)
-#     all_similarities, cosine_similarities = calculate_similarities(
-#         allgenomes, est_genomes, allcolnames
-#     )
-#     all_similarities.iloc[:, [3, 5]] = (
-#         all_similarities.iloc[:, [3, 5]].astype(str) + "%"
-#     )
-
-#     if refit_denovo_signatures == True:
-#         all_similarities.to_csv(
-#             layer_directory
-#             + "/Solution_Stats/"
-#             + solution_prefix
-#             + "_Samples_Stats_refit.txt",
-#             sep="\t",
-#         )
-#     else:
-#         all_similarities.to_csv(
-#             layer_directory
-#             + "/Solution_Stats/"
-#             + solution_prefix
-#             + "_Samples_Stats.txt",
-#             sep="\t",
-#         )
-
-#     # if cosmic_sigs==False:
-#     if refit_denovo_signatures == True:
-#         try:
-#             process_std_error = pd.DataFrame(process_std_error)
-#             processSTE = process_std_error.set_index(index)
-#             processSTE.columns = allsigids
-#             processSTE = processSTE.rename_axis("MutationType", axis="columns")
-#             processSTE.to_csv(
-#                 layer_directory
-#                 + "/Signatures"
-#                 + "/"
-#                 + solution_prefix
-#                 + "_"
-#                 + "Signatures_SEM_Error.txt",
-#                 "\t",
-#                 float_format="%.2E",
-#                 index_label=[processes.columns.name],
-#             )
-#         except:
-#             pass
-#     # if cosmic_sigs==False:
-#     if refit_denovo_signatures == True:
-#         try:
-#             signature_stats = signature_stats.set_index(allsigids)
-#             signature_stats = signature_stats.rename_axis("Signatures", axis="columns")
-#             signature_stats.to_csv(
-#                 layer_directory
-#                 + "/Solution_Stats"
-#                 + "/"
-#                 + solution_prefix
-#                 + "_"
-#                 + "Signatures_Stats.txt",
-#                 "\t",
-#                 index_label=[exposures.columns.name],
-#             )
-#             signature_total_mutations = np.sum(exposureAvg, axis=1).astype(int)
-#             signature_total_mutations = signature_plotting_text(
-#                 signature_total_mutations, "Sig. Mutations", "integer"
-#             )
-#         except:
-#             pass
-#     else:  # when it works with the decomposed solution
-#         signature_total_mutations = np.sum(exposureAvg, axis=1).astype(int)
-#         signature_total_mutations = signature_plotting_text(
-#             signature_total_mutations, "Sig. Mutations", "integer"
-#         )
-#         if (
-#             m == "1536" or m == "288"
-#         ) and collapse_to_SBS96 == True:  # collapse the 1536 to 96
-#             m = "96"
-#     if make_plots == True:
-#         ########################################### PLOT THE SIGNATURES ################################################
-#         if m == "DINUC" or m == "78":
-#             plot.plotDBS(
-#                 layer_directory
-#                 + "/Signatures/"
-#                 + solution_prefix
-#                 + "_"
-#                 + "Signatures.txt",
-#                 layer_directory + "/Signatures/",
-#                 solution_prefix,
-#                 "78",
-#                 True,
-#                 custom_text_upper=signature_stabilities,
-#                 custom_text_middle=signature_total_mutations,
-#                 volume=volume,
-#             )
-#         elif m == "INDEL" or m == "83":
-#             plot.plotID(
-#                 layer_directory
-#                 + "/Signatures/"
-#                 + solution_prefix
-#                 + "_"
-#                 + "Signatures.txt",
-#                 layer_directory + "/Signatures/",
-#                 solution_prefix,
-#                 "94",
-#                 True,
-#                 custom_text_upper=signature_stabilities,
-#                 custom_text_middle=signature_total_mutations,
-#                 volume=volume,
-#             )
-#         elif m == "CNV" or m == "48":
-#             plot.plotCNV(
-#                 layer_directory
-#                 + "/Signatures/"
-#                 + solution_prefix
-#                 + "_"
-#                 + "Signatures.txt",
-#                 layer_directory + "/Signatures/",
-#                 solution_prefix,
-#                 percentage=True,
-#                 aggregate=False,
-#             )
-#         elif m == "SV" or m == "32":
-#             plot.plotSV(
-#                 layer_directory
-#                 + "/Signatures/"
-#                 + solution_prefix
-#                 + "_"
-#                 + "Signatures.txt",
-#                 layer_directory + "/Signatures/",
-#                 solution_prefix,
-#                 percentage=True,
-#                 aggregate=False,
-#             )
-#         elif (
-#             m == "96" or m == "288" or m == "384" or m == "1536" or m == "4608"
-#         ) and collapse_to_SBS96 == True:
-#             plot.plotSBS(
-#                 layer_directory
-#                 + "/Signatures/"
-#                 + solution_prefix
-#                 + "_"
-#                 + "Signatures.txt",
-#                 layer_directory + "/Signatures/",
-#                 solution_prefix,
-#                 m,
-#                 True,
-#                 custom_text_upper=signature_stabilities,
-#                 custom_text_middle=signature_total_mutations,
-#                 volume=volume,
-#             )
-#         elif m == "96":
-#             plot.plotSBS(
-#                 layer_directory
-#                 + "/Signatures/"
-#                 + solution_prefix
-#                 + "_"
-#                 + "Signatures.txt",
-#                 layer_directory + "/Signatures/",
-#                 solution_prefix,
-#                 m,
-#                 True,
-#                 custom_text_upper=signature_stabilities,
-#                 custom_text_middle=signature_total_mutations,
-#                 volume=volume,
-#             )
-#         elif m == "288":
-#             plot.plotSBS(
-#                 layer_directory
-#                 + "/Signatures/"
-#                 + solution_prefix
-#                 + "_"
-#                 + "Signatures.txt",
-#                 layer_directory + "/Signatures/",
-#                 solution_prefix,
-#                 m,
-#                 True,
-#                 custom_text_upper=signature_stabilities,
-#                 custom_text_middle=signature_total_mutations,
-#                 volume=volume,
-#             )
-#         elif m == "384":
-#             plot.plotSBS(
-#                 layer_directory
-#                 + "/Signatures/"
-#                 + solution_prefix
-#                 + "_"
-#                 + "Signatures.txt",
-#                 layer_directory + "/Signatures/",
-#                 solution_prefix,
-#                 m,
-#                 True,
-#                 custom_text_upper=signature_stabilities,
-#                 custom_text_middle=signature_total_mutations,
-#                 volume=volume,
-#             )
-#         elif m == "1536":
-#             plot.plotSBS(
-#                 layer_directory
-#                 + "/Signatures/"
-#                 + solution_prefix
-#                 + "_"
-#                 + "Signatures.txt",
-#                 layer_directory + "/Signatures/",
-#                 solution_prefix,
-#                 m,
-#                 True,
-#                 custom_text_upper=signature_stabilities,
-#                 custom_text_middle=signature_total_mutations,
-#                 volume=volume,
-#             )
-#         elif m == "4608":
-#             plot.plotSBS(
-#                 layer_directory
-#                 + "/Signatures/"
-#                 + solution_prefix
-#                 + "_"
-#                 + "Signatures.txt",
-#                 layer_directory + "/Signatures/",
-#                 solution_prefix,
-#                 m,
-#                 True,
-#                 custom_text_upper=signature_stabilities,
-#                 custom_text_middle=signature_total_mutations,
-#                 volume=volume,
-#             )
-#         else:
-#             custom_signatures_plot(processes, layer_directory + "/Signatures")
-
-#     if export_probabilities == True:
-#         probability = probabilities(
-#             processAvg, exposureAvg, index, allsigids, allcolnames
-#         )
-#         probability = probability.set_index("Sample Names")
-
-#         if denovo_refit_option == True:
-#             if refit_denovo_signatures == True:
-#                 probability.to_csv(
-#                     layer_directory
-#                     + "/Activities"
-#                     + "/"
-#                     + "De_Novo_MutationType_Probabilities_refit.txt",
-#                     "\t",
-#                 )
-#             else:
-#                 probability.to_csv(
-#                     layer_directory
-#                     + "/Activities"
-#                     + "/"
-#                     + "De_Novo_MutationType_Probabilities.txt",
-#                     "\t",
-#                 )
-#         if denovo_refit_option == False:
-#             probability.to_csv(
-#                 layer_directory
-#                 + "/Activities"
-#                 + "/"
-#                 + "Decomposed_MutationType_Probabilities.txt",
-#                 "\t",
-#             )
-
-#     if export_probabilities_per_mutation == True:
-#         if export_probabilities == True:
-#             if input_type == "vcf":
-#                 if m == "96" or m == "78" or m == "83":
-#                     (
-#                         probability_per_mutation,
-#                         samples_prob_per_mut,
-#                     ) = probabilities_per_mutation(probability, samples, m, exome)
-
-#                     if denovo_refit_option == True:
-#                         if refit_denovo_signatures == True:
-#                             ppm_file_name = "De_Novo_Mutation_Probabilities_refit"
-#                             output_path_prob_per_mut = (
-#                                 layer_directory + "/Activities" + "/" + ppm_file_name
-#                             )
-#                         else:
-#                             ppm_file_name = "De_Novo_Mutation_Probabilities"
-#                             output_path_prob_per_mut = (
-#                                 layer_directory + "/Activities" + "/" + ppm_file_name
-#                             )
-#                     else:
-#                         ppm_file_name = "Decomposed_Mutation_Probabilities"
-#                         output_path_prob_per_mut = (
-#                             layer_directory + "/Activities" + "/" + ppm_file_name
-#                         )
-
-#                     if not os.path.exists(output_path_prob_per_mut):
-#                         os.makedirs(output_path_prob_per_mut)
-#                     for matrix, sample in zip(
-#                         probability_per_mutation, samples_prob_per_mut
-#                     ):
-#                         matrix = matrix.set_index("Sample Names")
-#                         matrix = matrix.sort_values(by=["Chr", "Pos"])
-#                         matrix.to_csv(
-#                             layer_directory
-#                             + "/Activities"
-#                             + "/"
-#                             + ppm_file_name
-#                             + "/"
-#                             + ppm_file_name
-#                             + "_"
-#                             + sample
-#                             + ".txt",
-#                             "\t",
-#                         )
-#                 else:
-#                     print(
-#                         "Probabilities per mutation are only calculated for SBS96, DBS78 and ID83 mutational contexts."
-#                     )
-#             else:
-#                 print(
-#                     'Probabilities per mutation are only calculated if input_type is "vcf".'
-#                 )
-#         else:
-#             print(
-#                 "Probabilities per mutation require to calculate probabilities per context type. Please re-run your analysis setting export_probabilites=True."
-#             )
-
-#     return exposures
-
-
-
-
-
-
 def process_sample(args):
     # (r, denovo_exposureAvg, attribution, allsigids, background_sigs, processAvg, allgenomes, layer_directory, solution_prefix, verbose, pcawg_rule, initial_remove_penalty, add_penalty, remove_penalty, check_rule_negatives, check_rule_penalty, connected_sigs) = args
-    (r, denovo_exposureAvg, attribution, allsigids, background_sigs, processAvg, allgenomes, layer_directory, solution_prefix, verbose, pcawg_rule, initial_remove_penalty, add_penalty, remove_penalty, check_rule_negatives, check_rule_penalty, connected_sigs) = args
+    (
+        r,
+        denovo_exposureAvg,
+        attribution,
+        allsigids,
+        background_sigs,
+        processAvg,
+        allgenomes,
+        layer_directory,
+        solution_prefix,
+        verbose,
+        pcawg_rule,
+        initial_remove_penalty,
+        add_penalty,
+        remove_penalty,
+        check_rule_negatives,
+        check_rule_penalty,
+        connected_sigs,
+    ) = args
     if verbose:
         print(
             "\n\n\n\n\n                                        ################ Sample "
@@ -1621,19 +772,13 @@ def process_sample(args):
         set().union(init_decomposed_sigs_idx, background_sigs)
     )
 
-    background_sig_idx = get_indeces(
-        init_decomposed_sigs_idx, background_sigs
-    )
+    background_sig_idx = get_indeces(init_decomposed_sigs_idx, background_sigs)
 
     fit_signatures = processAvg[:, init_decomposed_sigs_idx]
-    newExposure, newSimilarity = ss.fit_signatures(
-        fit_signatures, allgenomes[:, r]
-    )
+    newExposure, newSimilarity = ss.fit_signatures(fit_signatures, allgenomes[:, r])
 
     exposureAvg = np.zeros([processAvg.shape[1], allgenomes.shape[1]])
-    for nonzero_idx, nozero_exp in zip(
-        init_decomposed_sigs_idx, newExposure
-    ):
+    for nonzero_idx, nozero_exp in zip(init_decomposed_sigs_idx, newExposure):
         exposureAvg[nonzero_idx, r] = nozero_exp
 
     if pcawg_rule:
@@ -1674,9 +819,7 @@ def process_sample(args):
         )
         exposures = pd.DataFrame(exposureAvg[:, r], index=allsigids).T
         lognote.write(
-            "{}\n".format(
-                exposures.iloc[:, exposures.to_numpy().nonzero()[1]]
-            )
+            "{}\n".format(exposures.iloc[:, exposures.to_numpy().nonzero()[1]])
         )
         lognote.write(
             "L2 Error %: {}\nCosine Similarity: {}\n".format(
@@ -1715,9 +858,7 @@ def process_sample(args):
         )
         exposures = pd.DataFrame(exposureAvg[:, r], index=allsigids).T
         lognote.write(
-            "{}\n".format(
-                exposures.iloc[:, exposures.to_numpy().nonzero()[1]]
-            )
+            "{}\n".format(exposures.iloc[:, exposures.to_numpy().nonzero()[1]])
         )
         lognote.write(
             "L2 Error %: {}\nCosine Similarity: {}\n".format(
@@ -1730,9 +871,7 @@ def process_sample(args):
         lognote.close()
 
         init_add_sig_idx = list(
-            set().union(
-                list(np.nonzero(exposureAvg[:, r])[0]), background_sigs
-            )
+            set().union(list(np.nonzero(exposureAvg[:, r])[0]), background_sigs)
         )
 
         if background_sigs != 0:
@@ -1786,9 +925,7 @@ def process_sample(args):
             )
             exposures = pd.DataFrame(exposureAvg[:, r], index=allsigids).T
             lognote.write(
-                "{}\n".format(
-                    exposures.iloc[:, exposures.to_numpy().nonzero()[1]]
-                )
+                "{}\n".format(exposures.iloc[:, exposures.to_numpy().nonzero()[1]])
             )
             lognote.write(
                 "L2 Error %: {}\nCosine Similarity: {}\n".format(
@@ -1800,6 +937,7 @@ def process_sample(args):
             pass
 
     return exposureAvg[:, r]
+
 
 def make_final_solution(
     processAvg,
@@ -1836,7 +974,7 @@ def make_final_solution(
     denovo_refit_option=True,
     exome=False,
     volume=None,
-    cpu = -1
+    cpu=-1,
 ):
     if processAvg.shape[0] == allgenomes.shape[0] and processAvg.shape[0] != 96:
         collapse_to_SBS96 = False
@@ -1900,58 +1038,41 @@ def make_final_solution(
         denovo_exposureAvg = denovo_exposureAvg.T
 
     inputs = [
-    (
-        r,
-        denovo_exposureAvg,
-        attribution,
-        allsigids,
-        background_sigs,
-        processAvg,
-        allgenomes,
-        layer_directory,
-        solution_prefix,
-        verbose,
-        pcawg_rule,
-        initial_remove_penalty,
-        add_penalty,
-        remove_penalty,
-        check_rule_negatives,
-        check_rule_penalty,
-        connected_sigs,
-    )
-    for r in range(allgenomes.shape[1])
+        (
+            r,
+            denovo_exposureAvg,
+            attribution,
+            allsigids,
+            background_sigs,
+            processAvg,
+            allgenomes,
+            layer_directory,
+            solution_prefix,
+            verbose,
+            pcawg_rule,
+            initial_remove_penalty,
+            add_penalty,
+            remove_penalty,
+            check_rule_negatives,
+            check_rule_penalty,
+            connected_sigs,
+        )
+        for r in range(allgenomes.shape[1])
     ]
 
     # Passing inputs as a single argument and unpacking in the process_sample function
-        # with tqdm(total=len(inputs)) as progress_bar:
+    # with tqdm(total=len(inputs)) as progress_bar:
     n_samples = allgenomes.shape[1]
     if cpu == -1:
-        njobs=min(cpu_count(), allgenomes.shape[1])
+        njobs = min(cpu_count(), allgenomes.shape[1])
     else:
-        njobs=min(cpu, allgenomes.shape[1])
+        njobs = min(cpu, allgenomes.shape[1])
     # njobs=64
     # batchs= n_samples // njobs
-    results = Parallel(n_jobs=njobs,mmap_mode='r',verbose=5,batch_size="auto")(delayed(process_sample)(input) for input in inputs)
-    # from tqdm import tqdm
-    
-    # n_samples = allgenomes.shape[1]
-    # n_jobs = cpu_count()  # or: os.cpu_count()
+    results = Parallel(n_jobs=njobs, mmap_mode="r", verbose=5, batch_size="auto")(
+        delayed(process_sample)(input) for input in inputs
+    )
 
-    # # inside your make_final_solution, replacing the Parallel call:
-    # results = Parallel(
-    #     n_jobs=n_jobs,
-    #     backend="loky",
-    #     verbose=5,       # joblib will print something like [I] ... to stdout
-    #     mmap_mode="r"
-    # )(
-    #     delayed(process_sample)(r)
-    #     for r in tqdm(
-    #         range(n_samples),
-    #         desc="Assigning signatures", 
-    #         unit="sample"
-    #     )
-    # )
-    
     # Store the results in exposureAvg
     exposureAvg = np.zeros([processAvg.shape[1], allgenomes.shape[1]])
     for r, result in enumerate(results):
@@ -2135,9 +1256,7 @@ def make_final_solution(
         signature_total_mutations = signature_plotting_text(
             signature_total_mutations, "Sig. Mutations", "integer"
         )
-        if (
-            m == "1536" or m == "288"
-        ) and collapse_to_SBS96 == True:
+        if (m == "1536" or m == "288") and collapse_to_SBS96 == True:
             m = "96"
     if make_plots:
         if m == "DINUC" or m == "78":
@@ -2504,9 +1623,9 @@ def probabilities(W, H, index, allsigids, allcolnames):
 
 ################################################### Generation of probabilities for each processes given to A mutation ############################################
 def probabilities_per_mutation(probability_matrix, samples_path, m, exome=False):
-    #
+
     probability_matrix = probability_matrix.reset_index()
-    #
+
     if m == "96":
         seqinfo_path = samples_path + "/output/vcf_files/SNV/"
         interval_low = 3
@@ -2519,10 +1638,10 @@ def probabilities_per_mutation(probability_matrix, samples_path, m, exome=False)
         seqinfo_path = samples_path + "/output/vcf_files/ID/"
         interval_low = 2
         interval_high = 100
-    #
+
     seqinfo_files = os.listdir(seqinfo_path)
     seqinfo_files.sort()
-    #
+
     all_mutations = pd.DataFrame()
     for file in seqinfo_files:
         if "exome" in file:
@@ -2551,18 +1670,18 @@ def probabilities_per_mutation(probability_matrix, samples_path, m, exome=False)
         exome_df["Chr"] = [str(x) for x in (exome_df["Chr"]).to_list()]
         all_mutations["Chr"] = [str(x) for x in (all_mutations["Chr"]).to_list()]
         all_mutations = pd.merge(all_mutations, exome_df)
-    #
+
     all_samples_mutations = [y for x, y in all_mutations.groupby("Sample Names")]
-    #
+
     prob_per_mut = []
     sample_names = []
     for sample_mutations in all_samples_mutations:
         new = sample_mutations.merge(probability_matrix)
         prob_per_mut.append(new)
         sample_names.append(new["Sample Names"][0])
-    #
+
     result = [prob_per_mut, sample_names]
-    #
+
     return result
 
 

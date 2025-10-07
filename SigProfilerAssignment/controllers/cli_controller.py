@@ -146,7 +146,7 @@ def parse_arguments_common(args: List[str], description: str) -> argparse.Namesp
             "'pdf' (generate only PDF), "
             "'both' (PDF + PNG), or "
             "'png' (PNG only, PDF removed)."
-        )
+        ),
     )
 
     return parser.parse_args(args)

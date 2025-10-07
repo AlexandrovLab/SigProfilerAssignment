@@ -74,7 +74,9 @@ Analyze.cosmic_fit(samples, output, input_type="matrix", context_type="96",
 | make_plots | Boolean | Toggle on and off for making and saving plots. The default value is True. |
 | sample_reconstruction_plots | String | Select the output format for sample reconstruction plots. Valid inputs are {'pdf', 'png', 'both', 'none'}. The default value is 'none'. If set to 'png' or 'both', the external binary `poppler` must be installed. Install via `conda install -c conda-forge poppler` or `brew install poppler` on macOS. |
 | verbose | Boolean | Prints detailed statements. The default value is False. |
+| cpu | Integer | Number of processor cores to use during assignment. The default value is -1, which uses all available cores. |
 | volume | String | Path to SigProfilerAssignment volumes. Used for Docker/Singularity. Environmental variable "SIGPROFILERASSIGNMENT_VOLUME" takes precedence. Default value is None. |
+
 
 
 
