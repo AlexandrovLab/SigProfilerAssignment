@@ -102,6 +102,7 @@ def get_changed_background_sig_idx(exposures, background_sigs):
 
     return background_sigs
 
+
 def roundConserveSum(x):
 
     # Total to be conserved
@@ -111,12 +112,13 @@ def roundConserveSum(x):
     x_out = np.ceil(x)
 
     # Order integer residuals
-    order = np.argsort(x-x_out)
+    order = np.argsort(x - x_out)
 
     # Take one off first n residuals to correct total
-    x_out[order[:int(np.sum(x_out)-total+1e-10)]] -= 1
+    x_out[order[: int(np.sum(x_out) - total + 1e-10)]] -= 1
 
     return x_out
+
 
 # Fit signatures
 def fit_signatures(W, genome, metric="l2"):
@@ -161,7 +163,8 @@ def fit_signatures(W, genome, metric="l2"):
     #     )
     # # else:
     # #     newExposure = np.round()
-    if np.sum(newExposure)!=maxmutation: raise ValueError("Mutation count not conserved")
+    if np.sum(newExposure) != maxmutation:
+        raise ValueError("Mutation count not conserved")
 
     if metric == "cosine":
         newSimilarity = cos_sim(genome, est_genome)
@@ -627,8 +630,6 @@ def remove_all_single_signatures(
             # newExposure[idxmaxcoef] = round(newExposure[idxmaxcoef])+maxmutation-sum(newExposure)
 
             newExposure = np.array(newExposure)
-            
-
 
             if verbose == True:
                 # print(newExposure)
@@ -689,7 +690,6 @@ def remove_all_single_signatures(
         # print ("\n\n")
 
     # print ("The final selection is {}".format(successList))
-
 
     if len(successList[1]) == 0:
         successList = [0.0, oldExposures, originalSimilarity]
@@ -799,7 +799,8 @@ def remove_all_single_signatures_pool(indices, W, exposures, totoalgenomes):
 
             newExposure = np.round(newExposure)
             newExposure = roundConserveSum(newExposure)
-            if np.sum(newExposure)!=maxmutation: raise ValueError("Mutation count not conserved")
+            if np.sum(newExposure) != maxmutation:
+                raise ValueError("Mutation count not conserved")
 
             # if np.sum(newExposure) != maxmutation:
             #     newExposure[idxmaxcoef] = (
@@ -1007,8 +1008,9 @@ def add_remove_signatures(
     #     finalactivities[idxmaxcoef] = (
     #         round(finalactivities[idxmaxcoef]) + maxmutation - np.sum(finalactivities)
     #     )
-    if np.sum(finalactivities)!=round(maxmutation): raise ValueError("Mutation count not conserved")
-    
+    if np.sum(finalactivities) != round(maxmutation):
+        raise ValueError("Mutation count not conserved")
+
     if verbose:
         print("\n########################## Final ###########################")
         print(background_sigs)

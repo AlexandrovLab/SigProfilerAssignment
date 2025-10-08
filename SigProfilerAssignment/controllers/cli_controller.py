@@ -86,6 +86,12 @@ def parse_arguments_common(args: List[str], description: str) -> argparse.Namesp
         help="Verbose output (default: False).",
     )
     parser.add_argument(
+        "--cpu",
+        type=int,
+        default=-1,
+        help="Number of processor cores to use during assignment (default: -1 = all cores).",
+    )
+    parser.add_argument(
         "--new_signature_thresh_hold",
         type=float,
         default=0.8,
@@ -146,8 +152,9 @@ def parse_arguments_common(args: List[str], description: str) -> argparse.Namesp
             "'pdf' (generate only PDF), "
             "'both' (PDF + PNG), or "
             "'png' (PNG only, PDF removed)."
-        )
+        ),
     )
+    
 
     return parser.parse_args(args)
 
@@ -170,6 +177,7 @@ class CliController:
             make_plots=parsed_args.make_plots,
             collapse_to_SBS96=parsed_args.collapse_to_SBS96,
             connected_sigs=parsed_args.connected_sigs,
+            cpu=parsed_args.cpu,
             verbose=parsed_args.verbose,
             decompose_fit_option=True,
             denovo_refit_option=False,
@@ -202,6 +210,7 @@ class CliController:
             collapse_to_SBS96=parsed_args.collapse_to_SBS96,
             connected_sigs=parsed_args.connected_sigs,
             verbose=parsed_args.verbose,
+            cpu=parsed_args.cpu,
             decompose_fit_option=False,
             denovo_refit_option=True,
             cosmic_fit_option=False,
@@ -230,6 +239,7 @@ class CliController:
             collapse_to_SBS96=parsed_args.collapse_to_SBS96,
             connected_sigs=parsed_args.connected_sigs,
             verbose=parsed_args.verbose,
+            cpu=parsed_args.cpu,
             decompose_fit_option=False,
             denovo_refit_option=False,
             cosmic_fit_option=True,

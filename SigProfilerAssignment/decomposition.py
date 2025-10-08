@@ -114,7 +114,7 @@ def generate_sample_reconstruction(
         basis_names = (
             subset[subset["Samples"].str.contains(sample_name)].columns[1:].tolist()
         )
-        recon_tmb = subset.select_dtypes(include=['number']).sum(axis=1)
+        recon_tmb = subset.select_dtypes(include=["number"]).sum(axis=1)
         weights = []
         for i in range(len(basis_names)):
             weights.append(
@@ -261,6 +261,7 @@ def spa_analyze(
     sample_reconstruction_plots=None,
     make_metadata=True,
     volume=None,
+    cpu=-1,
 ):
     """
     Decomposes the De Novo Signatures into COSMIC Signatures and assigns COSMIC signatures into samples.
@@ -685,6 +686,7 @@ def spa_analyze(
                 denovo_refit_option=denovo_refit_option,
                 exome=exome,
                 volume=volume,
+                cpu=-1,
             )
 
         else:
@@ -693,6 +695,7 @@ def spa_analyze(
             signature_stats = devopts["signature_stats"]
             sequence = devopts["sequence"]
             processSTE = devopts["processSTE"]
+            cpu_extractor = devopts["cpu"]
 
             exposureAvg = sub.make_final_solution(
                 processAvg,
@@ -724,6 +727,7 @@ def spa_analyze(
                 denovo_refit_option=denovo_refit_option,
                 exome=exome,
                 volume=volume,
+                cpu=cpu_extractor,
             )
 
         if make_metadata:
@@ -900,6 +904,7 @@ def spa_analyze(
             denovo_refit_option=denovo_refit_option,
             exome=exome,
             volume=volume,
+            cpu=cpu,
         )
 
         if make_metadata:
@@ -963,10 +968,10 @@ def spa_analyze(
             cosmic_sig_ref = processAvg.copy(deep=True)
             cosmic_sig_ref.reset_index(inplace=True)
         else:
-            
+
             try:
                 processAvg = pd.read_csv(signature_database, sep="\t", index_col=0)
-                
+
             except:
                 sys.exit(
                     "Something is wrong with the format of signature database, Pass a text file of signatures in the format of COSMIC sig database"
@@ -1064,6 +1069,7 @@ def spa_analyze(
             denovo_refit_option=denovo_refit_option,
             exome=exome,
             volume=volume,
+            cpu=cpu,
         )
         if make_metadata:
             with open(os.path.join(output, "JOB_METADATA_SPA.txt"), "a") as sysdata:

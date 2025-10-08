@@ -128,6 +128,7 @@ BRACKET_SIZES = [
 PLOT_NAME = 0
 CONTRIBUTION = 1
 
+
 # Helper functions for plotting the layout of a graph with 1-5 basis signatures
 # Parameters:
 #   bases 		- (List of Strings) The list of basis names

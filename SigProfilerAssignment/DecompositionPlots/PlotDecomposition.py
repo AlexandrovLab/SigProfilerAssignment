@@ -281,16 +281,22 @@ def calculate_similarities(denovo, denovo_name, est_denovo):
     if denovo.shape[0] == 1536:
         denovo["IndexKey"] = denovo.iloc[:, 0].astype(str)
         denovo["GroupKey"] = denovo["IndexKey"].str[1:8]
-        denovo_grouped = denovo.groupby("GroupKey", as_index=False).sum(numeric_only=True)
+        denovo_grouped = denovo.groupby("GroupKey", as_index=False).sum(
+            numeric_only=True
+        )
         denovo_grouped.rename(columns={"GroupKey": "MutationType"}, inplace=True)
         denovo = denovo_grouped.reset_index(drop=True)
 
     elif denovo.shape[0] == 288:
         denovo["MutationType"] = denovo["MutationType"].astype(str)  # Ensure strings
-        denovo["GroupKey"] = denovo["MutationType"].str[2:9]  # Extract substring for grouping
-        denovo_grouped = denovo.groupby("GroupKey", as_index=False).sum(numeric_only=True)
+        denovo["GroupKey"] = denovo["MutationType"].str[
+            2:9
+        ]  # Extract substring for grouping
+        denovo_grouped = denovo.groupby("GroupKey", as_index=False).sum(
+            numeric_only=True
+        )
         denovo_grouped.rename(columns={"GroupKey": "MutationType"}, inplace=True)
-        denovo = denovo_grouped.reset_index(drop=True) # updated pandas 2.0.0
+        denovo = denovo_grouped.reset_index(drop=True)  # updated pandas 2.0.0
     sample_names = [denovo_name]
 
     if sample_names is False:
