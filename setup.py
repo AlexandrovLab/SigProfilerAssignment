@@ -6,7 +6,7 @@ import os
 if os.path.exists("dist"):
     shutil.rmtree("dist")
 
-VERSION = "1.0.0"
+VERSION = "1.0.1"
 
 
 def write_version_py(filename="SigProfilerAssignment/version.py"):
@@ -15,7 +15,7 @@ def write_version_py(filename="SigProfilerAssignment/version.py"):
 # THIS FILE IS GENERATED FROM SigProfilerAssignment SETUP.PY
 short_version = '%(version)s'
 version = '%(version)s'
-Update = 'v1.0.0:  Parallel version for SigProfilerAssignment'
+Update = 'v1.0.1:  Refine CPU parameter logic to pass directly instead of via devopts'
 
     """
     fh = open(filename, "w")
