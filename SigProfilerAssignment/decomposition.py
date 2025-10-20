@@ -177,6 +177,8 @@ def record_parameters(sysdata, execution_parameters, start_time):
         sysdata.write("\tsamples: {}\n".format(execution_parameters["samples"]))
     else:
         sysdata.write("\tsamples: {}\n".format(type(execution_parameters["samples"])))
+
+    sysdata.write("\tcpu: {}\n".format(execution_parameters["cpu"]))
     if execution_parameters["volume"] is not None:
         sysdata.write("\tvolume: {}\n".format(execution_parameters["volume"]))
     sysdata.write(
@@ -498,6 +500,7 @@ def spa_analyze(
         "export_probabilities": export_probabilities,
         "make_plots": make_plots,
         "volume": volume,
+        "cpu": cpu,
     }
 
     if make_metadata:
@@ -686,7 +689,7 @@ def spa_analyze(
                 denovo_refit_option=denovo_refit_option,
                 exome=exome,
                 volume=volume,
-                cpu=-1,
+                cpu=cpu,
             )
 
         else:
@@ -695,7 +698,6 @@ def spa_analyze(
             signature_stats = devopts["signature_stats"]
             sequence = devopts["sequence"]
             processSTE = devopts["processSTE"]
-            cpu_extractor = devopts["cpu"]
 
             exposureAvg = sub.make_final_solution(
                 processAvg,
@@ -727,7 +729,7 @@ def spa_analyze(
                 denovo_refit_option=denovo_refit_option,
                 exome=exome,
                 volume=volume,
-                cpu=cpu_extractor,
+                cpu=cpu,
             )
 
         if make_metadata:

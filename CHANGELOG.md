@@ -6,6 +6,14 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ## [Unreleased]
 
+## [1.0.1] - 2025-10-20
+
+### Fixed
+- Refactored the handling of the `cpu` parameter. The logic has been updated to pass the CPU count directly via the function's parameters, instead of through an internal `devopts` dictionary, to reduce complexity and improve code clarity.
+
+### Added
+- Added the `cpu` parameter to the metadata output log.
+
 ## [1.0.0] - 2025-10-07
 
 ### Added
