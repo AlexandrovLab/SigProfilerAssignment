@@ -9,8 +9,8 @@ RUN apt-get update && apt-get upgrade -y && \
     apt-get install -y python3-pip python3-dev git && \
     apt-get clean && rm -rf /var/lib/apt/lists/*
 
-# Argument to specify the commit, defaults to the 'master' branch
-ARG COMMIT_SHA=master
+# Argument to specify the commit, defaults to the 'main' branch
+ARG COMMIT_SHA=main
 
 # Set the working directory in the container
 WORKDIR /usr/src/app
