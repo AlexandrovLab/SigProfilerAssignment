@@ -300,6 +300,7 @@ def signature_decomposition(
     exome=False,
     m_for_subgroups="SBS",
     volume=None,
+    add_background_signatures=True,
 ):
     originalProcessAvg = originalProcessAvg.reset_index()
     if not os.path.exists(directory + "/Solution_Stats"):
@@ -395,7 +396,10 @@ def signature_decomposition(
 
     # only for SBS96
     if mtype == "96" or mtype == "288" or mtype == "1536":
-        bgsigs = get_indeces(list(signames), ["SBS1", "SBS5"])
+        if add_background_signatures:
+            bgsigs = get_indeces(list(signames), ["SBS1", "SBS5"])
+        else:
+            bgsigs = []
     else:
         bgsigs = []
 
@@ -691,7 +695,10 @@ def signature_decomposition(
 
     # only for SBS96
     if mtype == "96" or mtype == "288" or mtype == "1536":
-        background_sigs = get_indeces(list(detected_signatures), ["SBS1", "SBS5"])
+        if add_background_signatures:
+            background_sigs = get_indeces(list(detected_signatures), ["SBS1", "SBS5"])
+        else:
+            background_sigs = []
         # add connected signatures
         different_signatures = ss.add_connected_sigs(
             different_signatures, list(signames)
@@ -874,8 +881,10 @@ def process_sample(args):
             set().union(list(np.nonzero(exposureAvg[:, r])[0]), background_sigs)
         )
 
-        if background_sigs != 0:
+        if background_sigs and len(background_sigs) > 0:
             background_sig_idx = get_indeces(allsigids, ["SBS1", "SBS5"])
+        else:
+            background_sig_idx = []
 
         try:
             (

@@ -264,6 +264,7 @@ def spa_analyze(
     make_metadata=True,
     volume=None,
     cpu=-1,
+    add_background_signatures=True,
 ):
     """
     Decomposes the De Novo Signatures into COSMIC Signatures and assigns COSMIC signatures into samples.
@@ -644,7 +645,10 @@ def spa_analyze(
             attribution[i] = [i]
         # only for SBS96
         if mutation_type == "96" or mutation_type == "288" or mutation_type == "1536":
-            background_sigs = sub.get_indeces(list(allsigids), ["SBS1", "SBS5"])
+            if add_background_signatures:
+                background_sigs = sub.get_indeces(list(allsigids), ["SBS1", "SBS5"])
+            else:
+                background_sigs = []
             # add connected signatures
             # different_signatures = ss.add_connected_sigs(different_signatures, list(signames))
         # for other contexts
@@ -855,6 +859,7 @@ def spa_analyze(
             exome=exome,
             m_for_subgroups=m_for_subgroups,
             volume=volume,
+            add_background_signatures=add_background_signatures,
         )
         # final_signatures = sub.signature_decomposition(processAvg, m, layer_directory2, genome_build=genome_build)
         # extract the global signatures and new signatures from the final_signatures dictionary
@@ -1016,7 +1021,10 @@ def spa_analyze(
             attribution[i] = [i]
         # only for SBS96
         if mutation_type == "96" or mutation_type == "288" or mutation_type == "1536":
-            background_sigs = sub.get_indeces(list(allsigids), ["SBS1", "SBS5"])
+            if add_background_signatures:
+                background_sigs = sub.get_indeces(list(allsigids), ["SBS1", "SBS5"])
+            else:
+                background_sigs = []
             # add connected signatures
             # different_signatures = ss.add_connected_sigs(different_signatures, list(signames))
         # for other contexts
