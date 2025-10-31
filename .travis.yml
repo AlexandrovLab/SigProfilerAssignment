@@ -46,19 +46,24 @@ after_success:
       REPO_NAME=$(basename $TRAVIS_REPO_SLUG | tr '[:upper:]' '[:lower:]')
       IMAGE_NAME="ghcr.io/alexandrovlab/$REPO_NAME"
 
-      echo "Building version: $VERSION_TAG for image: $IMAGE_NAME"
-
+      echo "Checking if $IMAGE_NAME:$VERSION_TAG already exists on GHCR..."
       echo "$GHCR_PASSWORD" | docker login ghcr.io -u "$GHCR_USERNAME" --password-stdin
 
-      docker build \
-        --build-arg COMMIT_SHA=$TRAVIS_COMMIT \
-        -t $IMAGE_NAME:$VERSION_TAG \
-        -t $IMAGE_NAME:latest .
+      if docker manifest inspect $IMAGE_NAME:$VERSION_TAG > /dev/null 2>&1; then
+        echo "Tag $IMAGE_NAME:$VERSION_TAG already exists. Skipping Docker push."
+      else
+        echo "Building version: $VERSION_TAG for image: $IMAGE_NAME"
 
-      docker push $IMAGE_NAME:$VERSION_TAG
-      docker push $IMAGE_NAME:latest
+        docker build \
+          --build-arg COMMIT_SHA=$TRAVIS_COMMIT \
+          -t $IMAGE_NAME:$VERSION_TAG \
+          -t $IMAGE_NAME:latest .
 
-      echo "Docker deployment to GHCR successful"
+        docker push $IMAGE_NAME:$VERSION_TAG
+        docker push $IMAGE_NAME:latest
+
+        echo "Docker deployment to GHCR successful"
+      fi
     else
       echo "Skipping Docker deployment"
     fi
