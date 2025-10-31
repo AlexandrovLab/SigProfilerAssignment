@@ -6,7 +6,7 @@ import os
 if os.path.exists("dist"):
     shutil.rmtree("dist")
 
-VERSION = "1.0.2"
+VERSION = "1.0.3"
 
 
 def write_version_py(filename="SigProfilerAssignment/version.py"):
@@ -15,7 +15,7 @@ def write_version_py(filename="SigProfilerAssignment/version.py"):
 # THIS FILE IS GENERATED FROM SigProfilerAssignment SETUP.PY
 short_version = '%(version)s'
 version = '%(version)s'
-Update = 'v1.0.2: Add automated Docker build and publish pipeline'
+Update = 'v1.0.3: Add parameter to toggle automatic background signature addition'
 
     """
     fh = open(filename, "w")

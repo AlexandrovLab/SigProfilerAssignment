@@ -6,6 +6,16 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ## [Unreleased]
 
+## [1.0.3] - 2025-10-31
+### Added
+- Added `add_background_signatures` parameter (default: `True`) to control whether background signatures SBS1 and SBS5 are automatically added during signature assignment.
+- Parameter available in `spa_analyze()`, `signature_decomposition()`, and all Analyzer functions (`decompose_fit()`, `denovo_fit()`, `cosmic_fit()`).
+- CLI parameter `--add_background_signatures` added to match Python API functionality.
+- When set to `False`, background signatures are not forced but may still be detected naturally if present in samples.
+
+### Changed
+- Background signature assignment logic now respects the `add_background_signatures` parameter instead of always forcing SBS1/SBS5 inclusion.
+
 ## [1.0.2] - 2025-10-28
 
 ### Added
