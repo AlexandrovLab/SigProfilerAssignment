@@ -154,6 +154,14 @@ def parse_arguments_common(args: List[str], description: str) -> argparse.Namesp
             "'png' (PNG only, PDF removed)."
         ),
     )
+    parser.add_argument(
+        "--add_background_signatures",
+        type=str2bool,
+        nargs="?",
+        const=True,
+        default=True,
+        help="Automatically add background signatures SBS1 and SBS5 (default: True).",
+    )
     
 
     return parser.parse_args(args)
@@ -189,6 +197,7 @@ class CliController:
             context_type=parsed_args.context_type,
             export_probabilities=parsed_args.export_probabilities,
             export_probabilities_per_mutation=parsed_args.export_probabilities_per_mutation,
+            add_background_signatures=parsed_args.add_background_signatures,
         )
 
     def dispatch_denovo_fit(self, user_args: List[str]) -> None:
@@ -219,6 +228,7 @@ class CliController:
             context_type=parsed_args.context_type,
             export_probabilities=parsed_args.export_probabilities,
             export_probabilities_per_mutation=parsed_args.export_probabilities_per_mutation,
+            add_background_signatures=parsed_args.add_background_signatures,
         )
 
     def dispatch_cosmic_fit(self, user_args: List[str]) -> None:
@@ -250,4 +260,5 @@ class CliController:
             export_probabilities=parsed_args.export_probabilities,
             export_probabilities_per_mutation=parsed_args.export_probabilities_per_mutation,
             sample_reconstruction_plots=parsed_args.sample_reconstruction_plots,
+            add_background_signatures=parsed_args.add_background_signatures,
         )
