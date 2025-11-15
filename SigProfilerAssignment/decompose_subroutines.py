@@ -408,11 +408,23 @@ def signature_decomposition(
     denovo_signature_names = make_letter_ids(
         signatures.shape[1], mtype=mutation_context
     )
+    # Get original signature names if available (preserve original names regardless of database type)
+    # This will be used throughout to preserve original names in logs and output files
+    if originalProcessAvg is not None and hasattr(originalProcessAvg, 'columns') and len(originalProcessAvg.columns) > 1:
+        # After reset_index(), the first column is mutation types, so signature names start at index 1
+        original_signature_names = originalProcessAvg.columns[1:].tolist()
+    else:
+        original_signature_names = None
     # lognote.write("\n********** Starting Signature Decomposition **********\n\n")
     activity_percentages = []
     merger = PdfWriter()
 
     for i, j in zip(range(signatures.shape[1]), denovo_signature_names):
+        # Determine the signature name to use (original if available, otherwise default)
+        if original_signature_names is not None and i < len(original_signature_names):
+            current_signature_name = original_signature_names[i]
+        else:
+            current_signature_name = mutation_context + letters[i]
         # Only for context SBS96
         if signatures.shape[0] == 96:
             lognote = open(
@@ -424,7 +436,7 @@ def signature_decomposition(
             )
             lognote.write(
                 "\n\n\n\n######################## Decomposing "
-                + j
+                + current_signature_name
                 + " ########################\n"
             )
             lognote.close()
@@ -474,7 +486,7 @@ def signature_decomposition(
             )
             lognote.write(
                 "\n\n\n\n######################## Decomposing "
-                + j
+                + current_signature_name
                 + " ########################\n"
             )
             lognote.close()
@@ -527,7 +539,7 @@ def signature_decomposition(
             decomposed_signatures.append(signames[sig_idx])
             count += 1
         ListToTumple = tuple(
-            [mtype, letters[i]]
+            [mtype, current_signature_name]
             + listofinformation
             + [L1dist * 100]
             + [L2dist * 100]
@@ -540,11 +552,12 @@ def signature_decomposition(
         weights = []
         basis_names = []
         nonzero_exposures = exposures[np.nonzero(exposures)]
-        if signature_database is not None:
-            # A custom database was provided, so use the original column names from the de novo file.
-            denovo_name = originalProcessAvg.columns[i+1]
+        # Use original signature names if available (preserve original names regardless of database type)
+        if original_signature_names is not None and i < len(original_signature_names):
+            # Original signature names are available, use them
+            denovo_name = original_signature_names[i]
         else:
-            # No custom database was provided, so use the default naming convention (e.g., SBS96A, SBS96B, etc.).
+            # Fallback to default naming convention (e.g., SBS96A, SBS96B, etc.)
             denovo_name = mutation_context + letters[i]
         for info in range(0, len(listofinformation), 3):
             # print(info)
@@ -648,25 +661,25 @@ def signature_decomposition(
             fh.close()
 
             dictionary.update(
-                {"{}".format(mutation_context + letters[i]): decomposed_signatures}
+                {"{}".format(current_signature_name): decomposed_signatures}
             )
 
         else:
-            newsig.append(mutation_context + letters[i])
+            newsig.append(current_signature_name)
             newsigmatrixidx.append(i)
             fh = open(
                 directory + "/De_Novo_map_to_COSMIC_" + mutation_context + ".csv", "a"
             )
             fh.write(
                 "Signature {}-{}, Signature {}-{}, {}, {}, {}, {}, {}\n".format(
-                    mtype, letters[i], mtype, letters[i], 0, 0, 0, 1, 1
+                    mtype, current_signature_name, mtype, current_signature_name, 0, 0, 0, 1, 1
                 )
             )
             fh.close()
             dictionary.update(
                 {
-                    "{}".format(mutation_context + letters[i]): [
-                        "{}".format(mutation_context + letters[i])
+                    "{}".format(current_signature_name): [
+                        "{}".format(current_signature_name)
                     ]
                 }
             )
