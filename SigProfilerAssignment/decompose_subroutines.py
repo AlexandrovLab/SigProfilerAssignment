@@ -589,6 +589,10 @@ def signature_decomposition(
         else:
             mtype_par = "none"
 
+        # Update mtype_par to reflect the correct dimension for plotting
+        if collapse_to_SBS96 and signatures.shape[0] == 96 and mtype_par in ["288", "1536"]:
+            mtype_par = "96"
+
         can_plot_decomposition = make_decomposition_plots
         # Check for unsupported, non-collapsed contexts before attempting to plot
         if mtype_par in ["288", "1536"] and not collapse_to_SBS96 and can_plot_decomposition:
