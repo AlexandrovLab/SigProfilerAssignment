@@ -5,7 +5,9 @@ include SigProfilerAssignment/data/Reference_Signatures/GRCh37/*
 include SigProfilerAssignment/data/Reference_Signatures/GRCh38/*
 include SigProfilerAssignment/data/Reference_Signatures/mm9/*
 include SigProfilerAssignment/data/Reference_Signatures/mm10/*
+include SigProfilerAssignment/data/Reference_Signatures/mm39/*
 include SigProfilerAssignment/data/Reference_Signatures/rn6/*
+include SigProfilerAssignment/data/Reference_Signatures/rn7/*
 include SigProfilerAssignment/DecompositionPlots/ReferenceFiles/Fonts/*
 include SigProfilerAssignment/DecompositionPlots/ReferenceFiles/*
 include SigProfilerAssignment/DecompositionPlots/*
