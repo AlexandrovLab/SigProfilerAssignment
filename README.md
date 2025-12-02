@@ -90,8 +90,8 @@ exclude_signature_subgroups = ['MMR_deficiency_signatures',
                                'HR_deficiency_signatures' ,
                                'BER_deficiency_signatures',
                                'Chemotherapy_signatures',
-                               'Immunosuppressants_signatures'
-                               'Treatment_signatures'
+                               'Immunosuppressants_signatures',
+                               'Treatment_signatures',
                                'APOBEC_signatures',
                                'Tobacco_signatures',
                                'UV_signatures',
