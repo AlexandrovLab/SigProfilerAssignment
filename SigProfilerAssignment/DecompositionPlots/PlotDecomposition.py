@@ -77,7 +77,7 @@ cosmic_template_path = os.path.join(DECOMPOSITION_PATH, "CosmicTemplates")
 def install_cosmic_plots(
     context_type="96",
     genome_build="GRCh37",
-    cosmic_version="3.4",
+    cosmic_version="3.5",
     exome=False,
     volume=None,
 ):
@@ -898,7 +898,7 @@ def run_PlotDecomposition(
     output_path,
     project,
     mtype,
-    cosmic_version="3.4",
+    cosmic_version="3.5",
     genome_build="GRCh37",
     exome=False,
     custom_text=None,
@@ -1042,7 +1042,7 @@ def run_PlotSSDecomposition(
     project,
     context_type,
     genome_build="GRCh37",
-    cosmic_version="3.4",
+    cosmic_version="3.5",
     custom_text=None,
     exome=False,
     volume=None,

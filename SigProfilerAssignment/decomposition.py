@@ -249,7 +249,7 @@ def spa_analyze(
     initial_remove_penalty=0.05,
     de_novo_fit_penalty=0.02,
     genome_build="GRCh37",
-    cosmic_version=3.4,
+    cosmic_version=3.5,
     make_plots=True,
     collapse_to_SBS96=True,
     connected_sigs=True,
@@ -410,7 +410,7 @@ def spa_analyze(
             "ID": [],
         },
         "APOBEC_signatures": {"SBS": ["2", "13"], "DBS": [], "ID": []},
-        "Tobacco_signatures": {"SBS": ["4", "29", "92"], "DBS": ["2"], "ID": ["3"]},
+        "Tobacco_signatures": {"SBS": ["4", "29", "92", "100", "109"], "DBS": ["2"], "ID": ["3"]},
         "UV_signatures": {
             "SBS": ["7a", "7b", "7c", "7d", "38"],
             "DBS": ["1"],
