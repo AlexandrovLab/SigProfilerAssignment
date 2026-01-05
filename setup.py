@@ -6,7 +6,7 @@ import os
 if os.path.exists("dist"):
     shutil.rmtree("dist")
 
-VERSION = "1.0.3"
+VERSION = "1.0.4"
 
 
 def write_version_py(filename="SigProfilerAssignment/version.py"):
@@ -15,7 +15,7 @@ def write_version_py(filename="SigProfilerAssignment/version.py"):
 # THIS FILE IS GENERATED FROM SigProfilerAssignment SETUP.PY
 short_version = '%(version)s'
 version = '%(version)s'
-Update = 'v1.0.3: Add parameter to toggle automatic background signature addition'
+Update = 'v1.0.4: Support decompose_fit in higher contexts (288/1536), custom signature names, and fix reference signature packaging'
 
     """
     fh = open(filename, "w")

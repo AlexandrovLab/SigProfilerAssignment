@@ -6,6 +6,19 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ## [Unreleased]
 
+## [1.0.4] - 2026-01-05
+### Added
+- Support for `decompose_fit` in higher mutation contexts (288 and 1536) without collapsing to 96 when `collapse_to_SBS96=False`.
+- Support for custom signature names in signature decomposition workflows.
+
+### Changed
+- Improved context type handling in decomposition plots to correctly pass the mutation context type.
+
+### Fixed
+- Fixed variable reusage error in nested for loop that could cause incorrect behavior.
+- Fixed missing `rn7` and `mm39` reference signatures in package distribution (now included in MANIFEST.in).
+- Updated README.md to include correct `exclude_signature_subgroups` parameter documentation.
+
 ## [1.0.3] - 2025-10-31
 ### Added
 - Added `add_background_signatures` parameter (default: `True`) to control whether background signatures SBS1 and SBS5 are automatically added during signature assignment.
