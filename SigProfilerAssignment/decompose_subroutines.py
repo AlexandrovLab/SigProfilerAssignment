@@ -301,6 +301,7 @@ def signature_decomposition(
     m_for_subgroups="SBS",
     volume=None,
     add_background_signatures=True,
+    collapse_to_SBS96=True,
 ):
     originalProcessAvg = originalProcessAvg.reset_index()
     if not os.path.exists(directory + "/Solution_Stats"):
@@ -332,12 +333,12 @@ def signature_decomposition(
             sigDatabase = pd.read_csv(signature_database, sep="\t", index_col=0)
             # indx = sigDatabase.index()
             if (
-                sigDatabase.shape[0] == 1536
+                sigDatabase.shape[0] == 1536 and collapse_to_SBS96
             ):  # collapse the 1596 context into 96 only for the deocmposition
                 sigDatabase = sigDatabase.groupby(sigDatabase.index.str[1:8]).sum()
 
             elif (
-                sigDatabase.shape[0] == 288
+                sigDatabase.shape[0] == 288 and collapse_to_SBS96
             ):  # collapse the 288 context into 96 only for the deocmposition
                 # sigDatabase = pd.DataFrame(processAvg, index=index)
                 sigDatabase = sigDatabase.groupby(sigDatabase.index.str[2:9]).sum()
@@ -407,11 +408,23 @@ def signature_decomposition(
     denovo_signature_names = make_letter_ids(
         signatures.shape[1], mtype=mutation_context
     )
+    # Get original signature names if available (preserve original names regardless of database type)
+    # This will be used throughout to preserve original names in logs and output files
+    if originalProcessAvg is not None and hasattr(originalProcessAvg, 'columns') and len(originalProcessAvg.columns) > 1:
+        # After reset_index(), the first column is mutation types, so signature names start at index 1
+        original_signature_names = originalProcessAvg.columns[1:].tolist()
+    else:
+        original_signature_names = None
     # lognote.write("\n********** Starting Signature Decomposition **********\n\n")
     activity_percentages = []
     merger = PdfWriter()
 
     for i, j in zip(range(signatures.shape[1]), denovo_signature_names):
+        # Determine the signature name to use (original if available, otherwise default)
+        if original_signature_names is not None and i < len(original_signature_names):
+            current_signature_name = original_signature_names[i]
+        else:
+            current_signature_name = mutation_context + letters[i]
         # Only for context SBS96
         if signatures.shape[0] == 96:
             lognote = open(
@@ -423,7 +436,7 @@ def signature_decomposition(
             )
             lognote.write(
                 "\n\n\n\n######################## Decomposing "
-                + j
+                + current_signature_name
                 + " ########################\n"
             )
             lognote.close()
@@ -473,7 +486,7 @@ def signature_decomposition(
             )
             lognote.write(
                 "\n\n\n\n######################## Decomposing "
-                + j
+                + current_signature_name
                 + " ########################\n"
             )
             lognote.close()
@@ -518,15 +531,15 @@ def signature_decomposition(
         decomposed_signatures = []
         contribution_percentages = []
 
-        for j in np.nonzero(exposures)[0]:
-            listofinformation[count * 3] = signames[j]
+        for sig_idx in np.nonzero(exposures)[0]:
+            listofinformation[count * 3] = signames[sig_idx]
             listofinformation[count * 3 + 1] = round(exposure_percentages[count], 2)
             contribution_percentages.append(round(exposure_percentages[count], 2))
             listofinformation[count * 3 + 2] = "%"
-            decomposed_signatures.append(signames[j])
+            decomposed_signatures.append(signames[sig_idx])
             count += 1
         ListToTumple = tuple(
-            [mtype, letters[i]]
+            [mtype, current_signature_name]
             + listofinformation
             + [L1dist * 100]
             + [L2dist * 100]
@@ -539,7 +552,13 @@ def signature_decomposition(
         weights = []
         basis_names = []
         nonzero_exposures = exposures[np.nonzero(exposures)]
-        denovo_name = mutation_context + letters[i]
+        # Use original signature names if available (preserve original names regardless of database type)
+        if original_signature_names is not None and i < len(original_signature_names):
+            # Original signature names are available, use them
+            denovo_name = original_signature_names[i]
+        else:
+            # Fallback to default naming convention (e.g., SBS96A, SBS96B, etc.)
+            denovo_name = mutation_context + letters[i]
         for info in range(0, len(listofinformation), 3):
             # print(info)
             sigName = listofinformation[info]
@@ -569,8 +588,23 @@ def signature_decomposition(
             mtype_par = "32"
         else:
             mtype_par = "none"
+
+        # Update mtype_par to reflect the correct dimension for plotting
+        if collapse_to_SBS96 and signatures.shape[0] == 96 and mtype_par in ["288", "1536"]:
+            mtype_par = "96"
+
+        can_plot_decomposition = make_decomposition_plots
+        # Check for unsupported, non-collapsed contexts before attempting to plot
+        if mtype_par in ["288", "1536"] and not collapse_to_SBS96 and can_plot_decomposition:
+            print(f"\nWarning: Decomposition plots for the {mtype_par} context are not currently supported in this workflow when collapse_to_SBS96 is False. "
+                  f"Skipping plot generation for signature {j}.")
+            can_plot_decomposition = False # Temporarily disable plotting for this specific signature
+
         # only create decomposition plots for COSMIC signatures
-        if mtype_par != "none" and make_decomposition_plots == True:
+        if (
+            mtype_par != "none"
+            and can_plot_decomposition == True
+        ):
             # reformat the first column of cosmic signature dataframe
             cosmic_sigs_DF = sigDatabases_DF.copy(deep=True)
             cosmic_sigs_DF.columns = ["MutationType"] + cosmic_sigs_DF.columns[
@@ -631,25 +665,25 @@ def signature_decomposition(
             fh.close()
 
             dictionary.update(
-                {"{}".format(mutation_context + letters[i]): decomposed_signatures}
+                {"{}".format(current_signature_name): decomposed_signatures}
             )
 
         else:
-            newsig.append(mutation_context + letters[i])
+            newsig.append(current_signature_name)
             newsigmatrixidx.append(i)
             fh = open(
                 directory + "/De_Novo_map_to_COSMIC_" + mutation_context + ".csv", "a"
             )
             fh.write(
                 "Signature {}-{}, Signature {}-{}, {}, {}, {}, {}, {}\n".format(
-                    mtype, letters[i], mtype, letters[i], 0, 0, 0, 1, 1
+                    mtype, current_signature_name, mtype, current_signature_name, 0, 0, 0, 1, 1
                 )
             )
             fh.close()
             dictionary.update(
                 {
-                    "{}".format(mutation_context + letters[i]): [
-                        "{}".format(mutation_context + letters[i])
+                    "{}".format(current_signature_name): [
+                        "{}".format(current_signature_name)
                     ]
                 }
             )
