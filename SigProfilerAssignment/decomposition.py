@@ -786,10 +786,29 @@ def spa_analyze(
             allsigids = processAvg.columns.to_list()
         except:
             allsigids = list(listOfSignatures)
+        
+        # Preserve originalProcessAvg with original column names BEFORE converting to numpy array
+        # This is needed to maintain original de novo signature names in decomposition plots
+        if isinstance(processAvg, pd.DataFrame):
+            originalProcessAvg = processAvg.copy()
+        else:
+            originalProcessAvg = pd.DataFrame(
+                processAvg, index=index, columns=listOfSignatures
+            )
+        
         processAvg = np.array(processAvg)
         signature_names = sub.make_letter_ids(
             idlenth=processAvg.shape[1], mtype=mutation_context
         )
+        
+        # Use original signature names if available (preserve original names regardless of database type)
+        # This ensures exposureAvg column names match attribution dictionary keys
+        if originalProcessAvg is not None and hasattr(originalProcessAvg, 'columns') and len(originalProcessAvg.columns) > 0:
+            # Use original column names from the signatures file
+            exposure_signature_names = list(listOfSignatures)
+        else:
+            # Fallback to default naming convention
+            exposure_signature_names = signature_names
 
         exposureAvg_dummy = (
             pd.DataFrame(
@@ -801,16 +820,10 @@ def spa_analyze(
             .rename_axis("Samples")
         )
         exposureAvg = exposureAvg_dummy
-        exposureAvg.columns = signature_names
+        exposureAvg.columns = exposure_signature_names
 
         #############################
         # layer_directory2 = output+"/Decompose_Solution"
-        if isinstance(processAvg, pd.DataFrame):
-            pass
-        else:
-            originalProcessAvg = pd.DataFrame(
-                processAvg, index=index, columns=listOfSignatures
-            )
         try:
             if not os.path.exists(layer_directory2):
                 os.makedirs(layer_directory2)
@@ -819,21 +832,27 @@ def spa_analyze(
 
         if (
             processAvg.shape[0] == 1536 and collapse_to_SBS96 == True
-        ):  # collapse the 1596 context into 96 only for the deocmposition
+        ):  # collapse the 1536 context into 96 only for the decomposition
             processAvg = pd.DataFrame(processAvg, index=index)
             processAvg = processAvg.groupby(processAvg.index.str[1:8]).sum()
             genomes = genomes.groupby(genomes.index.str[1:8]).sum()
             index = genomes.index
+            # Also collapse originalProcessAvg to match the collapsed context
+            # originalProcessAvg has mutation types in the index, so group by index directly
+            originalProcessAvg = originalProcessAvg.groupby(originalProcessAvg.index.str[1:8]).sum()
             processAvg = np.array(processAvg)
 
         if (
             processAvg.shape[0] == 288 and collapse_to_SBS96 == True
-        ):  # collapse the 288 context into 96 only for the deocmposition
+        ):  # collapse the 288 context into 96 only for the decomposition
             processAvg = pd.DataFrame(processAvg, index=index)
             processAvg = processAvg.groupby(processAvg.index.str[2:9]).sum()
             genomes = pd.DataFrame(genomes, index=index)
             genomes = genomes.groupby(genomes.index.str[2:9]).sum()
             index = genomes.index
+            # Also collapse originalProcessAvg to match the collapsed context
+            # originalProcessAvg has mutation types in the index, so group by index directly
+            originalProcessAvg = originalProcessAvg.groupby(originalProcessAvg.index.str[2:9]).sum()
             processAvg = np.array(processAvg)
 
         print("\n Decomposing De Novo Signatures  .....")
@@ -860,6 +879,7 @@ def spa_analyze(
             m_for_subgroups=m_for_subgroups,
             volume=volume,
             add_background_signatures=add_background_signatures,
+            collapse_to_SBS96=collapse_to_SBS96,
         )
         # final_signatures = sub.signature_decomposition(processAvg, m, layer_directory2, genome_build=genome_build)
         # extract the global signatures and new signatures from the final_signatures dictionary
