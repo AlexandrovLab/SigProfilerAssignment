@@ -6,7 +6,7 @@ import os
 if os.path.exists("dist"):
     shutil.rmtree("dist")
 
-VERSION = "1.1.0"
+VERSION = "1.1.1"
 
 
 def write_version_py(filename="SigProfilerAssignment/version.py"):
@@ -15,7 +15,7 @@ def write_version_py(filename="SigProfilerAssignment/version.py"):
 # THIS FILE IS GENERATED FROM SigProfilerAssignment SETUP.PY
 short_version = '%(version)s'
 version = '%(version)s'
-Update = 'v1.1.0: Support for COSMIC v3.5 signatures and updated Tobacco_signatures subgroup (SBS100, SBS109)'
+Update = 'v1.1.1: Added missing COSMIC v3.5 signature files (exome versions, mm39, rn7)'
 
     """
     fh = open(filename, "w")
