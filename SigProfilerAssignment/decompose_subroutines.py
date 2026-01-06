@@ -34,7 +34,7 @@ from multiprocessing import cpu_count
 def getProcessAvg(
     samples,
     genome_build="GRCh37",
-    cosmic_version=3.4,
+    cosmic_version=3.5,
     signature_database=None,
     connected_sigs=True,
     exome=False,
@@ -287,7 +287,7 @@ def signature_decomposition(
     mtype,
     directory,
     genome_build="GRCh37",
-    cosmic_version=3.4,
+    cosmic_version=3.5,
     signature_database=None,
     add_penalty=0.05,
     remove_penalty=0.01,

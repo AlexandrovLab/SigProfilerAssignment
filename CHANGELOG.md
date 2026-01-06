@@ -6,6 +6,16 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ## [Unreleased]
 
+## [1.1.0] - 2026-01-05
+### Added
+- Support for COSMIC v3.5 mutational signatures as the default reference signature version.
+- Added COSMIC v3.5 signature files for all supported genome builds (GRCh37, GRCh38, mm9, mm10, rn6).
+
+### Changed
+- Updated default `cosmic_version` parameter from 3.4 to 3.5 across all functions and CLI.
+- Updated `Tobacco_signatures` subgroup to include new signatures SBS100 and SBS109.
+- Updated README.md to reflect COSMIC v3.5 as the default version and include 3.5 in valid version options.
+
 ## [1.0.4] - 2026-01-05
 ### Added
 - Support for `decompose_fit` in higher mutation contexts (288 and 1536) without collapsing to 96 when `collapse_to_SBS96=False`.
