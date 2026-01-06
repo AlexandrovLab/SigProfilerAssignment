@@ -6,6 +6,14 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ## [Unreleased]
 
+## [1.1.1] - 2026-01-06
+### Added
+- Added missing COSMIC v3.5 signature files: exome versions for all supported genome builds, mm39 genome build signatures, and rn7 genome build signatures.
+- Updated COSMIC v3.5 signature files to match official COSMIC download (includes all signatures: CN26, ID24/ID25, SV11/SV12).
+
+### Fixed
+- Fixed missing COSMIC v3.5 signature files that were not included in the initial v3.5 release.
+
 ## [1.1.0] - 2026-01-05
 ### Added
 - Support for COSMIC v3.5 mutational signatures as the default reference signature version.
