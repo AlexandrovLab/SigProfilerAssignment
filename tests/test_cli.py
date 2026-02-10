@@ -3,6 +3,7 @@ import argparse
 from SigProfilerAssignment.controllers.cli_controller import (
     parse_arguments_common,
     str2bool,
+    str2list
 )
 
 
@@ -78,6 +79,10 @@ def test_boolean_conversion():
     with pytest.raises(argparse.ArgumentTypeError):
         str2bool("maybe")
 
+def test_str2list():
+    assert str2list("arg1,arg2,arg3") == ["arg1", "arg2","arg3"]
+    assert str2list("arg_unique") == ["arg_unique"]
+    assert str2list("wrong.sepparator") == ["wrong.sepparator"]
 
 if __name__ == "__main__":
     pytest.main()
