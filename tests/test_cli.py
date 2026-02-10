@@ -44,6 +44,8 @@ def test_argument_parsing():
             "True",
             "--sample_reconstruction_plots",
             "png",
+            "--exclude_signature_subgroups",
+            "MMR_deficiency_signatures,POL_deficiency_signatures,HR_deficiency_signatures,BER_deficiency_signatures,Chemotherapy_signatures,Immunosuppressants_signatures,Treatment_signatures,APOBEC_signatures,Tobacco_signatures,UV_signatures,AA_signatures,Colibactin_signatures,Artifact_signatures,Lymphoid_signatures"
         ],
         "Test argument parsing",
     )
@@ -59,6 +61,7 @@ def test_argument_parsing():
     assert args.export_probabilities_per_mutation == True
     assert args.exome == True
     assert args.sample_reconstruction_plots == "png"
+    assert args.exclude_signature_subgroups == ['MMR_deficiency_signatures', 'POL_deficiency_signatures', 'HR_deficiency_signatures' , 'BER_deficiency_signatures', 'Chemotherapy_signatures', 'Immunosuppressants_signatures', 'Treatment_signatures', 'APOBEC_signatures', 'Tobacco_signatures', 'UV_signatures', 'AA_signatures', 'Colibactin_signatures', 'Artifact_signatures', 'Lymphoid_signatures']
 
 
 def test_boolean_conversion():
