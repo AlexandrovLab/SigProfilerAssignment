@@ -57,7 +57,7 @@ jobs:
     
     - name: Install genome
       run: |
-        python install_genome.py ${{ github.workspace }}/src/
+        SigProfilerMatrixGenerator install GRCh37 --local_genome ${{ github.workspace }}/src/
     
     - name: Run unit tests
       run: |
