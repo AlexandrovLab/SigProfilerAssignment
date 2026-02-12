@@ -1,0 +1,63 @@
+site_name: SigProfilerAssignment
+repo_name: SigProfilerSuite/SigProfilerAssignment
+repo_url: https://github.com/SigProfilerSuite/SigProfilerAssignment
+
+docs_dir: docs
+site_url: https://sigprofilersuite.github.io/SigProfilerAssignment/
+
+not_in_nav: |
+  home.md
+
+use_directory_urls: false
+
+theme:
+  name: material
+  features:
+    - navigation.instant
+    - navigation.tracking
+    - navigation.tabs
+    - navigation.sections
+    - navigation.top
+    - toc.follow
+    - content.code.copy
+  palette:
+    - scheme: default
+      primary: indigo
+      accent: indigo
+    - scheme: slate
+      primary: indigo
+      accent: indigo
+      toggle:
+        icon: material/weather-night
+        name: Switch to dark mode
+
+nav:
+  - Home: index.md
+  - Getting Started:
+      - '1. Installation': '1_installation.md'
+      - '2. Quick Start Example': '2_quick_start_example.md'
+  - Using The Tool:
+      - '3. Using the Tool - Input': '3_using_the_tool_input.md'
+      - '4. Using the Tool - Output': '4_using_the_tool_output.md'
+  - Advanced mode:
+      - '5. Advanced mode': '5_advanced_mode.md'
+
+plugins:
+  - search
+
+markdown_extensions:
+  - toc:
+      permalink: true
+  - attr_list
+  - md_in_html
+  - admonition
+  - pymdownx.superfences
+  - pymdownx.details
+  - pymdownx.tabbed:
+      alternate_style: true
+
+extra_css:
+  - assets/stylesheets/extra.css
+
+hooks:
+  - mkdocs_hooks.py
