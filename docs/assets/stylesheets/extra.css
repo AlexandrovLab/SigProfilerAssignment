@@ -3,10 +3,14 @@
     Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
 }
 
-/* Slightly wider content for tables/screenshots. */
-.md-grid {
-  max-width: 1200px;
+.md-main__inner {
+  max-width: 80%;
 }
+
+.md-grid {
+  max-width: 80%;
+}
+
 
 /* Improve readability of long tables from OSF wiki. */
 .md-typeset table:not([class]) {
