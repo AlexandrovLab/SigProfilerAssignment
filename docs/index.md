@@ -1,28 +1,33 @@
-SigProfilerAssignment
-=====================
+# SigProfilerAssignment
 
-![test](assets/images/SigProfilerAssignment.png)
-
+![Logo](assets/images/SigProfilerAssignment.png)
 
 ----------
 
+**SigProfilerAssignment** is a Python framework that assigns and decomposes mutational signatures in individual samples and individual somatic mutations. 
 
-SigProfilerAssignment is a [python](https://www.python.org/) framework that assigns previously known mutational signatures to individual samples and individual somatic mutations. The tool refits different types of reference mutational signatures, including COSMIC [SBS][1], [DBS][2], [ID][3], and [CN][4] signatures, as well as custom signature databases. Refitting of known mutational signatures is a numerical optimization approach that not only identifies the set of operative mutational signatures in a particular sample, but also quantifies the number of mutations assigned to each signature found in that sample. SigProfilerAssignment makes use of [SigProfilerMatrixGenerator][5] and [SigProfilerPlotting][6], seamlessly integrating with other [SigProfiler tools][7].
+Refitting of known mutational signatures is a numerical optimization approach that not only identifies the set of operative mutational signatures in a particular sample, but also quantifies the number of mutations attributed to each signature detected in that sample. In addition to refitting known reference signatures, the tool can decompose _de novo_ extracted signatures into known reference signatures, facilitating biological interpretation and comparison with established catalogs. 
 
-The SigProfilerAssignment library can be found on GitHub [here][8]. For users that prefer working in an R environment, we provide an R wrapper (SigProfilerAssignmentR) that can be found on GitHub [here][9].
+It supports multiple mutation contexts and genome builds, provides confidence estimation and signature activity thresholds, and generates detailed visual and tabular outputs to aid downstream analyses. The tool refits different types of reference mutational signatures, including COSMIC [SBS][1], [DBS][2], [ID][3], and [CN][4] signatures, as well as custom signature databases. 
+
+**SigProfilerAssignment** makes use of [SigProfilerMatrixGenerator][5] and [SigProfilerPlotting][6], enabling seamless integration with other tools in the SigProfiler suite.
+
+The SigProfilerAssignment library is available on [GitHub](https://github.com/SigProfilerSuite/SigProfilerAssignment) and [PyPI](https://pypi.org/project/SigProfilerAssignment)
 
 
 ----------
 
 ### Citation
-Díaz-Gay, M., Vangara, R., Barnes, M., ... & Alexandrov, L. B. (2023). Assigning mutational signatures to individual samples and individual somatic mutations with SigProfilerAssignment, bioRxiv, 2023-07. doi: https://doi.org/10.1101/2023.07.10.548264
+
+Díaz-Gay M, Vangara R, Barnes M, Wang X, Islam SMA, Vermes I, Duke S, Narasimman NB, Yang T, Jiang Z, Moody S, Senkin S, Brennan P, Stratton MR, Alexandrov LB. Assigning mutational signatures to individual samples and individual somatic mutations with SigProfilerAssignment. *Bioinformatics*. 2023;39(12):btad756. [https://doi.org/10.1093/bioinformatics/btad756](https://doi.org/10.1093/bioinformatics/btad756)
 
 ### License
-This software and its documentation are copyright 2022 as a part of the SigProfiler project. The SigProfilerAssignment framework is free software and is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
+
+This software and its documentation are part of the SigProfiler project and are copyrighted © 2022. The SigProfilerAssignment framework is free software and is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
 
 ### Contact
-Please address any queries or bug reports to Raviteja Vangara at rvangara@health.ucsd.edu or Marcos Díaz-Gay at mdiazgay@health.ucsd.edu.
 
+For questions, support requests, or bug reports, please contact the SigProfilerSuite team via GitHub [issues](https://github.com/SigProfilerSuite/SigProfilerAssignment/issues) or by email at [contact@sigprofilersuite.org](mailto:contact@sigprofilersuite.org).
 
   [1]: https://cancer.sanger.ac.uk/cosmic/signatures/SBS/
   [2]: https://cancer.sanger.ac.uk/signatures/dbs/
