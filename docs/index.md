@@ -6,7 +6,7 @@
 
 **SigProfilerAssignment** is a Python framework that assigns and decomposes mutational signatures in individual samples and individual somatic mutations. 
 
-Refitting of  mutational signatures is a numerical optimization approach that not only identifies the set of operative mutational signatures in a particular sample, but also quantifies the number of mutations attributed to each signature detected in that sample. In addition to refitting reference signatures, the tool can decompose _de novo_ extracted signatures into reference signatures, facilitating biological interpretation and comparison with established catalogs. 
+Refitting of  mutational signatures is a numerical optimization approach that not only identifies the set of operative mutational signatures in a particular sample, but also quantifies the number of mutations attributed to each signature detected in that sample. In addition to refitting reference signatures, the tool have an advanced mode that can assign _de novo_ extracted signatures and decompose them into reference signatures, facilitating biological interpretation and comparison with established catalogs. 
 
 It supports multiple mutation contexts and genome builds, provides confidence estimation and signature activity thresholds, and generates detailed visual and tabular outputs to aid downstream analyses. The tool refits different types of known reference mutational signatures, including COSMIC [SBS][1], [DBS][2], [ID][3], and [CN][4] signatures, as well as custom signature databases. 
 
