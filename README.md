@@ -32,19 +32,19 @@ Assignment of known mutational signatures to individual samples is performed usi
 
 ```python
 from SigProfilerAssignment import Analyzer as Analyze
-Analyze.cosmic_fit(samples, output, input_type="matrix", context_type="96", genome_build="GRCh37")
+Analyze.cosmic_fit(samples, output, input_type="matrix", context_type="96")
 ```
 
 You can also run SigProfilerAssignment `cosmic_fit` function from command line: 
 
 ``` bash
-$ SigProfilerAssignment cosmic_fit samples output --input_type "matrix" --context_type "96" --genome_build "GRCh37"
+$ SigProfilerAssignment cosmic_fit samples output --input_type "matrix" --context_type "96"
 
 ```
 
 ## Reference
 
-Díaz-Gay M, Vangara R, Barnes M, Wang X, Islam SMA, Vermes I, Duke S, Narasimman NB, Yang T, Jiang Z, Moody S, Senkin S, Brennan P, Stratton MR, Alexandrov LB. Assigning mutational signatures to individual samples and individual somatic mutations with SigProfilerAssignment. *Bioinformatics*. 2023;39(12):btad756. [https://doi.org/10.1093/bioinformatics/btad756](https://doi.org/10.1093/bioinformatics/btad756)
+Díaz-Gay M, Vangara R, Barnes M, *et al.*, Alexandrov LB. Assigning mutational signatures to individual samples and individual somatic mutations with SigProfilerAssignment. *Bioinformatics*. 2023;39(12):btad756. [https://doi.org/10.1093/bioinformatics/btad756](https://doi.org/10.1093/bioinformatics/btad756)
 
 ## Contact
 
