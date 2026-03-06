@@ -92,6 +92,7 @@ def convert_PDF_to_PNG(input_file_name, output_directory, page_names):
 def generate_sample_reconstruction(
     cosmic_sigs,
     samples_input,
+    mtype,
     activities,
     output_dir,
     recon_output_types,
@@ -102,7 +103,6 @@ def generate_sample_reconstruction(
     #       both    = pdf generation + png conversion
     #       png     = pdf generation + png conversion + pdf removal
     project = "test_run"
-    mtype = "96"
 
     final_pdf = PdfWriter()
     samples = samples_input.copy(deep=True)
@@ -1137,7 +1137,6 @@ def spa_analyze(
     if (
         isinstance(sample_reconstruction_plots, str)
         and sample_reconstruction_plots.lower() in recon_output_types
-        and mutation_type == "96"
         and signature_database is None
     ):
         ss_recon_odir = os.path.join(
@@ -1153,6 +1152,7 @@ def spa_analyze(
         generate_sample_reconstruction(
             cosmic_sig_ref,
             genomes,
+            mutation_type,
             cosmic_activities,
             ss_recon_odir,
             sample_reconstruction_plots,
