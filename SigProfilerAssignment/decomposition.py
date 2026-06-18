@@ -103,6 +103,10 @@ def generate_sample_reconstruction(
     #       png     = pdf generation + png conversion + pdf removal
     project = "test_run"
     mtype = "96"
+    is_custom_database = execution_parameters.get("signature_database") is not None
+    cosmic_version_label = (
+        "Custom" if is_custom_database else str(execution_parameters["cosmic_version"])
+    )
 
     final_pdf = PdfWriter()
     samples = samples_input.copy(deep=True)
@@ -140,9 +144,10 @@ def generate_sample_reconstruction(
             project,
             mtype,
             genome_build=execution_parameters["reference_genome"],
-            cosmic_version=str(execution_parameters["cosmic_version"]),
+            cosmic_version=cosmic_version_label,
             exome=execution_parameters["exome"],
             volume=get_storage_dir(execution_parameters["volume"]),
+            use_custom_basis=is_custom_database,
         )
 
         result.seek(0)
@@ -1015,9 +1020,6 @@ def spa_analyze(
                 cosmic_version=cosmic_version,
                 exome=exome,
             )[0]
-            # for sample reconstruction plots
-            cosmic_sig_ref = processAvg.copy(deep=True)
-            cosmic_sig_ref.reset_index(inplace=True)
         else:
 
             try:
@@ -1054,6 +1056,12 @@ def spa_analyze(
             )
         # #
         processAvg.drop(sig_exclusion_list, axis=1, inplace=True, errors="ignore")
+
+        # for sample reconstruction plots; built after collapsing/exclusion so it
+        # matches the signatures actually used, whether from COSMIC or a custom
+        # signature_database.
+        cosmic_sig_ref = processAvg.copy(deep=True)
+        cosmic_sig_ref.reset_index(inplace=True)
 
         # processAvg= originalProcessAvg
         # index = genomes.index
@@ -1138,7 +1146,6 @@ def spa_analyze(
         isinstance(sample_reconstruction_plots, str)
         and sample_reconstruction_plots.lower() in recon_output_types
         and mutation_type == "96"
-        and signature_database is None
     ):
         ss_recon_odir = os.path.join(
             layer_directory3, "Activities", "SampleReconstruction"

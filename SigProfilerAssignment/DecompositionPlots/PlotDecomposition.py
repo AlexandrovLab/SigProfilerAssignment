@@ -1046,6 +1046,7 @@ def run_PlotSSDecomposition(
     custom_text=None,
     exome=False,
     volume=None,
+    use_custom_basis=False,
 ):
     """
     Generates a reconstruction of a sample given a set of signatures.
@@ -1084,30 +1085,45 @@ def run_PlotSSDecomposition(
 
     exome: Boolean. True if using exome COSMIC signatures, and False if not.
 
+    use_custom_basis: Boolean. True if basis_mtx comes from a custom signature_database
+    (renders basis plots directly from basis_mtx instead of the cached COSMIC plots).
+
     Returns:
     -------
     None.
     """
 
-    # Create the denovo plots
-    denovo_plots_dict = gen_sub_plots(
-        denovo_mtx,
-        None,
-        output_path,
-        project,
-        context_type,
-        ss_decomp=True,
-        volume=volume,
-    )
-    denovo_plots_dict = denovo_plots_dict[0]
-    # Load in the COSMIC plots
-    basis_plots_dict = install_cosmic_plots(
-        context_type=context_type,
-        genome_build=genome_build,
-        cosmic_version=cosmic_version,
-        exome=exome,
-        volume=volume,
-    )
+    if use_custom_basis:
+        # Custom signature database: render basis (signature) plots directly
+        # from the provided matrix instead of the cached COSMIC reference plots.
+        denovo_plots_dict, basis_plots_dict = gen_sub_plots(
+            denovo_mtx,
+            basis_mtx,
+            output_path,
+            project,
+            context_type,
+            ss_decomp=True,
+            volume=volume,
+        )
+    else:
+        # Create the denovo plots
+        denovo_plots_dict, _ = gen_sub_plots(
+            denovo_mtx,
+            None,
+            output_path,
+            project,
+            context_type,
+            ss_decomp=True,
+            volume=volume,
+        )
+        # Load in the COSMIC plots
+        basis_plots_dict = install_cosmic_plots(
+            context_type=context_type,
+            genome_build=genome_build,
+            cosmic_version=cosmic_version,
+            exome=exome,
+            volume=volume,
+        )
 
     # Create reconstructed matrix and plot
     reconstructed_mtx, reconstruction_plot_dict = gen_reconstructed_png_numerical(
