@@ -2,7 +2,7 @@
 [![License](https://img.shields.io/badge/License-BSD\%202--Clause-orange.svg)](https://opensource.org/licenses/BSD-2-Clause)
 [![CI](https://github.com/SigProfilerSuite/SigProfilerAssignment/actions/workflows/ci.yml/badge.svg)](https://github.com/SigProfilerSuite/SigProfilerAssignment/actions/workflows/ci.yml)
 
-<img src="SigProfilerAssignment/figures/SigProfilerAssignment.png" alt="drawing" width="1000"/>
+<img src="docs/assets/images/SigProfilerAssignment.png" alt="SigProfilerAssignment" width="1000"/>
 
 # SigProfilerAssignment
 SigProfilerAssignment enables assignment of previously known mutational signatures to individual samples and individual somatic mutations. The tool refits different types of reference mutational signatures, including [COSMIC signatures](https://cancer.sanger.ac.uk/signatures/), as well as custom signature databases. SigProfilerAssignment makes use of [SigProfilerMatrixGenerator](https://github.com/SigProfilerSuite/SigProfilerMatrixGenerator) and [SigProfilerPlotting](https://github.com/SigProfilerSuite/SigProfilerPlotting), seamlessly integrating with other in [SigProfilerSuite](https://github.com/SigProfilerSuite).
