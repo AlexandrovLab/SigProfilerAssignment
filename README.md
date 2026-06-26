@@ -1,4 +1,4 @@
-[![Docs](https://img.shields.io/badge/docs-latest-blue.svg)](https://osf.io/mz79v/wiki/home/) 
+[![Docs](https://img.shields.io/badge/docs-latest-blue.svg)](https://sigprofilersuite.github.io/SigProfilerAssignment/)
 [![License](https://img.shields.io/badge/License-BSD\%202--Clause-orange.svg)](https://opensource.org/licenses/BSD-2-Clause)
 [![CI](https://github.com/SigProfilerSuite/SigProfilerAssignment/actions/workflows/ci.yml/badge.svg)](https://github.com/SigProfilerSuite/SigProfilerAssignment/actions/workflows/ci.yml)
 
