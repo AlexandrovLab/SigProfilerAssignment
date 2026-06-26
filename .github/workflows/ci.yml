@@ -1,0 +1,69 @@
+name: CI
+
+on:
+  push:
+    branches:
+      - main
+      - dev
+  pull_request:
+    branches:
+      - main
+
+permissions:
+  contents: read
+  packages: write
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: ['3.9', '3.14']
+
+    steps:
+    - uses: actions/checkout@v6
+
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v6
+      with:
+        python-version: ${{ matrix.python-version }}
+
+    - name: Install system dependencies
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y poppler-utils
+
+    - name: Upgrade pip, setuptools, and packaging
+      run: |
+        python -m pip install --upgrade pip setuptools packaging
+
+    - name: Cache src directory
+      uses: actions/cache@v5
+      with:
+        path: ${{ github.workspace }}/src/
+        key: ${{ runner.os }}-src-grch37
+        restore-keys: |
+          ${{ runner.os }}-src-
+
+    - name: Download GRCh37.tar.gz if not present
+      run: |
+        if [ ! -f ${{ github.workspace }}/src/GRCh37.tar.gz ]; then
+          wget --connect-timeout=10 --tries=20 ftp://alexandrovlab-ftp.ucsd.edu/pub/tools/SigProfilerMatrixGenerator/GRCh37.tar.gz -P ${{ github.workspace }}/src/
+        fi
+
+    - name: Install package with tests
+      run: |
+        pip install .[tests]
+
+    - name: Install genome
+      run: |
+        SigProfilerMatrixGenerator install GRCh37 --local_genome ${{ github.workspace }}/src/
+
+    - name: Run unit tests
+      run: |
+        pip install pytest
+        pytest -s -rw tests
+
+    - name: Run integration test
+      run: |
+        python3 test.py
