@@ -13,8 +13,6 @@ def str2bool(v):
     else:
         raise argparse.ArgumentTypeError("Boolean value expected.")
 
-def str2list(arg):
-    return arg.split(",")
 
 def parse_arguments_common(args: List[str], description: str) -> argparse.Namespace:
     parser = argparse.ArgumentParser(description=description)
@@ -101,7 +99,6 @@ def parse_arguments_common(args: List[str], description: str) -> argparse.Namesp
     )
     parser.add_argument(
         "--exclude_signature_subgroups",
-        type=str2list,
         default=None,
         help="Remove specific signature subgroups.",
     )
