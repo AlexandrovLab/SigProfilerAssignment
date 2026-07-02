@@ -51,7 +51,7 @@ patsy==1.0.1
     # via statsmodels
 pdf2image==1.17.0
     # via SigProfilerAssignment (setup.py)
-pillow==11.3.0
+pillow==12.1.1
     # via
     #   matplotlib
     #   pdf2image
