@@ -1,3 +1,8 @@
+"""
+Unit tests for cosmic_fit function.
+Run with: pytest tests/test_cosmic_fit.py -v
+"""
+
 import os
 import pandas as pd
 import pytest
