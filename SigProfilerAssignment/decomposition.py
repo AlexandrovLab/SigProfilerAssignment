@@ -254,7 +254,7 @@ def spa_analyze(
     initial_remove_penalty=0.05,
     de_novo_fit_penalty=0.02,
     genome_build="GRCh37",
-    cosmic_version=3.5,
+    cosmic_version=3.6,
     make_plots=True,
     collapse_to_SBS96=True,
     connected_sigs=True,

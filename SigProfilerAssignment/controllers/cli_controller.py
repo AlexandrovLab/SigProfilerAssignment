@@ -47,13 +47,13 @@ def parse_arguments_common(args: List[str], description: str) -> argparse.Namesp
     parser.add_argument(
         "--genome_build",
         default="GRCh37",
-        help="The reference genome build (default: GRCh37). Supported genomes: {GRCh37, GRCh38, mm9, mm10, rn6}.",
+        help="The reference genome build (default: GRCh37). Supported genomes: {GRCh37, GRCh38, mm9, mm10, mm39, rn6, rn7}.",
     )
     parser.add_argument(
         "--cosmic_version",
         type=float,
-        default=3.5,
-        help="COSMIC version (default: 3.5). Valid options: {1, 2, 3, 3.1, 3.2, 3.3, 3.4, 3.5}.",
+        default=3.6,
+        help="COSMIC version (default: 3.6). Valid options: {1, 2, 3, 3.1, 3.2, 3.3, 3.4, 3.5, 3.6}.",
     )
     parser.add_argument(
         "--make_plots",

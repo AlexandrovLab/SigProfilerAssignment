@@ -41,7 +41,7 @@ $ pip install .
 
 ## Download Reference Genome ##
 
-In case you want to use SigProfilerAssignment with mutation calling files as input, you first need to download the appropriate reference genome. Current reference genomes supported include GRCh37, GRCh38, mm9, mm10, rn6 and rn7. To install the reference genome/s, you need to use [SigProfilerMatrixGenerator][2].
+In case you want to use SigProfilerAssignment with mutation calling files as input, you first need to download the appropriate reference genome. Current reference genomes supported include GRCh37, GRCh38, mm9, mm10, mm39, rn6 and rn7. To install the reference genome/s, you need to use [SigProfilerMatrixGenerator][2].
 
 The last PyPI [SigProfilerMatrixGenerator][2] version is installed with SigProfilerAssignment by default. You can also install a specific version following the instructions in [SigProfilerMatrixGenerator Wiki][2].
 

@@ -27,7 +27,7 @@ Once `BRCA.zip` has been downloaded, unzip the file. The unzipped `BRCA` folder 
 
 
 ## Running SigProfilerAssignment from VCF ##
-You will be assigning reference mutational signatures from [COSMIC][4] v3.5 to the breast cancer sample in the subfolder `BRCA_vcf` used as input for this example.
+You will be assigning reference mutational signatures from [COSMIC][4] v3.6 to the breast cancer sample in the subfolder `BRCA_vcf` used as input for this example.
 
 
 First, start a Python interactive shell and import the SigProfilerAssignment library.
@@ -57,7 +57,7 @@ $ SigProfilerAssignment cosmic_fit "path/to/BRCA_vcf" "output_vcf" --input_type 
 After SigProfilerAssignment has finished running, an output directory name `output_vcf` will be created. This directory will contain the output files and is located in the directory where the Python instance was started. To learn more about the output produced by SigProfilerAssignment, please refer to the [Using the Tool - Output][5] section.
 
 ## Running SigProfilerAssignment (Mutational matrix) ##
-You will be assigning reference mutational signatures from [COSMIC][4] v3.5 to the mutational matrix defined using the SBS-96 classification named `BRCA.txt` input for this example.
+You will be assigning reference mutational signatures from [COSMIC][4] v3.6 to the mutational matrix defined using the SBS-96 classification named `BRCA.txt` input for this example.
 
 First, start a Python interactive shell and import the SigProfilerAssignment library.
 
@@ -84,7 +84,7 @@ After SigProfilerAssignment has finished running, an output directory name `outp
 
 ## Running SigProfilerAssignment (Multi-sample segmentation) ##
 
-You will be assigning reference mutational signatures from [COSMIC][4] v3.5 to the multi-sample segmentation file obtained from one of the copy number calling tools named `all.breast.ascat.summary.sample.tsv` input for this example.
+You will be assigning reference mutational signatures from [COSMIC][4] v3.6 to the multi-sample segmentation file obtained from one of the copy number calling tools named `all.breast.ascat.summary.sample.tsv` input for this example.
 
 First, start a Python interactive shell and import the SigProfilerAssignment library.
 
@@ -99,14 +99,14 @@ Next, assign reference COSMIC signatures by running the following command. **Not
 Analyze.cosmic_fit(samples="path/to/all.breast.ascat.summary.sample.tsv", 
                    output="example_sf",
                    input_type="seg:ASCAT_NGS",
-                   cosmic_version=3.5,
+                   cosmic_version=3.6,
                    collapse_to_SBS96=False)
 ```
 
 You can also run SigProfilerAssignment `cosmic_fit` function from command line: 
 
 ``` bash
-$ SigProfilerAssignment cosmic_fit "path/to/all.breast.ascat.summary.sample.tsv" "example_sf" --input_type "seg:ASCAT_NGS" --cosmic_version "3.5" --collapse_to_SBS96 False
+$ SigProfilerAssignment cosmic_fit "path/to/all.breast.ascat.summary.sample.tsv" "example_sf" --input_type "seg:ASCAT_NGS" --cosmic_version "3.6" --collapse_to_SBS96 False
 
 ```
 

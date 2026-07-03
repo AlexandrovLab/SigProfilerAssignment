@@ -45,7 +45,7 @@ Decomposes a set of *de novo* extracted mutational signatures into a known set o
 
 Two input files are required. First, a file containing the input somatic mutations, in any of the formats specified in the [Using the Tool - Input][1] section. Also, a matrix containing the *de novo* extracted mutational signatures, commonly derived from [SigProfilerExtractor][2]. 
 
-An optional third input file is needed in case a custom reference signature database is used. By default, reference [COSMIC][3] signatures v3.5 are used for decomposing the set of *de novo* extracted signatures.
+An optional third input file is needed in case a custom reference signature database is used. By default, reference [COSMIC][3] signatures v3.6 are used for decomposing the set of *de novo* extracted signatures.
 
 **Note**: A reference genome build should also be specified if a mutation calling file is used as input.
 

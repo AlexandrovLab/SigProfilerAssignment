@@ -18,7 +18,7 @@ Install the current stable PyPi version of SigProfilerAssignment:
 $ pip install SigProfilerAssignment
 ```
 
-If mutation calling files (MAF, VCF, or simple text files) are used as input, please install your desired reference genome as follows (available reference genomes are: GRCh37, GRCh38, mm9, mm10, rn6, and rn7):
+If mutation calling files (MAF, VCF, or simple text files) are used as input, please install your desired reference genome as follows (available reference genomes are: GRCh37, GRCh38, mm9, mm10, mm39, rn6, and rn7):
 ```python
 $ python
 from SigProfilerMatrixGenerator import install as genInstall
@@ -28,7 +28,7 @@ genInstall.install('GRCh37')
 
 ### Running
 
-Assignment of known mutational signatures to individual samples is performed using the `cosmic_fit` function. Input samples are provided using the `samples` parameter in the form of mutation calling files (VCFs, MAFs, or simple text files), segmentation files, or mutational matrices. COSMIC mutational signatures v3.5 are used as the default reference signatures, although previous COSMIC versions and custom signature databases are also supported using the `cosmic_version` and `signature_database` parameters. Results will be found in the folder specified in the `output` parameter.
+Assignment of known mutational signatures to individual samples is performed using the `cosmic_fit` function. Input samples are provided using the `samples` parameter in the form of mutation calling files (VCFs, MAFs, or simple text files), segmentation files, or mutational matrices. COSMIC mutational signatures v3.6 are used as the default reference signatures, although previous COSMIC versions and custom signature databases are also supported using the `cosmic_version` and `signature_database` parameters. Results will be found in the folder specified in the `output` parameter.
 
 ```python
 from SigProfilerAssignment import Analyzer as Analyze

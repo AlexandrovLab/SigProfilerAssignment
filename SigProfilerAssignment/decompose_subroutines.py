@@ -34,7 +34,7 @@ from multiprocessing import cpu_count
 def getProcessAvg(
     samples,
     genome_build="GRCh37",
-    cosmic_version=3.5,
+    cosmic_version=3.6,
     signature_database=None,
     connected_sigs=True,
     exome=False,
@@ -287,7 +287,7 @@ def signature_decomposition(
     mtype,
     directory,
     genome_build="GRCh37",
-    cosmic_version=3.5,
+    cosmic_version=3.6,
     signature_database=None,
     add_penalty=0.05,
     remove_penalty=0.01,
@@ -440,7 +440,7 @@ def signature_decomposition(
                 + " ########################\n"
             )
             lognote.close()
-            if genome_build == "mm9" or genome_build == "mm10":
+            if (genome_build == "mm9" or genome_build == "mm10" or genome_build == "mm39"):
                 check_rule_negatives = [1, 16]
                 check_rule_penalty = 1.50
             else:
@@ -1068,7 +1068,7 @@ def make_final_solution(
     allgenomes = np.array(allgenomes)
     if (
         (m == "96" or m == "1536" or m == "288")
-        and (genome_build == "mm9" or genome_build == "mm10")
+        and (genome_build == "mm9" or genome_build == "mm10" or genome_build == "mm39")
         and (collapse_to_SBS96 == True)
     ):
         check_rule_negatives = [1, 16]
