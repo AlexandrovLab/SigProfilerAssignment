@@ -6,6 +6,63 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ## [Unreleased]
 
+## [1.1.4] - 2026-07-03
+
+### Changed
+
+- Python versions updated
+
+- GH actions activated for dev branch
+
+- Configure GHA to run in Python versions (minimun and last)
+
+- Genome installation during test changed to CLI
+
+- Genome installation using install_genome.py has been disabled
+
+- CLI controller has been corrected for parsing comma sepparated arguments in exclude_signature_subgroups variable
+
+- str2list function tested
+
+- Test documentation wiki
+
+- tests moved for rendering documentation
+
+- Tests has been restored
+
+- security issue in dependences fixed
+
+- test gh pages from GH actions
+
+- Documentation index corrected
+
+- Style updated
+
+- Documentation has been updated
+
+- Advanced mode specified
+
+- Readme has been simplified
+
+- Refactor README structure and add documentation sections
+
+- Update README
+
+- Documentation badge has been corrected
+
+- Figure moved to assets
+
+- update: new autorelease mecanism has been created
+
+- automatic release updated
+
+- test: autorelease workflow has been corrected
+
+
+### Fixed
+
+- Fix sample reconstruction plots to support custom signature databases instead of skipping them
+
 ## [1.1.3] - 2026-01-23
 ### Fixed
 - Fixed Python 3.12 compatibility issues with pandas StringArray in `set_index()` calls:
