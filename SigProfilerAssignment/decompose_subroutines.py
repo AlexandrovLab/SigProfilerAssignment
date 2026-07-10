@@ -106,6 +106,13 @@ def getProcessAvg(
         signames = sigDatabase.columns
 
     elif samples.shape[0] == 78:
+        if cosmic_version < 3:
+            print(
+                f"The selected cosmic version is {cosmic_version}. However, DBS signatures are "
+                "available only for version 3.0 and newer. Therefore, the cosmic version has "
+                "been reset to 3.6."
+            )
+            cosmic_version = 3.6
         if exome == False:
             sigDatabase = pd.read_csv(
                 paths
@@ -136,6 +143,13 @@ def getProcessAvg(
         connected_sigs = False
 
     elif samples.shape[0] == 83:
+        if cosmic_version < 3:
+            print(
+                f"The selected cosmic version is {cosmic_version}. However, ID signatures are "
+                "available only for version 3.0 and newer. Therefore, the cosmic version has "
+                "been reset to 3.6."
+            )
+            cosmic_version = 3.6
         sigDatabase = pd.read_csv(
             paths
             + "/data/Reference_Signatures/GRCh37/COSMIC_v"
@@ -154,9 +168,9 @@ def getProcessAvg(
             print(
                 f"The selected cosmic version is {cosmic_version}. However, CN signatures are "
                 "available only for version 3.3 and newer. Therefore, the cosmic version has "
-                "been reset to 3.4."
+                "been reset to 3.6."
             )
-            cosmic_version = 3.4
+            cosmic_version = 3.6
         sigDatabase = pd.read_csv(
             paths
             + "/data/Reference_Signatures/GRCh37/COSMIC_v"
@@ -173,9 +187,9 @@ def getProcessAvg(
             print(
                 f"The selected cosmic version is {cosmic_version}. However, SV signatures are "
                 "available only for version 3.4 and newer. Therefore, the cosmic version has "
-                "been reset to 3.4."
+                "been reset to 3.6."
             )
-            cosmic_version = 3.4
+            cosmic_version = 3.6
         sigDatabase = pd.read_csv(
             paths
             + "/data/Reference_Signatures/GRCh38/COSMIC_v"
