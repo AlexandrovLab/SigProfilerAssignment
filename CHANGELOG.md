@@ -6,6 +6,29 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ## [Unreleased]
 
+## [1.1.5] - 2026-07-29
+
+### Added
+
+- Add COSMIC v3.6  and test COSMIC file availability for all genomes and COSMIC versions
+
+- Add help comment on cosmic fit unit test file
+
+- Added missing COSMIC v3.5 DBS exome signature file for rn6 genome build
+
+- Added missing COSMIC v3.6 signature files: exome versions for all supported genome builds
+
+
+### Changed
+
+- Set COSMIC v3.6 as the default version and prevent running COSMIC fit for DBS or ID signatures with COSMIC versions earlier than v3.0
+
+- Updated COSMIC v3.6 genome and exome signature files for mm39 and rn7 with missing signatures from previous COSMIC versions
+
+- Updated COSMIC v3.5 exome signature files for all genome builds with the appropiate normalization method
+
+- Update version number to 1.1.5
+
 ## [1.1.4] - 2026-07-03
 
 ### Changed
