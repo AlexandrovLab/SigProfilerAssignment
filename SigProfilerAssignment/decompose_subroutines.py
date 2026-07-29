@@ -34,7 +34,7 @@ from multiprocessing import cpu_count
 def getProcessAvg(
     samples,
     genome_build="GRCh37",
-    cosmic_version=3.5,
+    cosmic_version=3.6,
     signature_database=None,
     connected_sigs=True,
     exome=False,
@@ -106,6 +106,13 @@ def getProcessAvg(
         signames = sigDatabase.columns
 
     elif samples.shape[0] == 78:
+        if cosmic_version < 3:
+            print(
+                f"The selected cosmic version is {cosmic_version}. However, DBS signatures are "
+                "available only for version 3.0 and newer. Therefore, the cosmic version has "
+                "been reset to 3.6."
+            )
+            cosmic_version = 3.6
         if exome == False:
             sigDatabase = pd.read_csv(
                 paths
@@ -136,6 +143,13 @@ def getProcessAvg(
         connected_sigs = False
 
     elif samples.shape[0] == 83:
+        if cosmic_version < 3:
+            print(
+                f"The selected cosmic version is {cosmic_version}. However, ID signatures are "
+                "available only for version 3.0 and newer. Therefore, the cosmic version has "
+                "been reset to 3.6."
+            )
+            cosmic_version = 3.6
         sigDatabase = pd.read_csv(
             paths
             + "/data/Reference_Signatures/GRCh37/COSMIC_v"
@@ -154,9 +168,9 @@ def getProcessAvg(
             print(
                 f"The selected cosmic version is {cosmic_version}. However, CN signatures are "
                 "available only for version 3.3 and newer. Therefore, the cosmic version has "
-                "been reset to 3.4."
+                "been reset to 3.6."
             )
-            cosmic_version = 3.4
+            cosmic_version = 3.6
         sigDatabase = pd.read_csv(
             paths
             + "/data/Reference_Signatures/GRCh37/COSMIC_v"
@@ -173,9 +187,9 @@ def getProcessAvg(
             print(
                 f"The selected cosmic version is {cosmic_version}. However, SV signatures are "
                 "available only for version 3.4 and newer. Therefore, the cosmic version has "
-                "been reset to 3.4."
+                "been reset to 3.6."
             )
-            cosmic_version = 3.4
+            cosmic_version = 3.6
         sigDatabase = pd.read_csv(
             paths
             + "/data/Reference_Signatures/GRCh38/COSMIC_v"
@@ -287,7 +301,7 @@ def signature_decomposition(
     mtype,
     directory,
     genome_build="GRCh37",
-    cosmic_version=3.5,
+    cosmic_version=3.6,
     signature_database=None,
     add_penalty=0.05,
     remove_penalty=0.01,
@@ -440,7 +454,7 @@ def signature_decomposition(
                 + " ########################\n"
             )
             lognote.close()
-            if genome_build == "mm9" or genome_build == "mm10":
+            if (genome_build == "mm9" or genome_build == "mm10" or genome_build == "mm39"):
                 check_rule_negatives = [1, 16]
                 check_rule_penalty = 1.50
             else:
@@ -1068,7 +1082,7 @@ def make_final_solution(
     allgenomes = np.array(allgenomes)
     if (
         (m == "96" or m == "1536" or m == "288")
-        and (genome_build == "mm9" or genome_build == "mm10")
+        and (genome_build == "mm9" or genome_build == "mm10" or genome_build == "mm39")
         and (collapse_to_SBS96 == True)
     ):
         check_rule_negatives = [1, 16]
