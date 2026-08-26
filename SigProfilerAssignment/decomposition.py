@@ -397,7 +397,7 @@ def spa_analyze(
             "ID": ["7"],
         },
         "POL_deficiency_signatures": {
-            "SBS": ["10a", "10b", "10c", "10d", "28"],
+            "SBS": ["10a", "10b", "10c", "10d"],
             "DBS": ["3"],
             "ID": [],
         },
@@ -410,7 +410,7 @@ def spa_analyze(
         },
         "Immunosuppressants_signatures": {"SBS": ["32"], "DBS": [], "ID": []},
         "Treatment_signatures": {
-            "SBS": ["11", "25", "31", "32", "35", "86", "87", "90", "99"],
+            "SBS": ["11", "25", "31", "32", "35", "86", "87", "90", "99", "113"],
             "DBS": ["5"],
             "ID": [],
         },
@@ -421,7 +421,7 @@ def spa_analyze(
             "DBS": ["1"],
             "ID": ["13"],
         },
-        "AA_signatures": {"SBS": ["22", "22a", "22b"], "DBS": ["20"], "ID": ["23"]},
+        "AA_signatures": {"SBS": ["22", "22a", "22b", "22c"], "DBS": ["20"], "ID": ["23"]},
         "Colibactin_signatures": {"SBS": ["88"], "DBS": [], "ID": ["18"]},
         "Artifact_signatures": {
             "SBS": [
